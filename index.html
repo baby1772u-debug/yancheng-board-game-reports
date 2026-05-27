@@ -14,7 +14,8 @@ header h1{font-size:2.2em;background:linear-gradient(135deg,#e94560,#ffd700);-we
 header p{color:var(--muted);font-size:0.95em}
 .date-badge{display:inline-block;background:var(--accent);color:#fff;padding:4px 16px;border-radius:20px;font-size:0.85em;margin-top:10px}
 .section-title{font-size:1.4em;margin:30px 0 16px;padding-left:12px;border-left:4px solid var(--accent)}
-.card{background:var(--card);border-radius:16px;padding:20px;margin-bottom:16px;transition:transform .2s,box-shadow .2s;cursor:pointer;position:relative;overflow:hidden}
+/* 卡片样式 */
+.card{background:var(--card);border-radius:16px;padding:20px;margin-bottom:16px;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;cursor:default}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(233,69,96,0.15)}
 .card-row{display:flex;gap:16px;align-items:flex-start}
 .card-img-wrap{flex-shrink:0;width:140px;height:140px;border-radius:12px;overflow:hidden;background:#2a2a3e}
@@ -22,17 +23,32 @@ header p{color:var(--muted);font-size:0.95em}
 .card:hover .card-img-wrap img{transform:scale(1.08)}
 .card-info{flex:1;min-width:0}
 .card-title{font-size:1.1em;font-weight:600;margin-bottom:6px;color:#fff}
-.card-title a{color:#fff;text-decoration:none}
-.card-title a:hover{color:var(--accent)}
+.card-title a{color:#fff;text-decoration:none;padding:2px 0;border-bottom:1px solid transparent;transition:all .2s}
+.card-title a:hover{color:var(--accent);border-bottom-color:var(--accent)}
 .card-meta{font-size:0.85em;color:var(--muted);margin-bottom:4px}
 .card-tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:0.78em;margin-top:6px;margin-right:4px}
 .tag-hot{background:#e94560;color:#fff}
 .tag-upcoming{background:#ffd700;color:#1a1a2e}
+.tag-preview{background:#9b59b6;color:#fff}
 .tag-active{background:#2ecc71;color:#fff}
 .tag-end{background:#666;color:#fff}
 .price{color:var(--gold);font-weight:600}
 .progress-bar{height:4px;background:#2a2a3e;border-radius:2px;margin-top:8px;overflow:hidden}
 .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:2px;transition:width .5s}
+/* 跳转按钮 */
+.btn-link{display:inline-block;padding:6px 16px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-size:0.85em;margin-top:8px;transition:background .2s}
+.btn-link:hover{background:#c73a4f}
+.btn-link-small{display:inline-block;padding:4px 12px;border-radius:6px;background:rgba(233,69,96,0.2);color:var(--accent);text-decoration:none;font-size:0.78em;margin-top:4px;transition:background .2s;border:1px solid rgba(233,69,96,0.3)}
+.btn-link-small:hover{background:rgba(233,69,96,0.35)}
+/* 预告卡片 - 无链接预览版 */
+.preview-card{background:var(--card);border-radius:16px;overflow:hidden;transition:transform .2s,box-shadow .2s;position:relative}
+.preview-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(233,69,96,0.12)}
+.preview-card .preview-img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.preview-card .preview-body{padding:14px 16px 16px}
+.preview-card .preview-name{font-weight:600;font-size:0.95em;color:#fff;margin-bottom:4px}
+.preview-card .preview-meta{font-size:0.78em;color:var(--muted)}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+/* 网格卡片 */
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 .mini-card{background:var(--card);border-radius:12px;padding:14px;cursor:pointer;transition:transform .2s;text-align:center}
@@ -42,17 +58,21 @@ header p{color:var(--muted);font-size:0.95em}
 .mini-card .mini-meta{font-size:0.72em;color:var(--muted);margin-top:4px}
 .mini-card a{color:inherit;text-decoration:none;display:block}
 .mini-card a:hover .mini-name{color:var(--accent)}
+/* 时间线 */
 .timeline{position:relative;padding-left:28px}
 .timeline::before{content:'';position:absolute;left:10px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--accent),var(--gold))}
 .timeline-item{position:relative;margin-bottom:18px}
 .timeline-item::before{content:'';position:absolute;left:-22px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
 .timeline-item .date{color:var(--gold);font-weight:600;font-size:0.85em}
 .timeline-item .event{color:var(--text);font-size:0.92em}
+/* 提示弹窗 */
+.tip{background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:0.85em;color:var(--muted)}
+.tip strong{color:var(--accent)}
 footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 @media(max-width:600px){
   .card-row{flex-direction:column}
   .card-img-wrap{width:100%;height:180px}
-  .grid-2,.grid-3{grid-template-columns:1fr 1fr}
+  .grid-2,.grid-3,.preview-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -65,133 +85,122 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 <span class="date-badge">📅 2026-05-28 更新</span>
 </header>
 
-<!-- 🔥 即将上线 -->
+<div class="tip">
+💡 <strong>卡片提示：</strong>点击标题即可跳转至项目详情页；部分预告项目暂仅展示图片预览。
+</div>
+
+<!-- ==================== 🔥 即将上线 ==================== -->
 <h2 class="section-title">🔥 即将上线</h2>
 
-<!-- 马拉开波海盗 -->
-<div class="card" onclick="window.open('https://www.xinwuji.com/pc/#/detail/6551778637792260513','_blank')">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="马拉开波海盗" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
-</div>
-<div class="card-info">
-<div class="card-title"><a href="https://www.xinwuji.com/pc/#/detail/6551778637792260513" target="_blank">🏆 《马拉开波海盗：百慕大三角》扩展 & 基础/指挥官重印</a></div>
-<div class="card-meta">奇思工作室 Key Studio</div>
-<div>
+<div class="preview-grid">
+
+<!-- 马拉开波海盗（预热中，可跳转） -->
+<div class="preview-card">
+<a href="https://www.xinwuji.com/pc/#/detail/6551778637792260513" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block">
+<img class="preview-img" src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="马拉开波海盗" loading="lazy" onerror="this.style.display='none'">
+<div class="preview-body">
+<div class="preview-name">🏆 马拉开波海盗：百慕大三角</div>
+<div class="preview-meta">奇思工作室 Key Studio</div>
+<div style="margin-top:6px">
 <span class="card-tag tag-upcoming">⏰ 6月3日 12:00 开售</span>
-<span class="card-tag tag-hot">🔥 3627人预约</span>
+<span class="card-tag tag-hot">🔥 3628人预约</span>
 </div>
-<div class="price">航海竞速德式经典，扩展+基础+指挥官重印</div>
+<div style="font-size:0.78em;color:var(--muted);margin-top:6px">航海竞速德式经典 · 扩展+基础+指挥官重印</div>
 </div>
+</a>
+</div>
+
+<!-- 常影之地（预告阶段，仅预览） -->
+<div class="preview-card">
+<div class="preview-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a3e,#2a1a3e);aspect-ratio:16/9">
+<div style="text-align:center">
+<div style="font-size:3em;margin-bottom:8px">🌓</div>
+<div style="font-size:0.82em;color:var(--muted)">项目预告 · 敬请期待</div>
+</div>
+</div>
+<div class="preview-body">
+<div class="preview-name">🌓 常影之地：特别版</div>
+<div class="preview-meta">奇思工作室 Key Studio</div>
+<div style="margin-top:6px">
+<span class="card-tag tag-preview">📌 项目预告</span>
+</div>
+<div style="font-size:0.78em;color:var(--muted);margin-top:6px">创建独特角色，开启传奇之旅 · 详情待公布</div>
 </div>
 </div>
 
+</div>
+
+<!-- ==================== 🎯 众筹中 ==================== -->
 <h2 class="section-title">🎯 众筹中</h2>
 
-<!-- 赛博朋克红TRPG -->
-<div class="card" onclick="window.open('https://zhongchou.modian.com/item/138362.html','_blank')">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://img.modian.com/upload/202605/112336_682cf1487a18f.jpg" alt="赛博朋克红TRPG" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
-</div>
-<div class="card-info">
-<div class="card-title"><a href="https://zhongchou.modian.com/item/138362.html" target="_blank">🔴 赛博朋克红TRPG 简体中文版</a></div>
-<div class="card-meta">摩点众筹 · 剩15天截止</div>
-<div>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥2,099,886</span>
-</div>
-<div class="card-meta">支持者 2175人 · 完成率 20998%</div>
-<div class="price">All-in合集 ¥1,088</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-
-<!-- 明治维新 -->
-<div class="card" onclick="window.open('https://www.xinwuji.com/pc/#/detail/8961775801579260410','_blank')">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202604/8961775801579260410.jpg" alt="明治维新" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
-</div>
-<div class="card-info">
-<div class="card-title"><a href="https://www.xinwuji.com/pc/#/detail/8961775801579260410" target="_blank">🏯 《明治维新：财阀》KS顶配版</a></div>
-<div class="card-meta">新物集 · 奇思工作室 Key Studio</div>
-<div>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥567,211</span>
-</div>
-<div class="card-meta">支持者 1143人 · 完成率 30364%</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-
 <!-- 无双对决 -->
-<div class="card" onclick="window.open('https://www.xinwuji.com/pc/#/detail/2621778727906260514','_blank')">
+<div class="card">
 <div class="card-row">
 <div class="card-img-wrap">
 <img src="https://i.zhuoyou.com/uploads/202605/2621778727906260514.jpg" alt="无双对决" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
 </div>
 <div class="card-info">
-<div class="card-title"><a href="https://www.xinwuji.com/pc/#/detail/2621778727906260514" target="_blank">⚔️ 《无双对决：传奇之战第三卷》</a></div>
+<div class="card-title"><a href="https://www.xinwuji.com/pc/#/detail/2621778727906260514" target="_blank" rel="noopener">⚔️ 《无双对决：传奇之战第三卷》</a></div>
 <div class="card-meta">新物集 · 奇思工作室 Key Studio</div>
 <div>
 <span class="card-tag tag-active">现货预售</span>
 <span class="card-tag tag-hot">🔥 已筹¥189,957</span>
 </div>
-<div class="card-meta">支持者 624人 · 完成率 1899%</div>
+<div class="card-meta">支持者 624人 · 完成率 1899% · 6月发货</div>
 <div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
 </div>
 </div>
 </div>
 
-<!-- 常影之地 -->
-<div class="card" onclick="window.open('https://www.xinwuji.com/pc/#/detail/4001779782300260526','_blank')">
+<!-- 赛博朋克红TRPG -->
+<div class="card">
 <div class="card-row">
 <div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202605/4001779782300260526.jpg" alt="常影之地" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
+<img src="https://p6.moimg.net/path/dst_project/1007993862/202605/2600/2417/2605262417kOqAaWZl9VJzm5r44Wz0oP2eXxpGwd.jpg" alt="赛博朋克红TRPG" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
 </div>
 <div class="card-info">
-<div class="card-title"><a href="https://www.xinwuji.com/pc/#/detail/4001779782300260526" target="_blank">🌓 《常影之地：特别版》</a></div>
-<div class="card-meta">新物集 · 奇思工作室 Key Studio</div>
+<div class="card-title"><a href="https://zhongchou.modian.com/item/155590.html" target="_blank" rel="noopener">🔴 赛博朋克红TRPG 简体中文版</a></div>
+<div class="card-meta">摩点众筹 · 剩15天截止（6月11日）</div>
 <div>
 <span class="card-tag tag-active">众筹中</span>
+<span class="card-tag tag-hot">🔥 已筹¥2,099,886</span>
 </div>
-<div class="card-meta">创建独特角色，开启传奇之旅</div>
+<div class="card-meta">支持者 2175人 · 完成率 20998%</div>
+<div class="price">All-in合集 ¥1,088（核心规则+扩展+剧本+配件）</div>
+<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
 </div>
 </div>
 </div>
 
 <!-- Crash! 第二季 -->
-<div class="card" onclick="window.open('https://zhongchou.modian.com/item/137850.html','_blank')">
+<div class="card">
 <div class="card-row">
 <div class="card-img-wrap">
-<img src="https://img.modian.com/upload/202605/175111_68251767d2e3a.jpg" alt="Crash!第二季" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
+<img src="https://p6.moimg.net/path/dst_project/1007058051/202604/1616/1327/2604161327w9Axe0Mn186zLkD0kLy2poRljqZV37.jpg" alt="Crash!第二季" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
 </div>
 <div class="card-info">
-<div class="card-title"><a href="https://zhongchou.modian.com/item/137850.html" target="_blank">💥 《Crash!》第二季 DBG对战续作</a></div>
-<div class="card-meta">摩点众筹 · 剩32天截止</div>
+<div class="card-title"><a href="https://zhongchou.modian.com/item/156469.html" target="_blank" rel="noopener">💥 《Crash!》第二季 DBG对战续作</a></div>
+<div class="card-meta">摩点众筹 · 剩32天截止（6月29日）</div>
 <div>
 <span class="card-tag tag-active">众筹中</span>
 <span class="card-tag tag-hot">🔥 已筹¥160,968</span>
 </div>
 <div class="card-meta">支持者 449人 · 完成率 1609%</div>
-<div class="price">基础款 ¥148 / All-in ¥498</div>
+<div class="price">基础款 ¥148 / All-in ¥498（含牌盒+设定集+牌垫）</div>
 <div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
 </div>
 </div>
 </div>
 
 <!-- 雾雨世界 -->
-<div class="card" onclick="window.open('https://zhongchou.modian.com/item/137513.html','_blank')">
+<div class="card">
 <div class="card-row">
 <div class="card-img-wrap">
-<img src="https://img.modian.com/upload/202604/175738_680ac972cdb8f.jpg" alt="雾雨世界" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
+<img src="https://p6.moimg.net/path/dst_project/1006362753/202604/1411/3042/2604143042bgk2Y5KLd98v59mkNRvljV17BMxDer.png" alt="雾雨世界" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
 </div>
 <div class="card-info">
-<div class="card-title"><a href="https://zhongchou.modian.com/item/137513.html" target="_blank">🌫️ 《雾雨世界》长篇冒险PVE剧情桌游</a></div>
-<div class="card-meta">摩点众筹 · 剩31天截止</div>
+<div class="card-title"><a href="https://zhongchou.modian.com/item/156407.html" target="_blank" rel="noopener">🌫️ 《雾雨世界》长篇冒险PVE剧情桌游</a></div>
+<div class="card-meta">摩点众筹 · 剩31天截止（6月28日）</div>
 <div>
 <span class="card-tag tag-active">众筹中</span>
 </div>
@@ -203,14 +212,14 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <!-- 三国走走棋 -->
-<div class="card" onclick="window.open('https://zhongchou.modian.com/item/137893.html','_blank')">
+<div class="card">
 <div class="card-row">
 <div class="card-img-wrap">
-<img src="https://img.modian.com/upload/202605/135944_682646180a8aa.jpg" alt="三国走走棋" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
+<img src="https://p6.moimg.net/path/dst_project/1003729479/202605/2319/2106/2605232106YeZKbq2oV0kyWjeBVwEB56xXONDa9m.jpg" alt="三国走走棋" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
 </div>
 <div class="card-info">
-<div class="card-title"><a href="https://zhongchou.modian.com/item/137893.html" target="_blank">♟️ 《三国走走棋》扩展 第2弹</a></div>
-<div class="card-meta">摩点众筹 · 剩38天截止</div>
+<div class="card-title"><a href="https://zhongchou.modian.com/item/156639.html" target="_blank" rel="noopener">♟️ 《三国走走棋》扩展 第2弹</a></div>
+<div class="card-meta">摩点众筹 · 剩38天截止（7月5日）</div>
 <div>
 <span class="card-tag tag-active">众筹中</span>
 <span class="card-tag tag-hot">🔥 已筹¥192,697</span>
@@ -222,12 +231,34 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 </div>
 
-<!-- 更多项目 -->
+<!-- ==================== ✅ 已结束 ==================== -->
+<h2 class="section-title">✅ 已结束</h2>
+
+<!-- 明治维新 -->
+<div class="card" style="opacity:0.7">
+<div class="card-row">
+<div class="card-img-wrap">
+<img src="https://i.zhuoyou.com/uploads/202604/8961775801579260410.jpg" alt="明治维新" loading="lazy" onerror="this.parentElement.innerHTML='📦'">
+</div>
+<div class="card-info">
+<div class="card-title">🏯 《明治维新：财阀》KS顶配版</div>
+<div class="card-meta">新物集 · 奇思工作室 Key Studio</div>
+<div>
+<span class="card-tag tag-end">✅ 众筹已结束</span>
+<span class="card-tag tag-hot">🔥 最终¥567,211</span>
+</div>
+<div class="card-meta">最终支持者 1143人 · 完成率 30364%</div>
+<div class="card-meta" style="color:var(--gold);margin-top:4px">💰 筹款总额 ¥567,211 · 5月现货预售</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 📋 更多新物集项目 ==================== -->
 <h2 class="section-title">📋 更多新物集项目</h2>
 <div class="grid-3">
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <img class="mini-img" src="https://i.zhuoyou.com/upload/images/202407/w_720_h_564_s_662049_1f00e538-4b51-4042-9823-fca402fe6da2.png" alt="洪流Flood" loading="lazy" onerror="this.style.display='none'">
 <div class="mini-name">🌊 洪流Flood</div>
 <div class="mini-meta">树豆工作室 · 预热中</div>
@@ -235,7 +266,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <img class="mini-img" src="https://i.zhuoyou.com/upload/images/202502/w_1600_h_2844_s_35422_7a01eff3-e248-4c20-95e5-7dab9187cecb.png" alt="The Last of Blood" loading="lazy" onerror="this.style.display='none'">
 <div class="mini-name">🩸 The Last of Blood</div>
 <div class="mini-meta">我是Joker · 预热中</div>
@@ -243,7 +274,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <img class="mini-img" src="https://i.zhuoyou.com/upload/images/202404/w_720_h_546_s_603724_a5d16408-7bb3-4159-8f7f-27b3f671b666.png" alt="苏丝" loading="lazy" onerror="this.style.display='none'">
 <div class="mini-name">🎨 《苏丝》原创桌游</div>
 <div class="mini-meta">Modxumer · 预热中</div>
@@ -251,7 +282,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <img class="mini-img" src="https://i.zhuoyou.com/upload/images/202403/w_750_h_564_s_615814_df3aecf2-6898-4739-941d-fb4d9b5012da.png" alt="地缝探险" loading="lazy" onerror="this.style.display='none'">
 <div class="mini-name">🪐 《地缝探险》</div>
 <div class="mini-meta">壹顺工作室 · 预热中</div>
@@ -259,7 +290,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎴</div>
 <div class="mini-name">方舟动物园 3D地形包</div>
 <div class="mini-meta">晚上才起来 · 众筹中</div>
@@ -267,7 +298,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🏔️</div>
 <div class="mini-name">Apex 巅峰之战 收藏版</div>
 <div class="mini-meta">聚弈堂 · 众筹中</div>
@@ -275,7 +306,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🐉</div>
 <div class="mini-name">《扑克与龙》类小丑牌</div>
 <div class="mini-meta">游户桌游 · 预热中</div>
@@ -283,7 +314,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🦠</div>
 <div class="mini-name">《VIRUS计划》身份推理</div>
 <div class="mini-meta">只可艺汇桌游 · 预热中</div>
@@ -291,7 +322,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">♟️</div>
 <div class="mini-name">弈决天下 历史策略战棋</div>
 <div class="mini-meta">洛弈文化 · 预热中</div>
@@ -299,7 +330,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎪</div>
 <div class="mini-name">3 Ring Circus</div>
 <div class="mini-meta">齁甜桌游工作室 · 预热中</div>
@@ -307,7 +338,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🍵</div>
 <div class="mini-name">《茶华》国风轻策</div>
 <div class="mini-meta">Modxumer · 预热中</div>
@@ -315,7 +346,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 
 <div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
 <div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">⚔️</div>
 <div class="mini-name">《敌纪元》卡牌区控</div>
 <div class="mini-meta">大头方脸桌游社 · 预热中</div>
@@ -324,7 +355,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 
 </div>
 
-<!-- 时间线 -->
+<!-- ==================== ⏰ 时间线 ==================== -->
 <h2 class="section-title">⏰ 关键时间节点</h2>
 <div class="timeline">
 <div class="timeline-item">
@@ -349,12 +380,12 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 </div>
 
-<!-- 推荐 -->
+<!-- ==================== 💡 推荐 ==================== -->
 <h2 class="section-title">💡 本周推荐</h2>
 <div class="card" style="background:linear-gradient(135deg,#1a1a2e,#2a1a2e)">
 <div class="card-info" style="text-align:center;padding:10px">
 <div style="font-size:1.3em;margin-bottom:8px">🏆 <strong>《马拉开波海盗：百慕大三角》</strong></div>
-<div style="font-size:0.9em;color:var(--muted);margin-bottom:8px">下周三开售，3627人预约，经典航海德式</div>
+<div style="font-size:0.9em;color:var(--muted);margin-bottom:8px">下周三开售，3628人预约，经典航海德式</div>
 <div style="font-size:1.1em">🔥 <strong>赛博朋克红TRPG</strong> — 已筹¥210万！All-in ¥1,088</div>
 <div style="font-size:0.9em;color:var(--muted);margin-top:8px">💥 《Crash!》第二季 DBG对战仅¥148起</div>
 </div>
@@ -362,8 +393,7 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 
 <footer>
 <p>数据来源：新物集 xinwuji.com · 摩点众筹 zhongchou.modian.com</p>
-<p>采集时间：2026-05-28 01:39 · 由小一自动整理 🤖</p>
-<p style="margin-top:8px;font-size:0.8em">点击任意卡片即可跳转至项目详情页</p>
+<p>采集时间：2026-05-28 02:04 · 由小一自动整理 🤖</p>
 </footer>
 
 </div>

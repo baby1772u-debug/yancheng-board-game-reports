@@ -90,7 +90,30 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;li
   .grid-3{grid-template-columns:1fr}
   header h1{font-size:1.2em}
 }
+
+/* —— Tab切换样式补充 —— */
+.tab-bar{display:flex;justify-content:center;gap:10px;margin:16px 0 18px}
+.tab-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 28px;border-radius:999px;border:1.5px solid #ddd;background:#fff;color:#86868b;font-size:0.92em;font-weight:500;cursor:pointer;transition:all .25s;box-shadow:0 2px 12px rgba(0,0,0,0.06);-webkit-tap-highlight-color:transparent}
+.tab-btn:hover{border-color:#e94560;color:#1d1d1f}
+.tab-btn.active{background:#e94560;color:#fff;border-color:#e94560;box-shadow:0 4px 16px rgba(233,69,96,0.25)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.tab-content.active{animation:fadeIn .3s ease}
+@media(max-width:640px){
+  .tab-btn{padding:7px 20px;font-size:0.84em}
+}
+
+/* —— Tab切换JS —— */
 </style>
+<script>
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick*="'${tab}'"]`).classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+</script>
 </head>
 <body>
 <div class="container">
@@ -100,6 +123,15 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;li
 <p>新物集 · 摩点众筹 · Kickstarter · Gamefound 全球汇总</p>
 <span class="date-badge">📅 2026-05-28 更新</span>
 </header>
+
+<!-- ==================== Tab切换 ==================== -->
+<div class="tab-bar">
+<button class="tab-btn active" onclick="switchTab('domestic')">🇨🇳 国内</button>
+<button class="tab-btn" onclick="switchTab('overseas')">🌍 海外</button>
+</div>
+
+<!-- ==================== 🇨🇳 国内板块 ==================== -->
+<div id="tab-domestic" class="tab-content active">
 
 <!-- ==================== 🔥 国内即将上线 ==================== -->
 <h2 class="section-title">🔥 即将上线</h2>
@@ -146,127 +178,6 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;li
 </div>
 </a>
 
-<!-- ==================== 🌍 海外即将上线 ==================== -->
-<h2 class="section-title" style="margin-top:30px">🌍 海外即将上线</h2>
-
-<!-- Nemesis Legacy -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/nemesis-legacy" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="Nemesis Legacy" loading="lazy" onerror="this.parentElement.innerHTML='👾'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Nemesis Legacy</span> <span class="cn-name">｜复仇女神号：传承</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 43,129 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-5人 · 科幻探索合作 · 传奇复仇女神号首个长篇战役</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Agricola: Dead Harvest -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="Agricola: Dead Harvest" loading="lazy" onerror="this.parentElement.innerHTML='🌾'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Agricola: Dead Harvest</span> <span class="cn-name">｜农场主：末日收割</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 33,639 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-4人 · 农场经营+丧尸末世 · Uwe Rosenberg经典重制</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Concordia SE -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/concordia-special-edition" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="Concordia Special Edition" loading="lazy" onerror="this.parentElement.innerHTML='🏛️'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Concordia Special Edition</span> <span class="cn-name">｜和睦罗马：特别版</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 33,416 关注</span>
-<span class="card-tag tag-upcoming">⏰ 约13天后上线</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-6人 · 经典德式策略 · 全新美术+扩展整合</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Dune: Kwisatz Haderach Edition -->
-<a class="card-link" href="https://gamefound.com/en/projects/gf9/dune" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/3812/b56d460b-edca-4937-a57e-9f5fa0c1ca36.jpg" alt="Dune: Kwisatz Haderach Edition" loading="lazy" onerror="this.parentElement.innerHTML='🏜️'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Dune: Kwisatz Haderach Edition</span> <span class="cn-name">｜沙丘：魁萨兹·哈德拉赫版</span></div>
-<div class="card-meta">GF9 · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 27,300 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">经典沙丘桌游豪华新版 · 关注赠金属先手指示物</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Galileo's Truth -->
-<a class="card-link" href="https://www.kickstarter.com/projects/thundergryph/galileos-truth" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap" style="background:#2a2a3e;display:flex;align-items:center;justify-content:center;font-size:2em;color:#666">🔭</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Galileo's Truth</span> <span class="cn-name">｜伽利略的真相</span></div>
-<div class="card-meta">Thundergryph · Kickstarter</div>
-<div>
-<span class="platform-badge ks">🥾 KS</span>
-<span class="card-tag tag-hot">🔥 18,100 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">预告中 · 关注热度高</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Scoundrels -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/scoundrels" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8527/c2a6b3d8-c240-4442-a2a7-44f22287ef37.jpg" alt="Scoundrels" loading="lazy" onerror="this.parentElement.innerHTML='🎭'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Scoundrels</span> <span class="cn-name">｜恶棍密窟</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 16,944 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-4人 · 完全合作潜行地城 · STALKER桌游机制改编</div>
-</div>
-</div>
-</div>
-</a>
 
 <!-- ==================== 🎯 众筹中 ==================== -->
 <h2 class="section-title">🎯 众筹中</h2>
@@ -426,6 +337,267 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;li
 </div>
 </a>
 
+
+
+<!-- ==================== 📋 更多预告项目 ==================== -->
+<h2 class="section-title">📋 更多预告项目</h2>
+
+<div class="grid-3">
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202407/w_720_h_564_s_662049_1f00e538-4b51-4042-9823-fca402fe6da2.png" alt="洪流Flood" loading="lazy" onerror="this.style.display='none'">
+<div class="mini-name">🌊 洪流Flood</div>
+<div class="mini-meta">树豆工作室 · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202502/w_1600_h_2844_s_35422_7a01eff3-e248-4c20-95e5-7dab9187cecb.png" alt="The Last of Blood" loading="lazy" onerror="this.style.display='none'">
+<div class="mini-name">🩸 The Last of Blood</div>
+<div class="mini-meta">我是Joker · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202404/w_720_h_546_s_603724_a5d16408-7bb3-4159-8f7f-27b3f671b666.png" alt="苏丝" loading="lazy" onerror="this.style.display='none'">
+<div class="mini-name">🎨 《苏丝》原创桌游</div>
+<div class="mini-meta">Modxumer · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202403/w_750_h_564_s_615814_df3aecf2-6898-4739-941d-fb4d9b5012da.png" alt="地缝探险" loading="lazy" onerror="this.style.display='none'">
+<div class="mini-name">🪐 《地缝探险》</div>
+<div class="mini-meta">壹顺工作室 · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎴</div>
+<div class="mini-name">方舟动物园 3D地形包</div>
+<div class="mini-meta">晚上才起来 · 众筹中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🏔️</div>
+<div class="mini-name">Apex 巅峰之战 收藏版</div>
+<div class="mini-meta">聚弈堂 · 众筹中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🐉</div>
+<div class="mini-name">《扑克与龙》类小丑牌</div>
+<div class="mini-meta">游户桌游 · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🦠</div>
+<div class="mini-name">《VIRUS计划》身份推理</div>
+<div class="mini-meta">只可艺汇桌游 · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">♟️</div>
+<div class="mini-name">弈决天下 历史策略战棋</div>
+<div class="mini-meta">洛弈文化 · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎪</div>
+<div class="mini-name">3 Ring Circus</div>
+<div class="mini-meta">齁甜桌游工作室 · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🍵</div>
+<div class="mini-name">《茶华》国风轻策</div>
+<div class="mini-meta">Modxumer · 预热中</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">⚔️</div>
+<div class="mini-name">《敌纪元》卡牌区控</div>
+<div class="mini-meta">大头方脸桌游社 · 预热中</div>
+</a>
+</div>
+
+</div>
+
+<!-- ==================== ⏰ 时间线 ==================== -->
+
+
+<h2 class="section-title">⏰ 关键时间节点</h2>
+<div class="timeline">
+<div class="timeline-item"><div class="date">📅 5月29日（明天）</div><div class="event">Hitman: The Board Game GF众筹截止 ⚠️ 最后机会</div></div>
+<div class="timeline-item"><div class="date">📅 5月30日（后天）</div><div class="event">Terraforming Mars Legacy GF/KS众筹截止 ⚠️</div></div>
+<div class="timeline-item"><div class="date">📅 6月3日（下周三）</div><div class="event">《马拉开波海盗》+《阿克莱特》新物集开售 ⭐</div></div>
+<div class="timeline-item"><div class="date">📅 6月11日</div><div class="event">赛博朋克红TRPG 众筹截止</div></div>
+<div class="timeline-item"><div class="date">📅 6月28日</div><div class="event">《雾雨世界》众筹截止</div></div>
+<div class="timeline-item"><div class="date">📅 6月29日</div><div class="event">《Crash!》第二季 众筹截止</div></div>
+<div class="timeline-item"><div class="date">📅 7月5日</div><div class="event">《三国走走棋》扩展 众筹截止</div></div>
+</div>
+
+
+
+<!-- ==================== 💡 推荐 ==================== -->
+<h2 class="section-title">💡 本周推荐</h2>
+<div class="card" style="background:linear-gradient(135deg,#1a1a2e,#2a1a2e)">
+<div class="card-info" style="text-align:center;padding:8px">
+<div style="font-size:1.2em;margin-bottom:6px">🏆 <strong>《马拉开波海盗：百慕大三角》</strong></div>
+<div style="font-size:0.85em;color:var(--muted);margin-bottom:6px">下周三开售，3627人预约，经典航海德式</div>
+<div style="font-size:1em">🌍 <strong>海外关注</strong> — Nemesis Legacy 4.3万🔥 | Concordia SE 预计6月10日上线</div>
+<div style="font-size:0.85em;color:var(--muted);margin-top:6px">⚠️ <strong>即将截止</strong>：Hitman剩19h · TM Legacy剩2天 · VANEA剩4天</div>
+</div>
+</div>
+
+
+
+<!-- ==================== 🇨🇳 国内板块结束 ==================== -->
+</div>
+
+<!-- ==================== 🌍 海外板块 ==================== -->
+<div id="tab-overseas" class="tab-content">
+
+<!-- ==================== 🌍 海外即将上线 ==================== -->
+<h2 class="section-title" style="margin-top:30px">🌍 海外即将上线</h2>
+
+<!-- Nemesis Legacy -->
+<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/nemesis-legacy" target="_blank" rel="noopener">
+<div class="card">
+<div class="card-row">
+<div class="card-img-wrap">
+<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="Nemesis Legacy" loading="lazy" onerror="this.parentElement.innerHTML='👾'">
+</div>
+<div class="card-info">
+<div class="card-title"><span class="en-name">Nemesis Legacy</span> <span class="cn-name">｜复仇女神号：传承</span></div>
+<div class="card-meta">Awaken Realms · Gamefound 预告</div>
+<div>
+<span class="platform-badge gf">🎮 GF</span>
+<span class="card-tag tag-hot">🔥 43,129 关注</span>
+</div>
+<div class="card-meta" style="margin-top:3px">1-5人 · 科幻探索合作 · 传奇复仇女神号首个长篇战役</div>
+</div>
+</div>
+</div>
+</a>
+
+<!-- Agricola: Dead Harvest -->
+<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest" target="_blank" rel="noopener">
+<div class="card">
+<div class="card-row">
+<div class="card-img-wrap">
+<img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="Agricola: Dead Harvest" loading="lazy" onerror="this.parentElement.innerHTML='🌾'">
+</div>
+<div class="card-info">
+<div class="card-title"><span class="en-name">Agricola: Dead Harvest</span> <span class="cn-name">｜农场主：末日收割</span></div>
+<div class="card-meta">Awaken Realms · Gamefound 预告</div>
+<div>
+<span class="platform-badge gf">🎮 GF</span>
+<span class="card-tag tag-hot">🔥 33,639 关注</span>
+</div>
+<div class="card-meta" style="margin-top:3px">1-4人 · 农场经营+丧尸末世 · Uwe Rosenberg经典重制</div>
+</div>
+</div>
+</div>
+</a>
+
+<!-- Concordia SE -->
+<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/concordia-special-edition" target="_blank" rel="noopener">
+<div class="card">
+<div class="card-row">
+<div class="card-img-wrap">
+<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="Concordia Special Edition" loading="lazy" onerror="this.parentElement.innerHTML='🏛️'">
+</div>
+<div class="card-info">
+<div class="card-title"><span class="en-name">Concordia Special Edition</span> <span class="cn-name">｜和睦罗马：特别版</span></div>
+<div class="card-meta">Awaken Realms · Gamefound 预告</div>
+<div>
+<span class="platform-badge gf">🎮 GF</span>
+<span class="card-tag tag-hot">🔥 33,416 关注</span>
+<span class="card-tag tag-upcoming">⏰ 约13天后上线</span>
+</div>
+<div class="card-meta" style="margin-top:3px">1-6人 · 经典德式策略 · 全新美术+扩展整合</div>
+</div>
+</div>
+</div>
+</a>
+
+<!-- Dune: Kwisatz Haderach Edition -->
+<a class="card-link" href="https://gamefound.com/en/projects/gf9/dune" target="_blank" rel="noopener">
+<div class="card">
+<div class="card-row">
+<div class="card-img-wrap">
+<img src="https://imgcdn.gamefound.com/projectimage/projects/3812/b56d460b-edca-4937-a57e-9f5fa0c1ca36.jpg" alt="Dune: Kwisatz Haderach Edition" loading="lazy" onerror="this.parentElement.innerHTML='🏜️'">
+</div>
+<div class="card-info">
+<div class="card-title"><span class="en-name">Dune: Kwisatz Haderach Edition</span> <span class="cn-name">｜沙丘：魁萨兹·哈德拉赫版</span></div>
+<div class="card-meta">GF9 · Gamefound 预告</div>
+<div>
+<span class="platform-badge gf">🎮 GF</span>
+<span class="card-tag tag-hot">🔥 27,300 关注</span>
+</div>
+<div class="card-meta" style="margin-top:3px">经典沙丘桌游豪华新版 · 关注赠金属先手指示物</div>
+</div>
+</div>
+</div>
+</a>
+
+<!-- Galileo's Truth -->
+<a class="card-link" href="https://www.kickstarter.com/projects/thundergryph/galileos-truth" target="_blank" rel="noopener">
+<div class="card">
+<div class="card-row">
+<div class="card-img-wrap" style="background:#2a2a3e;display:flex;align-items:center;justify-content:center;font-size:2em;color:#666">🔭</div>
+<div class="card-info">
+<div class="card-title"><span class="en-name">Galileo's Truth</span> <span class="cn-name">｜伽利略的真相</span></div>
+<div class="card-meta">Thundergryph · Kickstarter</div>
+<div>
+<span class="platform-badge ks">🥾 KS</span>
+<span class="card-tag tag-hot">🔥 18,100 关注</span>
+</div>
+<div class="card-meta" style="margin-top:3px">预告中 · 关注热度高</div>
+</div>
+</div>
+</div>
+</a>
+
+<!-- Scoundrels -->
+<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/scoundrels" target="_blank" rel="noopener">
+<div class="card">
+<div class="card-row">
+<div class="card-img-wrap">
+<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8527/c2a6b3d8-c240-4442-a2a7-44f22287ef37.jpg" alt="Scoundrels" loading="lazy" onerror="this.parentElement.innerHTML='🎭'">
+</div>
+<div class="card-info">
+<div class="card-title"><span class="en-name">Scoundrels</span> <span class="cn-name">｜恶棍密窟</span></div>
+<div class="card-meta">Awaken Realms · Gamefound 预告</div>
+<div>
+<span class="platform-badge gf">🎮 GF</span>
+<span class="card-tag tag-hot">🔥 16,944 关注</span>
+</div>
+<div class="card-meta" style="margin-top:3px">1-4人 · 完全合作潜行地城 · STALKER桌游机制改编</div>
+</div>
+</div>
+</div>
+</a>
 <!-- ==================== 🌍 海外众筹中 ==================== -->
 <h2 class="section-title" style="margin-top:30px">🌍 海外众筹中</h2>
 
@@ -639,6 +811,58 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;li
 </div>
 
 <!-- ==================== 📋 更多预告项目 ==================== -->
+<div class="grid-3">
+
+<div class="mini-card">
+<a href="https://gamefound.com/en/projects" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🟣</div>
+<div class="mini-name">Awaken Realms GF 4连发</div>
+<div class="mini-meta">Nemesis/AH/Concordia/Scoundrels</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://gamefound.com/en/projects" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🏜️</div>
+<div class="mini-name">Dune: Kwisatz Haderach</div>
+<div class="mini-meta">GF9 · 27k关注</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.kickstarter.com" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🥾</div>
+<div class="mini-name">Galileo's Truth</div>
+<div class="mini-meta">Thundergryph · KS预告</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.kickstarter.com" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🐲</div>
+<div class="mini-name">War of the Dragon</div>
+<div class="mini-meta">Hot Door · KS预告</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.kickstarter.com" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🚂</div>
+<div class="mini-name">Let's Go! To France</div>
+<div class="mini-meta">KS预告 · 火车旅行</div>
+</a>
+</div>
+
+<div class="mini-card">
+<a href="https://www.kickstarter.com" target="_blank">
+<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🌲</div>
+<div class="mini-name">Symbaroum</div>
+<div class="mini-meta">Free League · KS</div>
+</a>
+</div>
+
+</div>
+<!-- ==================== 📋 更多预告项目 ==================== -->
 <h2 class="section-title">📋 更多预告项目</h2>
 
 <div class="grid-3">
@@ -762,6 +986,11 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;li
 <div style="font-size:1em">🌍 <strong>海外关注</strong> — Nemesis Legacy 4.3万🔥 | Concordia SE 预计6月10日上线</div>
 <div style="font-size:0.85em;color:var(--muted);margin-top:6px">⚠️ <strong>即将截止</strong>：Hitman剩19h · TM Legacy剩2天 · VANEA剩4天</div>
 </div>
+</div>
+
+
+
+<!-- ==================== 🌍 海外板块结束 ==================== -->
 </div>
 
 <footer>

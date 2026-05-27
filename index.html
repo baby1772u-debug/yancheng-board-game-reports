@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🎲 桌游众筹资讯周报 2026.05.28</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;900&display=swap');
+  
+  * { margin:0; padding:0; box-sizing:border-box; }
+  
+  body {
+    font-family: 'Noto Sans SC', -apple-system, sans-serif;
+    background: #0f0f1a;
+    color: #e0e0e0;
+    line-height: 1.7;
+  }
+  
+  /* 背景动画 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(236,72,153,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(251,191,36,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 48px 0 36px;
+    position: relative;
+  }
+  
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 3px;
+    background: linear-gradient(90deg, #6366f1, #ec4899, #fbbf24);
+    border-radius: 2px;
+  }
+  
+  .header .emoji-big { font-size: 56px; display:block; margin-bottom:12px; }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #a5b4fc, #f9a8d4, #fde68a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .header .sub {
+    margin-top: 10px;
+    color: #888;
+    font-size: 14px;
+  }
+  .header .sub span { color: #a5b4fc; }
+  
+  /* 更新时间 */
+  .update-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.25);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #a5b4fc;
+    margin-top: 14px;
+  }
+  
+  /* Section title */
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .section-title .icon { font-size: 24px; }
+  
+  /* Card */
+  .card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: all 0.25s ease;
+  }
+  
+  .card:hover {
+    border-color: rgba(99,102,241,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(99,102,241,0.1);
+  }
+  
+  .card .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  .badge-red { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .badge-yellow { background: rgba(251,191,36,0.2); color: #fde68a; }
+  .badge-green { background: rgba(52,211,153,0.2); color: #86efac; }
+  .badge-blue { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+  .badge-purple { background: rgba(168,85,247,0.2); color: #d8b4fe; }
+  .badge-amber { background: rgba(245,158,11,0.2); color: #fcd34d; }
+  
+  .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  
+  .card .creator {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  
+  .card .stat-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .card .stat-line .stat {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+  }
+  
+  .card .stat-line .stat em {
+    font-style: normal;
+    font-weight: 700;
+    color: #fcd34d;
+  }
+  
+  .card .desc {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 1.6;
+  }
+  
+  .card .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #999;
+    margin-right: 4px;
+  }
+  
+  /* 重点突出卡片 */
+  .card-highlight {
+    background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.05));
+    border: 1px solid rgba(99,102,241,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-highlight::before {
+    content: '🔥';
+    position: absolute;
+    top: -8px; right: 12px;
+    font-size: 48px;
+    opacity: 0.15;
+  }
+  
+  .card-highlight h3 { color: #a5b4fc; }
+  
+  /* 排行榜 */
+  .rank-list { counter-reset: rank; }
+  
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.2s;
+  }
+  
+  .rank-item:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.08);
+  }
+  
+  .rank-item .rank-num {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  
+  .rank-1 .rank-num { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a1a2e; }
+  .rank-2 .rank-num { background: linear-gradient(135deg, #94a3b8, #64748b); color: #fff; }
+  .rank-3 .rank-num { background: linear-gradient(135deg, #f59e0b, #d97706); color: #1a1a2e; }
+  
+  .rank-item .info { flex: 1; }
+  .rank-item .info .name { font-weight: 600; color: #fff; font-size: 15px; }
+  .rank-item .info .meta { font-size: 13px; color: #888; margin-top: 2px; }
+  .rank-item .amount {
+    font-weight: 700;
+    font-size: 15px;
+    color: #fcd34d;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  
+  /* 时间线 */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(99,102,241,0.5), rgba(236,72,153,0.3));
+    border-radius: 1px;
+  }
+  
+  .tl-item {
+    position: relative;
+    padding: 12px 0;
+  }
+  
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 18px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #6366f1;
+    border: 2px solid #0f0f1a;
+  }
+  
+  .tl-item .tl-date {
+    font-size: 13px;
+    font-weight: 600;
+    color: #a5b4fc;
+    margin-bottom: 2px;
+  }
+  .tl-item .tl-text { font-size: 14px; color: #ccc; }
+  
+  /* 推荐区 */
+  .recommend {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  
+  .rec-card {
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .rec-card .rec-icon { font-size: 20px; margin-bottom: 4px; }
+  .rec-card .rec-title { font-weight: 600; color: #fff; font-size: 15px; }
+  .rec-card .rec-desc { font-size: 13px; color: #999; margin-top: 2px; }
+  
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    font-size: 13px;
+    color: #666;
+  }
+  
+  /* 平台标记 */
+  .platform-tag {
+    display: inline-block; 
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .platform-xwj { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .platform-md { background: rgba(251,191,36,0.15); color: #fde68a; }
+  
+  /* 链接 */
+  a { color: #a5b4fc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  
+  /* 响应式 */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .card { padding: 18px; }
+    .rank-item { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ========== Header ========== -->
+  <div class="header">
+    <span class="emoji-big">🎲</span>
+    <h1>桌游众筹资讯周报</h1>
+    <div class="sub">新物集 × 摩点众筹 · <span>2026年5月28日</span></div>
+    <div class="update-badge">⏱️ 数据采集于今晚·共收录 20+ 项目</div>
+  </div>
+
+  <!-- ========== 本周重点关注 ========== -->
+  <div class="section-title">
+    <span class="icon">🔜</span> 本周重点关注
+  </div>
+  
+  <div class="card card-highlight">
+    <span class="badge badge-blue">新物集</span>
+    <h3>🚢 马拉开波海盗：百慕大三角 扩展 & 基础/指挥官重印</h3>
+    <div class="creator">奇思工作室 Key Studio</div>
+    <div class="stat-line">
+      <span class="stat">📅 <em>6月3日 12:00</em> 开售</span>
+      <span class="stat">👥 <em>3624</em> 人预约 🔥</span>
+    </div>
+    <div class="desc">
+      经典航海竞速德式《马拉开波海盗》全新扩展「百慕大三角」+ 基础版与指挥官模式重印！预约人数持续飙升中，下周三开售，值得蹲一波！
+    </div>
+    <div style="margin-top:10px">
+      <span class="tag">德式</span>
+      <span class="tag">航海</span>
+      <span class="tag">扩展</span>
+      <span class="tag">重印</span>
+    </div>
+  </div>
+
+  <!-- ========== 正在众筹 - 排行榜 ========== -->
+  <div class="section-title">
+    <span class="icon">🏆</span> 正在众筹 · 热度排行
+  </div>
+  
+  <div class="rank-list">
+  
+    <div class="rank-item rank-1">
+      <div class="rank-num">🥇</div>
+      <div class="info">
+        <div class="name">赛博朋克红TRPG</div>
+        <div class="meta">摩点 · 听枫馆TRPG · 剩<em style="color:#fcd34d">15天</em></div>
+      </div>
+      <div class="amount">¥210万</div>
+    </div>
+    
+    <div class="rank-item rank-2">
+      <div class="rank-num">🥈</div>
+      <div class="info">
+        <div class="name">明治维新：财阀 KS顶配版</div>
+        <div class="meta">新物集 · 奇思工作室 · 现货预售</div>
+      </div>
+      <div class="amount">¥56.7万</div>
+    </div>
+    
+    <div class="rank-item rank-3">
+      <div class="rank-num">🥉</div>
+      <div class="info">
+        <div class="name">三国走走棋 扩展</div>
+        <div class="meta">摩点 · 红色行星文创 · 剩<em style="color:#fcd34d">38天</em></div>
+      </div>
+      <div class="amount">¥19.3万</div>
+    </div>
+    
+  </div>
+
+  <!-- ========== 摩点项目 ========== -->
+  <div class="section-title">
+    <span class="icon">🟡</span> 摩点众筹
+  </div>
+  
+  <!-- 赛博朋克红TRPG -->
+  <div class="card">
+    <span class="badge badge-amber">摩点</span>
+    <h3>🌃 2077原作·赛博朋克红TRPG</h3>
+    <div class="creator">听枫馆TRPG · 剩余15天（截止6月11日）</div>
+    <div class="stat-line">
+      <span class="stat">💰 <em>¥2,100,974</em></span>
+      <span class="stat">👥 <em>2176</em> 人支持</span>
+      <span class="stat">📈 21009%</span>
+    </div>
+    <div class="desc">
+      <strong>早鸟All-in已售罄！All-in合集 ¥1,088</strong> — 含核心规则书+扩展《黑铬》+《单人模式》+剧本集《赤红传说》+DLC合集+网行/创伤牌组+骰子+主持人帷幕+精装书盒+收纳盒+地图海报+边缘行者角色立牌！<br>
+      另可选：游戏性All-in ¥858 / 基础合集 ¥458 / 单人合集 ¥388 / 单规则书 ¥318
+    </div>
+    <div style="margin-top:10px">
+      <span class="tag">TRPG</span>
+      <span class="tag">赛博朋克2077</span>
+      <span class="tag">简体中文</span>
+      <span class="tag">2026.12发货</span>
+    </div>
+  </div>
+  
+  <!-- 雾雨世界 -->
+  <div class="card">
+    <span class="badge badge-amber">摩点</span>
+    <h3>🌧️ 雾雨世界 · 长篇冒险PVE剧情桌游</h3>
+    <div class="creator">雾雨游戏 · 剩余32天（截止6月28日）</div>
+    <div class="stat-line">
+      <span class="stat">💰 <em>¥72,518</em></span>
+      <span class="stat">👥 <em>144</em> 人支持</span>
+      <span class="stat">📈 145%</span>
+    </div>
+    <div class="desc">
+      <strong>新怪谈独立世界观</strong> · 长篇PVE剧情向，扮演超管局调查员探索迷雾中的都市传说。<br>
+      🎯 早鸟档：基础版 <strong>¥258</strong>（零售¥328） / 豪华版 <strong>¥628</strong>（众筹绝版）
+    </div>
+    <div style="margin-top:10px">
+      <span class="tag">PVE</span>
+      <span class="tag">剧情</span>
+      <span class="tag">新怪谈</span>
+      <span class="tag">2026.10发货</span>
+    </div>
+  </div>
+  
+  <!-- Crash! 第二季 -->
+  <div class="card">
+    <span class="badge badge-amber">摩点</span>
+    <h3>💥 Crash! 第二季 · DBG对战续作</h3>
+    <div class="creator">概娅游戏 · 剩余33天（截止6月29日）</div>
+    <div class="stat-line">
+      <span class="stat">💰 <em>¥160,968</em></span>
+      <span class="stat">👥 <em>449</em> 人支持</span>
+      <span class="stat">📈 1609%</span>
+    </div>
+    <div class="desc">
+      废土题材DBG卡牌对战游戏第二季！<br>
+      🎯 早鸟基础款 <strong>¥148</strong> / All-in <strong>¥498</strong>（含牌盒+设定集+牌垫+牌套+亚克力立牌）<br>
+      一二季合捆：基础 ¥316 / 畅玩 ¥398 / 豪华 ¥506 / All-in ¥749
+    </div>
+    <div style="margin-top:10px">
+      <span class="tag">DBG</span>
+      <span class="tag">卡牌对战</span>
+      <span class="tag">废土</span>
+      <span class="tag">2026.10发货</span>
+    </div>
+  </div>
+  
+  <!-- 三国走走棋 -->
+  <div class="card">
+    <span class="badge badge-amber">摩点</span>
+    <h3>♟️ 三国走走棋 扩展 · 卡牌MOBA+战棋</h3>
+    <div class="creator">红色行星文创工作室 · 剩余38天（截止7月5日）</div>
+    <div class="stat-line">
+      <span class="stat">💰 <em>¥192,697</em></span>
+      <span class="stat">👥 <em>570</em> 人支持</span>
+      <span class="stat">📈 1284%</span>
+    </div>
+    <div class="desc">
+      可爱画风三国MOBA战棋，第2弹扩展！<br>
+      🎯 老将档 <strong>¥186</strong> / 老将亚克力档 <strong>¥325</strong><br>
+      🎯 少帅档 <strong>¥339</strong>（含1代全升级） / 少帅亚克力 <strong>¥578</strong><br>
+      ⚠️ 早鸟价已售罄，目前为正价档位
+    </div>
+    <div style="margin-top:10px">
+      <span class="tag">MOBA</span>
+      <span class="tag">战棋</span>
+      <span class="tag">三国</span>
+      <span class="tag">2026.12发货</span>
+    </div>
+  </div>
+
+  <!-- ========== 新物集项目 ========== -->
+  <div class="section-title">
+    <span class="icon">🔴</span> 新物集·奇思工作室三连
+  </div>
+  
+  <div class="card">
+    <span class="badge badge-red">新物集</span>
+    <h3>⚔️ 无双对决：传奇之战第三卷</h3>
+    <div class="creator">奇思工作室 Key Studio · 现货预售·6月发货</div>
+    <div class="stat-line">
+      <span class="stat">💰 <em>¥187,787</em></span>
+      <span class="stat">👥 <em>615</em> 人支持</span>
+      <span class="stat">📈 1877%</span>
+    </div>
+  </div>
+  
+  <div class="card">
+    <span class="badge badge-red">新物集</span>
+    <h3>📖 常影之地：特别版</h3>
+    <div class="creator">奇思工作室 Key Studio · 众筹中</div>
+    <div class="desc">创建独特角色，开启传奇之旅。角色扮演冒险类桌游。</div>
+  </div>
+  
+  <div class="card">
+    <span class="badge badge-red">新物集</span>
+    <h3>🏯 明治维新：财阀 KS顶配版</h3>
+    <div class="creator">奇思工作室 Key Studio · 5月现货预售</div>
+    <div class="stat-line">
+      <span class="stat">💰 <em>¥567,211</em></span>
+      <span class="stat">👥 <em>1143</em> 人支持</span>
+      <span class="stat">📈 30364% 🔥🔥</span>
+    </div>
+    <div class="desc">KS顶配版现货发售，完成率超30000%，人气极高。</div>
+  </div>
+
+  <!-- ========== 其他新物集桌游一览 ========== -->
+  <div class="section-title">
+    <span class="icon">📋</span> 新物集其他桌游一览
+  </div>
+  
+  <div class="card" style="padding:16px 20px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;font-size:14px">
+      <div>🎯 <strong>Apex 巅峰之战 收藏版</strong> · 聚弈堂</div>
+      <div>🌊 <strong>洪流Flood</strong> · 树豆工作室</div>
+      <div>🩸 <strong>The Last of Blood</strong> · 我是Joker</div>
+      <div>🃏 <strong>《苏丝》原创桌游</strong> · Modxumer</div>
+      <div>🕳️ <strong>《地缝探险》</strong> · 壹顺工作室</div>
+      <div>🃏 <strong>《扑克与龙》类小丑牌</strong> · 游户桌游</div>
+      <div>🧪 <strong>VIRUS计划 身份推理</strong> · 只可艺汇</div>
+      <div>🏰 <strong>帝国棋 战争对弈</strong> · 梦叶鸟</div>
+      <div>⚡ <strong>《对决！极速拼接》</strong> · 鸟人</div>
+      <div>⚔️ <strong>弈决天下 历史战棋</strong> · 洛弈文化</div>
+      <div>🌍 <strong>【自由非洲】路线争夺</strong> · 羽角宫宏</div>
+      <div>🏔️ <strong>山海求生录</strong> · 野鹤闲云</div>
+      <div>🐹 <strong>水豚主题德式策略</strong> · 巴拉扒拉</div>
+      <div>⚔️ <strong>《敌纪元》卡牌区控</strong> · 大头方脸</div>
+      <div>🎪 <strong>3 Ring Circus</strong> · 齁甜桌游</div>
+      <div>🍵 <strong>《茶华》国风轻策</strong> · Modxumer</div>
+    </div>
+  </div>
+
+  <!-- ========== 关键时间线 ========== -->
+  <div class="section-title">
+    <span class="icon">⏰</span> 关键时间节点
+  </div>
+  
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">6月3日（下周三）</div>
+      <div class="tl-text">《马拉开波海盗：百慕大三角》新物集开售 ⭐</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">6月11日（剩15天）</div>
+      <div class="tl-text">赛博朋克红TRPG 众筹截止 🔥</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">6月28日（剩31天）</div>
+      <div class="tl-text">《雾雨世界》众筹截止</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">6月29日（剩32天）</div>
+      <div class="tl-text">《Crash!》第二季 众筹截止</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">7月5日（剩38天）</div>
+      <div class="tl-text">《三国走走棋》扩展 众筹截止</div>
+    </div>
+  </div>
+
+  <!-- ========== 本周推荐 ========== -->
+  <div class="section-title">
+    <span class="icon">💡</span> 本周推荐
+  </div>
+  
+  <div class="recommend">
+    <div class="rec-card">
+      <div class="rec-icon">⭐</div>
+      <div class="rec-title">马拉开波海盗：百慕大三角</div>
+      <div class="rec-desc">经典航海德式，3624人预约！6月3日下周三开售，想入的设个闹钟 🕐</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">🔥</div>
+      <div class="rec-title">赛博朋克红TRPG — All-in ¥1,088</div>
+      <div class="rec-desc">已筹¥210万！剩15天截止。2077粉必入，含边缘行者立牌+全配件</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">💎</div>
+      <div class="rec-title">Crash! 第二季 — 基础款¥148起</div>
+      <div class="rec-desc">DBG对战续作，第一季玩家可直接All-in第二季¥498，性价比特高</div>
+    </div>
+    <div class="rec-card">
+      <div class="rec-icon">🌧️</div>
+      <div class="rec-title">雾雨世界 — 早鸟¥258</div>
+      <div class="rec-desc">独立新怪谈PVE剧情桌游，适合喜欢沉浸式剧情的玩家，刚起步热度不高但潜力股</div>
+    </div>
+  </div>
+
+  <!-- ========== Footer ========== -->
+  <div class="footer">
+    <p>📊 数据来源：新物集 allItem · 摩点众筹 桌游分类</p>
+    <p>🤖 由小一自动采集整理 · 🕐 2026-05-28 00:17</p>
+    <p style="margin-top:8px;color:#555">如需「定时推送」或「深入查看某个项目」，随时喊我 😄</p>
+  </div>
+
+</div>
+
+</body>
+</html>

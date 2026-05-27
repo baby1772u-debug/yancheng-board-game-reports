@@ -68,6 +68,8 @@ header p{color:var(--muted);font-size:0.95em}
 /* 提示弹窗 */
 .tip{background:rgba(233,69,96,0.1);border:1px solid rgba(233,69,96,0.2);border-radius:10px;padding:12px 16px;margin:16px 0;font-size:0.85em;color:var(--muted)}
 .tip strong{color:var(--accent)}
+.page-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-size:0.85em;cursor:pointer;transition:all .2s}
+.page-btn:hover{background:rgba(233,69,96,0.2)}
 footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 @media(max-width:600px){
   .card-row{flex-direction:column}
@@ -132,24 +134,6 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 </div>
 </a>
-</div>
-
-<!-- 常影之地（预告阶段，仅预览） -->
-<div class="preview-card">
-<div class="preview-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a3e,#2a1a3e);aspect-ratio:16/9">
-<div style="text-align:center">
-<div style="font-size:3em;margin-bottom:8px">🌓</div>
-<div style="font-size:0.82em;color:var(--muted)">项目预告 · 敬请期待</div>
-</div>
-</div>
-<div class="preview-body">
-<div class="preview-name">🌓 常影之地：特别版</div>
-<div class="preview-meta">奇思工作室 Key Studio</div>
-<div style="margin-top:6px">
-<span class="card-tag tag-preview">📌 项目预告</span>
-</div>
-<div style="font-size:0.78em;color:var(--muted);margin-top:6px">创建独特角色，开启传奇之旅 · 详情待公布</div>
-</div>
 </div>
 
 </div>
@@ -277,107 +261,79 @@ footer{text-align:center;padding:30px;color:var(--muted);font-size:0.85em}
 </div>
 </div>
 
-<!-- ==================== 📋 更多新物集项目 ==================== -->
-<h2 class="section-title">📋 更多新物集项目</h2>
-<div class="grid-3">
+<!-- ==================== 📋 更多预告项目 ==================== -->
+<h2 class="section-title">📋 更多预告项目 <span style="font-size:0.5em;color:var(--muted);font-weight:400">（共1个）</span></h2>
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202407/w_720_h_564_s_662049_1f00e538-4b51-4042-9823-fca402fe6da2.png" alt="洪流Flood" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🌊 洪流Flood</div>
-<div class="mini-meta">树豆工作室 · 预热中</div>
-</a>
+<div class="preview-grid" id="preview-grid">
+<!-- 由JS控制翻页，每页最多6个 -->
 </div>
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202502/w_1600_h_2844_s_35422_7a01eff3-e248-4c20-95e5-7dab9187cecb.png" alt="The Last of Blood" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🩸 The Last of Blood</div>
-<div class="mini-meta">我是Joker · 预热中</div>
-</a>
+<div id="preview-pagination" style="display:flex;justify-content:center;gap:8px;margin-bottom:20px">
 </div>
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202404/w_720_h_546_s_603724_a5d16408-7bb3-4159-8f7f-27b3f671b666.png" alt="苏丝" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🎨 《苏丝》原创桌游</div>
-<div class="mini-meta">Modxumer · 预热中</div>
-</a>
-</div>
+<script>
+const projects = [
+  {
+    name: '🌓 常影之地：特别版',
+    studio: '奇思工作室 Key Studio',
+    tag: '📌 项目预告',
+    tagClass: 'tag-preview',
+    desc: '创建独特角色，开启传奇之旅 · 详情待公布',
+    imgEmoji: '🌓'
+  }
+];
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202403/w_750_h_564_s_615814_df3aecf2-6898-4739-941d-fb4d9b5012da.png" alt="地缝探险" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🪐 《地缝探险》</div>
-<div class="mini-meta">壹顺工作室 · 预热中</div>
-</a>
-</div>
+const pageSize = 6;
+let curPage = 1;
+const totalPages = Math.ceil(projects.length / pageSize) || 1;
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎴</div>
-<div class="mini-name">方舟动物园 3D地形包</div>
-<div class="mini-meta">晚上才起来 · 众筹中</div>
-</a>
-</div>
+function renderPreviewPage(page) {
+  const grid = document.getElementById('preview-grid');
+  const start = (page - 1) * pageSize;
+  const end = Math.min(start + pageSize, projects.length);
+  const items = projects.slice(start, end);
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🏔️</div>
-<div class="mini-name">Apex 巅峰之战 收藏版</div>
-<div class="mini-meta">聚弈堂 · 众筹中</div>
-</a>
-</div>
+  grid.innerHTML = items.map(p => \`
+    <div class="preview-card">
+      <div class="preview-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a3e,#2a1a3e);aspect-ratio:16/9">
+        <div style="text-align:center">
+          <div style="font-size:3em;margin-bottom:8px">\${p.imgEmoji}</div>
+          <div style="font-size:0.82em;color:var(--muted)">项目预告 · 敬请期待</div>
+        </div>
+      </div>
+      <div class="preview-body">
+        <div class="preview-name">\${p.name}</div>
+        <div class="preview-meta">\${p.studio}</div>
+        <div style="margin-top:6px"><span class="card-tag \${p.tagClass}">\${p.tag}</span></div>
+        <div style="font-size:0.78em;color:var(--muted);margin-top:6px">\${p.desc}</div>
+      </div>
+    </div>
+  \`).join('');
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🐉</div>
-<div class="mini-name">《扑克与龙》类小丑牌</div>
-<div class="mini-meta">游户桌游 · 预热中</div>
-</a>
-</div>
+  const pagination = document.getElementById('preview-pagination');
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🦠</div>
-<div class="mini-name">《VIRUS计划》身份推理</div>
-<div class="mini-meta">只可艺汇桌游 · 预热中</div>
-</a>
-</div>
+  if (totalPages <= 1) {
+    pagination.innerHTML = '';
+    return;
+  }
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">♟️</div>
-<div class="mini-name">弈决天下 历史策略战棋</div>
-<div class="mini-meta">洛弈文化 · 预热中</div>
-</a>
-</div>
+  let btns = '';
+  for (let i = 1; i <= totalPages; i++) {
+    const active = i === page ? ' style="background:var(--accent);color:#fff"' : '';
+    btns += \`<button class="page-btn" data-page="\${i}"\${active}>\${i}</button>\`;
+  }
+  pagination.innerHTML = btns;
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎪</div>
-<div class="mini-name">3 Ring Circus</div>
-<div class="mini-meta">齁甜桌游工作室 · 预热中</div>
-</a>
-</div>
+  document.querySelectorAll('.page-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      curPage = parseInt(btn.dataset.page);
+      renderPreviewPage(curPage);
+    });
+  });
+}
 
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🍵</div>
-<div class="mini-name">《茶华》国风轻策</div>
-<div class="mini-meta">Modxumer · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank" rel="noopener">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">⚔️</div>
-<div class="mini-name">《敌纪元》卡牌区控</div>
-<div class="mini-meta">大头方脸桌游社 · 预热中</div>
-</a>
-</div>
-
-</div>
+renderPreviewPage(1);
+</script>
 
 <!-- ==================== ⏰ 时间线 ==================== -->
 <h2 class="section-title">⏰ 关键时间节点</h2>

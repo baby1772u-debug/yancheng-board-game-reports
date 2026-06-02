@@ -149,7 +149,7 @@ function gi(nm){
 function dt(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function pd(s){if(!s)return null;var d=new Date(s);return isNaN(d.getTime())?null:d}
 function dd(a,b){return Math.round((b-a)/86400000)}
-function cds(t,n){if(!t)return'';var d=t-n;if(d<=0)return'已开始';var x=Math.floor(d/86400),h=Math.floor((d%86400)/3600);return x>0?x+'天'+h+'小时':h+'小时'}
+function cds(t,n){if(!t)return'';var d=t-n;if(d<=0)return'已开始';var x=Math.floor(d/86400000),h=Math.floor((d%86400000)/3600000);return x>0?x+'天'+h+'小时':h+'小时'}
 function tdy(d){var n=new Date();return d&&d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate()}
 function rc(it){
   var im='',uv=gi(it.n);
@@ -159,7 +159,7 @@ function rc(it){
   if(it.ta)it.ta.forEach(function(c,j){bt+='<span class="ctg '+c+'">'+(it.tl[j]||'')+'</span>'});
   if(it.p)bx+='<span class="p2 '+it.p+'">'+it.pl+'</span>';
   if(it.p2)bx+='<span class="p2 '+it.p2+'">'+it.pl2+'</span>';
-  var n=new Date(),cd='',ed=pd(it.ed),sd=pd(it.sd);
+  var n=new Date(),cd='',ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
   if(ed&&ed>n){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'</span>'}
   if(sd&&sd>n)cd='<span style="color:var(--gold);font-weight:600;font-size:.75em">🔥 '+cds(sd,n)+'后开售</span>';
   var pb=it.pg?'<div class="pb"><div class="pbf" style="width:'+Math.min(it.pg,100)+'%"></div></div>':'';
@@ -190,7 +190,7 @@ function render(){
     var items=sec.items,pp=sec.pp,te=sec.te;
     var todayEnd=[],nowFunding=[],comingSoon=[],dailyNews=[];
     items.forEach(function(it){
-      var ed=pd(it.ed),sd=pd(it.sd);
+      var ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
       // Today ending
       if(ed&&tdy(ed)){todayEnd.push(it);dailyNews.push({tag:'d',tt:'⏰ 今日截止',nm:it.t.replace(/<[^>]*>/g,'').substring(0,24),meta:ed.getHours()+':'+String(ed.getMinutes()).padStart(2,'0')+'截止',cnt:'⚠️ 最后机会！'});return}
       // Currently funding - has 'l' tag AND (no end date or end date in future)

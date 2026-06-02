@@ -75,20 +75,37 @@ footer a{color:var(--accent);text-decoration:none}
   .tab-btn{padding:6px 18px;font-size:.82em}
 }
 @media(max-width:380px){.g3{grid-template-columns:1fr}}
-
+.daily-news-page{min-height:200px}
+.daily{background:linear-gradient(135deg,#1a1a2e,#2a1a2e);border-radius:var(--radius);padding:16px;margin-bottom:12px;color:#fff}
+.dh{font-size:.82em;color:rgba(255,255,255,.5);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dh .sub{font-size:.82em;color:rgba(255,255,255,.3);font-weight:400}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dc{background:rgba(255,255,255,.06);border-radius:10px;padding:10px;transition:all .2s}
+.dc:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.dt{display:inline-block;padding:1px 8px;border-radius:6px;font-size:.65em;font-weight:500;margin-bottom:4px}
+.dt.d{background:#e94560;color:#fff}
+.dt.s{background:#d4a843;color:#1a1a2e}
+.dt.i{background:rgba(255,255,255,.08);color:rgba(255,255,255,.3)}
+.dn{font-size:.78em;font-weight:500;line-height:1.3}
+.dm{font-size:.65em;color:rgba(255,255,255,.4);margin-top:2px}
+.dcnt{font-size:.6em;color:rgba(255,255,255,.5);margin-top:3px}
+.daily-stack .daily:first-child{border-bottom-left-radius:0;border-bottom-right-radius:0}
+.daily-stack .daily:last-child{border-top-left-radius:0;border-top-right-radius:0}
 </style>
 </head>
 <body>
 <div class="container">
 <header>
 <h1>🎲 爱玩桌游 <span style="font-weight:400;font-size:.7em;color:var(--muted);-webkit-text-fill-color:var(--muted)">众筹资讯</span></h1>
-<p>新物集 · 摩点 · Kickstarter · Gamefound ｜ 爱玩桌游club · 广州</p>
+<p>新物集 · 摩点 · Kickstarter · Gamefound ｜ 爱玩桌游club</p>
 </header>
 <div class="tab-bar">
-<button class="tab-btn active" onclick="st('d')">🇨🇳 国内</button>
+<button class="tab-btn active" onclick="st('n')">📰 每日资讯</button>
+<button class="tab-btn" onclick="st('d')">🇨🇳 国内</button>
 <button class="tab-btn" onclick="st('o')">🌍 海外</button>
 </div>
-<div id="td" class="tab-content active"></div>
+<div id="tn" class="tab-content active"><div class="daily-news-page" id="tn_content"></div></div>
+<div id="td" class="tab-content"></div>
 <div id="to" class="tab-content"></div>
 <footer>
 <p>数据来源：新物集 · 摩点 · Kickstarter · Gamefound</p>
@@ -122,9 +139,9 @@ var im_阿克莱特="https://i.zhuoyou.com/upload/images/202605/w_720_h_546_s_19
 var im_雾雨世界="https://p6.moimg.net/path/dst_project/1006362753/202604/1411/3042/2604143042bgk2Y5KLd98v59mkNRvljV17BMxDer.png";
 var im_马拉开波海盗="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg";
 
-var DL=[{"n": "赛博朋克红", "t": "🔴 赛博朋克红TRPG 简体中文版", "m": "摩点 · 剩15天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥2,099,886"], "m2": "支持者 2175人 · 完成率 20998%", "pr": "All-in合集 ¥1,088", "pg": 100, "l": "https://zhongchou.modian.com/item/155590.html", "ed": "2026-06-11"}, {"n": "明治维新", "t": "🏯 《明治维新：财阀》KS顶配版", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥567,211"], "m2": "支持者 1143人 · 完成率 30364%", "pg": 100, "l": "https://www.xinwuji.com/pc/#/detail/8961775801579260410"}, {"n": "无双对决", "t": "⚔️ 《无双对决：传奇之战第三卷》", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["现货预售", "🔥 已筹¥189,957"], "m2": "支持者 624人 · 完成率 1899%", "pg": 100, "l": "https://www.xinwuji.com/pc/#/detail/2621778727906260514"}, {"n": "常影之地", "t": "🌓 《常影之地：特别版》", "m": "新物集", "p": "xwj", "pl": "🎯 新物集", "ta": ["l"], "tl": ["众筹中"], "m2": "创建独特角色，开启传奇之旅", "l": "https://www.xinwuji.com/pc/#/detail/4001779782300260526"}, {"n": "Crash第二季", "t": "💥 《Crash!》第二季 DBG对战续作", "m": "摩点 · 剩32天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥160,968"], "m2": "支持者 449人 · 完成率 1609%", "pr": "基础款 ¥148 / All-in ¥498", "pg": 100, "l": "https://zhongchou.modian.com/item/156469.html", "ed": "2026-06-29"}, {"n": "雾雨世界", "t": "🌫️ 《雾雨世界》长篇冒险PVE剧情桌游", "m": "摩点 · 剩31天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 144人 · 完成率 145%", "pr": "基础版 ¥258 / 豪华版 ¥628", "pg": 145, "l": "https://zhongchou.modian.com/item/156407.html", "ed": "2026-06-28"}, {"n": "三国走走棋", "t": "♟️ 《三国走走棋》扩展 第2弹", "m": "摩点 · 剩38天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥192,697"], "m2": "支持者 570人 · 完成率 1284%", "pr": "老将档 ¥186 / 少帅档 ¥339", "pg": 100, "l": "https://zhongchou.modian.com/item/156639.html", "ed": "2026-07-05"}, {"n": "万境奇旅", "t": "🌌 《万境奇旅》Wonderlands War 重印", "m": "新物集 · 米宝海豚 · 剩4天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥541,470"], "m2": "参团 972人 · 完成率 5414%", "pr": "金极客连夺五奖 · 人气爆款", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3900", "ed": "2026-06-05"}];
+var DL=[{"n": "赛博朋克红", "t": "🔴 赛博朋克红TRPG 简体中文版", "m": "摩点 · 剩15天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥2,099,886"], "m2": "支持者 2175人 · 完成率 20998%", "pr": "All-in合集 ¥1,088", "pg": 100, "l": "https://zhongchou.modian.com/item/155590.html", "ed": "2026-06-11"}, {"n": "明治维新", "t": "🏯 《明治维新：财阀》KS顶配版", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥567,211"], "m2": "支持者 1143人 · 完成率 30364%", "pg": 100, "l": "https://www.xinwuji.com/pc/#/detail/8961775801579260410"}, {"n": "无双对决", "t": "⚔️ 《无双对决：传奇之战第三卷》", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["现货预售", "🔥 已筹¥189,957"], "m2": "支持者 624人 · 完成率 1899%", "pg": 100, "l": "https://www.xinwuji.com/pc/#/detail/2621778727906260514"}, {"n": "Crash第二季", "t": "💥 《Crash!》第二季 DBG对战续作", "m": "摩点 · 剩32天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥160,968"], "m2": "支持者 449人 · 完成率 1609%", "pr": "基础款 ¥148 / All-in ¥498", "pg": 100, "l": "https://zhongchou.modian.com/item/156469.html", "ed": "2026-06-29"}, {"n": "雾雨世界", "t": "🌫️ 《雾雨世界》长篇冒险PVE剧情桌游", "m": "摩点 · 剩31天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 144人 · 完成率 145%", "pr": "基础版 ¥258 / 豪华版 ¥628", "pg": 145, "l": "https://zhongchou.modian.com/item/156407.html", "ed": "2026-06-28"}, {"n": "三国走走棋", "t": "♟️ 《三国走走棋》扩展 第2弹", "m": "摩点 · 剩38天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥192,697"], "m2": "支持者 570人 · 完成率 1284%", "pr": "老将档 ¥186 / 少帅档 ¥339", "pg": 100, "l": "https://zhongchou.modian.com/item/156639.html", "ed": "2026-07-05"}, {"n": "万境奇旅", "t": "🌌 《万境奇旅》Wonderlands War 重印", "m": "新物集 · 米宝海豚 · 剩4天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥541,470"], "m2": "参团 972人 · 完成率 5414%", "pr": "金极客连夺五奖 · 人气爆款", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3900", "ed": "2026-06-05"}];
 var DU=[{"n": "马拉开波海盗", "t": "🏆 《马拉开波海盗：百慕大三角》<span class=\"cn\">扩展 · 航海竞速德式经典</span>", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月3日 开售", "🔥 3627人预约"], "l": "https://shop.zhuoyou.com/share/project.html?project_id=3890", "sd": "2026-06-03T12:00"}, {"n": "阿克莱特", "t": "🏭 《阿克莱特》中文版 <span class=\"cn\">工业革命 · 斯波特经典</span>", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月3日 开售", "🔥 预约中"], "l": "https://shop.zhuoyou.com/share/project.html?project_id=3922", "sd": "2026-06-03T12:00"}];
-var DP=[{"n": "洪流Flood", "m": "树豆工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "洪流Flood", "hi": true}, {"n": "The Last of Blood", "m": "我是Joker · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "The Last of Blood", "hi": true}, {"n": "苏丝", "m": "Modxumer · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "苏丝", "hi": true}, {"n": "地缝探险", "m": "壹顺工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "地缝探险", "hi": true}]
+var DP=[{"n": "常影之地", "m": "新物集 · 预热中", "l": "https://www.xinwuji.com/pc/#/detail/4001779782300260526", "ni": "常影之地", "hi": true}, {"n": "洪流Flood", "m": "树豆工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "洪流Flood", "hi": true}, {"n": "The Last of Blood", "m": "我是Joker · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "The Last of Blood", "hi": true}, {"n": "苏丝", "m": "Modxumer · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "苏丝", "hi": true}, {"n": "地缝探险", "m": "壹顺工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "地缝探险", "hi": true}]
 var DTE=[{"d": "2026-06-03", "e": "🎯 马拉开波海盗 + 阿克莱特 新物集开售 ⭐"}, {"d": "2026-06-05", "e": "🌌 万境奇旅重印 众筹截止"}, {"d": "2026-06-11", "e": "🔴 赛博朋克红TRPG 众筹截止"}, {"d": "2026-06-28", "e": "🌫️ 雾雨世界 众筹截止"}, {"d": "2026-06-29", "e": "💥 Crash!第二季 众筹截止"}, {"d": "2026-07-05", "e": "♟️ 三国走走棋扩展 众筹截止"}];
 var OL=[{"n": "TM Legacy", "t": "<span class=\"en\">Terraforming Mars: Legacy of Mars</span><span class=\"cn\">火星：传承</span>", "m": "Stronghold Games · GF+KS", "p": "gf", "pl": "🎮 GF", "p2": "ks", "pl2": "📦 KS", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $3,080,513"], "m2": "豪华版 $249", "pg": 100, "l": "https://gamefound.com/en/projects/stronghold-games/terraforming-mars-the-legacy-of--mars", "ed": "2026-05-30"}, {"n": "Hitman", "t": "<span class=\"en\">Hitman: The Board Game</span><span class=\"cn\">杀手：桌游版</span>", "m": "MOOD Publishing · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €769,037"], "m2": "潜行暗杀改编", "pg": 100, "l": "https://gamefound.com/en/projects/mood-publishing/hitman-the-board-game", "ed": "2026-05-29"}, {"n": "Beast Ashfall", "t": "<span class=\"en\">Beast: Ashfall</span><span class=\"cn\">巨兽：灰烬陨落</span>", "m": "Studio Midhall · GF · 剩8天截止", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €345,730"], "m2": "不对称对抗续作", "pg": 100, "l": "https://gamefound.com/en/projects/studio-midhall/beast-ashfall", "ed": "2026-06-10"}, {"n": "Stonesaga", "t": "<span class=\"en\">Stonesaga Second Printing</span><span class=\"cn\">石之传奇：二印</span>", "m": "Open Owl Studios · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $108,733"], "m2": "8.7k关注 · 剩23天", "pg": 100, "l": "https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing", "ed": "2026-06-24"}, {"n": "VANEA", "t": "<span class=\"en\">VANEA: Guardians of the Eldertree</span><span class=\"cn\">古树守护者</span>", "m": "Forgotten Tales · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "奇幻童话 · 二印", "pg": 100, "l": "https://gamefound.com/en/projects/forgotten-tales/vanea-guardians-of-the-eldertree-relaunch", "ed": "2026-06-01"}, {"n": "Pasteles", "t": "<span class=\"en\">Pasteles & Conservas: Exotic Tides</span><span class=\"cn\">馅饼与罐头</span>", "m": "Salt & Pepper · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "趣味卡牌 · 美食主题", "pg": 50, "l": "https://gamefound.com/en/projects/saltandpepper/pasteles--conservas-exotic-tides", "ed": "2026-06-02"}];
 var OU=[{"n": "Nemesis Legacy", "t": "<span class=\"en\">Nemesis Legacy</span><span class=\"cn\">复仇女神号：传承</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 43,129 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/nemesis-legacy"}, {"n": "Dead Harvest", "t": "<span class=\"en\">Agricola: Dead Harvest</span><span class=\"cn\">农场主：末日收割</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 33,639 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest"}, {"n": "Concordia SE", "t": "<span class=\"en\">Concordia Special Edition</span><span class=\"cn\">和睦罗马：特别版</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h", "u"], "tl": ["🔥 33,416 关注", "约6月10日"], "l": "https://gamefound.com/en/projects/awaken-realms/concordia-special-edition", "sd": "2026-06-10"}, {"n": "Dune KHE", "t": "<span class=\"en\">Dune: Kwisatz Haderach</span><span class=\"cn\">沙丘：魁萨兹版</span>", "m": "GF9 · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 27,300 关注"], "l": "https://gamefound.com/en/projects/gf9/dune"}, {"n": "Scoundrels", "t": "<span class=\"en\">Scoundrels</span><span class=\"cn\">恶棍密窟</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 16,944 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/scoundrels"}];
@@ -133,12 +150,12 @@ var OTE=[{"d": "2026-06-02", "e": "⚠️ Pasteles & Conservas 今天截止"}, {
 
 
 function st(t){
-  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-  document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
-  document.querySelectorAll(".tab-btn").forEach(b=>{
-    if((t=="d"&&b.textContent.includes("国内"))||(t=="o"&&b.textContent.includes("海外")))b.classList.add("active")
-  });
-  document.getElementById(t=="d"?"td":"to").classList.add("active");
+  var idx={n:0,d:1,o:2}[t]||0;
+  document.querySelectorAll('.tab-content').forEach(function(e,i){e.classList.toggle('active',i===idx)});
+  document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx)});
+  if(t==='n')rn();
+  if(t==='d')renderTab('td',[].concat(DL).concat(DU),DP,DTE,'🇨🇳 国内');
+  if(t==='o')renderTab('to',[].concat(OL),OP,OTE,'🌍 海外');
 }
 
 function gi(nm){
@@ -183,59 +200,66 @@ function rtl(events){
   });
   return h+'</div>';
 }
-function render(){
+function renderTab(id,items,pp,te,lb){
   var n=new Date(),td=dt();
-  var all=[{id:'td',lb:'🇨🇳',items:[].concat(DL).concat(DU),pp:DP,te:DTE},{id:'to',lb:'🌍',items:[].concat(OL).concat(OU),pp:OP,te:OTE}];
-  all.forEach(function(sec){
-    var items=sec.items,pp=sec.pp,te=sec.te;
-    var todayEnd=[],nowFunding=[],comingSoon=[],dailyNews=[];
-    items.forEach(function(it){
-      var ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
-      // Today ending
-      if(ed&&tdy(ed)){todayEnd.push(it);dailyNews.push({tag:'d',tt:'⏰ 今日截止',nm:it.t.replace(/<[^>]*>/g,'').substring(0,24),meta:ed.getHours()+':'+String(ed.getMinutes()).padStart(2,'0')+'截止',cnt:'⚠️ 最后机会！'});return}
-      // Currently funding - has 'l' tag AND (no end date or end date in future)
-      if(it.ta&&it.ta.indexOf('l')>=0&&(!ed||ed>n)){nowFunding.push(it);return}
-      // Coming soon - has sd and not started yet
-      if(sd&&sd>n){comingSoon.push(it);if(sd<new Date(n.getTime()+86400000*7)){dailyNews.push({tag:'s',tt:'🔥 即将上线',nm:it.t.replace(/<[^>]*>/g,'').substring(0,24),meta:Math.round((sd-n)/86400000)+'天后',cnt:cds(sd,n)+'后开售'})}}
-    });
-    // Sort
-    todayEnd.sort(function(a,b){return(pd(a.ed)||0)-(pd(b.ed)||0)});
-    nowFunding.sort(function(a,b){var ea=pd(a.ed)?pd(a.ed).getTime():9e12,eb=pd(b.ed)?pd(b.ed).getTime():9e12;return ea-eb});
-    comingSoon.sort(function(a,b){return(pd(a.sd)||0)-(pd(b.sd)||0)});
-    // Daily news section
-    var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+sec.lb+' · '+td+'</span></div><div class="dg">';
-    dailyNews.slice(0,4).forEach(function(d){h+='<div class="dc"><span class="dt '+d.tag+'">'+d.tt+'</span><div class="dn">'+d.nm+'</div><div class="dm">'+d.meta+'</div><div class="dcnt">'+d.cnt+'</div></div>'});
-    for(var i=dailyNews.length;i<4;i++){h+='<div class="dc" style="opacity:.3"><span class="dt i">📢</span><div class="dn">广告位 #'+(i+1)+'</div><div class="dm">推荐轮播</div><div class="dcnt" style="color:rgba(255,255,255,.2)">——</div></div>'}
-    h+='</div></div>';
-    // TODAY ENDING
-    if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
-    // NOW FUNDING (with 3-day warning)
-    h+='<div class="sec"><span>🎯</span><h2>正在众筹</h2><span class="bc">'+nowFunding.length+'个项目</span></div>';
-    nowFunding.forEach(function(it){
-      var ed=pd(it.ed);
-      if(ed){var d2=dd(n,ed);if(d2<=3&&d2>=0){it.ta=it.ta||[];it.tl=it.tl||[];it.ta.push('e');it.tl.push('⚠️ 剩'+d2+'天')}}
-    });
-    h+=nowFunding.map(rc).join('');
-    // COMING SOON
-    if(comingSoon.length>0)h+='<div class="sec"><span>🔥</span><h2>即将上线</h2></div>'+comingSoon.map(rc).join('');
-    // CAROUSEL (only for domestic)
-    if(sec.id==='td'){
-      h+='<div class="carousel"><div class="ch">🏆 编辑推荐 · 轮播广告</div><div class="cc">'+
-        '<div class="citem"><img src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'马拉开波海盗\'"></div>'+
-        '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Nemesis Legacy\'"></div>'+
-        '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="" loading="lazy" onerror="this.innerHTML=\'Concordia SE\'"></div>'+
-        '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Dead Harvest\'"></div>'+
-        '</div></div>';
-    }
-    // PREVIEW PROJECTS
-    h+='<div class="sec"><span>📋</span><h2>预告项目</h2><span class="bc">共'+pp.length+'个</span></div>'+rp(pp);
-    // TIMELINE
-    h+='<div class="sec"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(te);
-    document.getElementById(sec.id).innerHTML=h;
+  var todayEnd=[],nowFunding=[],comingSoon=[];
+  items.forEach(function(it){
+    var ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
+    if(ed&&tdy(ed)){todayEnd.push(it);return}
+    if(it.ta&&it.ta.indexOf('l')>=0&&(!ed||ed>n)){nowFunding.push(it);return}
+    if(sd&&sd>n){comingSoon.push(it)}
   });
+  todayEnd.sort(function(a,b){return(pd(a.ed)||0)-(pd(b.ed)||0)});
+  nowFunding.sort(function(a,b){var ea=pd(a.ed)?pd(a.ed).getTime():9e12,eb=pd(b.ed)?pd(b.ed).getTime():9e12;return ea-eb});
+  comingSoon.sort(function(a,b){return(pd(a.sd)||0)-(pd(b.sd)||0)});
+  
+  var h=buildDaily(items,lb,td);
+  if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
+  h+='<div class="sec"><span>🎯</span><h2>正在众筹</h2><span class="bc">'+nowFunding.length+'个项目</span></div>';
+  nowFunding.forEach(function(it){
+    var ed=pd(it.ed);
+    if(ed){var d2=dd(n,ed);if(d2<=3&&d2>=0){it.ta=it.ta||[];it.tl=it.tl||[];it.ta.push('e');it.tl.push('⚠️ 剩'+d2+'天')}}
+  });
+  h+=nowFunding.map(rc).join('');
+  if(comingSoon.length>0)h+='<div class="sec"><span>🔥</span><h2>即将上线</h2></div>'+comingSoon.map(rc).join('');
+  if(id==='td'){
+    h+='<div class="carousel"><div class="ch">🏆 编辑推荐 · 轮播广告</div><div class="cc">'+
+      '<div class="citem"><img src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'马拉开波海盗\'"></div>'+
+      '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Nemesis Legacy\'"></div>'+
+      '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="" loading="lazy" onerror="this.innerHTML=\'Concordia SE\'"></div>'+
+      '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Dead Harvest\'"></div>'+
+      '</div></div>';
+  }
+  h+='<div class="sec"><span>📋</span><h2>预告项目</h2><span class="bc">共'+pp.length+'个</span></div>'+rp(pp);
+  h+='<div class="sec"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(te);
+  document.getElementById(id).innerHTML=h;
 }
-render();
-setInterval(render,600000);
+
+function rn(){
+  var td=dt();
+  var h='<div class="sec"><span>📰</span><h2>每日资讯 · 汇总</h2><span class="bc">'+td+'</span></div><div class="daily-stack">';
+  h+=buildDaily([].concat(DL).concat(DU),'🇨🇳 国内',td);
+  h+=buildDaily([].concat(OL).concat(OU),'🌍 海外',td);
+  h+='</div>';
+  document.getElementById('tn_content').innerHTML=h;
+}
+
+function buildDaily(items,lb,td){
+  var n=new Date(),dailyNews=[];
+  items.forEach(function(it){
+    var ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
+    if(ed&&tdy(ed)){dailyNews.push({tag:'d',tt:'⏰ 今日截止',nm:(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,24),meta:ed.getHours()+':'+String(ed.getMinutes()).padStart(2,'0')+'截止',cnt:'⚠️ 最后机会！'});return}
+    if(sd&&sd>n&&sd<new Date(n.getTime()+86400000*7)){dailyNews.push({tag:'s',tt:'🔥 即将上线',nm:(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,24),meta:Math.round((sd-n)/86400000)+'天后',cnt:cds(sd,n)+'后开售'})}
+  });
+  var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+lb+' · '+td+'</span></div><div class="dg">';
+  dailyNews.slice(0,4).forEach(function(d){h+='<div class="dc"><span class="dt '+d.tag+'">'+d.tt+'</span><div class="dn">'+d.nm+'</div><div class="dm">'+d.meta+'</div><div class="dcnt">'+d.cnt+'</div></div>'});
+  for(var i=dailyNews.length;i<4;i++){h+='<div class="dc" style="opacity:.3"><span class="dt i">📢</span><div class="dn">广告位 #'+(i+1)+'</div><div class="dm">推荐轮播</div><div class="dcnt" style="color:rgba(255,255,255,.2)">——</div></div>'}
+  return h+'</div></div>';
+}
+
+// Initial render
+st('n');
+setInterval(function(){st('d');st('o');st('n');},600000);
 
 </script>
 </body>

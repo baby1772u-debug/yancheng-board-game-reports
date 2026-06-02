@@ -3,913 +3,240 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>🎲 桌游众筹资讯周报 2026-05-28</title>
+<title>🎲 爱玩桌游 众筹资讯</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#f5f5f7;--card:#ffffff;--accent:#e94560;--gold:#d4a843;--text:#1d1d1f;--muted:#86868b;--shadow:0 2px 12px rgba(0,0,0,0.06);--shadow-hover:0 8px 30px rgba(0,0,0,0.1)}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue','PingFang SC','Microsoft YaHei',sans-serif;padding:16px;min-height:100vh;-webkit-font-smoothing:antialiased}
-.container{max-width:900px;margin:0 auto}
-header{text-align:center;padding:36px 16px 24px}
-header h1{font-size:1.6em;font-weight:700;background:linear-gradient(135deg,#1d1d1f,#e94560,#d4a843);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;letter-spacing:-0.02em;word-break:break-word}
-header p{color:var(--muted);font-size:0.88em;line-height:1.5}
-.date-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),#ff6b81);color:#fff;padding:4px 18px;border-radius:20px;font-size:0.8em;margin-top:8px;font-weight:500;box-shadow:0 2px 8px rgba(233,69,96,0.2)}
-.section-title{font-size:1.15em;font-weight:600;margin:24px 0 12px;padding-left:10px;border-left:3px solid var(--accent);color:var(--text);letter-spacing:-0.01em}
-.card{display:block;background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;transition:transform .2s,box-shadow .2s;cursor:pointer;overflow:hidden;text-decoration:none;color:inherit;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
-.card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:rgba(233,69,96,0.15)}
-.card-link{display:block;text-decoration:none;color:inherit}
-.card-row{display:flex;gap:12px;align-items:flex-start}
-.card-img-wrap{flex-shrink:0;width:100px;height:100px;border-radius:12px;overflow:hidden;background:#f0f0f2;box-shadow:inset 0 0 0 1px rgba(0,0,0,0.04)}
-.card-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.card:hover .card-img-wrap img{transform:scale(1.08)}
-.card-info{flex:1;min-width:0}
-.card-title{font-size:0.95em;font-weight:600;margin-bottom:2px;color:var(--text);line-height:1.45;word-break:break-word;overflow-wrap:break-word}
-.card-title .en-name{font-size:0.95em}
-.card-title .cn-name{font-size:0.72em;color:var(--muted);font-weight:400;display:block;margin-top:1px}
-.card-meta{font-size:0.78em;color:var(--muted);margin-bottom:2px}
-.card-tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:0.68em;margin-top:3px;margin-right:4px;font-weight:500}
-.tag-hot{background:#ffe8ec;color:#e94560}
-.tag-upcoming{background:#fff8e1;color:#b8860b;border:1px solid rgba(184,134,11,0.15)}
-.tag-active{background:#e8f5e9;color:#2e7d32;border:1px solid rgba(46,125,50,0.12)}
-.tag-end{background:#f0f0f2;color:#86868b}
-.price{color:var(--gold);font-weight:600;font-size:0.85em}
-.progress-bar{height:3px;background:#f0f0f2;border-radius:3px;margin-top:5px;overflow:hidden}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.mini-card{background:var(--card);border-radius:12px;padding:10px;cursor:pointer;transition:transform .2s,box-shadow .2s;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
-.mini-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
-.mini-card .mini-img{width:100%;height:80px;border-radius:8px;object-fit:cover;margin-bottom:4px;background:#f0f0f2}
-.mini-card .mini-name{font-size:0.74em;color:var(--text);line-height:1.3;font-weight:500;word-break:break-word}
-.mini-card .mini-meta{font-size:0.65em;color:var(--muted);margin-top:2px}
-.mini-card a{color:inherit;text-decoration:none;display:block}
-.mini-card a:hover .mini-name{color:var(--accent)}
-.platform-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:20px;font-size:0.65em;margin-top:3px;margin-right:3px;font-weight:500}
-.platform-badge.gf{background:#f0edff;color:#6c5ce7;border:1px solid rgba(108,92,231,0.15)}
-.platform-badge.ks{background:#e6faf2;color:#00875a;border:1px solid rgba(0,135,90,0.12)}
-.platform-badge.xwj{background:#ffe8ec;color:#e94560;border:1px solid rgba(233,69,96,0.12)}
-.platform-badge.md{background:#fff8e1;color:#b8860b;border:1px solid rgba(184,134,11,0.12)}
-.timeline{position:relative;padding-left:22px}
-.timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--accent),#ffcc02)}
-.timeline-item{position:relative;margin-bottom:12px}
-.timeline-item::before{content:'';position:absolute;left:-18px;top:6px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--accent)}
-.timeline-item .date{color:var(--accent);font-weight:600;font-size:0.8em}
-.timeline-item .event{color:var(--text);font-size:0.85em;line-height:1.4}
-.page-nav{display:flex;justify-content:center;gap:6px;margin:14px 0 6px}
-.page-nav a{display:inline-block;padding:4px 14px;border-radius:20px;background:var(--card);color:var(--text);text-decoration:none;font-size:0.82em;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);font-weight:500;transition:all .2s}
-.page-nav a.active{background:linear-gradient(135deg,var(--accent),#ff6b81);color:#fff;border:none}
-.page-nav a:hover{opacity:0.85;transform:translateY(-1px)}
-footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:0.8em;line-height:1.6}
-
-/* —— 移动端优化 —— */
-@media(max-width:640px){
-  body{padding:10px}
-  header{padding:28px 8px 20px}
-  header h1{font-size:1.35em}
-  header p{font-size:0.8em}
-  .card-row{flex-direction:column}
-  .card-img-wrap{width:100%;height:180px;border-radius:10px}
-  .card{padding:10px;border-radius:12px}
-  .card-title{font-size:0.88em}
-  .card-title .cn-name{font-size:0.7em}
-  .card-meta{font-size:0.72em}
-  .section-title{font-size:1.05em;margin:18px 0 10px}
-  .grid-2{grid-template-columns:1fr}
-  .grid-3{grid-template-columns:1fr 1fr;gap:6px}
-  .mini-card{padding:8px}
-  .mini-card .mini-img{height:60px}
-  .mini-card .mini-name{font-size:0.68em}
-  .date-badge{font-size:0.72em;padding:3px 14px}
-  .platform-badge{font-size:0.6em;padding:1px 6px}
-  .card-tag{font-size:0.62em;padding:1px 8px}
-  .timeline{padding-left:18px}
-  .timeline-item{margin-bottom:10px}
-  .timeline-item .date{font-size:0.75em}
-  .timeline-item .event{font-size:0.8em}
-}
-@media(max-width:380px){
-  .grid-3{grid-template-columns:1fr}
-  header h1{font-size:1.2em}
-}
-
-/* —— Tab切换样式补充 —— */
-.tab-bar{display:flex;justify-content:center;gap:10px;margin:16px 0 18px}
-.tab-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 28px;border-radius:999px;border:1.5px solid #ddd;background:#fff;color:#86868b;font-size:0.92em;font-weight:500;cursor:pointer;transition:all .25s;box-shadow:0 2px 12px rgba(0,0,0,0.06);-webkit-tap-highlight-color:transparent}
-.tab-btn:hover{border-color:#e94560;color:#1d1d1f}
-.tab-btn.active{background:#e94560;color:#fff;border-color:#e94560;box-shadow:0 4px 16px rgba(233,69,96,0.25)}
-.tab-content{display:none}
-.tab-content.active{display:block}
+:root{--bg:#f5f5f7;--card:#fff;--accent:#e94560;--accent2:#ff6b6b;--gold:#d4a843;--blue:#6c5ce7;--text:#1d1d1f;--muted:#86868b;--radius:14px}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;padding:16px;min-height:100vh}
+.container{max-width:960px;margin:0 auto}
+header{text-align:center;padding:32px 16px 12px}
+header h1{font-size:1.6em;font-weight:700;background:linear-gradient(135deg,#1d1d1f,#e94560,#d4a843);-webkit-background-clip:text;margin-bottom:4px}
+header p{color:var(--muted);font-size:.85em}
+.tab-bar{display:flex;justify-content:center;gap:8px;margin:14px 0}
+.tab-btn{padding:8px 26px;border-radius:999px;border:1.5px solid #ddd;background:#fff;color:var(--muted);font-size:.88em;font-weight:500;cursor:pointer;transition:all .25s}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 16px rgba(233,69,96,.25)}
+.tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.tab-content.active{animation:fadeIn .3s ease}
+.sec{display:flex;align-items:center;gap:8px;margin:22px 0 10px;padding-left:10px;border-left:3px solid var(--accent)}
+.sec h2{font-size:1.05em;font-weight:600}
+.sec .bc{font-size:.7em;color:var(--muted);margin-left:auto;background:#f0f0f2;padding:2px 10px;border-radius:12px}
+.card{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:all .2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.1);border-color:rgba(233,69,96,.15)}
+.cl{display:block;text-decoration:none;color:inherit}
+.cr{display:flex;gap:12px;align-items:flex-start}
+.ciw{flex-shrink:0;width:100px;height:100px;border-radius:12px;overflow:hidden;background:#f0f0f2;display:flex;align-items:center;justify-content:center;font-size:2em;color:#bbb}
+.ciw img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.card:hover .ciw img{transform:scale(1.08)}
+.cif{flex:1;min-width:0}
+.ct{font-size:.92em;font-weight:600;line-height:1.45}
+.ct .cn{font-size:.72em;color:var(--muted);font-weight:400;display:block}
+.cm{font-size:.76em;color:var(--muted);margin-bottom:2px}
+.ctg{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.66em;margin-top:3px;margin-right:4px;font-weight:500}
+.ctg.h{background:#ffe8ec;color:#e94560}
+.ctg.u{background:#fff8e1;color:#b8860b}
+.ctg.l{background:#e8f5e9;color:#2e7d32}
+.ctg.e{background:#fff0e0;color:#e67e22}
+.pr{color:var(--gold);font-weight:600;font-size:.82em}
+.pb{height:3px;background:#f0f0f2;border-radius:3px;margin-top:5px;overflow:hidden}
+.pbf{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px}
+.p2{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:.63em;margin-top:3px;margin-right:3px;font-weight:500}
+.p2.gf{background:#f0edff;color:#6c5ce7}
+.p2.ks{background:#e6faf2;color:#00875a}
+.p2.xwj{background:#ffe8ec;color:#e94560}
+.p2.md{background:#fff8e1;color:#b8860b}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.mc{background:var(--card);border-radius:12px;padding:10px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .2s}
+.mc:hover{transform:translateY(-2px)}
+.mc .mi{width:100%;height:80px;border-radius:8px;object-fit:cover;margin-bottom:4px;background:#f0f0f2}
+.mc .mi img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.mc .mn{font-size:.72em;font-weight:500;line-height:1.3;color:var(--text)}
+.mc .mm{font-size:.63em;color:var(--muted);margin-top:2px}
+.mc a{color:inherit;text-decoration:none;display:block}
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--accent),var(--gold))}
+.tli{position:relative;margin-bottom:10px}
+.tli::before{content:"";position:absolute;left:-18px;top:6px;width:7px;height:7px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--accent)}
+.tli .td{color:var(--accent);font-weight:600;font-size:.78em}
+.tli .te{font-size:.82em;line-height:1.4}
+.tli.dn{opacity:.5}
+.tli.dn::before{background:var(--muted);box-shadow:0 0 0 2px var(--muted)}
+.tli.td::before{background:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.carousel{background:linear-gradient(135deg,#1a1a2e,#2a1a2e);border-radius:var(--radius);padding:20px;margin-bottom:10px;color:#fff;text-align:center;border:1px solid rgba(255,255,255,.06)}
+.carousel .ch{font-size:.85em;color:rgba(255,255,255,.4);margin-bottom:8px}
+.carousel .cc{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.carousel .citem{min-width:120px;height:80px;background:rgba(255,255,255,.06);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.75em;color:rgba(255,255,255,.3);flex-shrink:0;overflow:hidden}
+.carousel .citem img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:.78em;line-height:1.6}
+footer a{color:var(--accent);text-decoration:none}
 @media(max-width:640px){
-  .tab-btn{padding:7px 20px;font-size:0.84em}
+  .cr{flex-direction:column}
+  .ciw{width:100%;height:170px}
+  .g3{grid-template-columns:1fr 1fr;gap:6px}
+  .tab-btn{padding:6px 18px;font-size:.82em}
 }
+@media(max-width:380px){.g3{grid-template-columns:1fr}}
 
-/* —— Tab切换JS —— */
 </style>
-<script>
-function switchTab(tab){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-  document.querySelector(`.tab-btn[onclick*="'${tab}'"]`).classList.add('active');
-  document.getElementById('tab-'+tab).classList.add('active');
-}
-</script>
 </head>
 <body>
 <div class="container">
-
 <header>
-<h1>🎲 桌游众筹资讯周报</h1>
-<p>新物集 · 摩点众筹 · Kickstarter · Gamefound 全球汇总</p>
-<span class="date-badge">📅 2026-05-28 更新</span>
+<h1>🎲 爱玩桌游 <span style="font-weight:400;font-size:.7em;color:var(--muted);-webkit-text-fill-color:var(--muted)">众筹资讯</span></h1>
+<p>新物集 · 摩点 · Kickstarter · Gamefound ｜ 爱玩桌游club · 广州</p>
 </header>
-
-<!-- ==================== Tab切换 ==================== -->
 <div class="tab-bar">
-<button class="tab-btn active" onclick="switchTab('domestic')">🇨🇳 国内</button>
-<button class="tab-btn" onclick="switchTab('overseas')">🌍 海外</button>
-</div>
-
-<!-- ==================== 🇨🇳 国内板块 ==================== -->
-<div id="tab-domestic" class="tab-content active">
-
-<!-- ==================== 🔥 国内即将上线 ==================== -->
-<h2 class="section-title">🔥 即将上线</h2>
-
-<!-- 马拉开波海盗 -->
-<a class="card-link" href="https://www.xinwuji.com/pc/#/detail/6551778637792260513" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="马拉开波海盗" loading="lazy" onerror="this.parentElement.innerHTML='⛵'">
-</div>
-<div class="card-info">
-<div class="card-title">🏆 《马拉开波海盗：百慕大三角》扩展 · 基础/指挥官重印</div>
-<div class="card-meta">奇思工作室 Key Studio · 新物集</div>
-<div>
-<span class="platform-badge xwj">🎯 新物集</span>
-<span class="card-tag tag-upcoming">⏰ 6月3日 12:00 开售</span>
-<span class="card-tag tag-hot">🔥 3627人预约</span>
-</div>
-<div class="price" style="margin-top:3px">航海竞速德式经典</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 阿克莱特 -->
-<a class="card-link" href="https://www.xinwuji.com/pc/#/detail/6561779705942260514" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202605/6561779705942260514.jpg" alt="阿克莱特" loading="lazy" onerror="this.parentElement.innerHTML='🏭'">
-</div>
-<div class="card-info">
-<div class="card-title">🏭 《阿克莱特》中文版</div>
-<div class="card-meta">奇思工作室 Key Studio · 新物集</div>
-<div>
-<span class="platform-badge xwj">🎯 新物集</span>
-<span class="card-tag tag-upcoming">⏰ 6月3日 12:00 开售</span>
-<span class="card-tag tag-hot">🔥 预约中</span>
-</div>
-<div class="price" style="margin-top:3px">工业革命主题 · 斯波特经济类经典</div>
-</div>
-</div>
-</div>
-</a>
-
-
-<!-- ==================== 🎯 众筹中 ==================== -->
-<h2 class="section-title">🎯 众筹中</h2>
-
-<!-- 赛博朋克红 -->
-<a class="card-link" href="https://zhongchou.modian.com/item/155590.html" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://p6.moimg.net/path/dst_project/1007993862/202605/2600/2417/2605262417kOqAaWZl9VJzm5r44Wz0oP2eXxpGwd.jpg" alt="赛博朋克红TRPG" loading="lazy" onerror="this.parentElement.innerHTML='🔴'">
-</div>
-<div class="card-info">
-<div class="card-title">🔴 赛博朋克红TRPG 简体中文版</div>
-<div class="card-meta">摩点众筹 · 剩15天截止</div>
-<div>
-<span class="platform-badge md">💎 摩点</span>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥2,099,886</span>
-</div>
-<div class="card-meta">支持者 2175人 · 完成率 20998%</div>
-<div class="price">All-in合集 ¥1,088</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 明治维新 -->
-<a class="card-link" href="https://www.xinwuji.com/pc/#/detail/8961775801579260410" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202604/8961775801579260410.jpg" alt="明治维新" loading="lazy" onerror="this.parentElement.innerHTML='🏯'">
-</div>
-<div class="card-info">
-<div class="card-title">🏯 《明治维新：财阀》KS顶配版</div>
-<div class="card-meta">新物集 · 奇思工作室</div>
-<div>
-<span class="platform-badge xwj">🎯 新物集</span>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥567,211</span>
-</div>
-<div class="card-meta">支持者 1143人 · 完成率 30364%</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 无双对决 -->
-<a class="card-link" href="https://www.xinwuji.com/pc/#/detail/2621778727906260514" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202605/2621778727906260514.jpg" alt="无双对决" loading="lazy" onerror="this.parentElement.innerHTML='⚔️'">
-</div>
-<div class="card-info">
-<div class="card-title">⚔️ 《无双对决：传奇之战第三卷》</div>
-<div class="card-meta">新物集 · 奇思工作室</div>
-<div>
-<span class="platform-badge xwj">🎯 新物集</span>
-<span class="card-tag tag-active">现货预售</span>
-<span class="card-tag tag-hot">🔥 已筹¥189,957</span>
-</div>
-<div class="card-meta">支持者 624人 · 完成率 1899%</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 常影之地 -->
-<a class="card-link" href="https://www.xinwuji.com/pc/#/detail/4001779782300260526" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://i.zhuoyou.com/uploads/202605/4001779782300260526.jpg" alt="常影之地" loading="lazy" onerror="this.parentElement.innerHTML='🌓'">
-</div>
-<div class="card-info">
-<div class="card-title">🌓 《常影之地：特别版》</div>
-<div class="card-meta">新物集 · 奇思工作室</div>
-<div>
-<span class="platform-badge xwj">🎯 新物集</span>
-<span class="card-tag tag-active">众筹中</span>
-</div>
-<div>创建独特角色，开启传奇之旅</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Crash! 第二季 -->
-<a class="card-link" href="https://zhongchou.modian.com/item/156469.html" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://p6.moimg.net/path/dst_project/1007058051/202604/1616/1327/2604161327w9Axe0Mn186zLkD0kLy2poRljqZV37.jpg" alt="Crash!第二季" loading="lazy" onerror="this.parentElement.innerHTML='💥'">
-</div>
-<div class="card-info">
-<div class="card-title">💥 《Crash!》第二季 DBG对战续作</div>
-<div class="card-meta">摩点众筹 · 剩32天截止</div>
-<div>
-<span class="platform-badge md">💎 摩点</span>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥160,968</span>
-</div>
-<div class="card-meta">支持者 449人 · 完成率 1609%</div>
-<div class="price">基础款 ¥148 / All-in ¥498</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 雾雨世界 -->
-<a class="card-link" href="https://zhongchou.modian.com/item/156407.html" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://p6.moimg.net/path/dst_project/1006362753/202604/1411/3042/2604143042bgk2Y5KLd98v59mkNRvljV17BMxDer.png" alt="雾雨世界" loading="lazy" onerror="this.parentElement.innerHTML='🌫️'">
-</div>
-<div class="card-info">
-<div class="card-title">🌫️ 《雾雨世界》长篇冒险PVE剧情桌游</div>
-<div class="card-meta">摩点众筹 · 剩31天截止</div>
-<div>
-<span class="platform-badge md">💎 摩点</span>
-<span class="card-tag tag-active">众筹中</span>
-</div>
-<div class="card-meta">支持者 144人 · 完成率 145%</div>
-<div class="price">基础版 ¥258 / 豪华版 ¥628</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:145%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 三国走走棋 -->
-<a class="card-link" href="https://zhongchou.modian.com/item/156639.html" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://p6.moimg.net/path/dst_project/1003729479/202605/2319/2106/2605232106YeZKbq2oV0kyWjeBVwEB56xXONDa9m.jpg" alt="三国走走棋" loading="lazy" onerror="this.parentElement.innerHTML='♟️'">
-</div>
-<div class="card-info">
-<div class="card-title">♟️ 《三国走走棋》扩展 第2弹</div>
-<div class="card-meta">摩点众筹 · 剩38天截止</div>
-<div>
-<span class="platform-badge md">💎 摩点</span>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥192,697</span>
-</div>
-<div class="card-meta">支持者 570人 · 完成率 1284%</div>
-<div class="price">老将档 ¥186 / 少帅档 ¥339</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- 万境奇旅 -->
-<a class="card-link" href="https://shop.zhuoyou.com/share/project.html?project_id=3900" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap" style="background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-size:2em">🌌</div>
-<div class="card-info">
-<div class="card-title">🌌 《万境奇旅》Wonderlands War · 重印</div>
-<div class="card-meta">新物集 · 米宝海豚 · 剩4天截止</div>
-<div>
-<span class="platform-badge xwj">🎯 新物集</span>
-<span class="card-tag tag-active">众筹中</span>
-<span class="card-tag tag-hot">🔥 已筹¥541,470</span>
-</div>
-<div class="card-meta">参团 972人 · 完成率 5414%</div>
-<div class="price">金极客连夺五奖 · 超人气爆款沙盒重印</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- ==================== 📋 更多预告项目 ==================== -->
-<h2 class="section-title">📋 更多预告项目</h2>
-
-<div class="grid-3">
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202407/w_720_h_564_s_662049_1f00e538-4b51-4042-9823-fca402fe6da2.png" alt="洪流Flood" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🌊 洪流Flood</div>
-<div class="mini-meta">树豆工作室 · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202502/w_1600_h_2844_s_35422_7a01eff3-e248-4c20-95e5-7dab9187cecb.png" alt="The Last of Blood" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🩸 The Last of Blood</div>
-<div class="mini-meta">我是Joker · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202404/w_720_h_546_s_603724_a5d16408-7bb3-4159-8f7f-27b3f671b666.png" alt="苏丝" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🎨 《苏丝》原创桌游</div>
-<div class="mini-meta">Modxumer · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<img class="mini-img" src="https://i.zhuoyou.com/upload/images/202403/w_750_h_564_s_615814_df3aecf2-6898-4739-941d-fb4d9b5012da.png" alt="地缝探险" loading="lazy" onerror="this.style.display='none'">
-<div class="mini-name">🪐 《地缝探险》</div>
-<div class="mini-meta">壹顺工作室 · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎴</div>
-<div class="mini-name">方舟动物园 3D地形包</div>
-<div class="mini-meta">晚上才起来 · 众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🏔️</div>
-<div class="mini-name">Apex 巅峰之战 收藏版</div>
-<div class="mini-meta">聚弈堂 · 众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🐉</div>
-<div class="mini-name">《扑克与龙》类小丑牌</div>
-<div class="mini-meta">游户桌游 · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🦠</div>
-<div class="mini-name">《VIRUS计划》身份推理</div>
-<div class="mini-meta">只可艺汇桌游 · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">♟️</div>
-<div class="mini-name">弈决天下 历史策略战棋</div>
-<div class="mini-meta">洛弈文化 · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎪</div>
-<div class="mini-name">3 Ring Circus</div>
-<div class="mini-meta">齁甜桌游工作室 · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🍵</div>
-<div class="mini-name">《茶华》国风轻策</div>
-<div class="mini-meta">Modxumer · 预热中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.xinwuji.com/pc/#/allItem" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">⚔️</div>
-<div class="mini-name">《敌纪元》卡牌区控</div>
-<div class="mini-meta">大头方脸桌游社 · 预热中</div>
-</a>
-</div>
-
-</div>
-
-<!-- ==================== ⏰ 国内时间线 ==================== -->
-<h2 class="section-title">⏰ 国内关键时间节点</h2>
-<div class="timeline">
-<div class="timeline-item"><div class="date">📅 6月3日（下周三）</div><div class="event">🎯 《马拉开波海盗》+《阿克莱特》新物集开售 ⭐</div></div>
-<div class="timeline-item"><div class="date">📅 6月11日</div><div class="event">赛博朋克红TRPG 众筹截止</div></div>
-<div class="timeline-item"><div class="date">📅 6月28日</div><div class="event">《雾雨世界》众筹截止</div></div>
-<div class="timeline-item"><div class="date">📅 6月29日</div><div class="event">《Crash!》第二季 众筹截止</div></div>
-<div class="timeline-item"><div class="date">📅 7月5日</div><div class="event">《三国走走棋》扩展 众筹截止</div></div>
-    <div class="timeline-item"><div class="date">📅 7月1日</div><div class="event">🌌 《万境奇旅》重印 众筹截止</div></div>
-</div>
-
-
-
-<!-- ==================== 💡 国内推荐 ==================== -->
-<h2 class="section-title">💡 本周推荐</h2>
-<div class="card" style="background:linear-gradient(135deg,#1a1a2e,#2a1a2e)">
-<div class="card-info" style="text-align:center;padding:8px">
-<div style="font-size:1.2em;margin-bottom:6px">🏆 <strong>《马拉开波海盗：百慕大三角》</strong></div>
-<div style="font-size:0.85em;color:var(--muted);margin-bottom:6px">下周三开售，3627人预约，经典航海德式</div>
-<div style="font-size:0.85em;color:var(--muted);margin-top:6px">📌 同天开售 <strong>《阿克莱特》</strong> 工业革命经典 — 斯波特粉别错过</div>
-<div style="font-size:0.85em;color:var(--muted);margin-top:6px">💰 众筹中：赛博朋克红¥209万🔥 · 万境奇旅¥54万 · 财阀¥56万 · 三国走走棋¥19万</div>
-</div>
-</div>
-
-
-
-<!-- ==================== 🇨🇳 国内板块结束 ==================== -->
-</div>
-
-<!-- ==================== 🌍 海外板块 ==================== -->
-<div id="tab-overseas" class="tab-content">
-
-<!-- ==================== 🌍 海外即将上线 ==================== -->
-<h2 class="section-title" style="margin-top:30px">🌍 海外即将上线</h2>
-
-<!-- Nemesis Legacy -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/nemesis-legacy" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="Nemesis Legacy" loading="lazy" onerror="this.parentElement.innerHTML='👾'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Nemesis Legacy</span> <span class="cn-name">｜复仇女神号：传承</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 43,129 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-5人 · 科幻探索合作 · 传奇复仇女神号首个长篇战役</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Agricola: Dead Harvest -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="Agricola: Dead Harvest" loading="lazy" onerror="this.parentElement.innerHTML='🌾'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Agricola: Dead Harvest</span> <span class="cn-name">｜农场主：末日收割</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 33,639 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-4人 · 农场经营+丧尸末世 · Uwe Rosenberg经典重制</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Concordia SE -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/concordia-special-edition" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="Concordia Special Edition" loading="lazy" onerror="this.parentElement.innerHTML='🏛️'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Concordia Special Edition</span> <span class="cn-name">｜和睦罗马：特别版</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 33,416 关注</span>
-<span class="card-tag tag-upcoming">⏰ 约13天后上线</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-6人 · 经典德式策略 · 全新美术+扩展整合</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Dune: Kwisatz Haderach Edition -->
-<a class="card-link" href="https://gamefound.com/en/projects/gf9/dune" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/3812/b56d460b-edca-4937-a57e-9f5fa0c1ca36.jpg" alt="Dune: Kwisatz Haderach Edition" loading="lazy" onerror="this.parentElement.innerHTML='🏜️'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Dune: Kwisatz Haderach Edition</span> <span class="cn-name">｜沙丘：魁萨兹·哈德拉赫版</span></div>
-<div class="card-meta">GF9 · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 27,300 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">经典沙丘桌游豪华新版 · 关注赠金属先手指示物</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Galileo's Truth -->
-<a class="card-link" href="https://www.kickstarter.com/projects/thundergryph/galileos-truth" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap" style="background:#2a2a3e;display:flex;align-items:center;justify-content:center;font-size:2em;color:#666">🔭</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Galileo's Truth</span> <span class="cn-name">｜伽利略的真相</span></div>
-<div class="card-meta">Thundergryph · Kickstarter</div>
-<div>
-<span class="platform-badge ks">🥾 KS</span>
-<span class="card-tag tag-hot">🔥 18,100 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">预告中 · 关注热度高</div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Scoundrels -->
-<a class="card-link" href="https://gamefound.com/en/projects/awaken-realms/scoundrels" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/8527/c2a6b3d8-c240-4442-a2a7-44f22287ef37.jpg" alt="Scoundrels" loading="lazy" onerror="this.parentElement.innerHTML='🎭'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Scoundrels</span> <span class="cn-name">｜恶棍密窟</span></div>
-<div class="card-meta">Awaken Realms · Gamefound 预告</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 16,944 关注</span>
-</div>
-<div class="card-meta" style="margin-top:3px">1-4人 · 完全合作潜行地城 · STALKER桌游机制改编</div>
-</div>
-</div>
-</div>
-</a>
-<!-- ==================== 🌍 海外众筹中 ==================== -->
-<h2 class="section-title" style="margin-top:30px">🌍 海外众筹中</h2>
-
-<!-- Terraforming Mars Legacy -->
-<a class="card-link" href="https://gamefound.com/en/projects/stronghold-games/terraforming-mars-the-legacy-of--mars" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/og-image-fb/projects/6631/c59a6864-2c4d-41bb-849c-a760b9e0116e.jpg" alt="Terraforming Mars: The Legacy of Mars" loading="lazy" onerror="this.parentElement.innerHTML='🪐'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Terraforming Mars: Legacy of Mars</span> <span class="cn-name">｜火星：传承</span></div>
-<div class="card-meta">Stronghold Games · GF+KS 双平台</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="platform-badge ks">🥾 KS</span>
-<span class="card-tag tag-hot">🔥 $2,383,295</span>
-<span class="card-tag tag-end">⚠️ 剩2天</span>
-</div>
-<div class="card-meta">9,731人 · 11,916% · 豪华版$249</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Hitman -->
-<a class="card-link" href="https://gamefound.com/en/projects/mood-publishing/hitman-the-board-game" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/6626/d6f791d7-58dd-47a8-8391-340528af44ba.png" alt="Hitman: The Board Game" loading="lazy" onerror="this.parentElement.innerHTML='🔴'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Hitman: The Board Game</span> <span class="cn-name">｜杀手：桌游版</span></div>
-<div class="card-meta">MOOD Publishing · Gamefound</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 €769,037</span>
-<span class="card-tag tag-end">⚠️ 剩19小时</span>
-</div>
-<div class="card-meta">潜行暗杀游戏改编 · 即将截止</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Beast: Ashfall -->
-<a class="card-link" href="https://gamefound.com/en/projects/studio-midhall/beast-ashfall" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/8330/adf4664f-74de-483b-b6fb-2365dcbd841b.png" alt="Beast: Ashfall" loading="lazy" onerror="this.parentElement.innerHTML='🐻'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Beast: Ashfall</span> <span class="cn-name">｜巨兽：灰烬陨落</span></div>
-<div class="card-meta">Studio Midhall · Gamefound</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 €345,730</span>
-</div>
-<div class="card-meta">不对称对抗桌游续作</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Stonesaga -->
-<a class="card-link" href="https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/9678/0e9a20f1-7e79-4057-9f51-2d957a571d56.png" alt="Stonesaga Second Printing" loading="lazy" onerror="this.parentElement.innerHTML='🌿'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Stonesaga Second Printing</span> <span class="cn-name">｜石之传奇：二印</span></div>
-<div class="card-meta">Open Owl Studios · Gamefound</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 $108,733</span>
-</div>
-<div class="card-meta">8.7k关注 · 剩23天</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- VANEA -->
-<a class="card-link" href="https://gamefound.com/en/projects/forgotten-tales/vanea-guardians-of-the-eldertree-relaunch" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/6657/48ea1389-46c4-4099-884a-4bbbb3dc53a5.jpg" alt="VANEA" loading="lazy" onerror="this.parentElement.innerHTML='🌳'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">VANEA: Guardians of the Eldertree</span> <span class="cn-name">｜古树守护者</span></div>
-<div class="card-meta">Forgotten Tales · Gamefound</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-hot">🔥 众筹中</span>
-<span class="card-tag tag-end">⚠️ 剩4天</span>
-</div>
-<div class="card-meta">奇幻童话 · 二次众筹中</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:100%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- Pasteles & Conservas -->
-<a class="card-link" href="https://gamefound.com/en/projects/saltandpepper/pasteles--conservas-exotic-tides" target="_blank" rel="noopener">
-<div class="card">
-<div class="card-row">
-<div class="card-img-wrap">
-<img src="https://imgcdn.gamefound.com/projectimage/projects/8150/5c01558a-1b4e-4c93-8406-457dbd934c10.jpg" alt="Pasteles & Conservas" loading="lazy" onerror="this.parentElement.innerHTML='🥟'">
-</div>
-<div class="card-info">
-<div class="card-title"><span class="en-name">Pasteles & Conservas: Exotic Tides</span> <span class="cn-name">｜馅饼与罐头：异域浪潮</span></div>
-<div class="card-meta">Salt & Pepper · Gamefound</div>
-<div>
-<span class="platform-badge gf">🎮 GF</span>
-<span class="card-tag tag-end">⚠️ 剩5天</span>
-</div>
-<div class="card-meta">趣味卡牌 · 美食主题</div>
-<div class="progress-bar"><div class="progress-bar-fill" style="width:50%"></div></div>
-</div>
-</div>
-</div>
-</a>
-
-<!-- ==================== 🥾 KS众筹中 ==================== -->
-<h2 class="section-title" style="margin-top:30px">🥾 KS众筹中</h2>
-
-<div class="grid-3">
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/direwolf/war-of-the-dragon-the-wheel-of-time" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🐉</div>
-<div class="mini-name">War of the Dragon: WoT <span class="mini-cn">｜时光之轮</span></div>
-<div class="mini-meta">Dire Wolf · 502%</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/alderac/lets-go-to-france" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🥖</div>
-<div class="mini-name">Let's Go! To France <span class="mini-cn">｜出发！法兰西</span></div>
-<div class="mini-meta">AEG · 3054%</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/gamechanger-boardgame" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🎬</div>
-<div class="mini-name">Game Changer <span class="mini-cn">｜游戏改变者</span></div>
-<div class="mini-meta">众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/symbaroum" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🌲</div>
-<div class="mini-name">Symbaroum <span class="mini-cn">｜森巴罗姆</span></div>
-<div class="mini-meta">Free League · 众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/neon-odyssey" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🌌</div>
-<div class="mini-name">Neon Odyssey <span class="mini-cn">｜霓虹奥德赛</span></div>
-<div class="mini-meta">17946% 🔥</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/cryptkins" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">👻</div>
-<div class="mini-name">Cryptkins <span class="mini-cn">｜秘境精灵</span></div>
-<div class="mini-meta">众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/leviathan-wilds" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🐋</div>
-<div class="mini-name">Leviathan Wilds <span class="mini-cn">｜利维坦荒野</span></div>
-<div class="mini-meta">众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com/projects/shug-card-game" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">🃏</div>
-<div class="mini-name">SHUG <span class="mini-cn">｜肖格卡牌</span></div>
-<div class="mini-meta">众筹中</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://gamefound.com/en/projects/rebellion-unplugged/archvillain-encounters-into-the-unknown" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#2a2a3e;font-size:2em">⚔️</div>
-<div class="mini-name">Archvillain Encounters <span class="mini-cn">｜死与彼岸</span></div>
-<div class="mini-meta">GF · $565k+</div>
-</a>
-</div>
-
-</div>
-
-<!-- ==================== 📋 更多预告项目 ==================== -->
-<div class="grid-3">
-
-<div class="mini-card">
-<a href="https://gamefound.com/en/projects" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🟣</div>
-<div class="mini-name">Awaken Realms GF 4连发</div>
-<div class="mini-meta">Nemesis/AH/Concordia/Scoundrels</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://gamefound.com/en/projects" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🏜️</div>
-<div class="mini-name">Dune: Kwisatz Haderach</div>
-<div class="mini-meta">GF9 · 27k关注</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🥾</div>
-<div class="mini-name">Galileo's Truth</div>
-<div class="mini-meta">Thundergryph · KS预告</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🐲</div>
-<div class="mini-name">War of the Dragon</div>
-<div class="mini-meta">Hot Door · KS预告</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🚂</div>
-<div class="mini-name">Let's Go! To France</div>
-<div class="mini-meta">KS预告 · 火车旅行</div>
-</a>
-</div>
-
-<div class="mini-card">
-<a href="https://www.kickstarter.com" target="_blank">
-<div class="mini-img" style="display:flex;align-items:center;justify-content:center;background:#f0f0f2;font-size:1.6em;color:#999">🌲</div>
-<div class="mini-name">Symbaroum</div>
-<div class="mini-meta">Free League · KS</div>
-</a>
-</div>
-
-</div>
-<!-- ==================== ⏰ 海外时间线 ==================== -->
-<h2 class="section-title">⏰ 海外关键时间节点</h2>
-<div class="timeline">
-<div class="timeline-item"><div class="date">📅 5月29日（明天）</div><div class="event">⚠️ Hitman: The Board Game GF众筹截止 — 最后机会</div></div>
-<div class="timeline-item"><div class="date">📅 5月30日（后天）</div><div class="event">⚠️ Terraforming Mars Legacy GF/KS众筹截止</div></div>
-<div class="timeline-item"><div class="date">📅 6月1日（周日）</div><div class="event">⚠️ VANEA: Guardians of the Eldertree 众筹截止</div></div>
-<div class="timeline-item"><div class="date">📅 6月2日（周一）</div><div class="event">⚠️ Pasteles & Conservas 众筹截止</div></div>
-<div class="timeline-item"><div class="date">📅 约6月10日</div><div class="event">🎯 Concordia SE 预计上线 (GF)</div></div>
-</div>
-
-<!-- ==================== 💡 推荐 ==================== -->
-<h2 class="section-title">💡 本周推荐</h2>
-<div class="card" style="background:linear-gradient(135deg,#1a1a2e,#2a1a2e)">
-<div class="card-info" style="text-align:center;padding:8px">
-<div style="font-size:1.2em;margin-bottom:6px">🏆 <strong>《马拉开波海盗：百慕大三角》</strong></div>
-<div style="font-size:0.85em;color:var(--muted);margin-bottom:6px">下周三开售，3627人预约，经典航海德式</div>
-<div style="font-size:1em">🌍 <strong>海外关注</strong> — Nemesis Legacy 4.3万🔥 | Concordia SE 预计6月10日上线</div>
-<div style="font-size:0.85em;color:var(--muted);margin-top:6px">⚠️ <strong>即将截止</strong>：Hitman剩19h · TM Legacy剩2天 · VANEA剩4天</div>
-</div>
-</div>
-
-
-
-<!-- ==================== 🌍 海外板块结束 ==================== -->
-</div>
-
+<button class="tab-btn active" onclick="st('d')">🇨🇳 国内</button>
+<button class="tab-btn" onclick="st('o')">🌍 海外</button>
+</div>
+<div id="td" class="tab-content active"></div>
+<div id="to" class="tab-content"></div>
 <footer>
-<p>数据来源：新物集 · 摩点众筹 · Kickstarter · Gamefound</p>
-<p>采集时间：2026-05-28 · 由小一自动整理 🤖</p>
-<p style="margin-top:6px;font-size:0.78em">点击卡片跳转项目页 · 海外封面图来自Gamefound/Kickstarter</p>
+<p>数据来源：新物集 · 摩点 · Kickstarter · Gamefound</p>
+<p>由小一自动整理 🤖 · <a href="https://aiwanlands.com">爱玩桌游club</a></p>
 </footer>
-
 </div>
+<script>
+var im_Beast_Ashfall="https://imgcdn.gamefound.com/projectimage/projects/8330/adf4664f-74de-483b-b6fb-2365dcbd841b.png";
+var im_Concordia_SE="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png";
+var im_Crash第二季="https://p6.moimg.net/path/dst_project/1007058051/202604/1616/1327/2604161327w9Axe0Mn186zLkD0kLy2poRljqZV37.jpg";
+var im_Dead_Harvest="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg";
+var im_Dune_KHE="https://imgcdn.gamefound.com/projectimage/projects/3812/b56d460b-edca-4937-a57e-9f5fa0c1ca36.jpg";
+var im_Hitman="https://imgcdn.gamefound.com/projectimage/projects/6626/d6f791d7-58dd-47a8-8391-340528af44ba.png";
+var im_Nemesis_Legacy="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg";
+var im_Pasteles="https://imgcdn.gamefound.com/projectimage/projects/8150/5c01558a-1b4e-4c93-8406-457dbd934c10.jpg";
+var im_Scoundrels="https://imgcdn.gamefound.com/og-image-fb/projects/8527/c2a6b3d8-c240-4442-a2a7-44f22287ef37.jpg";
+var im_Stonesaga="https://imgcdn.gamefound.com/projectimage/projects/9678/0e9a20f1-7e79-4057-9f51-2d957a571d56.png";
+var im_TM_Legacy="https://imgcdn.gamefound.com/og-image-fb/projects/6631/c59a6864-2c4d-41bb-849c-a760b9e0116e.jpg";
+var im_The_Last_of_Blood="https://i.zhuoyou.com/upload/images/202502/w_1600_h_2844_s_35422_7a01eff3-e248-4c20-95e5-7dab9187cecb.png";
+var im_VANEA="https://imgcdn.gamefound.com/projectimage/projects/6657/48ea1389-46c4-4099-884a-4bbbb3dc53a5.jpg";
+var im_万境奇旅="https://i.zhuoyou.com/upload/images/202605/w_720_h_546_s_289008_77749012-9a61-40f2-ad34-876fb68dd645.jpg";
+var im_三国走走棋="https://p6.moimg.net/path/dst_project/1003729479/202605/2319/2106/2605232106YeZKbq2oV0kyWjeBVwEB56xXONDa9m.jpg";
+var im_地缝探险="https://i.zhuoyou.com/upload/images/202403/w_750_h_564_s_615814_df3aecf2-6898-4739-941d-fb4d9b5012da.png";
+var im_常影之地="https://i.zhuoyou.com/uploads/202605/4001779782300260526.jpg";
+var im_无双对决="https://i.zhuoyou.com/uploads/202605/2621778727906260514.jpg";
+var im_明治维新="https://i.zhuoyou.com/uploads/202604/8961775801579260410.jpg";
+var im_洪流Flood="https://i.zhuoyou.com/upload/images/202407/w_720_h_564_s_662049_1f00e538-4b51-4042-9823-fca402fe6da2.png";
+var im_苏丝="https://i.zhuoyou.com/upload/images/202404/w_720_h_546_s_603724_a5d16408-7bb3-4159-8f7f-27b3f671b666.png";
+var im_赛博朋克红="https://p6.moimg.net/path/dst_project/1007993862/202605/2600/2417/2605262417kOqAaWZl9VJzm5r44Wz0oP2eXxpGwd.jpg";
+var im_阿克莱特="https://i.zhuoyou.com/uploads/202605/6561779705942260514.jpg";
+var im_雾雨世界="https://p6.moimg.net/path/dst_project/1006362753/202604/1411/3042/2604143042bgk2Y5KLd98v59mkNRvljV17BMxDer.png";
+var im_马拉开波海盗="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg";
+
+var DL=[{"n": "赛博朋克红", "t": "🔴 赛博朋克红TRPG 简体中文版", "m": "摩点 · 剩15天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥2,099,886"], "m2": "支持者 2175人 · 完成率 20998%", "pr": "All-in合集 ¥1,088", "pg": 100, "l": "https://zhongchou.modian.com/item/155590.html", "ed": "2026-06-11"}, {"n": "明治维新", "t": "🏯 《明治维新：财阀》KS顶配版", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥567,211"], "m2": "支持者 1143人 · 完成率 30364%", "pg": 100, "l": "https://www.xinwuji.com/pc/#/detail/8961775801579260410"}, {"n": "无双对决", "t": "⚔️ 《无双对决：传奇之战第三卷》", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["现货预售", "🔥 已筹¥189,957"], "m2": "支持者 624人 · 完成率 1899%", "pg": 100, "l": "https://www.xinwuji.com/pc/#/detail/2621778727906260514"}, {"n": "常影之地", "t": "🌓 《常影之地：特别版》", "m": "新物集", "p": "xwj", "pl": "🎯 新物集", "ta": ["l"], "tl": ["众筹中"], "m2": "创建独特角色，开启传奇之旅", "l": "https://www.xinwuji.com/pc/#/detail/4001779782300260526"}, {"n": "Crash第二季", "t": "💥 《Crash!》第二季 DBG对战续作", "m": "摩点 · 剩32天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥160,968"], "m2": "支持者 449人 · 完成率 1609%", "pr": "基础款 ¥148 / All-in ¥498", "pg": 100, "l": "https://zhongchou.modian.com/item/156469.html", "ed": "2026-06-29"}, {"n": "雾雨世界", "t": "🌫️ 《雾雨世界》长篇冒险PVE剧情桌游", "m": "摩点 · 剩31天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 144人 · 完成率 145%", "pr": "基础版 ¥258 / 豪华版 ¥628", "pg": 145, "l": "https://zhongchou.modian.com/item/156407.html", "ed": "2026-06-28"}, {"n": "三国走走棋", "t": "♟️ 《三国走走棋》扩展 第2弹", "m": "摩点 · 剩38天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥192,697"], "m2": "支持者 570人 · 完成率 1284%", "pr": "老将档 ¥186 / 少帅档 ¥339", "pg": 100, "l": "https://zhongchou.modian.com/item/156639.html", "ed": "2026-07-05"}, {"n": "万境奇旅", "t": "🌌 《万境奇旅》Wonderlands War 重印", "m": "新物集 · 米宝海豚 · 剩4天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥541,470"], "m2": "参团 972人 · 完成率 5414%", "pr": "金极客连夺五奖 · 人气爆款", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3900", "ed": "2026-06-05"}];
+var DU=[{"n": "马拉开波海盗", "t": "🏆 《马拉开波海盗：百慕大三角》<span class=\"cn\">扩展 · 航海竞速德式经典</span>", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月3日 开售", "🔥 3627人预约"], "l": "https://www.xinwuji.com/pc/#/detail/6551778637792260513", "sd": "2026-06-03T12:00"}, {"n": "阿克莱特", "t": "🏭 《阿克莱特》中文版 <span class=\"cn\">工业革命 · 斯波特经典</span>", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月3日 开售", "🔥 预约中"], "l": "https://www.xinwuji.com/pc/#/detail/6561779705942260514", "sd": "2026-06-03T12:00"}];
+var DP=[{"n": "洪流Flood", "m": "树豆工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "洪流Flood", "hi": true}, {"n": "The Last of Blood", "m": "我是Joker · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "The Last of Blood", "hi": true}, {"n": "苏丝", "m": "Modxumer · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "苏丝", "hi": true}, {"n": "地缝探险", "m": "壹顺工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "地缝探险", "hi": true}, {"n": "方舟动物园3D地形包", "m": "晚上才起来 · 众筹中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "Apex 巅峰之战", "m": "聚弈堂 · 众筹中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "扑克与龙", "m": "游户桌游 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "VIRUS计划", "m": "只可艺汇 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "弈决天下", "m": "洛弈文化 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "3 Ring Circus", "m": "齁甜工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "茶华 国风轻策", "m": "Modxumer · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}, {"n": "敌纪元", "m": "大头方脸 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}];
+var DTE=[{"d": "2026-06-03", "e": "🎯 马拉开波海盗 + 阿克莱特 新物集开售 ⭐"}, {"d": "2026-06-05", "e": "🌌 万境奇旅重印 众筹截止"}, {"d": "2026-06-11", "e": "🔴 赛博朋克红TRPG 众筹截止"}, {"d": "2026-06-28", "e": "🌫️ 雾雨世界 众筹截止"}, {"d": "2026-06-29", "e": "💥 Crash!第二季 众筹截止"}, {"d": "2026-07-05", "e": "♟️ 三国走走棋扩展 众筹截止"}];
+var OL=[{"n": "TM Legacy", "t": "<span class=\"en\">Terraforming Mars: Legacy of Mars</span><span class=\"cn\">火星：传承</span>", "m": "Stronghold Games · GF+KS", "p": "gf", "pl": "🎮 GF", "p2": "ks", "pl2": "📦 KS", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $3,080,513"], "m2": "豪华版 $249", "pg": 100, "l": "https://gamefound.com/en/projects/stronghold-games/terraforming-mars-the-legacy-of--mars", "ed": "2026-05-30"}, {"n": "Hitman", "t": "<span class=\"en\">Hitman: The Board Game</span><span class=\"cn\">杀手：桌游版</span>", "m": "MOOD Publishing · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €769,037"], "m2": "潜行暗杀改编", "pg": 100, "l": "https://gamefound.com/en/projects/mood-publishing/hitman-the-board-game", "ed": "2026-05-29"}, {"n": "Beast Ashfall", "t": "<span class=\"en\">Beast: Ashfall</span><span class=\"cn\">巨兽：灰烬陨落</span>", "m": "Studio Midhall · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €345,730"], "m2": "不对称对抗续作", "pg": 100, "l": "https://gamefound.com/en/projects/studio-midhall/beast-ashfall"}, {"n": "Stonesaga", "t": "<span class=\"en\">Stonesaga Second Printing</span><span class=\"cn\">石之传奇：二印</span>", "m": "Open Owl Studios · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $108,733"], "m2": "8.7k关注 · 剩23天", "pg": 100, "l": "https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing", "ed": "2026-06-24"}, {"n": "VANEA", "t": "<span class=\"en\">VANEA: Guardians of the Eldertree</span><span class=\"cn\">古树守护者</span>", "m": "Forgotten Tales · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "奇幻童话 · 二印", "pg": 100, "l": "https://gamefound.com/en/projects/forgotten-tales/vanea-guardians-of-the-eldertree-relaunch", "ed": "2026-06-01"}, {"n": "Pasteles", "t": "<span class=\"en\">Pasteles & Conservas: Exotic Tides</span><span class=\"cn\">馅饼与罐头</span>", "m": "Salt & Pepper · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "趣味卡牌 · 美食主题", "pg": 50, "l": "https://gamefound.com/en/projects/saltandpepper/pasteles--conservas-exotic-tides", "ed": "2026-06-02"}];
+var OU=[{"n": "Nemesis Legacy", "t": "<span class=\"en\">Nemesis Legacy</span><span class=\"cn\">复仇女神号：传承</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 43,129 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/nemesis-legacy"}, {"n": "Dead Harvest", "t": "<span class=\"en\">Agricola: Dead Harvest</span><span class=\"cn\">农场主：末日收割</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 33,639 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest"}, {"n": "Concordia SE", "t": "<span class=\"en\">Concordia Special Edition</span><span class=\"cn\">和睦罗马：特别版</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h", "u"], "tl": ["🔥 33,416 关注", "约6月10日"], "l": "https://gamefound.com/en/projects/awaken-realms/concordia-special-edition", "sd": "2026-06-10"}, {"n": "Dune KHE", "t": "<span class=\"en\">Dune: Kwisatz Haderach</span><span class=\"cn\">沙丘：魁萨兹版</span>", "m": "GF9 · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 27,300 关注"], "l": "https://gamefound.com/en/projects/gf9/dune"}, {"n": "Scoundrels", "t": "<span class=\"en\">Scoundrels</span><span class=\"cn\">恶棍密窟</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 16,944 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/scoundrels"}];
+var OP=[{"n": "Awaken Realms GF 4连发", "m": "Nemesis/AH/Concordia/Scoundrels", "l": "https://gamefound.com", "ni": "", "hi": false}, {"n": "Dune: Kwisatz Haderach", "m": "GF9 · 27k关注", "l": "https://gamefound.com", "ni": "", "hi": false}, {"n": "LOTR: Ascension", "m": "GF · 14.7k关注", "l": "https://gamefound.com", "ni": "", "hi": false}, {"n": "Incarnation+Depths of Cadwallon", "m": "Monolith双弹 · GF", "l": "https://gamefound.com", "ni": "", "hi": false}, {"n": "Sword and Snow", "m": "武侠 · GF预告", "l": "https://gamefound.com", "ni": "", "hi": false}, {"n": "Galileo's Truth", "m": "Thundergryph · KS", "l": "https://www.kickstarter.com", "ni": "", "hi": false}, {"n": "小动物自走棋", "m": "奇思 · 新物集预告", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "", "hi": false}];
+var OTE=[{"d": "2026-06-02", "e": "⚠️ Pasteles & Conservas 今天截止"}, {"d": "2026-06-10", "e": "🎯 Concordia SE 预计上线 (GF)"}, {"d": "2026-06-24", "e": "⚠️ Stonesaga 二印 截止"}];
+
+
+function st(t){
+  document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b=>{
+    if((t=="d"&&b.textContent.includes("国内"))||(t=="o"&&b.textContent.includes("海外")))b.classList.add("active")
+  });
+  document.getElementById(t=="d"?"td":"to").classList.add("active");
+}
+
+function gi(nm){
+  if(!nm)return '';
+  var k='im_'+nm.replace(/ /g,'_').replace(/:/g,'').replace(/·/g,'').replace(/！/g,'').replace(/？/g,'');
+  return window[k]||'';
+}
+function dt(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function pd(s){if(!s)return null;var d=new Date(s);return isNaN(d.getTime())?null:d}
+function dd(a,b){return Math.round((b-a)/86400000)}
+function cds(t,n){if(!t)return'';var d=t-n;if(d<=0)return'已开始';var x=Math.floor(d/86400),h=Math.floor((d%86400)/3600);return x>0?x+'天'+h+'小时':h+'小时'}
+function tdy(d){var n=new Date();return d&&d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate()}
+function rc(it){
+  var im='',uv=gi(it.n);
+  if(uv){im='<img src="'+uv+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'}
+  else if(it.i){im='<img src="'+it.i+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'}
+  var bt='',bx='';
+  if(it.ta)it.ta.forEach(function(c,j){bt+='<span class="ctg '+c+'">'+(it.tl[j]||'')+'</span>'});
+  if(it.p)bx+='<span class="p2 '+it.p+'">'+it.pl+'</span>';
+  if(it.p2)bx+='<span class="p2 '+it.p2+'">'+it.pl2+'</span>';
+  var n=new Date(),cd='',ed=pd(it.ed),sd=pd(it.sd);
+  if(ed&&ed>n){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'</span>'}
+  if(sd&&sd>n)cd='<span style="color:var(--gold);font-weight:600;font-size:.75em">🔥 '+cds(sd,n)+'后开售</span>';
+  var pb=it.pg?'<div class="pb"><div class="pbf" style="width:'+Math.min(it.pg,100)+'%"></div></div>':'';
+  return '<a class="cl" href="'+it.l+'" target="_blank"><div class="card"><div class="cr"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+it.t+'</div><div class="cm">'+it.m+'</div><div>'+bx+' '+bt+'</div>'+(it.m2?'<div class="cm" style="margin-top:2px">'+it.m2+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+it.pr+'</div>':'')+cd+pb+'</div></div></div></a>';
+}
+function rp(items){
+  var h='<div class="g3">';
+  items.forEach(function(p){
+    var im='';
+    if(p.hi&&gi(p.ni)){im='<img src="'+gi(p.ni)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'}
+    h+='<div class="mc"><a href="'+p.l+'" target="_blank"><div class="mi">'+im+'</div><div class="mn">'+p.n+'</div><div class="mm">'+p.m+'</div></a></div>';
+  });
+  return h+'</div>';
+}
+function rtl(events){
+  var n=dt(),h='<div class="tl">';
+  events.forEach(function(e){
+    var cls=e.d<n?'tli dn':e.d===n?'tli td':'tli';
+    var lb=e.d===n?'📅 今天':e.d<n?'📅 '+e.d+' ✅':'📅 '+e.d;
+    h+='<div class="'+cls+'"><div class="td">'+lb+'</div><div class="te">'+e.e+'</div></div>';
+  });
+  return h+'</div>';
+}
+function render(){
+  var n=new Date(),td=dt();
+  var all=[{id:'td',lb:'🇨🇳',items:[].concat(DL).concat(DU),pp:DP,te:DTE},{id:'to',lb:'🌍',items:[].concat(OL).concat(OU),pp:OP,te:OTE}];
+  all.forEach(function(sec){
+    var items=sec.items,pp=sec.pp,te=sec.te;
+    var todayEnd=[],nowFunding=[],comingSoon=[],dailyNews=[];
+    items.forEach(function(it){
+      var ed=pd(it.ed),sd=pd(it.sd);
+      // Today ending
+      if(ed&&tdy(ed)){todayEnd.push(it);dailyNews.push({tag:'d',tt:'⏰ 今日截止',nm:it.t.replace(/<[^>]*>/g,'').substring(0,24),meta:ed.getHours()+':'+String(ed.getMinutes()).padStart(2,'0')+'截止',cnt:'⚠️ 最后机会！'});return}
+      // Currently funding - has 'l' tag AND (no end date or end date in future)
+      if(it.ta&&it.ta.indexOf('l')>=0&&(!ed||ed>n)){nowFunding.push(it);return}
+      // Coming soon - has sd and not started yet
+      if(sd&&sd>n){comingSoon.push(it);if(sd<new Date(n.getTime()+86400000*7)){dailyNews.push({tag:'s',tt:'🔥 即将上线',nm:it.t.replace(/<[^>]*>/g,'').substring(0,24),meta:Math.round((sd-n)/86400000)+'天后',cnt:cds(sd,n)+'后开售'})}}
+    });
+    // Sort
+    todayEnd.sort(function(a,b){return(pd(a.ed)||0)-(pd(b.ed)||0)});
+    nowFunding.sort(function(a,b){var ea=pd(a.ed)?pd(a.ed).getTime():9e12,eb=pd(b.ed)?pd(b.ed).getTime():9e12;return ea-eb});
+    comingSoon.sort(function(a,b){return(pd(a.sd)||0)-(pd(b.sd)||0)});
+    // Daily news section
+    var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+sec.lb+' · '+td+'</span></div><div class="dg">';
+    dailyNews.slice(0,4).forEach(function(d){h+='<div class="dc"><span class="dt '+d.tag+'">'+d.tt+'</span><div class="dn">'+d.nm+'</div><div class="dm">'+d.meta+'</div><div class="dcnt">'+d.cnt+'</div></div>'});
+    for(var i=dailyNews.length;i<4;i++){h+='<div class="dc" style="opacity:.3"><span class="dt i">📢</span><div class="dn">广告位 #'+(i+1)+'</div><div class="dm">推荐轮播</div><div class="dcnt" style="color:rgba(255,255,255,.2)">——</div></div>'}
+    h+='</div></div>';
+    // TODAY ENDING
+    if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
+    // NOW FUNDING (with 3-day warning)
+    h+='<div class="sec"><span>🎯</span><h2>正在众筹</h2><span class="bc">'+nowFunding.length+'个项目</span></div>';
+    nowFunding.forEach(function(it){
+      var ed=pd(it.ed);
+      if(ed){var d2=dd(n,ed);if(d2<=3&&d2>=0){it.ta=it.ta||[];it.tl=it.tl||[];it.ta.push('e');it.tl.push('⚠️ 剩'+d2+'天')}}
+    });
+    h+=nowFunding.map(rc).join('');
+    // COMING SOON
+    if(comingSoon.length>0)h+='<div class="sec"><span>🔥</span><h2>即将上线</h2></div>'+comingSoon.map(rc).join('');
+    // CAROUSEL (only for domestic)
+    if(sec.id==='td'){
+      h+='<div class="carousel"><div class="ch">🏆 编辑推荐 · 轮播广告</div><div class="cc">'+
+        '<div class="citem"><img src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'马拉开波海盗\'"></div>'+
+        '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Nemesis Legacy\'"></div>'+
+        '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="" loading="lazy" onerror="this.innerHTML=\'Concordia SE\'"></div>'+
+        '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Dead Harvest\'"></div>'+
+        '</div></div>';
+    }
+    // PREVIEW PROJECTS
+    h+='<div class="sec"><span>📋</span><h2>预告项目</h2><span class="bc">共'+pp.length+'个</span></div>'+rp(pp);
+    // TIMELINE
+    h+='<div class="sec"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(te);
+    document.getElementById(sec.id).innerHTML=h;
+  });
+}
+render();
+setInterval(render,600000);
+
+</script>
 </body>
 </html>

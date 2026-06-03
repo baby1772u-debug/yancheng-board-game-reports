@@ -91,6 +91,19 @@ footer a{color:var(--accent);text-decoration:none}
 .dcnt{font-size:.6em;color:rgba(255,255,255,.5);margin-top:3px}
 .daily-stack .daily:first-child{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .daily-stack .daily:last-child{border-top-left-radius:0;border-top-right-radius:0}
+.share-bar{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.share-btn,.qr-btn{cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:20px;font-size:.78em;background:var(--card);border:1px solid var(--border);color:var(--text);transition:all .2s}
+.share-btn:hover,.qr-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.share-btn:active,.qr-btn:active{transform:scale(.95)}
+.qr-wrap{position:relative}
+.qr-dropdown{position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:0 8px 32px rgba(0,0,0,.12);display:none;z-index:100}
+.qr-wrap.open .qr-dropdown{display:block}
+.qr-dropdown #qr_canvas{width:140px;height:140px;display:flex;align-items:center;justify-content:center}
+.qr-dropdown #qr_canvas img{width:140px;height:140px;border-radius:6px}
+.qr-dropdown #qr_canvas canvas{width:140px;height:140px;border-radius:6px}
+.qr-label{text-align:center;font-size:.68em;color:var(--muted);margin:6px 0 0}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 22px;border-radius:8px;font-size:.82em;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -110,6 +123,16 @@ footer a{color:var(--accent);text-decoration:none}
 <footer>
 <p>数据来源：新物集 · 摩点 · Kickstarter · Gamefound</p>
 <p>由小一自动整理 🤖 · <a href="https://aiwanlands.com">爱玩桌游club</a></p>
+<div class="share-bar">
+  <button class="share-btn" onclick="doShare()">📤 分享页面</button>
+  <div class="qr-wrap">
+    <div class="qr-btn" onclick="this.parentNode.classList.toggle('open')">📱 扫码访问</div>
+    <div class="qr-dropdown">
+      <div id="qr_canvas"></div>
+      <p class="qr-label">扫码直达 aiwanlands.com</p>
+    </div>
+  </div>
+</div>
 </footer>
 </div>
 <script>
@@ -260,6 +283,50 @@ function buildDaily(items,lb,td){
 // Initial render
 st('n');
 setInterval(function(){st('d');st('o');st('n');},600000);
+
+// ===== 分享 & 二维码 =====
+function doShare(){
+  var u=location.href, t='🎲 爱玩桌游club · 众筹资讯';
+  if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}
+  else{
+    var inp=document.createElement('input');
+    inp.value=u;document.body.appendChild(inp);inp.select();
+    document.execCommand('copy');document.body.removeChild(inp);
+    toast('✅ 链接已复制，快去分享给桌友吧！');
+  }
+}
+function toast(msg){
+  var el=document.querySelector('.toast');
+  if(!el){el=document.createElement('div');el.className='toast';document.body.appendChild(el)}
+  el.textContent=msg;el.classList.add('show');
+  setTimeout(function(){el.classList.remove('show')},2000);
+}
+// Load QR code library and generate
+var qrLoaded=false;
+function loadQR(){
+  if(qrLoaded)return;qrLoaded=true;
+  if(typeof QRCode!=='undefined'){genQR();return}
+  var s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.onload=genQR;s.onerror=genQR_fallback;
+  document.head.appendChild(s);
+}
+function genQR(){
+  var el=document.getElementById('qr_canvas');
+  if(!el||!window.QRCode)return;
+  try{new QRCode(el,{text:'https://aiwanlands.com',width:140,height:140});}catch(e){genQR_fallback()}
+}
+function genQR_fallback(){
+  var el=document.getElementById('qr_canvas');
+  if(!el)return;
+  el.innerHTML='<a href="https://aiwanlands.com" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:inherit;font-size:.72em">'+
+    '<svg width="80" height="80" viewBox="0 0 21 21" style="opacity:.7"><rect x="1" y="1" width="7" height="7" fill="currentColor"/><rect x="9" y="1" width="3" height="3" fill="currentColor"/><rect x="17" y="1" width="3" height="7" fill="currentColor"/><rect x="1" y="9" width="3" height="3" fill="currentColor"/><rect x="13" y="9" width="3" height="3" fill="currentColor"/><rect x="17" y="9" width="3" height="3" fill="currentColor"/><rect x="1" y="13" width="7" height="7" fill="currentColor"/><rect x="9" y="13" width="3" height="3" fill="currentColor"/><rect x="13" y="17" width="7" height="3" fill="currentColor"/></svg>'+
+    '<span>aiwanlands.com</span></a>';
+}
+// Load QR on hover
+var qrTimer;
+document.querySelector('.qr-btn').addEventListener('mouseenter',function(){clearTimeout(qrTimer);setTimeout(loadQR,200)});
+document.querySelector('.qr-wrap').addEventListener('click',function(e){if(!qrLoaded)loadQR()});
 
 </script>
 </body>

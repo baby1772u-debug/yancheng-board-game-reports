@@ -323,7 +323,7 @@ function renderTab(id,items,pp,te,lb){
   nowFunding.sort(function(a,b){var ea=pd(a.ed)?pd(a.ed).getTime():9e12,eb=pd(b.ed)?pd(b.ed).getTime():9e12;return ea-eb});
   comingSoon.sort(function(a,b){return(pd(a.sd)||0)-(pd(b.sd)||0)});
   
-  var h=buildDaily(items,lb,td);
+  var h='';
   if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
   h+='<div class="sec"><span>🎯</span><h2>正在众筹</h2><span class="bc">'+nowFunding.length+'个项目</span></div>';
   nowFunding.forEach(function(it){

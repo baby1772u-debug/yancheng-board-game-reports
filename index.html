@@ -3,11 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="爱玩桌游club 自动整理新物集、摩点、Kickstarter、Gamefound 的桌游众筹动态。">
+<meta name="theme-color" content="#f5f5f7">
+<link rel="canonical" href="https://aiwanlands.com/">
+<meta property="og:title" content="爱玩桌游 众筹资讯">
+<meta property="og:description" content="每日整理国内外桌游众筹项目、开售提醒和关键时间节点。">
+<meta property="og:url" content="https://aiwanlands.com/">
+<meta property="og:type" content="website">
 <title>🎲 爱玩桌游 众筹资讯</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#f5f5f7;--card:#fff;--accent:#e94560;--accent2:#ff6b6b;--gold:#d4a843;--blue:#6c5ce7;--text:#1d1d1f;--muted:#86868b;--radius:14px}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;padding:16px;min-height:100vh}
+:root{--bg:#f5f5f7;--card:#fff;--accent:#e94560;--accent2:#ff6b6b;--gold:#d4a843;--blue:#6c5ce7;--text:#1d1d1f;--muted:#86868b;--border:rgba(0,0,0,.08);--radius:14px}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;padding:16px;min-height:100vh;line-height:1.5}
+button{font:inherit}
 .container{max-width:960px;margin:0 auto}
 header{text-align:center;padding:32px 16px 12px}
 header h1{font-size:1.6em;font-weight:700;background:linear-gradient(135deg,#1d1d1f,#e94560,#d4a843);-webkit-background-clip:text;margin-bottom:4px}
@@ -15,12 +23,13 @@ header p{color:var(--muted);font-size:.85em}
 .tab-bar{display:flex;justify-content:center;gap:8px;margin:14px 0}
 .tab-btn{padding:8px 26px;border-radius:999px;border:1.5px solid #ddd;background:#fff;color:var(--muted);font-size:.88em;font-weight:500;cursor:pointer;transition:all .25s}
 .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 16px rgba(233,69,96,.25)}
+.tab-btn:focus-visible,.share-btn:focus-visible,.qr-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .sec{display:flex;align-items:center;gap:8px;margin:22px 0 10px;padding-left:10px;border-left:3px solid var(--accent)}
 .sec h2{font-size:1.05em;font-weight:600}
 .sec .bc{font-size:.7em;color:var(--muted);margin-left:auto;background:#f0f0f2;padding:2px 10px;border-radius:12px}
-.card{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:all .2s}
+.card{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;contain:layout paint}
 .card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.1);border-color:rgba(233,69,96,.15)}
 .cl{display:block;text-decoration:none;color:inherit}
 .cr{display:flex;gap:12px;align-items:flex-start}
@@ -45,7 +54,7 @@ header p{color:var(--muted);font-size:.85em}
 .p2.xwj{background:#ffe8ec;color:#e94560}
 .p2.md{background:#fff8e1;color:#b8860b}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.mc{background:var(--card);border-radius:12px;padding:10px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:all .2s}
+.mc{background:var(--card);border-radius:12px;padding:10px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s;contain:layout paint}
 .mc:hover{transform:translateY(-2px)}
 .mc .mi{width:100%;height:80px;border-radius:8px;object-fit:cover;margin-bottom:4px;background:#f0f0f2}
 .mc .mi img{width:100%;height:100%;object-fit:cover;border-radius:8px}
@@ -70,7 +79,7 @@ footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:.78em;li
 footer a{color:var(--accent);text-decoration:none}
 @media(max-width:640px){
   .cr{flex-direction:row;gap:8px}
-  .ciw{width:100%;height:72px;flex-shrink:0;border-radius:10px}
+  .ciw{width:82px;height:82px;flex-shrink:0;border-radius:10px}
   .ct{font-size:.82em}
   .ct .cn{font-size:.68em}
   .cm{font-size:.7em}
@@ -91,6 +100,7 @@ footer a{color:var(--accent);text-decoration:none}
   .dcm{font-size:.58em;padding:0 6px 6px}
   .dciw-badge{font-size:.55em}
   .daily{padding:12px}
+  .daily-cards{grid-template-columns:1fr;gap:8px}
   .dh{font-size:.76em}
   body{padding:10px}
 }
@@ -143,6 +153,9 @@ footer a{color:var(--accent);text-decoration:none}
 .qr-label{text-align:center;font-size:.68em;color:var(--muted);margin:6px 0 0}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 22px;border-radius:8px;font-size:.82em;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 <body>
@@ -151,21 +164,21 @@ footer a{color:var(--accent);text-decoration:none}
 <h1>🎲 爱玩桌游 <span style="font-weight:400;font-size:.7em;color:var(--muted);-webkit-text-fill-color:var(--muted)">众筹资讯</span></h1>
 <p>新物集 · 摩点 · Kickstarter · Gamefound ｜ 爱玩桌游club</p>
 </header>
-<div class="tab-bar">
-<button class="tab-btn active" onclick="st('n')">📰 每日资讯</button>
-<button class="tab-btn" onclick="st('d')">🇨🇳 国内</button>
-<button class="tab-btn" onclick="st('o')">🌍 海外</button>
+<div class="tab-bar" role="tablist" aria-label="资讯分类">
+<button type="button" class="tab-btn active" role="tab" aria-selected="true" aria-controls="tn" onclick="st('n')">📰 每日资讯</button>
+<button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="td" onclick="st('d')">🇨🇳 国内</button>
+<button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="to" onclick="st('o')">🌍 海外</button>
 </div>
-<div id="tn" class="tab-content active"><div class="daily-news-page" id="tn_content"></div></div>
-<div id="td" class="tab-content"></div>
-<div id="to" class="tab-content"></div>
+<div id="tn" class="tab-content active" role="tabpanel"><div class="daily-news-page" id="tn_content"></div></div>
+<div id="td" class="tab-content" role="tabpanel" hidden></div>
+<div id="to" class="tab-content" role="tabpanel" hidden></div>
 <footer>
 <p>数据来源：新物集 · 摩点 · Kickstarter · Gamefound</p>
 <p>由小一自动整理 🤖 · <a href="https://aiwanlands.com">爱玩桌游club</a></p>
 <div class="share-bar">
-  <button class="share-btn" onclick="doShare()">📤 分享页面</button>
+  <button type="button" class="share-btn" onclick="doShare()">📤 分享页面</button>
   <div class="qr-wrap">
-    <div class="qr-btn" onclick="this.parentNode.classList.toggle('open')">📱 扫码访问</div>
+    <button type="button" class="qr-btn" onclick="this.parentNode.classList.toggle('open')" aria-haspopup="dialog">📱 扫码访问</button>
     <div class="qr-dropdown">
       <div id="qr_canvas"></div>
       <p class="qr-label">扫码直达 aiwanlands.com</p>
@@ -276,10 +289,30 @@ var OP=[]
 var OTE=[{"d": "2026-06-02", "e": "⚠️ Pasteles & Conservas 今天截止"}, {"d": "2026-06-10", "e": "🎯 Concordia SE 预计上线 (GF)"}, {"d": "2026-06-24", "e": "⚠️ Stonesaga 二印 截止"}];
 
 
+var currentTab='n';
+function escAttr(v){
+  return String(v||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function imgTag(src,label){
+  if(!src)return '';
+  return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">';
+}
+function extLink(url,content,cls){
+  return '<a class="'+escAttr(cls||'cl')+'" href="'+escAttr(url)+'" target="_blank" rel="noopener noreferrer">'+content+'</a>';
+}
 function st(t){
   var idx={n:0,d:1,o:2}[t]||0;
-  document.querySelectorAll('.tab-content').forEach(function(e,i){e.classList.toggle('active',i===idx)});
-  document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx)});
+  currentTab=t;
+  document.querySelectorAll('.tab-content').forEach(function(e,i){
+    var on=i===idx;
+    e.classList.toggle('active',on);
+    e.hidden=!on;
+  });
+  document.querySelectorAll('.tab-btn').forEach(function(b,i){
+    var on=i===idx;
+    b.classList.toggle('active',on);
+    b.setAttribute('aria-selected',on?'true':'false');
+  });
   if(t==='n')rn();
   if(t==='d')renderTab('td',[].concat(DL).concat(DU),DP,DTE,'🇨🇳 国内');
   if(t==='o')renderTab('to',[].concat(OL),OP,OTE,'🌍 海外');
@@ -297,8 +330,8 @@ function cds(t,n){if(!t)return'';var d=t-n;if(d<=0)return'已开始';var x=Math.
 function tdy(d){var n=new Date();return d&&d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate()}
 function rc(it){
   var im='',uv=gi(it.n);
-  if(uv){im='<img src="'+uv+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'}
-  else if(it.i){im='<img src="'+it.i+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'}
+  if(uv){im=imgTag(uv,it.n)}
+  else if(it.i){im=imgTag(it.i,it.n)}
   var bt='',bx='';
   if(it.ta)it.ta.forEach(function(c,j){bt+='<span class="ctg '+c+'">'+(it.tl[j]||'')+'</span>'});
   if(it.p)bx+='<span class="p2 '+it.p+'">'+it.pl+'</span>';
@@ -307,14 +340,14 @@ function rc(it){
   if(ed&&ed>n){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'</span>'}
   if(sd&&sd>n)cd='<span style="color:var(--gold);font-weight:600;font-size:.75em">🔥 '+cds(sd,n)+'后开售</span>';
   var pb=it.pg?'<div class="pb"><div class="pbf" style="width:'+Math.min(it.pg,100)+'%"></div></div>':'';
-  return '<a class="cl" href="'+it.l+'" target="_blank"><div class="card"><div class="cr"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+it.t+'</div><div class="cm">'+it.m+'</div><div>'+bx+' '+bt+'</div>'+(it.m2?'<div class="cm" style="margin-top:2px">'+it.m2+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+it.pr+'</div>':'')+cd+pb+'</div></div></div></a>';
+  return extLink(it.l,'<div class="card"><div class="cr"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+it.t+'</div><div class="cm">'+it.m+'</div><div>'+bx+' '+bt+'</div>'+(it.m2?'<div class="cm" style="margin-top:2px">'+it.m2+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+it.pr+'</div>':'')+cd+pb+'</div></div></div>');
 }
 function rp(items){
   var h='<div class="g3">';
   items.forEach(function(p){
     var im='';
-    if(p.hi&&gi(p.ni)){im='<img src="'+gi(p.ni)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'">'}
-    h+='<div class="mc"><a href="'+p.l+'" target="_blank"><div class="mi">'+im+'</div><div class="mn">'+p.n+'</div><div class="mm">'+p.m+'</div></a></div>';
+    if(p.hi&&gi(p.ni)){im=imgTag(gi(p.ni),p.n)}
+    h+='<div class="mc">'+extLink(p.l,'<div class="mi">'+im+'</div><div class="mn">'+p.n+'</div><div class="mm">'+p.m+'</div>')+'</div>';
   });
   return h+'</div>';
 }
@@ -343,19 +376,15 @@ function renderTab(id,items,pp,te,lb){
   var h='';
   if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
   h+='<div class="sec"><span>🎯</span><h2>正在众筹</h2><span class="bc">'+nowFunding.length+'个项目</span></div>';
-  nowFunding.forEach(function(it){
-    var ed=pd(it.ed);
-    if(ed){var d2=dd(n,ed);if(d2<=3&&d2>=0){it.ta=it.ta||[];it.tl=it.tl||[];it.ta.push('e');it.tl.push('⚠️ 剩'+d2+'天')}}
-  });
   h+=nowFunding.map(rc).join('');
   if(comingSoon.length>0)h+='<div class="sec"><span>🔥</span><h2>即将上线</h2></div>'+comingSoon.map(rc).join('');
   if(id==='td'&&DE.length>0)h+='<div class="sec"><span>✅</span><h2>已结束</h2><span class="bc">'+DE.length+'个项目</span></div>'+DE.map(rc).join('');
   if(id==='td'){
     h+='<div class="carousel"><div class="ch">🏆 编辑推荐 · 轮播广告</div><div class="cc">'+
-      '<div class="citem"><img src="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'马拉开波海盗\'"></div>'+
-      '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Nemesis Legacy\'"></div>'+
-      '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png" alt="" loading="lazy" onerror="this.innerHTML=\'Concordia SE\'"></div>'+
-      '<div class="citem"><img src="https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg" alt="" loading="lazy" onerror="this.innerHTML=\'Dead Harvest\'"></div>'+
+      '<div class="citem">'+imgTag('https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg','马拉开波海盗')+'</div>'+
+      '<div class="citem">'+imgTag('https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg','Nemesis Legacy')+'</div>'+
+      '<div class="citem">'+imgTag('https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png','Concordia SE')+'</div>'+
+      '<div class="citem">'+imgTag('https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg','Dead Harvest')+'</div>'+
       '</div></div>';
   }
   h+='<div class="sec"><span>📋</span><h2>预告项目</h2><span class="bc">共'+pp.length+'个</span></div>'+rp(pp);
@@ -391,7 +420,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     var it=justLaunched[0],sd=pd(it.sd);
     var days=Math.round((n-sd)/86400000);
     var label=days===0?'今天上线':days+'天前上线';
-    im=gi(it.n)?'<img src="'+gi(it.n)+'" alt="" loading="lazy">':'';
+    im=imgTag(gi(it.n),it.n);
     sections.push({icon:'🆕',title:'最近上线',item:it,label:label,sub:label,img:im});
   }
   
@@ -405,7 +434,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     var it=comingUp[0],sd=pd(it.sd);
     var d2=Math.round((sd-n)/86400000);
     var label=d2+'天后开售';
-    im=gi(it.n)?'<img src="'+gi(it.n)+'" alt="" loading="lazy">':'';
+    im=imgTag(gi(it.n),it.n);
     sections.push({icon:'⏰',title:'即将上线',item:it,label:label,sub:cds(sd,n)+'后开售',img:im});
   }
   
@@ -419,7 +448,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     var it=endingSoon[0],ed=pd(it.ed);
     var d2=Math.round((ed-n)/86400000);
     var label=d2===0?'今天截止':d2+'天后截止';
-    im=gi(it.n)?'<img src="'+gi(it.n)+'" alt="" loading="lazy">':'';
+    im=imgTag(gi(it.n),it.n);
     sections.push({icon:'🔥',title:'即将结束',item:it,label:label,sub:cds(ed,n)+'后截止',img:im});
   }
   
@@ -438,7 +467,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
   });
   var top=hotItems[0];
   if(top){
-    im=gi(top.n)?'<img src="'+gi(top.n)+'" alt="" loading="lazy">':'';
+    im=imgTag(gi(top.n),top.n);
     var topAmt='',topLabel='';
     if(top.tl) top.tl.forEach(function(x){
       if(x.indexOf('¥')>=0||x.indexOf('$')>=0||x.indexOf('€')>=0||x.indexOf('£')>=0) topAmt=x.replace('🔥 ','');
@@ -453,7 +482,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
   var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+lb+' · '+td+'</span></div><div class="daily-cards">';
   sections.forEach(function(s){
     var it=s.item;
-    h+='<a class="daily-card" href="'+it.l+'" target="_blank"><div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.icon+' '+s.title+'</span></div><div class="dct">'+(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,30)+'</div><div class="dcm">'+s.sub+'</div></a>';
+    h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.icon+' '+s.title+'</span></div><div class="dct">'+(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,30)+'</div><div class="dcm">'+s.sub+'</div>','daily-card');
   });
   // 不再补广告位
   h+='</div></div>';
@@ -462,7 +491,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
 
 // Initial render
 st('n');
-setInterval(function(){st('d');st('o');st('n');},600000);
+setInterval(function(){st(currentTab)},600000);
 
 // ===== 分享 & 二维码 =====
 function doShare(){
@@ -488,6 +517,7 @@ function loadQR(){
   if(typeof QRCode!=='undefined'){genQR();return}
   var s=document.createElement('script');
   s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.async=true;
   s.onload=genQR;s.onerror=genQR_fallback;
   document.head.appendChild(s);
 }

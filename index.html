@@ -143,6 +143,20 @@ footer a{color:var(--accent);text-decoration:none}
 .qr-label{text-align:center;font-size:.68em;color:var(--muted);margin:6px 0 0}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 22px;border-radius:8px;font-size:.82em;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
+/* 热门榜样式 */
+.hot-page{background:linear-gradient(135deg,#1a1a2e,#2a1a2e);border-radius:var(--radius);padding:18px;color:#fff}
+.hot-header{font-size:1.1em;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.hot-sub{font-size:.6em;font-weight:400;color:rgba(255,255,255,.4)}
+.hot-section{margin-bottom:14px}
+.hot-section:last-child{margin-bottom:0}
+.hot-sec-h{font-size:.85em;font-weight:600;margin-bottom:6px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,.06);display:inline-block}
+.hot-row{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:6px;transition:background .2s}
+.hot-row:hover{background:rgba(255,255,255,.06)}
+.hot-rank{flex-shrink:0;width:28px;text-align:center;font-size:.78em}
+.hot-name{flex:1;min-width:0;font-size:.78em;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:rgba(255,255,255,.85)}
+.hot-amt{flex-shrink:0;font-size:.72em;font-weight:600;color:var(--gold);text-align:right}
+.hot-follow{color:#6c5ce7}
+@media(max-width:640px){.hot-page{padding:14px}.hot-name{font-size:.72em}.hot-amt{font-size:.66em}.hot-rank{width:24px;font-size:.7em}}
 </style>
 </head>
 <body>
@@ -155,10 +169,12 @@ footer a{color:var(--accent);text-decoration:none}
 <button class="tab-btn active" onclick="st('n')">📰 每日资讯</button>
 <button class="tab-btn" onclick="st('d')">🇨🇳 国内</button>
 <button class="tab-btn" onclick="st('o')">🌍 海外</button>
+<button class="tab-btn" onclick="st('h')">🔥 热门榜</button>
 </div>
 <div id="tn" class="tab-content active"><div class="daily-news-page" id="tn_content"></div></div>
 <div id="td" class="tab-content"></div>
 <div id="to" class="tab-content"></div>
+<div id="th" class="tab-content"></div>
 <footer>
 <p>数据来源：新物集 · 摩点 · Kickstarter · Gamefound</p>
 <p>由小一自动整理 🤖 · <a href="https://aiwanlands.com">爱玩桌游club</a></p>
@@ -277,12 +293,113 @@ var OTE=[{"d": "2026-06-02", "e": "⚠️ Pasteles & Conservas 今天截止"}, {
 
 
 function st(t){
-  var idx={n:0,d:1,o:2}[t]||0;
+  var idx={n:0,d:1,o:2,h:3}[t]||0;
   document.querySelectorAll('.tab-content').forEach(function(e,i){e.classList.toggle('active',i===idx)});
   document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx)});
   if(t==='n')rn();
   if(t==='d')renderTab('td',[].concat(DL).concat(DU),DP,DTE,'🇨🇳 国内');
   if(t==='o')renderTab('to',[].concat(OL),OP,OTE,'🌍 海外');
+  if(t==='h')renderHot();
+}
+
+// ===== 众筹热门排行榜 =====
+function renderHot(){
+  var td=dt(), h='<div class="hot-page">';
+  h+='<div class="hot-header"><span>🔥</span> 众筹热门榜 <span class="hot-sub">按金额排序 · 实时更新 · '+td+'</span></div>';
+  
+  // 国内众筹（众筹中 + 即将结束）
+  var domestic = DL.filter(function(it){return it.tl&&it.tl.some(function(s){return s.indexOf('🔥')>=0});});
+  // 没标记🔥的也加进去
+  DL.forEach(function(it){
+    if(!domestic.some(function(d){return d.n===it.n})) domestic.push(it);
+  });
+  
+  // 海外
+  var overseas = OL.filter(function(it){return it.tl&&it.tl.some(function(s){return s.indexOf('🔥')>=0||s.indexOf('$')>=0||s.indexOf('€')>=0||s.indexOf('£')>=0);});});
+  OL.forEach(function(it){
+    if(!overseas.some(function(d){return d.n===it.n})) overseas.push(it);
+  });
+  
+  // 解析金额排序
+  function parseAmount(it){
+    var s='';
+    if(it.tl) it.tl.forEach(function(x){
+      if(x.indexOf('¥')>=0) s=x;
+      if(x.indexOf('$')>=0) s=x;
+      if(x.indexOf('€')>=0) s=x;
+    });
+    var m=s.match(/[¥$€]?([\d,]+)/);
+    return m?parseInt(m[1].replace(/,/g,'')):0;
+  }
+  
+  domestic.sort(function(a,b){return parseAmount(b)-parseAmount(a)});
+  overseas.sort(function(a,b){return parseAmount(b)-parseAmount(a)});
+  
+  // 国内榜
+  h+='<div class="hot-section"><div class="hot-sec-h">🇨🇳 国内 · 众筹金额榜</div>';
+  domestic.slice(0,10).forEach(function(it,i){
+    var amt='',icon='';
+    if(it.tl) it.tl.forEach(function(x){
+      if(x.indexOf('¥')>=0) amt=x.replace('🔥 ','');
+    });
+    if(i===0) icon='🥇';
+    else if(i===1) icon='🥈';
+    else if(i===2) icon='🥉';
+    else icon='#'+(i+1);
+    var nm=(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,28);
+    h+='<div class="hot-row"><span class="hot-rank">'+icon+'</span><span class="hot-name">'+nm+'</span><span class="hot-amt">'+amt+'</span></div>';
+  });
+  h+='</div>';
+  
+  // 海外榜
+  h+='<div class="hot-section"><div class="hot-sec-h">🌍 海外 · 众筹金额榜</div>';
+  overseas.slice(0,10).forEach(function(it,i){
+    var amt='',icon='';
+    if(it.tl) it.tl.forEach(function(x){
+      if(x.indexOf('$')>=0||x.indexOf('€')>=0||x.indexOf('£')>=0) amt=x.replace('🔥 ','');
+    });
+    if(i===0) icon='🥇';
+    else if(i===1) icon='🥈';
+    else if(i===2) icon='🥉';
+    else icon='#'+(i+1);
+    var nm=(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,28);
+    h+='<div class="hot-row"><span class="hot-rank">'+icon+'</span><span class="hot-name">'+nm+'</span><span class="hot-amt">'+amt+'</span></div>';
+  });
+  h+='</div>';
+  
+  // 热度榜（按关注/预约人数）
+  h+='<div class="hot-section"><div class="hot-sec-h">🔥 热度飙升榜 · 按关注/预约</div>';
+  var hotItems=[];
+  DU.forEach(function(it){
+    if(it.tl) it.tl.forEach(function(x){
+      var m=x.match(/(\d[\d,]*)\s*人预约/);
+      if(m) hotItems.push({n:it.n,t:it.t||it.n,m:m[1],l:it.l});
+    });
+  });
+  DP.forEach(function(it){
+    if(it.t&&it.m){
+      var m=it.m.match(/(\d[\d,]*)\s*人/);
+      if(m) hotItems.push({n:it.n,t:it.t,m:m[1],l:it.l});
+    }
+  });
+  OU.concat(OP).forEach(function(it){
+    if(it.tl) it.tl.forEach(function(x){
+      var m=x.match(/(\d[\d,]*)\s*关注/);
+      if(m) hotItems.push({n:it.n,t:it.t||it.n,m:m[1],l:it.l});
+    });
+  });
+  hotItems.sort(function(a,b){
+    return parseInt(b.m.replace(/,/g,''))-parseInt(a.m.replace(/,/g,''));
+  });
+  hotItems.slice(0,10).forEach(function(it,i){
+    var icon=i<3?['🥇','🥈','🥉'][i]:'#'+(i+1);
+    var nm=it.t.replace(/<[^>]*>/g,'').substring(0,24);
+    h+='<div class="hot-row"><span class="hot-rank">'+icon+'</span><span class="hot-name">'+nm+'</span><span class="hot-amt hot-follow">'+it.m+'人</span></div>';
+  });
+  h+='</div>';
+  
+  h+='</div>';
+  document.getElementById('th').innerHTML=h;
 }
 
 function gi(nm){

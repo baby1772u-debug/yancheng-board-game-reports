@@ -172,8 +172,10 @@ footer a{color:var(--accent);text-decoration:none}
 .dciw img{width:100%;height:100%;object-fit:cover;object-position:top}
 .dciw-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.6))}
 .dciw-badge{position:absolute;bottom:4px;left:6px;font-size:.6em;font-weight:600;background:rgba(0,0,0,.55);padding:2px 7px;border-radius:4px;color:#fff;backdrop-filter:blur(2px)}
-.dct{padding:6px 8px 2px;font-size:.75em;font-weight:500;line-height:1.3;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dcm{padding:0 8px 8px;font-size:.62em;color:var(--muted)}
+.dct{padding:6px 8px 1px;font-size:.75em;font-weight:600;line-height:1.25;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dcs{padding:0 8px 1px;font-size:.58em;line-height:1.2;color:rgba(255,255,255,.64);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dcm{padding:0 8px 1px;font-size:.62em;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dcv{padding:0 8px 8px;font-size:.6em;color:rgba(255,255,255,.86);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* 每日资讯在暗色背景中的样式修复 */
 .daily .dct{color:#fff;font-weight:600}
 .daily .dcm{color:rgba(255,255,255,.76)}
@@ -200,18 +202,18 @@ footer a{color:var(--accent);text-decoration:none}
 .rank-no{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#1d1d1f;color:#fff;font-size:.62em;font-weight:700;flex-shrink:0}
 .rank-thumb{width:46px;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#ececef;flex-shrink:0}
 .rank-thumb img{width:100%;height:100%;object-fit:cover}
-.rank-name{font-size:11px;font-weight:600;line-height:1.25}
+.rank-name{font-size:11px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rank-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.2),rgba(212,168,67,.12));min-height:100%;display:flex;flex-direction:column;gap:4px;cursor:pointer}
-.daily-rank-title{font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:space-between}
-.daily-rank-title span{font-size:.82em;color:rgba(255,255,255,.65);font-weight:500}
+.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));min-height:100%;display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.daily-rank-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:space-between}
 .rank-toggle{display:inline-flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.08);padding:2px;border-radius:999px}
 .rank-toggle button{border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.68);font-size:10px;padding:1px 6px;cursor:pointer}
 .rank-toggle button.active{background:#fff;color:#1d1d1f}
-.rank-bars{display:grid;gap:3px}
-.rank-bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1px 6px;align-items:center}
-.rank-bar-head{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#fff;font-size:10px;font-weight:600}
-.rank-bar-head small{font-size:.9em;color:rgba(255,255,255,.58);font-weight:500;white-space:nowrap}
+.rank-bars{display:grid;gap:5px}
+.rank-bar-row{display:grid;gap:2px;align-items:center}
+.rank-bar-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;color:#fff;font-size:9px;font-weight:600;align-items:center}
+.rank-bar-head span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank-bar-head small{font-size:.92em;color:rgba(255,255,255,.62);font-weight:600;white-space:nowrap}
 .rank-bar-head{grid-column:1/-1}
 .rank-bar-track{height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
 .rank-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#e94560,#d4a843)}
@@ -432,6 +434,23 @@ function escHtml(v){
 function stripHtml(v){
   return String(v||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();
 }
+function cleanDisplayName(v){
+  return stripHtml(v).replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu,'').replace(/[\uFE0E\uFE0F]/g,'').replace(/[《》]/g,'').replace(/\s+/g,' ').trim();
+}
+function titleParts(it){
+  var raw=String(it.t||it.n||'项目');
+  var en=(raw.match(/<span class="en">([\s\S]*?)<\/span>/)||[])[1]||'';
+  var cn=(raw.match(/<span class="cn">([\s\S]*?)<\/span>/)||[])[1]||'';
+  var rawMain=raw.replace(/<span class="cn">[\s\S]*?<\/span>/g,'');
+  var main=cleanDisplayName(en||rawMain);
+  var sub=cn?cleanDisplayName(cn):'';
+  if(!en&&it.n&&main.length>18)main=cleanDisplayName(it.n);
+  return {main:main||cleanDisplayName(it.n)||'项目',sub:sub};
+}
+function titleHtml(it){
+  var p=titleParts(it);
+  return escHtml(p.main)+(p.sub?'<span class="cn">'+escHtml(p.sub)+'</span>':'');
+}
 function imgTag(src,label){
   if(!src)return '';
   return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">';
@@ -518,7 +537,7 @@ function isEndedProject(it,n){
   var ed=endDateOf(it);
   return !!((ed&&ed<n)||/已结束|众筹成功/.test([it.m].concat(it.tl||[]).join(' ')));
 }
-function cleanTitle(it){return stripHtml(it.t||it.n||'项目')}
+function cleanTitle(it){return titleParts(it).main}
 function sortMetric(it,mode){
   if(mode==='amount')return amountOf(it);
   if(mode==='backers')return backersOf(it)||followersOf(it);
@@ -664,7 +683,7 @@ function rc(it){
   else if(isUpcoming(it,n))cls+=' upcoming-card';
   else if(isEndedProject(it,n))cls+=' ended-card';
   var m2=cleanCardLine(it.m2);
-  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+(it.t||escHtml(it.n))+'</div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'')+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+rulesBlock(it)+extLink(it.l,'查看众筹页面','detail-link')+'</div></article>';
+  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+titleHtml(it)+'</div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'')+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+rulesBlock(it)+extLink(it.l,'查看众筹页面','detail-link')+'</div></article>';
 }
 function rp(items){
   var h='<div class="g3">';
@@ -759,7 +778,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     var days=Math.round((n-sd)/86400000);
     var label=days===0?'今天上线':days+'天前上线';
     im=imgTag(gi(it.n),it.n);
-    sections.push({icon:'🆕',title:'最近上线',item:it,label:label,sub:label,img:im});
+    sections.push({title:'最近上线',kind:'funding',item:it,label:label,sub:label,img:im});
   }
   
   var comingUp = upcoming.filter(function(it){
@@ -772,7 +791,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     var d2=Math.round((sd-n)/86400000);
     var label=d2+'天后开售';
     im=imgTag(gi(it.n),it.n);
-    sections.push({icon:'⏰',title:'即将上线',item:it,label:label,sub:cds(sd,n)+'后开售',img:im});
+    sections.push({title:'即将上线',kind:'upcoming',item:it,label:label,sub:cds(sd,n)+'后开售',img:im});
   }
   
   var endingSoon = funding.filter(function(it){
@@ -785,13 +804,14 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     var d2=Math.round((ed-n)/86400000);
     var label=d2===0?'今天截止':d2+'天后截止';
     im=imgTag(gi(it.n),it.n);
-    sections.push({icon:'🔥',title:'即将结束',item:it,label:label,sub:cds(ed,n)+'后截止',img:im});
+    sections.push({title:'即将结束',kind:'funding',item:it,label:label,sub:cds(ed,n)+'后截止',img:im});
   }
 
   var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+lb+' · '+td+'</span></div><div class="daily-cards">';
   sections.forEach(function(s){
     var it=s.item;
-    h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.icon+' '+s.title+'</span></div><div class="dct">'+(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,30)+'</div><div class="dcm">'+s.sub+'</div>','daily-card');
+    var p=titleParts(it);
+    h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.title+'</span></div><div class="dct">'+escHtml(p.main)+'</div>'+(p.sub?'<div class="dcs">'+escHtml(p.sub)+'</div>':'')+'<div class="dcm">'+escHtml(s.sub)+'</div><div class="dcv">'+escHtml(dailyMetricText(it,s.kind))+'</div>','daily-card');
   });
   h+=dailyRankCard(funding,upcoming,n,lb);
   h+='</div></div>';
@@ -804,9 +824,20 @@ function rankValue(it,mode){
   return backersOf(it)||followersOf(it);
 }
 function rankValueText(it,mode){
-  if(mode==='amount')return ((it.tl||[]).filter(function(x){return /[¥$€£]/.test(x)})[0]||'金额待同步').replace('🔥 ','');
+  if(mode==='amount')return amountTextOf(it);
   var v=backersOf(it)||followersOf(it);
   return v?(v+'人'):'人数待同步';
+}
+function amountTextOf(it){
+  var txt=((it.tl||[]).filter(function(x){return /[¥$€£]/.test(x)})[0]||'').replace(/^[^\d¥$€£]+/,'').trim();
+  return txt||'金额待同步';
+}
+function dailyMetricText(it,kind){
+  if(kind==='upcoming'){
+    var f=followersOf(it);
+    return f?'关注 '+f.toLocaleString('zh-CN')+'人':'关注待同步';
+  }
+  return '当前 '+amountTextOf(it);
 }
 function dailyRankCard(funding,upcoming,n,lb){
   var key=rankKeyFromLabel(lb),mode=rankMode[key]||'amount';
@@ -817,12 +848,10 @@ function dailyRankCard(funding,upcoming,n,lb){
   var max=Math.max.apply(null,sorted.map(function(it){return rankValue(it,mode)}).concat([1]));
   function row(it,i){
     var value=rankValue(it,mode),pct=Math.max(8,Math.min(100,value/max*100));
-    var d=deltaOf(it,mode==='amount'?'amount':'expect');
-    var delta=mode==='amount'?(moneyLabel(d.amount)+' · '+peopleLabel(d.people)):(d.followers?peopleLabel(d.followers):'增长待同步');
-    return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(cleanTitle(it)).slice(0,10)+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div><div class="rank-delta">新增 '+escHtml(delta)+'</div></div>';
+    return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(cleanTitle(it))+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div></div>';
   }
   var rows=sorted.length?sorted.map(row).join(''):'<div class="rank-delta">暂无可展示项目</div>';
-  return '<div class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title">🏆 榜单 <span>点开详情</span></div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
+  return '<div class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title">榜单</div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
 }
 
 function setRankMode(event,key,mode){
@@ -834,13 +863,13 @@ function rankData(key){
   var n=new Date();
   if(key==='domestic'){
     return {
-      title:'🇨🇳 国内详细榜单',
+      title:'国内详细榜单',
       funding:DL.concat(DU).filter(function(it){return isFunding(it,n)}),
       expect:DU.concat(DP).filter(function(it){return isExpectation(it,n)})
     };
   }
   return {
-    title:'🌍 海外详细榜单',
+    title:'海外详细榜单',
     funding:OL.concat(OU).filter(function(it){return isFunding(it,n)}),
     expect:OU.concat(OP).filter(function(it){return isExpectation(it,n)})
   };

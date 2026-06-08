@@ -198,29 +198,34 @@ footer a{color:var(--accent);text-decoration:none}
 .dcnt{font-size:.6em;color:rgba(255,255,255,.5);margin-top:3px}
 .daily-stack .daily:first-child{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .daily-stack .daily:last-child{border-top-left-radius:0;border-top-right-radius:0}
-.rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.rank-list{display:grid;gap:6px}
+/* ===== 文字滚动榜单 ===== */
+.rank-scroll-wrap{border-radius:12px;overflow:hidden;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));cursor:default}
+.rank-scroll-head{display:flex;align-items:center;gap:6px;padding:9px 10px 4px;font-size:12px;font-weight:700;color:rgba(255,255,255,.9)}
+.rank-scroll-head .rank-full{border:0;background:transparent;color:rgba(255,255,255,.62);font-size:10px;cursor:pointer;white-space:nowrap;padding:2px 6px;border-radius:6px;transition:background .2s}
+.rank-scroll-head .rank-full:hover{background:rgba(255,255,255,.1)}
+.rank-scroll-head .rank-toggle{display:inline-flex;gap:3px;margin-left:auto;background:rgba(255,255,255,.1);padding:3px;border-radius:999px}
+.rank-scroll-head .rank-toggle button{border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.65);font-size:10px;padding:2px 8px;cursor:pointer;transition:all .2s}
+.rank-scroll-head .rank-toggle button.active{background:#fff;color:#1d1d1f}
+.rank-scroll-inner{display:grid;gap:4px;max-height:132px;overflow-y:auto;overflow-x:hidden;padding:3px 10px 10px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.28) transparent}
+.rank-scroll-inner::-webkit-scrollbar{width:3px}
+.rank-scroll-inner::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25);border-radius:99px}
+.rank-scroll-item{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 8px;align-items:center;width:100%;border:0;border-bottom:1px solid rgba(255,255,255,.08);background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer;padding:3px 0 5px}
+.rank-scroll-item:last-child{border-bottom:0}
+.rank-scroll-item:hover{background:rgba(255,255,255,.06)}
+.rank-scroll-no{font-size:10px;font-weight:700;color:rgba(255,255,255,.7);white-space:nowrap}
+.rank-scroll-name{font-size:11px;font-weight:700;line-height:1.2;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-scroll-value{font-size:10px;color:rgba(255,255,255,.78);font-weight:600;white-space:nowrap}
+.rank-scroll-bar{grid-column:2/4;height:5px;border-radius:99px;background:rgba(255,255,255,.13);overflow:hidden}
+.rank-scroll-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#e94560,#d4a843);transition:width .4s ease}
+.rank-scroll-empty{padding:12px 10px 14px;font-size:11px;color:rgba(255,255,255,.5);text-align:center}
+@media(min-width:900px){.rank-scroll-inner{max-height:166px}}
+/* 旧榜单样式保留（弹窗和页面其他引用的 rank-row 等不变） */
 .rank-item{display:flex;gap:6px;align-items:center;text-decoration:none;color:inherit;background:#fafafa;border:1px solid rgba(0,0,0,.04);border-radius:9px;padding:5px}
 .rank-no{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#1d1d1f;color:#fff;font-size:.62em;font-weight:700;flex-shrink:0}
 .rank-thumb{width:46px;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#ececef;flex-shrink:0}
 .rank-thumb img{width:100%;height:100%;object-fit:cover}
 .rank-name{font-size:11px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rank-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));min-height:100%;display:flex;flex-direction:column;gap:6px;cursor:pointer}
-.daily-rank-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:space-between;gap:6px}
-.rank-full{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:9px;padding:0;cursor:pointer;white-space:nowrap}
-.rank-toggle{display:inline-flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.08);padding:2px;border-radius:999px}
-.rank-toggle button{border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.68);font-size:10px;padding:1px 6px;cursor:pointer}
-.rank-toggle button.active{background:#fff;color:#1d1d1f}
-.rank-bars{display:grid;gap:5px}
-.rank-bar-row{display:grid;gap:2px;align-items:center}
-.rank-bar-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;color:#fff;font-size:9px;font-weight:600;align-items:center;min-width:0}
-.rank-bar-head span{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
-.rank-bar-head small{font-size:.92em;color:rgba(255,255,255,.62);font-weight:600;white-space:nowrap}
-.rank-bar-head{grid-column:1/-1}
-.rank-bar-track{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
-.rank-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#e94560,#d4a843)}
-.rank-delta{font-size:9px;color:rgba(255,255,255,.72);white-space:nowrap}
 .rank-modal-tools{display:flex;gap:6px;margin-bottom:10px}
 .rank-modal-tools button{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer}
 .rank-modal-tools button.active{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -863,14 +868,24 @@ function dailyRankCard(funding,upcoming,n,lb){
   var live=funding.filter(function(it){return isFunding(it,n)});
   var expect=upcoming.filter(function(it){return isExpectation(it,n)});
   var pool=mode==='amount'?(live.length>=3?live:funding):live.concat(expect);
-  var sorted=pool.slice().sort(function(a,b){return rankValue(b,mode)-rankValue(a,mode)}).slice(0,4);
-  var max=Math.max.apply(null,sorted.map(function(it){return rankValue(it,mode)}).concat([1]));
-  function row(it,i){
-    var value=rankValue(it,mode),pct=Math.max(8,Math.min(100,value/max*100));
-    return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(shortTitle(it))+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div></div>';
+  var sorted=pool.slice().filter(function(it){
+    var v=rankValue(it,mode);
+    if(mode==='people')return v>0;
+    return true;
+  }).sort(function(a,b){return rankValue(b,mode)-rankValue(a,mode)});
+
+  var displayCount=8;
+  var topItems=sorted.slice(0,displayCount);
+  var max=Math.max.apply(null,topItems.map(function(it){return rankValue(it,mode)}).concat([1]));
+
+  function itemHtml(it,i){
+    var value=rankValue(it,mode);
+    var pct=Math.max(5,Math.min(100,value/max*100));
+    return '<button type="button" class="rank-scroll-item" onclick="focusProject(\''+(key==='domestic'?'d':'o')+'\',\''+escAttr(keyOf(it))+'\')"><span class="rank-scroll-no">'+(i+1)+'.</span><span class="rank-scroll-name">'+escHtml(shortTitle(it))+'</span><span class="rank-scroll-value">'+escHtml(rankValueText(it,mode))+'</span><span class="rank-scroll-bar"><span class="rank-scroll-bar-fill" style="width:'+pct+'%"></span></span></button>';
   }
-  var rows=sorted.length?sorted.map(row).join(''):'<div class="rank-delta">暂无可展示项目</div>';
-  return '<div id="daily_rank_'+key+'" class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title"><span>榜单</span><button type="button" class="rank-full" onclick="openRankModalFromButton(event,\''+key+'\')">完整榜单</button></div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
+
+  var itemsHtml=topItems.length?topItems.map(itemHtml).join(''):'<div class="rank-scroll-empty">暂无可展示项目</div>';
+  return '<div id="daily_rank_'+key+'" class="rank-scroll-wrap"><div class="rank-scroll-head"><span>🏆 榜单</span><button type="button" class="rank-full" onclick="openRankModalFromButton(event,\''+key+'\')">完整榜单</button><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div></div><div class="rank-scroll-inner">'+itemsHtml+'</div></div>';
 }
 
 function dailyRankSource(key){

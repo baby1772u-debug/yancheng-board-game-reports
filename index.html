@@ -1425,6 +1425,7 @@ async function doShare(){
       usedScreen=false;
     }
     if(!usedScreen){
+      openShareModal('正在生成网页截图，图片较多时需要稍等...');
       toast('正在生成网页长截图...');
       await capturePageLongImage();
     }

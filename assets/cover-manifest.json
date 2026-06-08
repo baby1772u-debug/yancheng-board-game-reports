@@ -526,5 +526,93 @@
     "url": "https://i.zhuoyou.com/upload/images/202606/w_720_h_546_s_156579_9416d972-0f69-4a75-8c1d-7148931ebc5c.jpg",
     "local": "assets/covers/蓝色方案.jpg",
     "file": "蓝色方案.jpg"
+  },
+  {
+    "varName": "im_神怪异闻录",
+    "url": "https://p6.moimg.net/path/dst_project/1003207284/202605/2014/4543/2605204543w9Axe0Mn186zLkpNGVy2poRljqZV37.jpg",
+    "local": "assets/covers/神怪异闻录.jpg",
+    "file": "神怪异闻录.jpg",
+    "hash": "bfdaf91bd11a4d8a",
+    "size": 804202
+  },
+  {
+    "varName": "im_蚀教追猎",
+    "url": "https://p6.moimg.net/path/dst_project/5881959/202605/1918/1555/2605191555AWBM2Qn4bYoynWDwJAzaJrPLDVg8qk.jpg",
+    "local": "assets/covers/蚀教追猎.jpg",
+    "file": "蚀教追猎.jpg",
+    "hash": "c79fc7928eb73385",
+    "size": 672370
+  },
+  {
+    "varName": "im_但丁神曲5E战役集",
+    "url": "https://p6.moimg.net/path/dst_project/1004885349/202606/0312/4034/26060340342PQa6Xr4N5Yv048XrOvjDWA7KmZ3ln.jpg",
+    "local": "assets/covers/但丁神曲5E战役集.jpg",
+    "file": "但丁神曲5E战役集.jpg",
+    "hash": "c88465e4b97efceb",
+    "size": 672641
+  },
+  {
+    "varName": "im_雾行纪祈愿之歌",
+    "url": "https://p6.moimg.net/path/dst_project/1085657/202605/3013/3016/2605303016KdRY4m905MjyoBn4YVEW7QxDqoLekp.jpg",
+    "local": "assets/covers/雾行纪祈愿之歌.jpg",
+    "file": "雾行纪祈愿之歌.jpg",
+    "hash": "6f9c6f69c9330e3a",
+    "size": 937967
+  },
+  {
+    "varName": "im_序章神话起源",
+    "url": "https://p6.moimg.net/path/dst_project/1009722277/202603/0312/3611/26030336117gZpxA0jlr4yd4nQpwyYO5dKVJ3kRD.jpg",
+    "local": "assets/covers/序章神话起源.jpg",
+    "file": "序章神话起源.jpg",
+    "hash": "c888e044a592da37",
+    "size": 386153
+  },
+  {
+    "varName": "im_魔戒圣战卡牌扩充",
+    "url": "https://p6.moimg.net/path/dst_project/4969512/202605/2317/2118/26052321181keNwg9RBWqEl5nNgoy02PVbnJQDmX.png",
+    "local": "assets/covers/魔戒圣战卡牌扩充.png",
+    "file": "魔戒圣战卡牌扩充.png",
+    "hash": "00937161b9bfc4e5",
+    "size": 549978
+  },
+  {
+    "varName": "im_神鬼警探赌城风云",
+    "url": "https://p6.moimg.net/path/dst_project/1002794352/202606/0211/2228/26060222282PQa6Xr4N5Yv0486GjvjDWA7KmZ3ln.jpg",
+    "local": "assets/covers/神鬼警探赌城风云.jpg",
+    "file": "神鬼警探赌城风云.jpg",
+    "hash": "e4544f024f3d6c58",
+    "size": 578932
+  },
+  {
+    "varName": "im_梅林的坩埚2",
+    "url": "https://p6.moimg.net/path/dst_project/1201560/202605/2611/1037/2605261037K8DpwB36N4aEYjm1JZy7jlxWmMARZ9.jpg",
+    "local": "assets/covers/梅林的坩埚2.jpg",
+    "file": "梅林的坩埚2.jpg",
+    "hash": "0733718c430638a2",
+    "size": 384886
+  },
+  {
+    "varName": "im_十二军团黄金理想乡",
+    "url": "https://p6.moimg.net/path/dst_project/1000154630/202606/0400/2048/26060420488g24WdQmnoPzAkaRlNEJ6DB9KO1rX3.jpg",
+    "local": "assets/covers/十二军团黄金理想乡.jpg",
+    "file": "十二军团黄金理想乡.jpg",
+    "hash": "dde0cd027dcd0e8c",
+    "size": 826888
+  },
+  {
+    "varName": "im_丰收第二版",
+    "url": "https://i.zhuoyou.com/upload/images/202606/w_720_h_546_s_781766_bf227015-66f4-46bc-b5dd-28b51c949d15.png",
+    "local": "assets/covers/丰收第二版.png",
+    "file": "丰收第二版.png",
+    "hash": "5e3471c7175ed1e1",
+    "size": 883558
+  },
+  {
+    "varName": "im_蜂鸟",
+    "url": "https://i.zhuoyou.com/upload/images/202606/w_720_h_564_s_469061_3fa11232-90a6-42e4-a774-8164de6a7c42.jpg",
+    "local": "assets/covers/蜂鸟.jpg",
+    "file": "蜂鸟.jpg",
+    "hash": "4ca4aa4c2565a69f",
+    "size": 82720
   }
 ]

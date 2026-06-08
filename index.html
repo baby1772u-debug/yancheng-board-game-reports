@@ -509,7 +509,7 @@ function dailyTitleHtml(it){
 }
 function imgTag(src,label){
   if(!src)return '';
-  return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">';
+  return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="lazy" decoding="async" crossorigin="anonymous" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">';
 }
 function extLink(url,content,cls){
   return '<a class="'+escAttr(cls||'cl')+'" href="'+escAttr(url)+'" target="_blank" rel="noopener noreferrer">'+content+'</a>';
@@ -1274,21 +1274,6 @@ function closeShareModal(){
 function clearShareUrl(){
   if(currentShareUrl){URL.revokeObjectURL(currentShareUrl);currentShareUrl=''}
 }
-function fallbackPoster(){
-  var c=document.createElement('canvas'),ctx=c.getContext('2d'),w=900,h=1200;
-  c.width=w;c.height=h;
-  ctx.fillStyle='#f5f5f7';ctx.fillRect(0,0,w,h);
-  ctx.fillStyle='#1d1d1f';ctx.font='700 54px sans-serif';ctx.fillText('爱玩桌游 众筹资讯',70,120);
-  ctx.fillStyle='#86868b';ctx.font='28px sans-serif';ctx.fillText('新物集 · 摩点 · Kickstarter · Gamefound',70,170);
-  ctx.fillStyle='#fff';roundRect(ctx,70,240,760,540,28);ctx.fill();
-  var names=[].concat(DL,OL).filter(function(it){return isFunding(it,new Date())}).slice(0,6);
-  ctx.fillStyle='#1d1d1f';ctx.font='700 34px sans-serif';ctx.fillText('当前热门项目',110,310);
-  ctx.font='28px sans-serif';
-  names.forEach(function(it,i){ctx.fillText((i+1)+'. '+cleanTitle(it).slice(0,22),110,370+i*58)});
-  ctx.fillStyle='#e94560';ctx.font='700 30px sans-serif';ctx.fillText('扫码访问 aiwanlands.com',110,890);
-  ctx.fillStyle='#1d1d1f';ctx.font='24px sans-serif';ctx.fillText('https://aiwanlands.com',110,940);
-  return c;
-}
 function roundRect(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
@@ -1298,42 +1283,103 @@ function withTimeout(promise,ms,label){
     new Promise(function(_,reject){setTimeout(function(){reject(new Error(label||'timeout'))},ms)})
   ]);
 }
-async function doShare(){
-  closeShareModal();
-  toast('正在生成截图...');
+function waitForShareImages(root){
+  var imgs=Array.prototype.slice.call((root||document).querySelectorAll('img'));
+  return Promise.all(imgs.map(function(img){
+    if(img.complete)return Promise.resolve();
+    return new Promise(function(resolve){
+      img.addEventListener('load',resolve,{once:true});
+      img.addEventListener('error',resolve,{once:true});
+      setTimeout(resolve,1800);
+    });
+  }));
+}
+function hideForScreenshot(on){
+  ['#share_modal','.toast','.back-top'].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){
+      if(on){
+        el.dataset.ssDisplay=el.style.display||'';
+        el.style.display='none';
+      }else if(el.dataset.ssDisplay!==undefined){
+        el.style.display=el.dataset.ssDisplay;
+        delete el.dataset.ssDisplay;
+      }
+    });
+  });
+}
+async function captureVisibleScreen(){
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia)return false;
+  toast('请选择当前网页窗口进行截图');
+  var stream=await navigator.mediaDevices.getDisplayMedia({
+    video:{displaySurface:'browser'},
+    audio:false
+  });
   try{
-    try{await loadScriptOnce('assets/html2canvas.min.js','html2canvas')}
-    catch(e1){
-      try{await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas')}
-      catch(e2){await loadScriptOnce('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js','html2canvas')}
-    }
-    document.body.classList.add('capture-clean');
-    var target=document.querySelector('.container')||document.body;
-    var width=Math.ceil(target.scrollWidth||target.getBoundingClientRect().width||document.documentElement.clientWidth);
-    var height=Math.ceil(target.scrollHeight||target.getBoundingClientRect().height||document.documentElement.clientHeight);
+    var video=document.createElement('video');
+    video.muted=true;
+    video.playsInline=true;
+    video.srcObject=stream;
+    await video.play();
+    await new Promise(function(resolve){
+      if(video.videoWidth)resolve();
+      else video.onloadedmetadata=resolve;
+    });
+    var c=document.createElement('canvas'),ctx=c.getContext('2d');
+    c.width=video.videoWidth||window.innerWidth;
+    c.height=video.videoHeight||window.innerHeight;
+    ctx.drawImage(video,0,0,c.width,c.height);
+    showSharePreviewFromCanvas(c);
+    return true;
+  }finally{
+    stream.getTracks().forEach(function(track){track.stop()});
+  }
+}
+async function capturePageLongImage(){
+  await waitForShareImages(document.querySelector('.container'));
+  await loadScriptOnce('assets/html2canvas.min.js','html2canvas');
+  hideForScreenshot(true);
+  await new Promise(function(resolve){requestAnimationFrame(function(){requestAnimationFrame(resolve)})});
+  var target=document.querySelector('.container')||document.body;
+  try{
     var canvas=await withTimeout(html2canvas(target,{
       backgroundColor:'#f5f5f7',
+      scale:Math.min(2,window.devicePixelRatio||1.5),
       useCORS:true,
       allowTaint:false,
-      imageTimeout:1200,
-      scale:1,
-      x:0,
-      y:0,
-      width:width,
-      height:height,
-      windowWidth:width,
-      windowHeight:height,
-      scrollX:0,
-      scrollY:0,
       logging:false,
-      ignoreElements:function(el){return el&&el.classList&&(el.classList.contains('toast')||el.classList.contains('modal-backdrop'))}
-    }),6500,'capture timeout');
-    document.body.classList.remove('capture-clean');
-    saveCanvas(canvas);
-    return;
+      imageTimeout:3000,
+      scrollX:0,
+      scrollY:-window.scrollY,
+      windowWidth:document.documentElement.scrollWidth,
+      windowHeight:document.documentElement.scrollHeight,
+      ignoreElements:function(el){
+        return el.classList&&(
+          el.classList.contains('modal-backdrop')||
+          el.classList.contains('toast')||
+          el.classList.contains('back-top')
+        );
+      }
+    }),12000,'capture timeout');
+    showSharePreviewFromCanvas(canvas);
+  }finally{
+    hideForScreenshot(false);
+  }
+}
+async function doShare(){
+  try{
+    closeShareModal();
+    var usedScreen=false;
+    try{usedScreen=await captureVisibleScreen()}
+    catch(permissionError){
+      usedScreen=false;
+    }
+    if(!usedScreen){
+      toast('正在生成网页长截图...');
+      await capturePageLongImage();
+    }
   }catch(e){
-    document.body.classList.remove('capture-clean');
-    toast('截图失败：'+(e&&e.message?e.message:'请稍后重试'));
+    hideForScreenshot(false);
+    toast('网页截图生成失败，请稍后重试');
   }
 }
 function saveCanvas(canvas){
@@ -1356,12 +1402,6 @@ function downloadShareBlob(blob){
     }
   }catch(e){}
   showSharePreview(blob);
-}
-function shareCanvas(canvas){
-  canvas.toBlob(function(blob){
-    if(blob)showSharePreview(blob);
-    else showSharePreviewFromCanvas(fallbackPoster());
-  },'image/png',0.92);
 }
 function showSharePreviewFromCanvas(canvas){
   canvas.toBlob(function(blob){if(blob)showSharePreview(blob);else toast('截图生成失败')},'image/png',0.92);

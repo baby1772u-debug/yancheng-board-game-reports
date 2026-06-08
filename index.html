@@ -1299,7 +1299,8 @@ function withTimeout(promise,ms,label){
   ]);
 }
 async function doShare(){
-  openShareModal('正在生成网页截图...');
+  closeShareModal();
+  toast('正在生成截图...');
   try{
     try{await loadScriptOnce('/assets/html2canvas.min.js','html2canvas')}
     catch(e1){
@@ -1328,14 +1329,30 @@ async function doShare(){
       ignoreElements:function(el){return el&&el.classList&&(el.classList.contains('toast')||el.classList.contains('modal-backdrop'))}
     }),6500,'capture timeout');
     document.body.classList.remove('capture-clean');
-    shareCanvas(canvas);
+    saveCanvas(canvas);
     return;
   }catch(e){
     document.body.classList.remove('capture-clean');
-    var hint=document.getElementById('share_hint');
-    if(hint)hint.textContent='截图超时，已生成轻量分享图。';
+    toast('截图生成失败，请稍后重试');
   }
-  shareCanvas(fallbackPoster());
+}
+function saveCanvas(canvas){
+  canvas.toBlob(function(blob){
+    if(blob)downloadShareBlob(blob);
+    else toast('截图生成失败，请稍后重试');
+  },'image/png',0.92);
+}
+function downloadShareBlob(blob){
+  clearShareUrl();
+  currentShareBlob=blob;
+  currentShareUrl=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=currentShareUrl;
+  a.download='爱玩桌游众筹资讯.png';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  toast('截图已生成');
 }
 function shareCanvas(canvas){
   canvas.toBlob(function(blob){

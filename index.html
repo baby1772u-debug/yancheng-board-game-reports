@@ -167,7 +167,7 @@ footer a{color:var(--accent);text-decoration:none}
 @media(max-width:380px){.g3{grid-template-columns:1fr}}
 .daily-news-page{min-height:200px}
 .daily-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.daily-card{background:rgba(255,255,255,.06);border-radius:10px;overflow:hidden;transition:all .2s;text-decoration:none;color:inherit;display:block}
+.daily-card{background:rgba(255,255,255,.06);border:0;border-radius:10px;overflow:hidden;transition:all .2s;text-decoration:none;color:inherit;display:block;width:100%;text-align:left;font:inherit;cursor:pointer}
 .daily-card:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
 .dciw{position:relative;width:100%;height:auto;aspect-ratio:16/9;overflow:hidden;background:#2a2a3e;display:flex;align-items:center;justify-content:center}
 .dciw img{width:100%;height:100%;object-fit:cover;object-position:top}
@@ -206,18 +206,19 @@ footer a{color:var(--accent);text-decoration:none}
 .rank-thumb img{width:100%;height:100%;object-fit:cover}
 .rank-name{font-size:11px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rank-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));min-height:100%;display:flex;flex-direction:column;gap:5px;cursor:pointer}
-.daily-rank-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:space-between}
+.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));min-height:100%;display:flex;flex-direction:column;gap:6px;cursor:pointer}
+.daily-rank-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.rank-full{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:9px;padding:0;cursor:pointer;white-space:nowrap}
 .rank-toggle{display:inline-flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.08);padding:2px;border-radius:999px}
 .rank-toggle button{border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.68);font-size:10px;padding:1px 6px;cursor:pointer}
 .rank-toggle button.active{background:#fff;color:#1d1d1f}
-.rank-bars{display:grid;gap:6px}
+.rank-bars{display:grid;gap:5px}
 .rank-bar-row{display:grid;gap:2px;align-items:center}
 .rank-bar-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;color:#fff;font-size:9px;font-weight:600;align-items:center;min-width:0}
 .rank-bar-head span{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
 .rank-bar-head small{font-size:.92em;color:rgba(255,255,255,.62);font-weight:600;white-space:nowrap}
 .rank-bar-head{grid-column:1/-1}
-.rank-bar-track{height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.rank-bar-track{height:5px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
 .rank-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#e94560,#d4a843)}
 .rank-delta{font-size:9px;color:rgba(255,255,255,.72);white-space:nowrap}
 .rank-modal-tools{display:flex;gap:6px;margin-bottom:10px}
@@ -229,9 +230,9 @@ footer a{color:var(--accent);text-decoration:none}
 .rank-row-copy .rank-meta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rank-row{background:#fafafa;border:1px solid rgba(0,0,0,.05);border-radius:12px;overflow:hidden}
 .rank-row .rank-item{background:transparent;border:0;border-radius:0}
-.rank-row-main{display:grid;grid-template-columns:auto 54px minmax(0,1fr);gap:8px;align-items:center;width:100%;min-width:0}
+.rank-row-main{display:grid;grid-template-columns:auto 58px minmax(0,1fr);gap:8px;align-items:center;width:100%;min-width:0}
 .rank-row-copy{min-width:0}
-.rank-row-progress{grid-column:2/4;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:4px}
+.rank-row-progress{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:5px}
 .rank-row-progress .mini-track{height:6px}
 .rank-expand{display:none;border-top:1px solid rgba(0,0,0,.05);padding:8px 10px 10px;background:#fff}
 .rank-row.open .rank-expand{display:block}
@@ -822,7 +823,8 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
   var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+lb+' · '+td+'</span></div><div class="daily-cards">';
   sections.forEach(function(s){
     var it=s.item;
-    h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.title+'</span></div><div class="dct">'+dailyTitleHtml(it)+'</div><div class="dcm">'+escHtml(s.sub)+'</div><div class="dcv">'+escHtml(dailyMetricText(it,s.kind))+'</div>','daily-card');
+    var tab=rankKeyFromLabel(lb)==='domestic'?'d':'o';
+    h+='<button type="button" class="daily-card" onclick="focusProject(\''+tab+'\',\''+escAttr(keyOf(it))+'\')"><div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.title+'</span></div><div class="dct">'+dailyTitleHtml(it)+'</div><div class="dcm">'+escHtml(s.sub)+'</div><div class="dcv">'+escHtml(dailyMetricText(it,s.kind))+'</div></button>';
   });
   h+=dailyRankCard(funding,upcoming,n,lb);
   h+='</div></div>';
@@ -855,21 +857,28 @@ function dailyRankCard(funding,upcoming,n,lb){
   var live=funding.filter(function(it){return isFunding(it,n)});
   var expect=upcoming.filter(function(it){return isExpectation(it,n)});
   var pool=mode==='amount'?(live.length>=3?live:funding):live.concat(expect);
-  var sorted=pool.slice().sort(function(a,b){return rankValue(b,mode)-rankValue(a,mode)}).slice(0,3);
+  var sorted=pool.slice().sort(function(a,b){return rankValue(b,mode)-rankValue(a,mode)}).slice(0,4);
   var max=Math.max.apply(null,sorted.map(function(it){return rankValue(it,mode)}).concat([1]));
   function row(it,i){
     var value=rankValue(it,mode),pct=Math.max(8,Math.min(100,value/max*100));
     return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(shortTitle(it))+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div></div>';
   }
   var rows=sorted.length?sorted.map(row).join(''):'<div class="rank-delta">暂无可展示项目</div>';
-  return '<div class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title">榜单</div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
+  return '<div id="daily_rank_'+key+'" class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title"><span>榜单</span><button type="button" class="rank-full" onclick="openRankModalFromButton(event,\''+key+'\')">完整榜单</button></div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
 }
 
+function dailyRankSource(key){
+  return key==='domestic'
+    ? {funding:DL,upcoming:DU,label:'🇨🇳 国内'}
+    : {funding:OL,upcoming:OU,label:'🌍 海外'};
+}
 function setRankMode(event,key,mode){
   event.stopPropagation();
   rankMode[key]=mode;
-  st('n');
+  var src=dailyRankSource(key),card=document.getElementById('daily_rank_'+key);
+  if(card)card.outerHTML=dailyRankCard(src.funding,src.upcoming,new Date(),src.label);
 }
+function openRankModalFromButton(event,key){event.stopPropagation();openRankModal(key)}
 function rankData(key){
   var n=new Date();
   if(key==='domestic'){
@@ -935,7 +944,7 @@ function renderRankModal(){
   h+='<div class="rank-modal-list">'+items.map(function(it,i){
     var active=selected&&keyOf(it)===keyOf(selected);
     var pct=Math.max(6,Math.min(100,rankValue(it,mode)/max*100));
-    return '<div class="rank-row '+(active?'open':'')+'"><button type="button" class="rank-item '+(active?'active':'')+'" onclick="selectRankProject(\''+escAttr(keyOf(it))+'\')"><div class="rank-row-main"><div class="rank-no">'+(i+1)+'</div><div class="rank-thumb">'+imgTag(gi(it.n),it.n)+'</div><div class="rank-row-copy"><div class="rank-name">'+escHtml(shortTitle(it))+'</div><div class="rank-meta">'+escHtml(rankValueText(it,mode))+' · 最近新增 '+escHtml(rankDeltaText(it,mode))+'</div></div><div class="rank-row-progress"><div class="mini-track"><div class="mini-fill" style="width:'+pct+'%"></div></div><span class="rank-meta">'+Math.round(pct)+'%</span></div></div></button><div class="rank-expand">'+(active?growthChartHtml(it,mode):'')+'</div></div>';
+    return '<div class="rank-row '+(active?'open':'')+'"><button type="button" class="rank-item '+(active?'active':'')+'" onclick="selectRankProject(\''+escAttr(keyOf(it))+'\')"><div class="rank-row-main"><div class="rank-no">'+(i+1)+'</div><div class="rank-thumb">'+imgTag(gi(it.n),it.n)+'</div><div class="rank-row-copy"><div class="rank-name">'+escHtml(shortTitle(it))+'</div><div class="rank-meta">'+escHtml(rankValueText(it,mode))+' · 最近新增 '+escHtml(rankDeltaText(it,mode))+'</div><div class="rank-row-progress"><div class="mini-track"><div class="mini-fill" style="width:'+pct+'%"></div></div><span class="rank-meta">'+Math.round(pct)+'%</span></div></div></div></button><div class="rank-expand">'+(active?growthChartHtml(it,mode):'')+'</div></div>';
   }).join('')+'</div>';
   if(allItems.length>7)h+='<button type="button" class="rank-more" onclick="toggleRankMore()">'+(rankModalState.showAll?'收起榜单':'查看更多 '+(allItems.length-7)+' 个')+'</button>';
   document.getElementById('rank_modal_body').innerHTML=h;

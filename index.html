@@ -17,8 +17,8 @@
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;padding:16px;min-height:100vh;line-height:1.5}
 button{font:inherit}
 .container{max-width:960px;margin:0 auto}
-header{text-align:center;padding:32px 16px 12px}
-header h1{font-size:1.6em;font-weight:700;background:linear-gradient(135deg,#1d1d1f,#e94560,#d4a843);-webkit-background-clip:text;margin-bottom:4px}
+header{text-align:center;padding:26px 16px 12px}
+header h1{font-size:1.6em;font-weight:800;color:var(--text);background:none;margin-bottom:4px;letter-spacing:0}
 header p{color:var(--muted);font-size:.85em}
 .search-wrap{position:relative;max-width:620px;margin:16px auto 4px;display:flex;gap:8px;align-items:center;transition:max-width .28s ease,gap .28s ease}
 .search-input{width:100%;height:42px;border:1px solid var(--border);border-radius:22px;background:#fff;padding:0 44px 0 18px;color:var(--text);box-shadow:0 4px 18px rgba(0,0,0,.05);outline:none;transition:border-color .2s,box-shadow .2s,border-radius .28s ease}
@@ -509,7 +509,7 @@ function dailyTitleHtml(it){
 }
 function imgTag(src,label){
   if(!src)return '';
-  return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">';
+  return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="eager" decoding="async" onerror="this.style.display=\'none\'">';
 }
 function extLink(url,content,cls){
   return '<a class="'+escAttr(cls||'cl')+'" href="'+escAttr(url)+'" target="_blank" rel="noopener noreferrer">'+content+'</a>';
@@ -1285,12 +1285,25 @@ function withTimeout(promise,ms,label){
 }
 function waitForShareImages(root){
   var imgs=Array.prototype.slice.call((root||document).querySelectorAll('img'));
+  imgs.forEach(function(img){
+    img.loading='eager';
+    if(img.dataset&&img.dataset.src&&!img.getAttribute('src'))img.setAttribute('src',img.dataset.src);
+  });
   return Promise.all(imgs.map(function(img){
-    if(img.complete)return Promise.resolve();
+    if(img.complete&&img.naturalWidth>0)return Promise.resolve();
+    if(img.decode){
+      return img.decode().catch(function(){
+        return new Promise(function(resolve){
+          img.addEventListener('load',resolve,{once:true});
+          img.addEventListener('error',resolve,{once:true});
+          setTimeout(resolve,4500);
+        });
+      });
+    }
     return new Promise(function(resolve){
       img.addEventListener('load',resolve,{once:true});
       img.addEventListener('error',resolve,{once:true});
-      setTimeout(resolve,1800);
+      setTimeout(resolve,4500);
     });
   }));
 }
@@ -1340,14 +1353,16 @@ async function capturePageLongImage(){
   hideForScreenshot(true);
   await new Promise(function(resolve){requestAnimationFrame(function(){requestAnimationFrame(resolve)})});
   var target=document.querySelector('.container')||document.body;
+  var cssHeight=Math.max(target.scrollHeight,target.offsetHeight,document.documentElement.clientHeight);
+  var scale=cssHeight>3200?1:Math.min(2,window.devicePixelRatio||1.5);
   try{
     var canvas=await withTimeout(html2canvas(target,{
       backgroundColor:'#f5f5f7',
-      scale:Math.min(2,window.devicePixelRatio||1.5),
+      scale:scale,
       useCORS:true,
       allowTaint:false,
       logging:false,
-      imageTimeout:3000,
+      imageTimeout:8000,
       scrollX:0,
       scrollY:-window.scrollY,
       windowWidth:document.documentElement.scrollWidth,
@@ -1359,7 +1374,7 @@ async function capturePageLongImage(){
           el.classList.contains('back-top')
         );
       }
-    }),12000,'capture timeout');
+    }),30000,'capture timeout');
     showSharePreviewFromCanvas(canvas);
   }finally{
     hideForScreenshot(false);

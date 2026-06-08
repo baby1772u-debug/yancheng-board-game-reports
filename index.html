@@ -1292,13 +1292,17 @@ function waitForShareImages(root){
   return Promise.all(imgs.map(function(img){
     if(img.complete&&img.naturalWidth>0)return Promise.resolve();
     if(img.decode){
-      return img.decode().catch(function(){
+      var decoded=img.decode().catch(function(){
         return new Promise(function(resolve){
           img.addEventListener('load',resolve,{once:true});
           img.addEventListener('error',resolve,{once:true});
           setTimeout(resolve,4500);
         });
       });
+      return Promise.race([
+        decoded,
+        new Promise(function(resolve){setTimeout(resolve,4500)})
+      ]);
     }
     return new Promise(function(resolve){
       img.addEventListener('load',resolve,{once:true});

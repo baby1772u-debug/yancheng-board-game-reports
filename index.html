@@ -1324,6 +1324,26 @@ function hideForScreenshot(on){
     });
   });
 }
+function buildScreenshotTarget(){
+  var source=document.querySelector('.container')||document.body;
+  var wrap=document.createElement('div');
+  wrap.className='container screenshot-capture-root';
+  wrap.style.position='absolute';
+  wrap.style.left='-10000px';
+  wrap.style.top='0';
+  wrap.style.width=source.getBoundingClientRect().width+'px';
+  wrap.style.background='#f5f5f7';
+  wrap.style.padding='0';
+  var header=document.querySelector('header');
+  var tabs=document.querySelector('.tab-bar');
+  var active=document.querySelector('.tab-content.active');
+  var footer=document.querySelector('footer');
+  [header,tabs,active,footer].forEach(function(part){
+    if(part)wrap.appendChild(part.cloneNode(true));
+  });
+  wrap.querySelectorAll('[hidden]').forEach(function(el){el.hidden=false});
+  return wrap;
+}
 async function captureVisibleScreen(){
   if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia)return false;
   toast('请选择当前网页窗口进行截图');
@@ -1352,11 +1372,12 @@ async function captureVisibleScreen(){
   }
 }
 async function capturePageLongImage(){
-  await waitForShareImages(document.querySelector('.container'));
   await loadScriptOnce('assets/html2canvas.min.js','html2canvas');
+  var target=buildScreenshotTarget();
+  document.body.appendChild(target);
+  await waitForShareImages(target);
   hideForScreenshot(true);
   await new Promise(function(resolve){requestAnimationFrame(function(){requestAnimationFrame(resolve)})});
-  var target=document.querySelector('.container')||document.body;
   var cssHeight=Math.max(target.scrollHeight,target.offsetHeight,document.documentElement.clientHeight);
   var scale=cssHeight>3200?1:Math.min(2,window.devicePixelRatio||1.5);
   try{
@@ -1382,6 +1403,7 @@ async function capturePageLongImage(){
     showSharePreviewFromCanvas(canvas);
   }finally{
     hideForScreenshot(false);
+    if(target&&target.parentNode)target.parentNode.removeChild(target);
   }
 }
 async function doShare(){

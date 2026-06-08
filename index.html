@@ -1338,7 +1338,17 @@ function buildScreenshotTarget(){
   var tabs=document.querySelector('.tab-bar');
   var active=document.querySelector('.tab-content.active');
   var footer=document.querySelector('footer');
-  [header,tabs,active,footer].forEach(function(part){
+  var contentPart=active;
+  var openCard=active&&active.querySelector('.card.open');
+  if(openCard){
+    contentPart=document.createElement('div');
+    contentPart.className='tab-content active';
+    var prev=openCard.previousElementSibling;
+    while(prev&&!(prev.classList&&prev.classList.contains('sec')))prev=prev.previousElementSibling;
+    if(prev)contentPart.appendChild(prev.cloneNode(true));
+    contentPart.appendChild(openCard.cloneNode(true));
+  }
+  [header,tabs,contentPart,footer].forEach(function(part){
     if(part)wrap.appendChild(part.cloneNode(true));
   });
   wrap.querySelectorAll('[hidden]').forEach(function(el){el.hidden=false});

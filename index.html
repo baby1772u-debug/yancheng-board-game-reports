@@ -139,6 +139,13 @@ footer a{color:var(--accent);text-decoration:none}
 .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .modal-head h2{font-size:1.02em}
 .modal-close{min-width:32px;height:32px;border-radius:16px;border:1px solid var(--border);background:#fff;cursor:pointer;padding:0 10px}
+.share-modal-card{width:min(560px,100%);max-height:min(88vh,760px);overflow:auto;padding:14px}
+.share-preview-box{border-radius:12px;overflow:hidden;background:#f5f5f7;border:1px solid var(--border)}
+.share-preview-box img{display:block;width:100%;height:auto}
+.share-modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap}
+.share-modal-actions button,.share-modal-actions a{border:1px solid var(--border);background:#fff;color:var(--text);border-radius:999px;padding:6px 12px;font-size:12px;text-decoration:none;cursor:pointer}
+.share-modal-actions .primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.share-hint{font-size:12px;color:var(--muted);margin:4px 0 10px}
 .form-grid{display:grid;gap:9px}
 .form-grid label{font-size:.76em;color:var(--muted);display:grid;gap:4px;text-align:left}
 @media(max-width:640px){
@@ -343,6 +350,17 @@ footer a{color:var(--accent);text-decoration:none}
       <button type="button" class="modal-close" onclick="closeRankModal()">返回</button>
     </div>
     <div id="rank_modal_body"></div>
+  </div>
+</div>
+<div id="share_modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="share_modal_title" onclick="closeShareModal()">
+  <div class="modal-card share-modal-card" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h2 id="share_modal_title">分享截图</h2>
+      <button type="button" class="modal-close" onclick="closeShareModal()">关闭</button>
+    </div>
+    <p id="share_hint" class="share-hint">正在生成...</p>
+    <div id="share_preview" class="share-preview-box"></div>
+    <div id="share_actions" class="share-modal-actions"></div>
   </div>
 </div>
 <script>
@@ -1241,6 +1259,21 @@ function loadScriptOnce(src,globalName){
     document.head.appendChild(s);
   });
 }
+var currentShareBlob=null,currentShareUrl='';
+function openShareModal(message){
+  clearShareUrl();
+  var modal=document.getElementById('share_modal'),hint=document.getElementById('share_hint'),preview=document.getElementById('share_preview'),actions=document.getElementById('share_actions');
+  if(hint)hint.textContent=message||'正在生成...';
+  if(preview)preview.innerHTML='<div style="padding:28px;text-align:center;color:#86868b;font-size:13px">生成中...</div>';
+  if(actions)actions.innerHTML='';
+  if(modal)modal.classList.add('open');
+}
+function closeShareModal(){
+  document.getElementById('share_modal').classList.remove('open');
+}
+function clearShareUrl(){
+  if(currentShareUrl){URL.revokeObjectURL(currentShareUrl);currentShareUrl=''}
+}
 function fallbackPoster(){
   var c=document.createElement('canvas'),ctx=c.getContext('2d'),w=900,h=1200;
   c.width=w;c.height=h;
@@ -1260,16 +1293,13 @@ function roundRect(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
 async function doShare(){
-  var previewWindow=null;
+  openShareModal('正在生成整页截图...');
   try{
-    if(!(navigator.canShare&&navigator.canShare({files:[new File(['x'],'x.png',{type:'image/png'})]}))){
-      previewWindow=window.open('','_blank');
-      if(previewWindow)previewWindow.document.write('<title>分享截图</title><body style="font-family:sans-serif;padding:24px;color:#666">正在生成分享图...</body>');
+    try{await loadScriptOnce('/assets/html2canvas.min.js','html2canvas')}
+    catch(e1){
+      try{await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas')}
+      catch(e2){await loadScriptOnce('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js','html2canvas')}
     }
-  }catch(e){}
-  try{
-    try{await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas')}
-    catch(e){await loadScriptOnce('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js','html2canvas')}
     document.body.classList.add('capture-clean');
     var doc=document.documentElement,body=document.body;
     var fullWidth=Math.max(doc.scrollWidth,body.scrollWidth,doc.clientWidth);
@@ -1288,39 +1318,47 @@ async function doShare(){
       windowHeight:fullHeight,
       scrollX:0,
       scrollY:0,
-      ignoreElements:function(el){return el&&el.classList&&(el.classList.contains('toast'))}
+      ignoreElements:function(el){return el&&el.classList&&(el.classList.contains('toast')||el.classList.contains('modal-backdrop'))}
     });
     document.body.classList.remove('capture-clean');
-    shareCanvas(canvas,previewWindow);
+    shareCanvas(canvas);
     return;
   }catch(e){
     document.body.classList.remove('capture-clean');
-    toast('当前页面截图失败，改用分享海报');
+    var hint=document.getElementById('share_hint');
+    if(hint)hint.textContent='整页截图失败，已生成分享海报。';
   }
-  shareCanvas(fallbackPoster(),previewWindow);
+  shareCanvas(fallbackPoster());
 }
-function shareCanvas(canvas,previewWindow){
-  canvas.toBlob(function(blob){if(blob)shareBlob(blob,previewWindow);else toast('截图生成失败')},'image/png',0.92);
+function shareCanvas(canvas){
+  canvas.toBlob(function(blob){
+    if(blob)showSharePreview(blob);
+    else showSharePreviewFromCanvas(fallbackPoster());
+  },'image/png',0.92);
 }
-async function shareBlob(blob,previewWindow){
-  var file=new File([blob],'爱玩桌游众筹资讯.png',{type:'image/png'});
-  if(navigator.canShare&&navigator.canShare({files:[file]})){
-    if(previewWindow)previewWindow.close();
-    try{await navigator.share({title:'爱玩桌游众筹资讯',files:[file]});toast('截图已唤起分享')}catch(e){}
-  }else{
-    var url=URL.createObjectURL(blob);
-    if(previewWindow){
-      previewWindow.document.open();
-      previewWindow.document.write('<title>分享截图</title><body style="margin:0;background:#f5f5f7"><img src="'+url+'" style="display:block;width:100%;height:auto"></body>');
-      previewWindow.document.close();
-      toast('截图已生成');
-    }else{
-      var a=document.createElement('a');
-      a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();
-      toast('截图已下载');
+function showSharePreviewFromCanvas(canvas){
+  canvas.toBlob(function(blob){if(blob)showSharePreview(blob);else toast('截图生成失败')},'image/png',0.92);
+}
+function showSharePreview(blob){
+  clearShareUrl();
+  currentShareBlob=blob;
+  currentShareUrl=URL.createObjectURL(blob);
+  var preview=document.getElementById('share_preview'),hint=document.getElementById('share_hint'),actions=document.getElementById('share_actions');
+  if(hint)hint.textContent='长按图片可保存或转发。';
+  if(preview)preview.innerHTML='<img src="'+currentShareUrl+'" alt="分享截图">';
+  var html='<button type="button" onclick="closeShareModal()">完成</button><a class="primary" href="'+currentShareUrl+'" download="爱玩桌游众筹资讯.png">保存图片</a>';
+  try{
+    var file=new File([blob],'爱玩桌游众筹资讯.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      html='<button type="button" onclick="closeShareModal()">完成</button><button type="button" class="primary" onclick="shareCurrentImage()">系统分享</button>'+html;
     }
-    setTimeout(function(){URL.revokeObjectURL(url)},60000);
-  }
+  }catch(e){}
+  if(actions)actions.innerHTML=html;
+}
+async function shareCurrentImage(){
+  if(!currentShareBlob)return;
+  var file=new File([currentShareBlob],'爱玩桌游众筹资讯.png',{type:'image/png'});
+  try{await navigator.share({title:'爱玩桌游众筹资讯',files:[file]});toast('截图已唤起分享')}catch(e){toast('可以长按图片保存或转发')}
 }
 function toast(msg){
   var el=document.querySelector('.toast');

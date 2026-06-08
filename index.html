@@ -1302,7 +1302,7 @@ async function doShare(){
   closeShareModal();
   toast('正在生成截图...');
   try{
-    try{await loadScriptOnce('/assets/html2canvas.min.js','html2canvas')}
+    try{await loadScriptOnce('assets/html2canvas.min.js','html2canvas')}
     catch(e1){
       try{await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas')}
       catch(e2){await loadScriptOnce('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js','html2canvas')}
@@ -1333,7 +1333,7 @@ async function doShare(){
     return;
   }catch(e){
     document.body.classList.remove('capture-clean');
-    toast('截图生成失败，请稍后重试');
+    toast('截图失败：'+(e&&e.message?e.message:'请稍后重试'));
   }
 }
 function saveCanvas(canvas){
@@ -1346,13 +1346,16 @@ function downloadShareBlob(blob){
   clearShareUrl();
   currentShareBlob=blob;
   currentShareUrl=URL.createObjectURL(blob);
-  var a=document.createElement('a');
-  a.href=currentShareUrl;
-  a.download='爱玩桌游众筹资讯.png';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  toast('截图已生成');
+  try{
+    var file=new File([blob],'爱玩桌游众筹资讯.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({title:'爱玩桌游众筹资讯',files:[file]})
+        .then(function(){toast('截图已唤起分享')})
+        .catch(function(){showSharePreview(blob)});
+      return;
+    }
+  }catch(e){}
+  showSharePreview(blob);
 }
 function shareCanvas(canvas){
   canvas.toBlob(function(blob){
@@ -1367,21 +1370,19 @@ function showSharePreview(blob){
   clearShareUrl();
   currentShareBlob=blob;
   currentShareUrl=URL.createObjectURL(blob);
-  var preview=document.getElementById('share_preview'),hint=document.getElementById('share_hint'),actions=document.getElementById('share_actions');
+  var modal=document.getElementById('share_modal'),preview=document.getElementById('share_preview'),hint=document.getElementById('share_hint'),actions=document.getElementById('share_actions');
+  if(modal)modal.classList.add('open');
   if(hint)hint.textContent='已生成图片，长按图片可保存或转发。';
   if(preview)preview.innerHTML='<img src="'+currentShareUrl+'" alt="分享截图">';
   var html='<button type="button" onclick="closeShareModal()">完成</button><a id="share_download_link" class="primary" href="'+currentShareUrl+'" download="爱玩桌游众筹资讯.png">保存图片</a>';
   try{
     var file=new File([blob],'爱玩桌游众筹资讯.png',{type:'image/png'});
     if(navigator.canShare&&navigator.canShare({files:[file]})){
-      html='<button type="button" onclick="closeShareModal()">完成</button><button type="button" class="primary" onclick="shareCurrentImage()">系统分享</button>'+html;
+      html='<button type="button" onclick="closeShareModal()">完成</button><button type="button" class="primary" onclick="shareCurrentImage()">系统分享</button><a id="share_download_link" href="'+currentShareUrl+'" download="爱玩桌游众筹资讯.png">保存图片</a>';
     }
   }catch(e){}
   if(actions)actions.innerHTML=html;
-  setTimeout(function(){
-    var a=document.getElementById('share_download_link');
-    if(a)a.click();
-  },250);
+  toast('截图已生成');
 }
 async function shareCurrentImage(){
   if(!currentShareBlob)return;

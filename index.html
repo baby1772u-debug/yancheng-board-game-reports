@@ -61,7 +61,7 @@ header p{color:var(--muted);font-size:.85em}
 .card.upcoming-card .ciw img,.card.ended-card .ciw img{object-fit:cover;object-position:center}
 .card.upcoming-card .cr,.card.ended-card .cr{gap:12px}
 .cif{flex:1;min-width:0}
-.ct{font-size:.92em;font-weight:600;line-height:1.45}
+.ct{font-size:1em;font-weight:600;line-height:1.45}
 .ct .cn{font-size:.72em;color:var(--muted);font-weight:400;display:inline}
 .ct .title-tail{font-size:.86em;color:var(--muted);font-weight:500}
 .cm{font-size:.76em;color:var(--muted);margin-bottom:2px}
@@ -81,16 +81,17 @@ header p{color:var(--muted);font-size:.85em}
 .p2.xwj{background:#ffe8ec;color:#e94560}
 .p2.md{background:#fff8e1;color:#b8860b}
 .today-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;background:#e94560;color:#fff;font-size:.64em;font-weight:600;margin-left:4px}
-.card-detail{display:none;position:relative;padding:0 14px 42px;border-top:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,#fff,#fafafa)}
+.card-detail{display:none;padding:0 14px 14px;border-top:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,#fff,#fafafa)}
 .card.open .card-detail{display:block}
 .detail-copy{font-size:.82em;color:#3a3a3c;line-height:1.65;padding-top:10px}
-.detail-link{display:inline-flex;margin-top:10px;color:var(--accent);font-size:.78em;text-decoration:none;font-weight:600}
+.detail-link{display:inline-flex;color:var(--accent);font-size:.72em;text-decoration:none;font-weight:600}
+.detail-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;min-height:30px}
 .card-title-line{display:flex;align-items:center;gap:8px;min-width:0}
 .card-title-line .title-main{min-width:0;flex:1}
 .heat-badge{display:inline-flex;align-items:center;height:20px;padding:0 8px;border-radius:999px;background:#fff4f6;color:var(--accent);font-size:.64em;font-weight:700;white-space:nowrap}
-.engagement-row{position:absolute;right:12px;bottom:10px;display:flex;align-items:center;gap:7px;opacity:.38;transition:opacity .2s}
-.card-detail:hover .engagement-row{opacity:.85}
-.vote-btn{width:28px;height:28px;border:1px solid rgba(0,0,0,.08);border-radius:50%;background:#fff;color:var(--muted);padding:0;font-size:14px;line-height:1;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.engagement-row{display:flex;align-items:center;gap:7px;opacity:.48;transition:opacity .2s}
+.card-detail:hover .engagement-row{opacity:.9}
+.vote-btn{width:28px;height:28px;border:1px solid rgba(0,0,0,.08);border-radius:50%;background:#fff;color:var(--accent);padding:0;font-size:15px;line-height:1;cursor:pointer;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .vote-btn:hover,.vote-btn.active{opacity:1;background:#fff4f6;border-color:rgba(233,69,96,.32);color:var(--accent);box-shadow:0 4px 14px rgba(233,69,96,.14)}
 .vote-btn.down:hover,.vote-btn.down.active{background:#f2f0ff;border-color:rgba(108,92,231,.28);color:#6c5ce7;box-shadow:0 4px 14px rgba(108,92,231,.12)}
 .rules-slot{margin-top:10px;padding:10px;border:1px dashed rgba(0,0,0,.12);border-radius:10px;background:#fff;color:var(--muted);font-size:.76em}
@@ -140,7 +141,7 @@ footer a{color:var(--accent);text-decoration:none}
   .cr{flex-direction:row;gap:8px}
   .ciw{width:132px;flex-shrink:0;border-radius:10px}
   .card.funding-card .ciw{width:100%;min-width:0}
-  .ct{font-size:.82em}
+  .ct{font-size:.9em}
   .ct .cn{font-size:.68em}
   .cm{font-size:.7em}
   .pr{font-size:.76em}
@@ -169,7 +170,7 @@ footer a{color:var(--accent);text-decoration:none}
 }
 @media(max-width:420px){
   .ciw{width:124px}
-  .ct{font-size:.76em}
+  .ct{font-size:.84em}
   .g3{grid-template-columns:1fr 1fr;gap:4px}
 }
 @media(max-width:380px){.g3{grid-template-columns:1fr}}
@@ -476,13 +477,13 @@ function titleHtml(it){
   var p=titleParts(it);
   if(!p.sub)return escHtml(p.main);
   if(p.foreign)return escHtml(p.main)+'<span class="cn"> / '+escHtml(p.sub)+'</span>';
-  return escHtml(p.main)+' <span class="title-tail">'+escHtml(p.sub)+'</span>';
+  return escHtml(p.main);
 }
 function dailyTitleHtml(it){
   var p=titleParts(it);
   if(!p.sub)return escHtml(p.main);
   if(p.foreign)return escHtml(p.main)+' <span class="dcs-inline">/ '+escHtml(p.sub)+'</span>';
-  return escHtml(p.main)+' '+escHtml(p.sub);
+  return escHtml(p.main);
 }
 function imgTag(src,label){
   if(!src)return '';
@@ -701,9 +702,9 @@ function heatBadge(key){
 }
 function engagementInner(key){
   var locks=readStore(VOTE_LOCK_KEY,{}),last=locks[key]||{},chosen=last.date===todayKey()?last.dir:'';
-  if(chosen==='up')return '<button type="button" class="vote-btn active" title="已点赞" aria-label="已点赞" onclick="voteProject(event,\''+escAttr(key)+'\',\'up\')">💗</button>';
+  if(chosen==='up')return '<button type="button" class="vote-btn active" title="已点赞" aria-label="已点赞" onclick="voteProject(event,\''+escAttr(key)+'\',\'up\')">❤</button>';
   if(chosen==='down')return '<button type="button" class="vote-btn down active" title="已点踩" aria-label="已点踩" onclick="voteProject(event,\''+escAttr(key)+'\',\'down\')">👎</button>';
-  return '<button type="button" class="vote-btn" title="点赞" aria-label="点赞" onclick="voteProject(event,\''+escAttr(key)+'\',\'up\')">💗</button><button type="button" class="vote-btn down" title="点踩" aria-label="点踩" onclick="voteProject(event,\''+escAttr(key)+'\',\'down\')">👎</button>';
+  return '<button type="button" class="vote-btn" title="点赞" aria-label="点赞" onclick="voteProject(event,\''+escAttr(key)+'\',\'up\')">❤</button><button type="button" class="vote-btn down" title="点踩" aria-label="点踩" onclick="voteProject(event,\''+escAttr(key)+'\',\'down\')">👎</button>';
 }
 function engagementBlock(it){
   var key=keyOf(it);
@@ -749,14 +750,37 @@ function platformText(it){
   var p=stripHtml(it.pl||'').replace(/^[^\u4e00-\u9fffA-Za-z0-9]+/,'').trim();
   return p||stripHtml(it.m||'').split('·')[0].trim()||'平台';
 }
+function agencyText(it){
+  var p=titleParts(it);
+  if(p.foreign)return '';
+  var candidates=[];
+  if(p.sub)candidates=candidates.concat(p.sub.split('·').map(function(x){return x.trim()}));
+  candidates=candidates.concat(stripHtml(it.m||'').split('·').map(function(x){return x.trim()}));
+  candidates=candidates.filter(function(x){
+    return x&&x!==platformText(it)&&!/开售|预约|截止|剩|已结束|众筹|完成率|已购|支持者|目标|今天|小时|日前|天后/.test(x);
+  });
+  var hit=candidates.filter(function(x){
+    return /工作室|桌游|兵棋|海豚|企鹅|圣剑|夜航船|游人|满意|向量|原石|树豆|摇摆客|乘风|山海|浩瀚|小狮子|一刻馆|帝企鹅/.test(x);
+  })[0];
+  return hit||'';
+}
+function platformWithAgency(it){
+  var parts=[platformText(it)],agency=agencyText(it);
+  if(agency&&parts.indexOf(agency)<0)parts.push(agency);
+  return parts.join(' · ');
+}
 function dateOnly(d){return d?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'):''}
 function monthDay(d){return d?(String(d.getMonth()+1)+'月'+String(d.getDate())+'日'):''}
 function cardMeta(it,n){
-  var p=platformText(it),sd=startDateOf(it),ed=endDateOf(it);
+  var p=platformWithAgency(it),sd=startDateOf(it),ed=endDateOf(it),base=stripHtml(it.m||'');
   if(isFunding(it,n)&&ed)return p+' · 截止日期 '+dateOnly(ed);
-  if(sd&&sd>n)return p+' · '+monthDay(sd)+' 开售';
+  if(sd&&sd>n){
+    var f=followersOf(it);
+    return p+' · '+monthDay(sd)+'开售'+(f?' · '+Number(f).toLocaleString('zh-CN')+'人预约':'');
+  }
   if(isEndedProject(it,n))return p+' · 已结束'+(ed?' '+dateOnly(ed):'');
-  return stripHtml(it.m||'');
+  if(base&&base.indexOf(p)<0)return p+' · '+cleanDisplayName(base.replace(/^.*?·\s*/,''));
+  return cleanDisplayName(base)||p;
 }
 function cleanCardLine(v){
   return stripHtml(v||'').replace(/[·\s]*剩\d+天(?:\d+小时)?(?:截止)?/g,'').trim();
@@ -785,7 +809,7 @@ function rc(it){
   else if(isUpcoming(it,n))cls+=' upcoming-card';
   else if(isEndedProject(it,n))cls+=' ended-card';
   var m2=cleanCardLine(it.m2);
-  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="card-title-line"><div class="ct title-main">'+titleHtml(it)+'</div><span data-heat-slot="'+escAttr(key)+'">'+heatBadge(key)+'</span></div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'')+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+rulesBlock(it)+'<a class="detail-link" href="'+escAttr(it.l)+'" target="_blank" rel="noopener noreferrer" onclick="recordProjectEvent(\''+escAttr(key)+'\',\'jump\')">查看众筹页面</a>'+engagementBlock(it)+'</div></article>';
+  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="card-title-line"><div class="ct title-main">'+titleHtml(it)+'</div><span data-heat-slot="'+escAttr(key)+'">'+heatBadge(key)+'</span></div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'')+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+rulesBlock(it)+'<div class="detail-actions"><a class="detail-link" href="'+escAttr(it.l)+'" target="_blank" rel="noopener noreferrer" onclick="recordProjectEvent(\''+escAttr(key)+'\',\'jump\')">查看众筹页面</a>'+engagementBlock(it)+'</div></div></article>';
 }
 function rp(items){
   var h='<div class="g3">';
@@ -1206,7 +1230,10 @@ function loadScriptOnce(src,globalName){
     var old=document.querySelector('script[src="'+src+'"]');
     if(old){old.addEventListener('load',resolve);old.addEventListener('error',reject);return}
     var s=document.createElement('script');
-    s.src=src;s.async=true;s.onload=resolve;s.onerror=reject;
+    var timer=setTimeout(function(){reject(new Error('script timeout'))},8000);
+    s.src=src;s.async=true;
+    s.onload=function(){clearTimeout(timer);resolve()};
+    s.onerror=function(){clearTimeout(timer);reject(new Error('script load failed'))};
     document.head.appendChild(s);
   });
 }
@@ -1229,8 +1256,16 @@ function roundRect(ctx,x,y,w,h,r){
   ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
 }
 async function doShare(){
+  var previewWindow=null;
   try{
-    await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas');
+    if(!(navigator.canShare&&navigator.canShare({files:[new File(['x'],'x.png',{type:'image/png'})]}))){
+      previewWindow=window.open('','_blank');
+      if(previewWindow)previewWindow.document.write('<title>分享截图</title><body style="font-family:sans-serif;padding:24px;color:#666">正在生成分享图...</body>');
+    }
+  }catch(e){}
+  try{
+    try{await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas')}
+    catch(e){await loadScriptOnce('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js','html2canvas')}
     document.body.classList.add('capture-clean');
     var doc=document.documentElement,body=document.body;
     var fullWidth=Math.max(doc.scrollWidth,body.scrollWidth,doc.clientWidth);
@@ -1239,7 +1274,8 @@ async function doShare(){
       backgroundColor:'#f5f5f7',
       useCORS:true,
       allowTaint:false,
-      scale:Math.min(2,window.devicePixelRatio||1.5),
+      imageTimeout:8000,
+      scale:1,
       x:0,
       y:0,
       width:fullWidth,
@@ -1247,29 +1283,39 @@ async function doShare(){
       windowWidth:fullWidth,
       windowHeight:fullHeight,
       scrollX:0,
-      scrollY:0
+      scrollY:0,
+      ignoreElements:function(el){return el&&el.classList&&(el.classList.contains('toast'))}
     });
     document.body.classList.remove('capture-clean');
-    shareCanvas(canvas);
+    shareCanvas(canvas,previewWindow);
     return;
   }catch(e){
     document.body.classList.remove('capture-clean');
     toast('当前页面截图失败，改用分享海报');
   }
-  shareCanvas(fallbackPoster());
+  shareCanvas(fallbackPoster(),previewWindow);
 }
-function shareCanvas(canvas){
-  canvas.toBlob(function(blob){if(blob)shareBlob(blob);else toast('截图生成失败')},'image/png',0.92);
+function shareCanvas(canvas,previewWindow){
+  canvas.toBlob(function(blob){if(blob)shareBlob(blob,previewWindow);else toast('截图生成失败')},'image/png',0.92);
 }
-async function shareBlob(blob){
+async function shareBlob(blob,previewWindow){
   var file=new File([blob],'爱玩桌游众筹资讯.png',{type:'image/png'});
   if(navigator.canShare&&navigator.canShare({files:[file]})){
+    if(previewWindow)previewWindow.close();
     try{await navigator.share({title:'爱玩桌游众筹资讯',files:[file]});toast('截图已唤起分享')}catch(e){}
   }else{
-    var a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);a.download=file.name;document.body.appendChild(a);a.click();a.remove();
-    setTimeout(function(){URL.revokeObjectURL(a.href)},1000);
-    toast('截图已下载');
+    var url=URL.createObjectURL(blob);
+    if(previewWindow){
+      previewWindow.document.open();
+      previewWindow.document.write('<title>分享截图</title><body style="margin:0;background:#f5f5f7"><img src="'+url+'" style="display:block;width:100%;height:auto"></body>');
+      previewWindow.document.close();
+      toast('截图已生成');
+    }else{
+      var a=document.createElement('a');
+      a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();
+      toast('截图已下载');
+    }
+    setTimeout(function(){URL.revokeObjectURL(url)},60000);
   }
 }
 function toast(msg){

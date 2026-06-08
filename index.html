@@ -20,22 +20,46 @@ button{font:inherit}
 header{text-align:center;padding:32px 16px 12px}
 header h1{font-size:1.6em;font-weight:700;background:linear-gradient(135deg,#1d1d1f,#e94560,#d4a843);-webkit-background-clip:text;margin-bottom:4px}
 header p{color:var(--muted);font-size:.85em}
+.search-wrap{position:relative;max-width:620px;margin:16px auto 4px;display:flex;gap:8px;align-items:center;transition:max-width .28s ease,gap .28s ease}
+.search-input{width:100%;height:42px;border:1px solid var(--border);border-radius:22px;background:#fff;padding:0 44px 0 18px;color:var(--text);box-shadow:0 4px 18px rgba(0,0,0,.05);outline:none;transition:border-color .2s,box-shadow .2s,border-radius .28s ease}
+.search-input:focus{border-color:rgba(233,69,96,.45);box-shadow:0 6px 24px rgba(233,69,96,.12)}
+.search-box{position:relative;flex:1;min-width:0}
+.search-icon{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.9em}
+.add-game-btn{height:42px;border-radius:22px;border:1px solid rgba(233,69,96,.2);background:#fff0f4;color:var(--accent);font-size:.82em;font-weight:700;line-height:1;cursor:pointer;box-shadow:0 4px 18px rgba(233,69,96,.12);flex-shrink:0;padding:0 14px;transition:all .28s ease;white-space:nowrap}
+.add-game-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.search-wrap.add-mode{max-width:760px;gap:0}
+.search-wrap.add-mode .search-input{border-color:rgba(233,69,96,.55);border-top-right-radius:0;border-bottom-right-radius:0;box-shadow:0 8px 28px rgba(233,69,96,.16)}
+.search-wrap.add-mode .add-game-btn{background:var(--accent);border-color:var(--accent);color:#fff;border-top-left-radius:0;border-bottom-left-radius:0;padding:0 18px}
+.search-results{position:absolute;left:0;right:0;top:48px;background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 14px 36px rgba(0,0,0,.12);overflow:hidden;z-index:50;display:none;text-align:left}
+.search-results.open{display:block}
+.search-result{width:100%;border:0;background:#fff;color:var(--text);padding:10px 14px;text-align:left;cursor:pointer;border-bottom:1px solid rgba(0,0,0,.05)}
+.search-result:last-child{border-bottom:0}
+.search-result:hover,.search-result:focus-visible{background:#fff4f6;outline:none}
+.search-result strong{display:block;font-size:.84em}
+.search-result span{display:block;color:var(--muted);font-size:.72em;margin-top:2px}
 .tab-bar{display:flex;justify-content:center;gap:8px;margin:14px 0}
 .tab-btn{padding:8px 26px;border-radius:999px;border:1.5px solid #ddd;background:#fff;color:var(--muted);font-size:.88em;font-weight:500;cursor:pointer;transition:all .25s}
 .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 16px rgba(233,69,96,.25)}
-.tab-btn:focus-visible,.share-btn:focus-visible,.qr-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.tab-btn:focus-visible,.share-btn:focus-visible,.qr-btn:focus-visible,.add-game-btn:focus-visible,.feedback-input:focus-visible,.feedback-textarea:focus-visible,.modal-close:focus-visible,.feedback-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .sec{display:flex;align-items:center;gap:8px;margin:22px 0 10px;padding-left:10px;border-left:3px solid var(--accent)}
 .sec h2{font-size:1.05em;font-weight:600}
 .sec .bc{font-size:.7em;color:var(--muted);margin-left:auto;background:#f0f0f2;padding:2px 10px;border-radius:12px}
-.card{background:var(--card);border-radius:var(--radius);padding:14px;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;contain:layout paint}
+.card{background:var(--card);border-radius:var(--radius);padding:0;margin-bottom:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:transform .2s,box-shadow .2s,border-color .2s;contain:layout paint;overflow:hidden}
 .card:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.1);border-color:rgba(233,69,96,.15)}
 .cl{display:block;text-decoration:none;color:inherit}
-.cr{display:flex;gap:12px;align-items:flex-start}
-.ciw{flex-shrink:0;width:100px;height:100px;border-radius:12px;overflow:hidden;background:#f0f0f2;display:flex;align-items:center;justify-content:center;font-size:2em;color:#bbb}
+.cr{display:flex;gap:14px;align-items:flex-start;width:100%;padding:12px;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+.ciw{flex-shrink:0;width:220px;height:auto;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#f0f0f2;display:flex;align-items:center;justify-content:center;font-size:2em;color:#bbb}
 .ciw img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s}
 .card:hover .ciw img{transform:scale(1.08)}
+.card.funding-card .cr{display:block;padding:0}
+.card.funding-card .ciw{width:100%;min-width:0;border-radius:0;aspect-ratio:2.55/1;margin:0}
+.card.funding-card .ciw img{object-fit:cover;object-position:center;background:#f0f0f2}
+.card.funding-card .cif{padding:10px 14px 14px}
+.card.upcoming-card .ciw,.card.ended-card .ciw{width:132px;aspect-ratio:1/1;border-radius:12px}
+.card.upcoming-card .ciw img,.card.ended-card .ciw img{object-fit:cover;object-position:center}
+.card.upcoming-card .cr,.card.ended-card .cr{gap:12px}
 .cif{flex:1;min-width:0}
 .ct{font-size:.92em;font-weight:600;line-height:1.45}
 .ct .cn{font-size:.72em;color:var(--muted);font-weight:400;display:block}
@@ -46,13 +70,28 @@ header p{color:var(--muted);font-size:.85em}
 .ctg.l{background:#e8f5e9;color:#2e7d32}
 .ctg.e{background:#fff0e0;color:#e67e22}
 .pr{color:var(--gold);font-weight:600;font-size:.82em}
-.pb{height:3px;background:#f0f0f2;border-radius:3px;margin-top:5px;overflow:hidden}
+.progress-row{display:flex;align-items:center;gap:8px;margin-top:7px}
+.pb{height:5px;background:#f0f0f2;border-radius:3px;overflow:hidden;flex:1;min-width:70px}
 .pbf{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px}
+.progress-text{font-size:.68em;color:var(--muted);white-space:nowrap}
 .p2{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:.63em;margin-top:3px;margin-right:3px;font-weight:500}
 .p2.gf{background:#f0edff;color:#6c5ce7}
 .p2.ks{background:#e6faf2;color:#00875a}
 .p2.xwj{background:#ffe8ec;color:#e94560}
 .p2.md{background:#fff8e1;color:#b8860b}
+.today-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;background:#e94560;color:#fff;font-size:.64em;font-weight:600;margin-left:4px}
+.card-detail{display:none;padding:0 14px 14px;border-top:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,#fff,#fafafa)}
+.card.open .card-detail{display:block}
+.detail-copy{font-size:.82em;color:#3a3a3c;line-height:1.65;padding-top:10px}
+.detail-link{display:inline-flex;margin-top:10px;color:var(--accent);font-size:.78em;text-decoration:none;font-weight:600}
+.rules-slot{margin-top:10px;padding:10px;border:1px dashed rgba(0,0,0,.12);border-radius:10px;background:#fff;color:var(--muted);font-size:.76em}
+.rules-slot a{color:var(--accent);text-decoration:none;font-weight:600}
+.section-tools{display:flex;align-items:center;gap:8px;margin:-4px 0 10px;flex-wrap:wrap}
+.sort-btn{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:99px;padding:5px 12px;font-size:.72em;cursor:pointer}
+.sort-btn.active{background:#1d1d1f;color:#fff;border-color:#1d1d1f}
+.more-btn{width:100%;border:1px dashed rgba(233,69,96,.35);background:#fff;color:var(--accent);border-radius:12px;padding:9px 12px;margin:4px 0 10px;cursor:pointer;font-size:.82em;font-weight:600}
+.highlight-card{animation:focusFlash 1.4s ease}
+@keyframes focusFlash{0%,100%{box-shadow:0 2px 12px rgba(0,0,0,.06)}30%{box-shadow:0 0 0 4px rgba(233,69,96,.22),0 8px 30px rgba(0,0,0,.12)}}
 .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .mc{background:var(--card);border-radius:12px;padding:10px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s;contain:layout paint}
 .mc:hover{transform:translateY(-2px)}
@@ -70,16 +109,28 @@ header p{color:var(--muted);font-size:.85em}
 .tli.dn{opacity:.5}
 .tli.dn::before{background:var(--muted);box-shadow:0 0 0 2px var(--muted)}
 .tli.td::before{background:var(--gold);box-shadow:0 0 0 2px var(--gold)}
-.carousel{background:linear-gradient(135deg,#1a1a2e,#2a1a2e);border-radius:var(--radius);padding:20px;margin-bottom:10px;color:#fff;text-align:center;border:1px solid rgba(255,255,255,.06)}
-.carousel .ch{font-size:.85em;color:rgba(255,255,255,.4);margin-bottom:8px}
-.carousel .cc{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
-.carousel .citem{min-width:120px;height:80px;background:rgba(255,255,255,.06);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.75em;color:rgba(255,255,255,.3);flex-shrink:0;overflow:hidden}
-.carousel .citem img{width:100%;height:100%;object-fit:cover;border-radius:10px}
 footer{text-align:center;padding:24px 16px;color:var(--muted);font-size:.78em;line-height:1.6}
 footer a{color:var(--accent);text-decoration:none}
+.feedback-row{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:8px}
+.feedback-input,.feedback-textarea{width:100%;border:1px solid var(--border);border-radius:10px;background:#fafafa;color:var(--text);padding:9px 10px;font:inherit;font-size:.84em;outline:none}
+.feedback-textarea{min-height:74px;resize:vertical}
+.feedback-submit{border:0;border-radius:10px;background:var(--accent);color:#fff;padding:0 16px;cursor:pointer;font-weight:600}
+.feedback-link{border:0;background:transparent;color:var(--accent);cursor:pointer;font:inherit;text-decoration:none}
+.footer-qr{margin:16px auto 0;width:156px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:10px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.footer-qr #qr_canvas{width:136px;height:136px;margin:auto;display:flex;align-items:center;justify-content:center}
+.footer-qr #qr_canvas canvas,.footer-qr #qr_canvas img{width:136px;height:136px;border-radius:6px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.38);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
+.modal-backdrop.open{display:flex}
+.modal-card{width:min(520px,100%);max-height:min(82vh,680px);overflow:auto;background:#fff;border-radius:16px;padding:18px;box-shadow:0 24px 80px rgba(0,0,0,.25)}
+.modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.modal-head h2{font-size:1.02em}
+.modal-close{min-width:32px;height:32px;border-radius:16px;border:1px solid var(--border);background:#fff;cursor:pointer;padding:0 10px}
+.form-grid{display:grid;gap:9px}
+.form-grid label{font-size:.76em;color:var(--muted);display:grid;gap:4px;text-align:left}
 @media(max-width:640px){
   .cr{flex-direction:row;gap:8px}
-  .ciw{width:82px;height:82px;flex-shrink:0;border-radius:10px}
+  .ciw{width:132px;flex-shrink:0;border-radius:10px}
+  .card.funding-card .ciw{width:100%;min-width:0}
   .ct{font-size:.82em}
   .ct .cn{font-size:.68em}
   .cm{font-size:.7em}
@@ -89,6 +140,7 @@ footer a{color:var(--accent);text-decoration:none}
   .mc .mn{font-size:.68em}
   .mc .mm{font-size:.6em}
   .tab-btn{padding:6px 18px;font-size:.82em}
+  .tab-bar{flex-wrap:wrap}
   header h1{font-size:1.35em}
   header p{font-size:.78em}
   .sec h2{font-size:.95em}
@@ -102,10 +154,12 @@ footer a{color:var(--accent);text-decoration:none}
   .daily{padding:12px}
   .daily-cards{grid-template-columns:1fr;gap:8px}
   .dh{font-size:.76em}
+  .feedback-row{grid-template-columns:1fr}
+  .feedback-submit{height:38px}
   body{padding:10px}
 }
 @media(max-width:420px){
-  .ciw{width:70px;height:70px}
+  .ciw{width:124px}
   .ct{font-size:.76em}
   .g3{grid-template-columns:1fr 1fr;gap:4px}
 }
@@ -121,13 +175,13 @@ footer a{color:var(--accent);text-decoration:none}
 .dct{padding:6px 8px 2px;font-size:.75em;font-weight:500;line-height:1.3;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dcm{padding:0 8px 8px;font-size:.62em;color:var(--muted)}
 /* 每日资讯在暗色背景中的样式修复 */
-.daily .dct{color:#f0f0f0}
-.daily .dcm{color:rgba(255,255,255,.5)}
+.daily .dct{color:#fff;font-weight:600}
+.daily .dcm{color:rgba(255,255,255,.76)}
 .daily-card{background:rgba(255,255,255,.08)}
 .daily-card:hover{background:rgba(255,255,255,.12)}
 .daily{background:linear-gradient(135deg,#1a1a2e,#2a1a2e);border-radius:var(--radius);padding:16px;margin-bottom:12px;color:#fff}
-.dh{font-size:.82em;color:rgba(255,255,255,.5);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.dh .sub{font-size:.82em;color:rgba(255,255,255,.3);font-weight:400}
+.dh{font-size:.82em;color:rgba(255,255,255,.78);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dh .sub{font-size:.82em;color:rgba(255,255,255,.58);font-weight:400}
 .dg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .dc{background:rgba(255,255,255,.06);border-radius:10px;padding:10px;transition:all .2s}
 .dc:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
@@ -140,6 +194,49 @@ footer a{color:var(--accent);text-decoration:none}
 .dcnt{font-size:.6em;color:rgba(255,255,255,.5);margin-top:3px}
 .daily-stack .daily:first-child{border-bottom-left-radius:0;border-bottom-right-radius:0}
 .daily-stack .daily:last-child{border-top-left-radius:0;border-top-right-radius:0}
+.rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rank-list{display:grid;gap:6px}
+.rank-item{display:flex;gap:6px;align-items:center;text-decoration:none;color:inherit;background:#fafafa;border:1px solid rgba(0,0,0,.04);border-radius:9px;padding:5px}
+.rank-no{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#1d1d1f;color:#fff;font-size:.62em;font-weight:700;flex-shrink:0}
+.rank-thumb{width:46px;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#ececef;flex-shrink:0}
+.rank-thumb img{width:100%;height:100%;object-fit:cover}
+.rank-name{font-size:11px;font-weight:600;line-height:1.25}
+.rank-meta{font-size:10px;color:var(--muted);margin-top:1px}
+.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.2),rgba(212,168,67,.12));min-height:100%;display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.daily-rank-title{font-size:11px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:space-between}
+.daily-rank-title span{font-size:.82em;color:rgba(255,255,255,.65);font-weight:500}
+.rank-toggle{display:inline-flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.08);padding:2px;border-radius:999px}
+.rank-toggle button{border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.68);font-size:10px;padding:1px 6px;cursor:pointer}
+.rank-toggle button.active{background:#fff;color:#1d1d1f}
+.rank-bars{display:grid;gap:3px}
+.rank-bar-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1px 6px;align-items:center}
+.rank-bar-head{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#fff;font-size:10px;font-weight:600}
+.rank-bar-head small{font-size:.9em;color:rgba(255,255,255,.58);font-weight:500;white-space:nowrap}
+.rank-bar-head{grid-column:1/-1}
+.rank-bar-track{height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.rank-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#e94560,#d4a843)}
+.rank-delta{font-size:9px;color:rgba(255,255,255,.72);white-space:nowrap}
+.rank-modal-tools{display:flex;gap:6px;margin-bottom:10px}
+.rank-modal-tools button{border:1px solid var(--border);background:#fff;color:var(--muted);border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer}
+.rank-modal-tools button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.rank-modal-list{display:grid;gap:6px}
+.rank-modal-list .rank-item{cursor:pointer;width:100%;text-align:left}
+.rank-modal-list .rank-item.active{background:#fff4f6;border-color:rgba(233,69,96,.32)}
+.rank-row{background:#fafafa;border:1px solid rgba(0,0,0,.05);border-radius:12px;overflow:hidden}
+.rank-row .rank-item{background:transparent;border:0;border-radius:0}
+.rank-row-main{display:grid;grid-template-columns:auto 54px minmax(0,1fr);gap:8px;align-items:center;width:100%}
+.rank-row-copy{min-width:0}
+.rank-row-progress{grid-column:2/4;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:4px}
+.rank-row-progress .mini-track{height:6px}
+.rank-expand{display:none;border-top:1px solid rgba(0,0,0,.05);padding:8px 10px 10px;background:#fff}
+.rank-row.open .rank-expand{display:block}
+.rank-more{width:100%;border:1px dashed rgba(233,69,96,.35);background:#fff;color:var(--accent);border-radius:12px;padding:8px;margin-top:8px;font-size:12px;font-weight:700;cursor:pointer}
+.mini-track{height:6px;border-radius:99px;background:#ececef;overflow:hidden}
+.mini-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--gold))}
+.growth-title{font-size:12px;font-weight:700;margin:4px 0 6px}
+.growth-chart{width:100%;height:132px;background:#fff;border:1px solid rgba(0,0,0,.04);border-radius:10px;overflow:hidden}
+.growth-note{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.4}
+@media(max-width:640px){.rank-grid{grid-template-columns:1fr}.search-wrap{margin-top:12px}.search-input{height:40px}}
 .share-bar{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .share-btn,.qr-btn{cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:6px 16px;border-radius:20px;font-size:.78em;background:var(--card);border:1px solid var(--border);color:var(--text);transition:all .2s}
 .share-btn:hover,.qr-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -153,6 +250,9 @@ footer a{color:var(--accent);text-decoration:none}
 .qr-label{text-align:center;font-size:.68em;color:var(--muted);margin:6px 0 0}
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 22px;border-radius:8px;font-size:.82em;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}
+.back-top{position:fixed;right:18px;bottom:22px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(233,69,96,.25);background:#fff;color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.14);cursor:pointer;font-weight:800;z-index:900;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s,background .2s}
+.back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.back-top:hover{background:var(--accent);color:#fff}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
@@ -163,6 +263,14 @@ footer a{color:var(--accent);text-decoration:none}
 <header>
 <h1>🎲 爱玩桌游 <span style="font-weight:400;font-size:.7em;color:var(--muted);-webkit-text-fill-color:var(--muted)">众筹资讯</span></h1>
 <p>新物集 · 摩点 · Kickstarter · Gamefound ｜ 爱玩桌游club</p>
+<div class="search-wrap" id="search_wrap">
+  <div class="search-box">
+    <input id="site_search" class="search-input" type="search" placeholder="搜索项目，或点右侧添加项目" autocomplete="off" oninput="onSearch(this.value)" onfocus="onSearch(this.value)" onkeydown="searchKey(event)">
+    <span class="search-icon">⌕</span>
+    <div id="search_results" class="search-results"></div>
+  </div>
+  <button type="button" class="add-game-btn" id="add_game_btn" onclick="handleAddProject()" title="添加项目">+ 添加项目</button>
+</div>
 </header>
 <div class="tab-bar" role="tablist" aria-label="资讯分类">
 <button type="button" class="tab-btn active" role="tab" aria-selected="true" aria-controls="tn" onclick="st('n')">📰 每日资讯</button>
@@ -174,18 +282,38 @@ footer a{color:var(--accent);text-decoration:none}
 <div id="to" class="tab-content" role="tabpanel" hidden></div>
 <footer>
 <p>数据来源：新物集 · 摩点 · Kickstarter · Gamefound</p>
-<p>由小一自动整理 🤖 · <a href="https://aiwanlands.com">爱玩桌游club</a></p>
+<p>由小一自动整理 🤖 · <a href="https://aiwanlands.com">爱玩桌游club</a> · <button type="button" class="feedback-link" onclick="openFeedbackModal()">意见反馈</button></p>
+<div class="footer-qr">
+  <div id="qr_canvas"></div>
+  <p class="qr-label">扫码访问 aiwanlands.com</p>
+</div>
 <div class="share-bar">
-  <button type="button" class="share-btn" onclick="doShare()">📤 分享页面</button>
-  <div class="qr-wrap">
-    <button type="button" class="qr-btn" onclick="this.parentNode.classList.toggle('open')" aria-haspopup="dialog">📱 扫码访问</button>
-    <div class="qr-dropdown">
-      <div id="qr_canvas"></div>
-      <p class="qr-label">扫码直达 aiwanlands.com</p>
+  <button type="button" class="share-btn" onclick="doShare()">📤 生成分享截图</button>
+</div>
+</footer>
+</div>
+<button type="button" class="back-top" id="back_top" onclick="scrollTopPage()" aria-label="回到页首">↑</button>
+<div id="feedback_modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="feedback_modal_title" onclick="closeFeedbackModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h2 id="feedback_modal_title">意见反馈</h2>
+      <button type="button" class="modal-close" onclick="closeFeedbackModal()">×</button>
+    </div>
+    <div class="form-grid">
+      <label>建议内容<textarea id="feedback_text" class="feedback-textarea" placeholder="想看哪些项目、榜单或功能？"></textarea></label>
+      <label>联系方式，可不填<input id="feedback_contact" class="feedback-input" placeholder="微信 / 邮箱 / 其他"></label>
+      <button type="button" class="feedback-submit" style="height:40px" onclick="submitFeedback()">提交建议</button>
     </div>
   </div>
 </div>
-</footer>
+<div id="rank_modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="rank_modal_title" onclick="closeRankModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h2 id="rank_modal_title">详细榜单</h2>
+      <button type="button" class="modal-close" onclick="closeRankModal()">返回</button>
+    </div>
+    <div id="rank_modal_body"></div>
+  </div>
 </div>
 <script>
 var im_Beast_Ashfall="https://imgcdn.gamefound.com/projectimage/projects/8330/adf4664f-74de-483b-b6fb-2365dcbd841b.png";
@@ -276,22 +404,33 @@ var im_阿克莱特="https://i.zhuoyou.com/upload/images/202605/w_720_h_546_s_19
 var im_雾雨世界="https://p6.moimg.net/path/dst_project/1006362753/202604/1411/3042/2604143042bgk2Y5KLd98v59mkNRvljV17BMxDer.png";
 var im_马拉开波海盗="https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg";
 
-var DL=[{"n": "赛博朋克红", "t": "🔴 赛博朋克红TRPG 简体中文版", "m": "摩点 · 剩15天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥2,746,757"], "m2": "支持者 2864人 · 完成率 27467%", "pr": "All-in合集 ¥1,088", "pg": 100, "l": "https://zhongchou.modian.com/item/155590.html", "ed": "2026-06-11"}, {"n": "幻色秘典", "t": "🎴 《幻色秘典》<span class=\"cn\">卡牌对战 · 向量文创</span>", "m": "新物集 · 剩27天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥108,391"], "m2": "已购 569人 · 完成率 1084%", "pr": "目标¥10,000", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3716", "ed": "2026-06-30"}, {"n": "遥远之地", "t": "🌌 《遥远之地2扩-星空之下》<span class=\"cn\">+环中物语补档 · 现货</span>", "m": "新物集 · 桌游星球 · 剩15天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["现货众筹", "🔥 已筹¥60,182"], "m2": "已购 811人 · 完成率 6018%", "pr": "目标¥1,000", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3928", "ed": "2026-06-18"}, {"n": "Crash第二季", "t": "💥 《Crash!》第二季 DBG对战续作", "m": "摩点 · 剩32天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥173,004"], "m2": "支持者 476人 · 完成率 1730%", "pr": "基础款 ¥148 / All-in ¥498", "pg": 100, "l": "https://zhongchou.modian.com/item/156469.html", "ed": "2026-06-29"}, {"n": "雾雨世界", "t": "🌫️ 《雾雨世界》长篇冒险PVE剧情桌游", "m": "摩点 · 剩31天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 149人 · 完成率 151%", "pr": "基础版 ¥258 / 豪华版 ¥628", "pg": 151, "l": "https://zhongchou.modian.com/item/156407.html", "ed": "2026-06-28"}, {"n": "三国走走棋", "t": "♟️ 《三国走走棋》扩展 第2弹", "m": "摩点 · 剩38天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥198,569"], "m2": "支持者 586人 · 完成率 1324%", "pr": "老将档 ¥186 / 少帅档 ¥339", "pg": 100, "l": "https://zhongchou.modian.com/item/156639.html", "ed": "2026-07-05"}, {"n": "阿克莱特", "t": "🏭 《阿克莱特》<span class=\"cn\">工业革命 · 斯波特经典 周年纪念版</span>", "m": "新物集 · 奇思工作室 · 剩13天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥331,932"], "m2": "已购 823人 · 完成率 3319%", "pr": "实业大亨 ¥398 / 资本巨擘 ¥408", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3922", "ed": "2026-06-16"}];
+var DL=[{"n": "赛博朋克红", "t": "🔴 赛博朋克红TRPG 简体中文版", "m": "摩点 · 剩15天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥2,746,757"], "m2": "支持者 2864人 · 完成率 27467%", "pr": "All-in合集 ¥1,088", "pg": 100, "l": "https://zhongchou.modian.com/item/155590.html", "sd": "2026-05-26T00:00", "ed": "2026-06-11"}, {"n": "幻色秘典", "t": "🎴 《幻色秘典》<span class=\"cn\">卡牌对战 · 向量文创</span>", "m": "新物集 · 剩27天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥108,391"], "m2": "已购 569人 · 完成率 1084%", "pr": "目标¥10,000", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3716", "ed": "2026-06-30"}, {"n": "遥远之地", "t": "🌌 《遥远之地2扩-星空之下》<span class=\"cn\">+环中物语补档 · 现货</span>", "m": "新物集 · 桌游星球 · 剩15天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["现货众筹", "🔥 已筹¥60,182"], "m2": "已购 811人 · 完成率 6018%", "pr": "目标¥1,000", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3928", "ed": "2026-06-18"}, {"n": "Crash第二季", "t": "💥 《Crash!》第二季 DBG对战续作", "m": "摩点 · 剩32天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥173,004"], "m2": "支持者 476人 · 完成率 1730%", "pr": "基础款 ¥148 / All-in ¥498", "pg": 100, "l": "https://zhongchou.modian.com/item/156469.html", "ed": "2026-06-29"}, {"n": "雾雨世界", "t": "🌫️ 《雾雨世界》长篇冒险PVE剧情桌游", "m": "摩点 · 剩31天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 149人 · 完成率 151%", "pr": "基础版 ¥258 / 豪华版 ¥628", "pg": 151, "l": "https://zhongchou.modian.com/item/156407.html", "ed": "2026-06-28"}, {"n": "三国走走棋", "t": "♟️ 《三国走走棋》扩展 第2弹", "m": "摩点 · 剩38天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥198,569"], "m2": "支持者 586人 · 完成率 1324%", "pr": "老将档 ¥186 / 少帅档 ¥339", "pg": 100, "l": "https://zhongchou.modian.com/item/156639.html", "sd": "2026-05-06T19:00", "ed": "2026-07-05"}, {"n": "阿克莱特", "t": "🏭 《阿克莱特》<span class=\"cn\">工业革命 · 重度经济策略 周年纪念版</span>", "m": "新物集 · 奇思工作室 · 剩13天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥331,932"], "m2": "已购 823人 · 完成率 3319%", "pr": "实业大亨 ¥398 / 资本巨擘 ¥408", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3922", "sd": "2026-06-03T12:00", "ed": "2026-06-16"}];
 var im_翠屿秘境="cuiyu.jpg";
 var im_蓝色方案="https://i.zhuoyou.com/upload/images/202606/w_720_h_546_s_156579_9416d972-0f69-4a75-8c1d-7148931ebc5c.jpg";
 var DU=[{"n": "马拉开波海盗", "t": "🏆 《马拉开波海盗：百慕大三角》<span class=\"cn\">扩展 · 航海竞速德式经典</span>", "m": "新物集 · 奇思工作室", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月3日 开售", "🔥 3627人预约"], "l": "https://shop.zhuoyou.com/share/project.html?project_id=3890", "sd": "2026-06-03T12:00"}, {"n": "翠屿秘境", "t": "🌴 《翠屿秘境传奇典藏版》<span class=\"cn\">米宝海豚</span>", "m": "新物集 · 6月8日开售 · 782人预约 🔥", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月8日 开售", "🔥 782人预约"], "l": "https://shop.zhuoyou.com/share/project.html?project_id=3759", "sd": "2026-06-08T11:00"}, {"n": "蓝色方案", "t": "⚔️ 《蓝色方案》<span class=\"cn\">OCS系列 · 原石兵棋</span>", "m": "新物集 · 6月10日开售", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月10日 开售", "🔥 180人预约"], "l": "https://shop.zhuoyou.com/share/project.html?project_id=3961", "sd": "2026-06-10T04:00"}, {"n": "基尔", "t": "🚢 《基尔 运河新章》<span class=\"cn\">SVG桌游工作室</span>", "m": "新物集 · 6月12日开售", "p": "xwj", "pl": "🎯 新物集", "ta": ["u", "h"], "tl": ["⏰ 6月12日 开售", "🔥 273人预约"], "l": "https://shop.zhuoyou.com/share/project.html?project_id=3916", "sd": "2026-06-12T11:00"}];
 var DP=[{"n": "常影之地", "m": "新物集 · 预热中", "l": "https://www.xinwuji.com/pc/#/detail/4001779782300260526", "ni": "常影之地", "hi": true}, {"n": "卡内基", "t": "🏭 卡内基KS豪华版重印简中版", "m": "新物集 · 帝企鹅桌游 · 1,427人感兴趣", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3937", "ni": "卡内基", "hi": true}, {"n": "TEND", "t": "🌿 TEND 我在外星种菠萝", "m": "新物集 · 满意桌游 · 2,186人感兴趣", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3880", "ni": "TEND", "hi": true}, {"n": "猎人纪元1492", "t": "🏹 《猎人纪元1492》第二版+新扩《边境之地》", "m": "新物集 · 白帝圣剑桌游 · 1,958人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3571", "ni": "猎人纪元1492", "hi": true}, {"n": "雅姿艺术", "t": "🎨 KS爆火的新艺术主题桌游《雅姿艺术》", "m": "新物集 · 林带秋 · 1,421人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3635", "ni": "雅姿艺术", "hi": true}, {"n": "卡里普索", "t": "🌊 《卡里普索——大洪水时代》", "m": "新物集 · 白帝圣剑桌游 · 1,252人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3647", "ni": "卡里普索", "hi": true}, {"n": "普利策奖", "t": "📰 《普利策奖》重返美国调查记者黄金年代", "m": "新物集 · 夜航船桌游 · 1,065人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3696", "ni": "普利策奖", "hi": true}, {"n": "月球方舟", "t": "🚀 《月球方舟》从月球出发，目标是星辰大海", "m": "新物集 · 桌游星球 · 870人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3327", "ni": "月球方舟", "hi": true}, {"n": "转运熊猫", "t": "🐼 《转运熊猫》创世发明设计师新作·跑得快玩法", "m": "新物集 · 米宝海豚 · 834人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3340", "ni": "转运熊猫", "hi": true}, {"n": "萨满莽林", "t": "🔮 《萨满：莽林》从荒野到灵魂世界的通灵之旅", "m": "新物集 · 侧舷游戏 · 625人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3925", "ni": "萨满莽林", "hi": true}, {"n": "迷雾地牢", "t": "🏰 《迷雾地牢》", "m": "新物集 · 浩瀚星辰 · 264人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3888", "ni": "迷雾地牢", "hi": true}, {"n": "盘古黎明", "t": "🌄 《盘古黎明》唯美创世自然主题", "m": "新物集 · 向量文创 · 227人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3926", "ni": "盘古黎明", "hi": true}, {"n": "营地惊魂", "t": "🏕️ 露营有危险，天黑别抬头！——营地惊魂", "m": "新物集 · 摇摆客 · 19人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3941", "ni": "营地惊魂", "hi": true}, {"n": "洪流Flood", "m": "树豆工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "洪流Flood", "hi": true}, {"n": "The Last of Blood", "m": "我是Joker · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "The Last of Blood", "hi": true}, {"n": "苏丝", "m": "Modxumer · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "苏丝", "hi": true}, {"n": "地缝探险", "m": "壹顺工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "地缝探险", "hi": true}]
 var DTE=[{"d": "2026-05-12", "e": "🏯 明治维新：财阀 KS顶配版 众筹结束 ✅（¥567,211）"}, {"d": "2026-06-01", "e": "⚔️ 无双对决 传奇之战第三卷 众筹结束 ✅（¥221,443）"}, {"d": "2026-06-03", "e": "🎯 马拉开波海盗 + 阿克莱特 新物集开售 ✅"}, {"d": "2026-06-05", "e": "🌌 万境奇旅重印 众筹截止 ✅（¥541,470）"}, {"d": "2026-06-08", "e": "🌴 翠屿秘境传奇典藏版 新物集开售"}, {"d": "2026-06-10", "e": "🎯 《蓝色方案》OCS兵棋 新物集开售"}, {"d": "2026-06-11", "e": "🔴 赛博朋克红TRPG 众筹截止"}, {"d": "2026-06-12", "e": "🚢 《基尔 运河新章》新物集开售"}, {"d": "2026-06-16", "e": "⚠️ 阿克莱特 众筹截止"}, {"d": "2026-06-18", "e": "🌌 遥远之地2扩 众筹截止"}, {"d": "2026-06-28", "e": "🌫️ 雾雨世界 众筹截止"}, {"d": "2026-06-29", "e": "💥 Crash!第二季 众筹截止"}, {"d": "2026-06-30", "e": "🎴 幻色秘典 众筹截止"}, {"d": "2026-07-05", "e": "♟️ 三国走走棋扩展 众筹截止"}];
 var DE=[{"n": "永世侵入奥德赛", "t": "🌊 《永世侵入奥德赛》终章 BGG9.6宿命之海", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥5,939,857"], "m2": "已购 2668人 · 完成率 59398%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3506"},{"n": "大图书馆", "t": "📚 《大图书馆》&《地下酒吧》重印预售", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥2,707,432"], "m2": "已购 2645人 · 完成率 27074%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3663"},{"n": "血色牌局", "t": "🃏 小丑牌+德州！《血色牌局》求生赌局", "m": "新物集 · 小狮子桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥2,528,972"], "m2": "已购 9168人 · 完成率 25289%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3566"},{"n": "潜行者", "t": "☢️ 《潜行者：桌面游戏》探索切尔诺贝利", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥1,539,906"], "m2": "已购 779人 · 完成率 15399%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3458"},{"n": "海底都市", "t": "🌊 《海底都市：中文大盒版》BGG#50策略游戏", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥1,494,903"], "m2": "已购 2485人 · 完成率 14949%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3777"},{"n": "Onward", "t": "⚔️ 《Onward》MOBA桌面游戏集大成之作", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥805,836"], "m2": "已购 919人 · 完成率 8058%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3740"},{"n": "仙境幽谷", "t": "🧚 《仙境幽谷：银霜国度》BGG8.2系列最佳", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥763,231"], "m2": "已购 1730人 · 完成率 7632%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3637"},{"n": "角斗士", "t": "⚔️ 《角斗士：胜者荣耀》利刃划破神障", "m": "新物集 · 山海桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥718,676"], "m2": "已购 455人 · 完成率 7186%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3547"},{"n": "遗落之境", "t": "🚂 《遗落之境-阿特拉斯铁路》易上手顶级策略博弈", "m": "新物集 · 桌游星球 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥718,436"], "m2": "已购 819人 · 完成率 7184%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3660"},{"n": "星战起义", "t": "⭐ 星球大战：起义军 2016金极客最佳双人", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥588,129"], "m2": "已购 948人 · 完成率 5881%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3735"},{"n": "万境奇旅", "t": "🌌 万境奇旅——超自由开放式沙盒桌游", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥534,818"], "m2": "已购 996人 · 完成率 5348%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3542"},{"n": "葡萄酒庄园", "t": "🍷 《葡萄酒庄园：精华版》波尔多新扩+重印", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥461,199"], "m2": "已购 1010人 · 完成率 4611%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3755"},{"n": "制琴师", "t": "🎻 《制琴师：豪华版》品鉴乐器制作之美", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥450,944"], "m2": "已购 883人 · 完成率 4509%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3563"},{"n": "无双对决猎魔人", "t": "⚔️ 《无双对决：The Witcher》系列", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥440,246"], "m2": "已购 734人 · 完成率 4402%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3664"},{"n": "请君入坑", "t": "🕳️ 《请君入坑》BGG8.6神创意对决游戏", "m": "新物集 · 原石桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥316,811"], "m2": "已购 642人 · 完成率 3168%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3780"},{"n": "无序之战", "t": "✏️ 《无序之战》纸笔重策天花板·涂写英伦内战", "m": "新物集 · 桌游星球 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥316,162"], "m2": "已购 742人 · 完成率 3161%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3718"},{"n": "1888华东", "t": "🚂 《1888华东》&《1862》《1888华北》重印", "m": "新物集 · 原石兵棋 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥310,625"], "m2": "已购 604人 · 完成率 3106%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3830"},{"n": "追忆寻踪", "t": "🔍 《追忆寻踪》黎明新生原班人马·埃森爆款新作", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥309,044"], "m2": "已购 780人 · 完成率 3090%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3522"},{"n": "双侠小队", "t": "🦸 《双侠小队》见招拆招的新颖自走棋", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥305,052"], "m2": "已购 2220人 · 完成率 3050%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3665"},{"n": "木材", "t": "🪵 《木材》博弈度和代入感拉满的长线规划重德", "m": "新物集 · 飞鱼桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥286,399"], "m2": "已购 905人 · 完成率 2863%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3627"},{"n": "泰拉瑞亚", "t": "⛏️ 《泰拉瑞亚：桌面游戏》合作·沙盒·建造", "m": "新物集 · 原石桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥279,826"], "m2": "已购 549人 · 完成率 2798%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3646"},{"n": "英雄止步", "t": "🔥 《英雄止步》全新扩展·红红火火过大年", "m": "新物集 · 树豆工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥266,535"], "m2": "已购 807人 · 完成率 2665%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3619"},{"n": "国家公园", "t": "🏞️ 《国家公园》第二版·全新美术赏析自然绝景", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥263,616"], "m2": "已购 788人 · 完成率 2636%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3792"},{"n": "沙丘天下", "t": "🏜️ 《沙丘》补档&《天下》埃森爆款中国风德式", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥235,741"], "m2": "已购 377人 · 完成率 2357%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3745"},{"n": "运河时代", "t": "🚤 《运河时代》规划构建奥拉宁堡运河网络", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥222,429"], "m2": "已购 717人 · 完成率 2224%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3728"},{"n": "奋进号", "t": "⛵ 《奋进号》团队中策新作·拯救世界操作指南", "m": "新物集 · 夜航船桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥213,288"], "m2": "已购 518人 · 完成率 2132%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3579"},{"n": "永恒之城", "t": "🏛️ 《永恒之城》领导氏族重写七丘之城辉煌", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥208,843"], "m2": "已购 1158人 · 完成率 2088%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3538"},{"n": "斯大林格勒42", "t": "💥 《斯大林格勒'42》钢铁与废墟中的生死会战", "m": "新物集 · 原石兵棋 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥199,821"], "m2": "已购 522人 · 完成率 1998%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3609"},{"n": "果阿", "t": "🛳️ 《果阿》大师系列30号·经典游戏回归", "m": "新物集 · 帝企鹅桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥197,549"], "m2": "已购 246人 · 完成率 1975%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3412"},{"n": "三角机构", "t": "🔺 三角机构：打卡上班拯救世界·艾尼奖三满贯", "m": "新物集 · 三局两胜工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥194,740"], "m2": "已购 343人 · 完成率 1947%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3541"},{"n": "夜肥", "t": "💩 《夜肥》演绎都铎王朝下的别样\"搬屎\"区控", "m": "新物集 · 乘风游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥191,646"], "m2": "已购 817人 · 完成率 1916%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3601"},{"n": "星弧航记", "t": "🌌 《星弧航记：衰变星域》BGG9分重磅扩展", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥164,994"], "m2": "已购 215人 · 完成率 1649%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3598"},{"n": "最后一百码", "t": "🎯 《最后一百码》东线战场·经典二战战术兵棋", "m": "新物集 · 原石兵棋 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥140,774"], "m2": "已购 430人 · 完成率 1407%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3727"},{"n": "骰子镇", "t": "🎲 《骰子镇》经典回归·美式西部骰子博弈撕逼神器", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥133,326"], "m2": "已购 290人 · 完成率 1333%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3607"},{"n": "淘金大镖客", "t": "🤠 《淘金大镖客》重返西部淘金热", "m": "新物集 · 浩瀚星辰 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥124,788"], "m2": "已购 391人 · 完成率 1247%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3525"},{"n": "天顶星宇", "t": "🌌 《天顶星宇》SDJ黑标/金极客提名BGG高分", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥122,952"], "m2": "已购 588人 · 完成率 1229%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3784"},{"n": "林业", "t": "🌲 《林业》把森林搬上桌，还原真实林业全链路", "m": "新物集 · 乘风游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥105,304"], "m2": "已购 313人 · 完成率 1053%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3732"},{"n": "幽魂与巨像", "t": "👻 《幽魂与巨像》跨越世代守护·不灭战士传奇", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥92,574"], "m2": "已购 345人 · 完成率 925%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3710"},{"n": "骇客潜行", "t": "🕵️ 《骇客潜行》你已接入深网核心·与超级AI无声战争", "m": "新物集 · 游戏巨人工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥81,545"], "m2": "已购 385人 · 完成率 815%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3800"},{"n": "海盗茶会", "t": "🏴‍☠️ 《海盗茶会》KS热销高颜值暖场轻策", "m": "新物集 · 向量文创 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥64,620"], "m2": "已购 260人 · 完成率 646%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3655"},{"n": "口袋铁盒", "t": "📦 口袋铁盒系列·女英雄+怪兽+农场经营+仙人掌", "m": "新物集 · 摇摆客 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥61,504"], "m2": "已购 296人 · 完成率 615%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3638"},{"n": "内侍", "t": "🏛️ 《内侍：收藏版》考验策略与运气的对决", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥38,979"], "m2": "已购 418人 · 完成率 389%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3749"},{"n": "先锋画派", "t": "🎨 《先锋画派》入门级DBG·玩转毕加索美学", "m": "新物集 · 乘风游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥33,259"], "m2": "已购 330人 · 完成率 332%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3516"},{"n": "圣家族大教堂", "t": "⛪ 圣家族大教堂-2026全球新版·中文首发", "m": "新物集 · 一刻馆桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥18,412"], "m2": "已购 74人 · 完成率 184%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3629"},{"n": "塞德莱茨", "t": "💀 《塞德莱茨拾骨人》捷克白骨教堂灵感卡牌", "m": "新物集 · 树豆工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥14,450"], "m2": "已购 145人 · 完成率 144%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3700"},{"n": "风云人物", "t": "👤 【补档】大师系列29号《风云人物》", "m": "新物集 · 帝企鹅桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥5,204"], "m2": "已购 8人 · 完成率 52%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3604"}]
-var OL=[{"n": "TM Legacy", "t": "<span class=\"en\">Terraforming Mars: Legacy of Mars</span><span class=\"cn\">火星：传承</span>", "m": "Stronghold Games · GF+KS", "p": "gf", "pl": "🎮 GF", "p2": "ks", "pl2": "📦 KS", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $3,080,513"], "m2": "豪华版 $249", "pg": 100, "l": "https://gamefound.com/en/projects/stronghold-games/terraforming-mars-the-legacy-of--mars", "ed": "2026-05-30"}, {"n": "Hitman", "t": "<span class=\"en\">Hitman: The Board Game</span><span class=\"cn\">杀手：桌游版</span>", "m": "MOOD Publishing · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €769,037"], "m2": "潜行暗杀改编", "pg": 100, "l": "https://gamefound.com/en/projects/mood-publishing/hitman-the-board-game", "ed": "2026-05-29"}, {"n": "Beast Ashfall", "t": "<span class=\"en\">Beast: Ashfall</span><span class=\"cn\">巨兽：灰烬陨落</span>", "m": "Studio Midhall · GF · 剩8天截止", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €345,730"], "m2": "不对称对抗续作", "pg": 100, "l": "https://gamefound.com/en/projects/studio-midhall/beast-ashfall", "ed": "2026-06-10"}, {"n": "Stonesaga", "t": "<span class=\"en\">Stonesaga Second Printing</span><span class=\"cn\">石之传奇：二印</span>", "m": "Open Owl Studios · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $108,733"], "m2": "8.7k关注 · 剩23天", "pg": 100, "l": "https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing", "ed": "2026-06-24"}, {"n": "VANEA", "t": "<span class=\"en\">VANEA: Guardians of the Eldertree</span><span class=\"cn\">古树守护者</span>", "m": "Forgotten Tales · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "奇幻童话 · 二印", "pg": 100, "l": "https://gamefound.com/en/projects/forgotten-tales/vanea-guardians-of-the-eldertree-relaunch", "ed": "2026-06-01"}, {"n": "Pasteles", "t": "<span class=\"en\">Pasteles & Conservas: Exotic Tides</span><span class=\"cn\">馅饼与罐头</span>", "m": "Salt & Pepper · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "趣味卡牌 · 美食主题", "pg": 50, "l": "https://gamefound.com/en/projects/saltandpepper/pasteles--conservas-exotic-tides", "ed": "2026-06-02"}];
+var OL=[{"n": "TM Legacy", "t": "<span class=\"en\">Terraforming Mars: Legacy of Mars</span><span class=\"cn\">火星：传承</span>", "m": "Stronghold Games · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $3,080,513"], "m2": "豪华版 $249", "pg": 100, "l": "https://gamefound.com/en/projects/stronghold-games/terraforming-mars-the-legacy-of--mars", "sd": "2026-05-16", "ed": "2026-05-30"}, {"n": "Hitman", "t": "<span class=\"en\">Hitman: The Board Game</span><span class=\"cn\">杀手：桌游版</span>", "m": "MOOD Publishing · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €769,037"], "m2": "潜行暗杀改编", "pg": 100, "l": "https://gamefound.com/en/projects/mood-publishing/hitman-the-board-game", "sd": "2026-05-15", "ed": "2026-05-29"}, {"n": "Beast Ashfall", "t": "<span class=\"en\">Beast: Ashfall</span><span class=\"cn\">巨兽：灰烬陨落</span>", "m": "Studio Midhall · GF · 剩8天截止", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €345,730"], "m2": "不对称对抗续作", "pg": 100, "l": "https://gamefound.com/en/projects/studio-midhall/beast-ashfall", "sd": "2026-05-27", "ed": "2026-06-10"}, {"n": "Stonesaga", "t": "<span class=\"en\">Stonesaga Second Printing</span><span class=\"cn\">石之传奇：二印</span>", "m": "Open Owl Studios · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $108,733"], "m2": "8.7k关注 · 剩23天", "pg": 100, "l": "https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing", "sd": "2026-06-01", "ed": "2026-06-24"}, {"n": "VANEA", "t": "<span class=\"en\">VANEA: Guardians of the Eldertree</span><span class=\"cn\">古树守护者</span>", "m": "Forgotten Tales · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "奇幻童话 · 二印", "pg": 100, "l": "https://gamefound.com/en/projects/forgotten-tales/vanea-guardians-of-the-eldertree-relaunch", "sd": "2026-05-18", "ed": "2026-06-01"}, {"n": "Pasteles", "t": "<span class=\"en\">Pasteles & Conservas: Exotic Tides</span><span class=\"cn\">馅饼与罐头</span>", "m": "Salt & Pepper · GF", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中"], "m2": "趣味卡牌 · 美食主题", "pg": 50, "l": "https://gamefound.com/en/projects/saltandpepper/pasteles--conservas-exotic-tides", "sd": "2026-05-19", "ed": "2026-06-02"}];
 var OU=[{"n": "Nemesis Legacy", "t": "<span class=\"en\">Nemesis Legacy</span><span class=\"cn\">复仇女神号：传承</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 43,129 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/nemesis-legacy"}, {"n": "Dead Harvest", "t": "<span class=\"en\">Agricola: Dead Harvest</span><span class=\"cn\">农场主：末日收割</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 33,639 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest"}, {"n": "Concordia SE", "t": "<span class=\"en\">Concordia Special Edition</span><span class=\"cn\">和睦罗马：特别版</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h", "u"], "tl": ["🔥 33,416 关注", "约6月10日"], "l": "https://gamefound.com/en/projects/awaken-realms/concordia-special-edition", "sd": "2026-06-10"}, {"n": "Dune KHE", "t": "<span class=\"en\">Dune: Kwisatz Haderach</span><span class=\"cn\">沙丘：魁萨兹版</span>", "m": "GF9 · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 27,300 关注"], "l": "https://gamefound.com/en/projects/gf9/dune"}, {"n": "Scoundrels", "t": "<span class=\"en\">Scoundrels</span><span class=\"cn\">恶棍密窟</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 16,944 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/scoundrels"}];
 var OP=[]
 var OTE=[{"d": "2026-06-02", "e": "⚠️ Pasteles & Conservas 今天截止"}, {"d": "2026-06-10", "e": "🎯 Concordia SE 预计上线 (GF)"}, {"d": "2026-06-24", "e": "⚠️ Stonesaga 二印 截止"}];
 
 
-var currentTab='n';
+var currentTab='n',uiState={},searchIndex=[],rankMode={domestic:'amount',overseas:'amount'},rankModalState={key:'domestic',mode:'amount',selected:'',showAll:false};
+var LAUNCH_DATES={
+  '阿克莱特':'2026-06-03T12:00',
+  '赛博朋克红':'2026-05-26T00:00',
+  '三国走走棋':'2026-05-06T19:00'
+};
 function escAttr(v){
   return String(v||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escHtml(v){
+  return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function stripHtml(v){
+  return String(v||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();
 }
 function imgTag(src,label){
   if(!src)return '';
@@ -314,8 +453,8 @@ function st(t){
     b.setAttribute('aria-selected',on?'true':'false');
   });
   if(t==='n')rn();
-  if(t==='d')renderTab('td',[].concat(DL).concat(DU),DP,DTE,'🇨🇳 国内');
-  if(t==='o')renderTab('to',[].concat(OL),OP,OTE,'🌍 海外');
+  if(t==='d')renderMarketTab('td',[].concat(DL).concat(DU),DP,DE,DTE,'🇨🇳 国内');
+  if(t==='o')renderMarketTab('to',[].concat(OL).concat(OU),OP,OL.filter(function(it){var ed=pd(it.ed);return ed&&ed<new Date()}),OTE,'🌍 海外');
 }
 
 function gi(nm){
@@ -328,72 +467,273 @@ function pd(s){if(!s)return null;var d=new Date(s);return isNaN(d.getTime())?nul
 function dd(a,b){return Math.round((b-a)/86400000)}
 function cds(t,n){if(!t)return'';var d=t-n;if(d<=0)return'已开始';var x=Math.floor(d/86400000),h=Math.floor((d%86400000)/3600000);return x>0?x+'天'+h+'小时':h+'小时'}
 function tdy(d){var n=new Date();return d&&d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()&&d.getDate()===n.getDate()}
+function keyOf(it){
+  return String(it.n||it.t||'project').replace(/[^\w\u4e00-\u9fff-]+/g,'_');
+}
+function numFromText(s){
+  var m=String(s||'').match(/([\d,.]+)\s*(万|k|K)?/);
+  if(!m)return 0;
+  var v=parseFloat(m[1].replace(/,/g,''));
+  if(!isFinite(v))return 0;
+  if(m[2]==='万')v*=10000;
+  if(m[2]&&m[2].toLowerCase()==='k')v*=1000;
+  return Math.round(v);
+}
+function amountOf(it){
+  var txt=[].concat(it.tl||[],it.m||'',it.m2||'',it.pr||'').join(' ');
+  var ms=txt.match(/[¥$€£]\s*([\d,]+)/g)||[];
+  if(!ms.length)return 0;
+  return Math.max.apply(null,ms.map(function(x){return numFromText(x)}));
+}
+function backersOf(it){
+  var txt=[].concat(it.tl||[],it.m||'',it.m2||'').join(' ');
+  var m=txt.match(/(?:支持者|已购)\s*([\d,]+)/)||txt.match(/([\d,]+)\s*人(?:支持|已购)/);
+  return m?numFromText(m[1]):0;
+}
+function followersOf(it){
+  var txt=[].concat(it.tl||[],it.m||'',it.m2||'').join(' ');
+  var m=txt.match(/([\d,.]+)\s*(万|k|K)?\s*(?:人)?(?:关注|预约|感兴趣)/);
+  return m?numFromText(m[1]+(m[2]||'')):0;
+}
+function launchDateRaw(it){return it.sd||LAUNCH_DATES[it.n]||''}
+function startDateOf(it){var raw=launchDateRaw(it);return pd(raw?String(raw).replace('T',' '):null)}
+function endDateOf(it){return pd(it.ed)}
+function isTodayStart(it){var sd=startDateOf(it);return !!(sd&&tdy(sd))}
+function isFunding(it,n){
+  var ed=endDateOf(it),sd=startDateOf(it);
+  if(it.ta&&it.ta.indexOf('l')>=0&&(!ed||ed>n))return true;
+  return !!(sd&&sd<=n&&(!ed||ed>n));
+}
+function isUpcoming(it,n){
+  var sd=startDateOf(it);
+  if(sd)return sd>n;
+  return !!(it.ta&&it.ta.indexOf('u')>=0&&!(it.ta&&it.ta.indexOf('l')>=0));
+}
+function isExpectation(it,n){
+  var sd=startDateOf(it);
+  if(sd)return sd>n;
+  return !isFunding(it,n)&&followersOf(it)>0;
+}
+function isEndedProject(it,n){
+  var ed=endDateOf(it);
+  return !!((ed&&ed<n)||/已结束|众筹成功/.test([it.m].concat(it.tl||[]).join(' ')));
+}
+function cleanTitle(it){return stripHtml(it.t||it.n||'项目')}
+function sortMetric(it,mode){
+  if(mode==='amount')return amountOf(it);
+  if(mode==='backers')return backersOf(it)||followersOf(it);
+  if(mode==='latest'){
+    var sd=startDateOf(it);
+    return (sd||new Date(0)).getTime();
+  }
+  return hotScore(it);
+}
+function hotScore(it){
+  var score=amountOf(it)/1000+backersOf(it)*2+followersOf(it);
+  if(it.ta&&it.ta.indexOf('h')>=0)score+=3000;
+  if(isTodayStart(it))score+=1000000;
+  var ed=endDateOf(it),n=new Date();
+  if(ed&&ed>n){var left=(ed-n)/86400000;if(left<=3)score+=9000;else if(left<=10)score+=3000}
+  var sd=startDateOf(it);
+  if(sd&&sd>n){var until=(sd-n)/86400000;if(until<=3)score+=6000}
+  return score;
+}
+function sortedItems(items,mode){
+  var arr=items.slice(0),n=new Date();
+  arr.sort(function(a,b){
+    if(isTodayStart(a)!==isTodayStart(b))return isTodayStart(b)-isTodayStart(a);
+    if(mode==='latest'){
+      var av=sortMetric(a,mode),bv=sortMetric(b,mode);
+      return bv-av;
+    }
+    return sortMetric(b,mode)-sortMetric(a,mode);
+  });
+  return arr;
+}
+var DESC={
+  '赛博朋克红':'经典赛博朋克 TRPG 的简体中文版，强调高风险任务、角色成长和浓烈的近未来叙事，适合喜欢跑团和世界观沉浸的玩家。',
+  '阿克莱特':'重度经济策略游戏，玩家经营棉纺工厂，从机器升级、工人管理、运输渠道到市场需求都要精打细算。它的魅力在于“工业革命不是背景板，而是每一轮现金流和扩张决策都在推着你往前走”。',
+  '幻色秘典':'卡牌对战项目，围绕套牌构筑和即时对抗展开，体量轻巧，适合想要快速开局又保留组合深度的玩家。',
+  '翠屿秘境':'米宝海豚引进的典藏版项目，主打岛屿探索与精致美术，适合关注桌面呈现和家庭向冒险氛围的玩家。',
+  '遥远之地':'《遥远之地》的扩展与补档项目，核心看点是轻量规则下的地图探索、资源取舍和清新的奇幻美术，适合想补全系列或寻找轻策略体验的玩家。',
+  'Crash第二季':'DBG 对战续作，围绕牌组成长、节奏压制和角色能力展开，适合喜欢快节奏对抗和组合爆发的玩家。',
+  '雾雨世界':'长篇冒险 PVE 剧情桌游，卖点是章节推进、角色养成与合作挑战，适合偏爱叙事战役和沉浸探索的玩家。',
+  '三国走走棋':'三国题材战棋扩展，强调棋盘走位、武将能力和对局博弈，适合已经喜欢本体并希望增加阵容变化的玩家。',
+  '马拉开波海盗':'《马拉开波》扩展项目，把航海路线、行动节奏和地图变化继续拉开，适合喜欢中重德式规划和多路线得分的玩家。',
+  'Beast Ashfall':'不对称对抗系列续作，一方操控巨兽潜行猎杀，另一方协作追踪围捕，适合喜欢心理博弈和强互动的玩家。',
+  'Stonesaga':'开放式冒险与部落成长题材，强调长期战役、探索和制作系统，适合喜欢叙事推进与持续养成的玩家。',
+  'Nemesis Legacy':'太空生存恐怖传承作品，保留半合作、危机管理和未知威胁的张力，适合喜欢剧情战役和强代入感的玩家。',
+  'Concordia SE':'经典经济路线建设游戏的特别版，核心是手牌管理、地图扩张和资源节奏，适合偏爱优雅德式系统的玩家。'
+};
+function descOf(it){
+  if(DESC[it.n])return DESC[it.n];
+  var title=cleanTitle(it),bits=[];
+  if(it.m)bits.push(stripHtml(it.m));
+  if(it.pr)bits.push(stripHtml(it.pr));
+  var base=bits.join(' · ');
+  if(!base)base='当前众筹信息持续更新中';
+  return title+'：'+base+'。适合关注题材、美术和众筹节点后再决定是否跟进的玩家。';
+}
+function progressInfo(it){
+  var n=new Date(),sd=startDateOf(it),ed=endDateOf(it);
+  if(isFunding(it,n)){
+    var pct=Math.max(0,Math.min(toFinite(it.pg)||0,9999));
+    if(!pct&&it.m2){
+      var m=String(it.m2).match(/完成率\s*([\d.]+)%/);
+      if(m)pct=parseFloat(m[1]);
+    }
+    var bar=Math.max(6,Math.min(pct,100));
+    return {bar:bar,label:pct?('完成率 '+Math.round(pct)+'%'):'众筹中'};
+  }
+  if(sd&&sd>n){
+    var days=Math.max(0,Math.ceil((sd-n)/86400000));
+    var bar=Math.max(6,Math.min(100,100-days*10));
+    return {bar:bar,label:days===0?'今日上线':days+'天后上线'};
+  }
+  if(ed&&ed<n)return {bar:100,label:'已结束'};
+  return null;
+}
+function toFinite(v){var n=parseFloat(v);return isFinite(n)?n:0}
+var RECENT_DELTA={
+  '赛博朋克红':{amount:4352,people:2},
+  '阿克莱特':{amount:14726,people:38},
+  '幻色秘典':{amount:808,people:2},
+  'Stonesaga':{amount:219,people:1},
+  'Beast Ashfall':{amount:0,people:0},
+  'Concordia SE':{followers:4969},
+  'TEND':{followers:0}
+};
+function deltaOf(it,mode){
+  var d=RECENT_DELTA[it.n]||{};
+  if(mode==='expect')return {followers:d.followers||0};
+  return {amount:d.amount||0,people:d.people||0};
+}
+function moneyLabel(n){
+  n=Number(n)||0;
+  if(!n)return '金额待同步';
+  return '+¥'+n.toLocaleString('zh-CN');
+}
+function peopleLabel(n){
+  n=Number(n)||0;
+  if(!n)return '人数待同步';
+  return '+'+n.toLocaleString('zh-CN')+'人';
+}
+function rulesBlock(it){
+  if(it.rules&&it.rules.length){
+    return '<div class="rules-slot"><strong>规则讲解</strong><br>'+it.rules.map(function(r){return '<a href="'+escAttr(r.url)+'" target="_blank" rel="noopener noreferrer">'+escHtml(r.title||'查看讲解')+'</a>'}).join(' · ')+'</div>';
+  }
+  return '';
+}
+function platformText(it){
+  var p=stripHtml(it.pl||'').replace(/^[^\u4e00-\u9fffA-Za-z0-9]+/,'').trim();
+  return p||stripHtml(it.m||'').split('·')[0].trim()||'平台';
+}
+function dateOnly(d){return d?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'):''}
+function monthDay(d){return d?(String(d.getMonth()+1)+'月'+String(d.getDate())+'日'):''}
+function cardMeta(it,n){
+  var p=platformText(it),sd=startDateOf(it),ed=endDateOf(it);
+  if(isFunding(it,n)&&ed)return p+' · 截止日期 '+dateOnly(ed);
+  if(sd&&sd>n)return p+' · '+monthDay(sd)+' 开售';
+  if(isEndedProject(it,n))return p+' · 已结束'+(ed?' '+dateOnly(ed):'');
+  return stripHtml(it.m||'');
+}
+function cleanCardLine(v){
+  return stripHtml(v||'').replace(/[·\s]*剩\d+天(?:\d+小时)?(?:截止)?/g,'').trim();
+}
 function rc(it){
   var im='',uv=gi(it.n);
   if(uv){im=imgTag(uv,it.n)}
   else if(it.i){im=imgTag(it.i,it.n)}
-  var bt='',bx='';
-  if(it.ta)it.ta.forEach(function(c,j){bt+='<span class="ctg '+c+'">'+(it.tl[j]||'')+'</span>'});
+  var bt='',bx='',n=new Date(),ed=pd(it.ed),sd=startDateOf(it),endedStatus=isEndedProject(it,new Date());
+  if(it.ta)it.ta.forEach(function(c,j){
+    var tag=it.tl[j]||'';
+    if(endedStatus&&(c==='l'||/众筹中/.test(tag)))return;
+    bt+='<span class="ctg '+c+'">'+tag+'</span>';
+  });
   if(it.p)bx+='<span class="p2 '+it.p+'">'+it.pl+'</span>';
   if(it.p2)bx+='<span class="p2 '+it.p2+'">'+it.pl2+'</span>';
-  var n=new Date(),cd='',ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
-  if(ed&&ed>n){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'</span>'}
+  var cd='';
+  if(ed&&ed>n&&!isFunding(it,n)){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'</span>'}
   if(sd&&sd>n)cd='<span style="color:var(--gold);font-weight:600;font-size:.75em">🔥 '+cds(sd,n)+'后开售</span>';
-  var pb=it.pg?'<div class="pb"><div class="pbf" style="width:'+Math.min(it.pg,100)+'%"></div></div>':'';
-  return extLink(it.l,'<div class="card"><div class="cr"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+it.t+'</div><div class="cm">'+it.m+'</div><div>'+bx+' '+bt+'</div>'+(it.m2?'<div class="cm" style="margin-top:2px">'+it.m2+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+it.pr+'</div>':'')+cd+pb+'</div></div></div>');
+  if(isTodayStart(it))bt+='<span class="today-badge">今日开始</span>';
+  var pi=progressInfo(it);
+  var pb=pi?'<div class="progress-row"><div class="pb"><div class="pbf" style="width:'+Math.min(pi.bar,100)+'%"></div></div><span class="progress-text">'+escHtml(pi.label)+'</span></div>':'';
+  var key=keyOf(it);
+  var cls='card';
+  if(isFunding(it,n))cls+=' funding-card';
+  else if(isUpcoming(it,n))cls+=' upcoming-card';
+  else if(isEndedProject(it,n))cls+=' ended-card';
+  var m2=cleanCardLine(it.m2);
+  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="ct">'+(it.t||escHtml(it.n))+'</div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'')+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+rulesBlock(it)+extLink(it.l,'查看众筹页面','detail-link')+'</div></article>';
 }
 function rp(items){
   var h='<div class="g3">';
   items.forEach(function(p){
     var im='';
     if(p.hi&&gi(p.ni)){im=imgTag(gi(p.ni),p.n)}
-    h+='<div class="mc">'+extLink(p.l,'<div class="mi">'+im+'</div><div class="mn">'+p.n+'</div><div class="mm">'+p.m+'</div>')+'</div>';
+    h+='<div class="mc" data-project-key="'+escAttr(keyOf(p))+'">'+extLink(p.l,'<div class="mi">'+im+'</div><div class="mn">'+escHtml(p.n)+'</div><div class="mm">'+escHtml(p.m||'')+'</div>')+'</div>';
   });
   return h+'</div>';
 }
 function rtl(events){
   var n=dt(),h='<div class="tl">';
-  events.forEach(function(e){
+  events.slice().sort(function(a,b){return String(b.d).localeCompare(String(a.d))}).forEach(function(e){
     var cls=e.d<n?'tli dn':e.d===n?'tli td':'tli';
     var lb=e.d===n?'📅 今天':e.d<n?'📅 '+e.d+' ✅':'📅 '+e.d;
     h+='<div class="'+cls+'"><div class="td">'+lb+'</div><div class="te">'+e.e+'</div></div>';
   });
   return h+'</div>';
 }
-function renderTab(id,items,pp,te,lb){
+function sectionState(key){
+  if(!uiState[key])uiState[key]={sort:'hot',open:false};
+  return uiState[key];
+}
+function sortControls(key){
+  var stt=sectionState(key),opts=[['hot','推荐'],['latest','最新'],['amount','金额'],['backers','人数']];
+  return '<div class="section-tools">'+opts.map(function(o){
+    return '<button type="button" class="sort-btn '+(stt.sort===o[0]?'active':'')+'" onclick="setSort(\''+key+'\',\''+o[0]+'\')">'+o[1]+'</button>';
+  }).join('')+'</div>';
+}
+function renderListSection(key,icon,title,items,limit){
+  var stt=sectionState(key),sorted=sortedItems(items,stt.sort),shown=stt.open?sorted:sorted.slice(0,limit);
+  var h='<div class="sec"><span>'+icon+'</span><h2>'+title+'</h2><span class="bc">'+items.length+'个项目</span></div>'+sortControls(key)+shown.map(rc).join('');
+  if(sorted.length>limit)h+='<button type="button" class="more-btn" onclick="toggleMore(\''+key+'\')">'+(stt.open?'收起':'查看更多 '+(sorted.length-limit)+' 个')+'</button>';
+  return h;
+}
+function renderPreviewSection(key,items){
+  var stt=sectionState(key),sorted=sortedItems(items,stt.sort),shown=stt.open?sorted:sorted.slice(0,6);
+  var h='<div class="sec"><span>📋</span><h2>预告项目</h2><span class="bc">共'+items.length+'个</span></div>'+sortControls(key)+rp(shown);
+  if(sorted.length>6)h+='<button type="button" class="more-btn" onclick="toggleMore(\''+key+'\')">'+(stt.open?'收起':'查看更多 '+(sorted.length-6)+' 个')+'</button>';
+  return h;
+}
+function renderMarketTab(id,items,pp,ended,te,lb){
   var n=new Date(),td=dt();
   var todayEnd=[],nowFunding=[],comingSoon=[];
   items.forEach(function(it){
-    var ed=pd(it.ed),sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
+    var ed=pd(it.ed),sd=startDateOf(it);
     if(ed&&tdy(ed)){todayEnd.push(it);return}
-    if(it.ta&&it.ta.indexOf('l')>=0&&(!ed||ed>n)){nowFunding.push(it);return}
-    if(sd&&sd>n){comingSoon.push(it)}
+    if(isFunding(it,n)){nowFunding.push(it);return}
+    if(isUpcoming(it,n)){comingSoon.push(it)}
   });
   todayEnd.sort(function(a,b){return(pd(a.ed)||0)-(pd(b.ed)||0)});
-  nowFunding.sort(function(a,b){var ea=pd(a.ed)?pd(a.ed).getTime():9e12,eb=pd(b.ed)?pd(b.ed).getTime():9e12;return ea-eb});
-  comingSoon.sort(function(a,b){return(pd(a.sd)||0)-(pd(b.sd)||0)});
   
   var h='';
   if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
-  h+='<div class="sec"><span>🎯</span><h2>正在众筹</h2><span class="bc">'+nowFunding.length+'个项目</span></div>';
-  h+=nowFunding.map(rc).join('');
-  if(comingSoon.length>0)h+='<div class="sec"><span>🔥</span><h2>即将上线</h2></div>'+comingSoon.map(rc).join('');
-  if(id==='td'&&DE.length>0)h+='<div class="sec"><span>✅</span><h2>已结束</h2><span class="bc">'+DE.length+'个项目</span></div>'+DE.map(rc).join('');
-  if(id==='td'){
-    h+='<div class="carousel"><div class="ch">🏆 编辑推荐 · 轮播广告</div><div class="cc">'+
-      '<div class="citem">'+imgTag('https://i.zhuoyou.com/uploads/202605/6551778637792260513.jpg','马拉开波海盗')+'</div>'+
-      '<div class="citem">'+imgTag('https://imgcdn.gamefound.com/og-image-fb/projects/8524/4229df90-5f26-4bc3-8518-578c936ad717.jpg','Nemesis Legacy')+'</div>'+
-      '<div class="citem">'+imgTag('https://imgcdn.gamefound.com/og-image-fb/projects/8525/7af1839e-5f94-44ed-af70-cafb70aaf66d.png','Concordia SE')+'</div>'+
-      '<div class="citem">'+imgTag('https://imgcdn.gamefound.com/og-image-fb/projects/5382/cadf17ee-f7fc-40b3-b1cb-a765d275e25e.jpg','Dead Harvest')+'</div>'+
-      '</div></div>';
-  }
-  h+='<div class="sec"><span>📋</span><h2>预告项目</h2><span class="bc">共'+pp.length+'个</span></div>'+rp(pp);
+  h+=renderListSection(id+'-active','🎯','正在众筹',nowFunding,5);
+  if(comingSoon.length>0)h+=renderListSection(id+'-upcoming','🔥','即将上线',comingSoon,3);
+  if(ended.length>0)h+=renderListSection(id+'-ended','✅','已结束',ended,3);
+  h+=renderPreviewSection(id+'-preview',pp);
   h+='<div class="sec"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(te);
   document.getElementById(id).innerHTML=h;
 }
 
-// 常驻广告位（有这些项时优先显示，不自动填满展示位）
-var PINNED = {}; // { '项目名': true } 标记常驻
+function setSort(key,sort){sectionState(key).sort=sort;st(currentTab)}
+function toggleMore(key){sectionState(key).open=!sectionState(key).open;st(currentTab)}
+function toggleCard(btn){
+  var card=btn.closest('.card');
+  if(!card)return;
+  card.classList.toggle('open');
+}
 
 function rn(){
   var td=dt(), n=new Date();
@@ -404,17 +744,15 @@ function rn(){
   document.getElementById('tn_content').innerHTML=h;
 }
 
-// 每日资讯新版：4个栏目各1个，带图，热度优先，不填满
 function buildDailyV2(funding,upcoming,ended,lb,td,n){
   var sections=[], im='';
   
-  // 1️⃣ 最近上线（刚开售的项目 — 从 upcoming 中找 sd<=today 最近的那个）
-  var justLaunched = upcoming.filter(function(it){
-    var sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
+  var justLaunched = funding.concat(upcoming).filter(function(it){
+    var sd=startDateOf(it);
     return sd&&sd<=n;
   });
   justLaunched.sort(function(a,b){
-    return pd(b.sd)-pd(a.sd); // 最新的在前
+    return startDateOf(b)-startDateOf(a);
   });
   if(justLaunched.length>0){
     var it=justLaunched[0],sd=pd(it.sd);
@@ -424,12 +762,11 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     sections.push({icon:'🆕',title:'最近上线',item:it,label:label,sub:label,img:im});
   }
   
-  // 2️⃣ 即将上线（最近一个 sd>today 的）
   var comingUp = upcoming.filter(function(it){
-    var sd=pd(it.sd?(it.sd.includes('T')?it.sd.replace('T',' '):it.sd):null);
+    var sd=startDateOf(it);
     return sd&&sd>n;
   });
-  comingUp.sort(function(a,b){return pd(a.sd)-pd(b.sd)});
+  comingUp.sort(function(a,b){return startDateOf(a)-startDateOf(b)});
   if(comingUp.length>0){
     var it=comingUp[0],sd=pd(it.sd);
     var d2=Math.round((sd-n)/86400000);
@@ -438,7 +775,6 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     sections.push({icon:'⏰',title:'即将上线',item:it,label:label,sub:cds(sd,n)+'后开售',img:im});
   }
   
-  // 3️⃣ 即将结束（众筹中离截止最近且>today的）
   var endingSoon = funding.filter(function(it){
     var ed=pd(it.ed);
     return ed&&ed>n;
@@ -451,57 +787,316 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
     im=imgTag(gi(it.n),it.n);
     sections.push({icon:'🔥',title:'即将结束',item:it,label:label,sub:cds(ed,n)+'后截止',img:im});
   }
-  
-  // 4️⃣ 每日热门榜（按金额排行的Top项目）
-  var hotItems = funding.slice(0); // 众筹中项目
-  hotItems.sort(function(a,b){
-    function getAmt(it){
-      var s='';
-      if(it.tl) it.tl.forEach(function(x){
-        if(x.indexOf('¥')>=0||x.indexOf('$')>=0||x.indexOf('€')>=0) s=x;
-      });
-      var m=s.match(/[¥$€]?([\d,]+)/);
-      return m?parseInt(m[1].replace(/,/g,'')):0;
-    }
-    return getAmt(b)-getAmt(a);
-  });
-  var top=hotItems[0];
-  if(top){
-    im=imgTag(gi(top.n),top.n);
-    var topAmt='',topLabel='';
-    if(top.tl) top.tl.forEach(function(x){
-      if(x.indexOf('¥')>=0||x.indexOf('$')>=0||x.indexOf('€')>=0||x.indexOf('£')>=0) topAmt=x.replace('🔥 ','');
-    });
-    var ed=pd(top.ed);
-    if(ed&&ed>n) topLabel='🔥 '+cds(ed,n)+'后截止';
-    else topLabel='🥇 众筹金额榜首';
-    sections.push({icon:'🏆',title:'众筹榜首',item:top,label:topLabel,sub:topAmt,img:im});
-  }
-  
-  // 构建UI
+
   var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+lb+' · '+td+'</span></div><div class="daily-cards">';
   sections.forEach(function(s){
     var it=s.item;
     h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.icon+' '+s.title+'</span></div><div class="dct">'+(it.t||it.n).replace(/<[^>]*>/g,'').substring(0,30)+'</div><div class="dcm">'+s.sub+'</div>','daily-card');
   });
-  // 不再补广告位
+  h+=dailyRankCard(funding,upcoming,n,lb);
   h+='</div></div>';
   return h;
 }
 
+function rankKeyFromLabel(lb){return lb.indexOf('国内')>=0?'domestic':'overseas'}
+function rankValue(it,mode){
+  if(mode==='amount')return amountOf(it);
+  return backersOf(it)||followersOf(it);
+}
+function rankValueText(it,mode){
+  if(mode==='amount')return ((it.tl||[]).filter(function(x){return /[¥$€£]/.test(x)})[0]||'金额待同步').replace('🔥 ','');
+  var v=backersOf(it)||followersOf(it);
+  return v?(v+'人'):'人数待同步';
+}
+function dailyRankCard(funding,upcoming,n,lb){
+  var key=rankKeyFromLabel(lb),mode=rankMode[key]||'amount';
+  var live=funding.filter(function(it){return isFunding(it,n)});
+  var expect=upcoming.filter(function(it){return isExpectation(it,n)});
+  var pool=mode==='amount'?(live.length>=3?live:funding):live.concat(expect);
+  var sorted=pool.slice().sort(function(a,b){return rankValue(b,mode)-rankValue(a,mode)}).slice(0,3);
+  var max=Math.max.apply(null,sorted.map(function(it){return rankValue(it,mode)}).concat([1]));
+  function row(it,i){
+    var value=rankValue(it,mode),pct=Math.max(8,Math.min(100,value/max*100));
+    var d=deltaOf(it,mode==='amount'?'amount':'expect');
+    var delta=mode==='amount'?(moneyLabel(d.amount)+' · '+peopleLabel(d.people)):(d.followers?peopleLabel(d.followers):'增长待同步');
+    return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(cleanTitle(it)).slice(0,10)+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div><div class="rank-delta">新增 '+escHtml(delta)+'</div></div>';
+  }
+  var rows=sorted.length?sorted.map(row).join(''):'<div class="rank-delta">暂无可展示项目</div>';
+  return '<div class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title">🏆 榜单 <span>点开详情</span></div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
+}
+
+function setRankMode(event,key,mode){
+  event.stopPropagation();
+  rankMode[key]=mode;
+  st('n');
+}
+function rankData(key){
+  var n=new Date();
+  if(key==='domestic'){
+    return {
+      title:'🇨🇳 国内详细榜单',
+      funding:DL.concat(DU).filter(function(it){return isFunding(it,n)}),
+      expect:DU.concat(DP).filter(function(it){return isExpectation(it,n)})
+    };
+  }
+  return {
+    title:'🌍 海外详细榜单',
+    funding:OL.concat(OU).filter(function(it){return isFunding(it,n)}),
+    expect:OU.concat(OP).filter(function(it){return isExpectation(it,n)})
+  };
+}
+function rankModalItems(data,mode){
+  var items=mode==='amount'?data.funding:data.funding.concat(data.expect);
+  return items.slice().filter(function(it){return rankValue(it,mode)>0}).sort(function(a,b){return rankValue(b,mode)-rankValue(a,mode)});
+}
+function rankDeltaText(it,mode){
+  var d=deltaOf(it,mode==='amount'?'amount':'expect');
+  return mode==='amount'?(moneyLabel(d.amount)+' · '+peopleLabel(d.people)):(d.followers?peopleLabel(d.followers):'增长待同步');
+}
+function growthSeries(it,mode){
+  var total=Math.max(rankValue(it,mode),1);
+  var start=startDateOf(it)||new Date(Date.now()-13*86400000);
+  var end=endDateOf(it);
+  var stop=end&&end<new Date()?end:new Date();
+  var days=Math.max(7,Math.min(14,Math.ceil((stop-start)/86400000)||7));
+  var d=deltaOf(it,mode==='amount'?'amount':'expect');
+  var recent=mode==='amount'?(d.amount||Math.round(total*.018)):(d.followers||d.people||Math.round(total*.025));
+  var values=[],base=Math.max(1,total-Math.max(recent*6,total*.18));
+  for(var i=0;i<days;i++){
+    var t=days===1?1:i/(days-1);
+    var eased=1-Math.pow(1-t,1.7);
+    var wave=Math.sin(i*1.4)*0.025*total;
+    var v=Math.round(base+(total-base)*eased+wave);
+    if(i===days-1)v=total;
+    values.push(Math.max(1,Math.min(total,v)));
+  }
+  return values;
+}
+function growthChartHtml(it,mode){
+  var vals=growthSeries(it,mode),w=320,h=132,p=16,min=Math.min.apply(null,vals),max=Math.max.apply(null,vals);
+  if(max===min){max=min+1}
+  var pts=vals.map(function(v,i){
+    var x=p+i*(w-p*2)/(vals.length-1),y=h-p-(v-min)*(h-p*2)/(max-min);
+    return [Math.round(x),Math.round(y)];
+  });
+  var poly=pts.map(function(p){return p[0]+','+p[1]}).join(' ');
+  var area=''+pts[0][0]+','+(h-p)+' '+poly+' '+pts[pts.length-1][0]+','+(h-p);
+  return '<div class="growth-title">'+escHtml(cleanTitle(it)).slice(0,18)+'</div><svg class="growth-chart" viewBox="0 0 '+w+' '+h+'" role="img" aria-label="每日增长曲线"><polygon points="'+area+'" fill="rgba(233,69,96,.12)" stroke="none"></polygon><polyline points="'+poly+'" fill="none" stroke="#e94560" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></polyline>'+pts.map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.2" fill="#d4a843"/>'}).join('')+'</svg><div class="growth-note">众筹期间每日增长曲线。当前用已同步数据生成趋势预览，接入每日抓取后会替换为真实每日记录。</div>';
+}
+function renderRankModal(){
+  var data=rankData(rankModalState.key),mode=rankModalState.mode;
+  var allItems=rankModalItems(data,mode);
+  var items=rankModalState.showAll?allItems:allItems.slice(0,7);
+  var selected=items.filter(function(it){return keyOf(it)===rankModalState.selected})[0];
+  var max=Math.max.apply(null,allItems.map(function(it){return rankValue(it,mode)}).concat([1]));
+  document.getElementById('rank_modal_title').textContent=data.title;
+  var h='<div class="rank-modal-tools"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankModalMode(\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankModalMode(\'people\')">人数</button></div>';
+  if(!allItems.length){document.getElementById('rank_modal_body').innerHTML=h+'<div style="color:var(--muted);font-size:12px">暂无数据</div>';return}
+  h+='<div class="rank-modal-list">'+items.map(function(it,i){
+    var active=selected&&keyOf(it)===keyOf(selected);
+    var pct=Math.max(6,Math.min(100,rankValue(it,mode)/max*100));
+    return '<div class="rank-row '+(active?'open':'')+'"><button type="button" class="rank-item '+(active?'active':'')+'" onclick="selectRankProject(\''+escAttr(keyOf(it))+'\')"><div class="rank-row-main"><div class="rank-no">'+(i+1)+'</div><div class="rank-thumb">'+imgTag(gi(it.n),it.n)+'</div><div class="rank-row-copy"><div class="rank-name">'+escHtml(cleanTitle(it))+'</div><div class="rank-meta">'+escHtml(rankValueText(it,mode))+' · 最近新增 '+escHtml(rankDeltaText(it,mode))+'</div></div><div class="rank-row-progress"><div class="mini-track"><div class="mini-fill" style="width:'+pct+'%"></div></div><span class="rank-meta">'+Math.round(pct)+'%</span></div></div></button><div class="rank-expand">'+(active?growthChartHtml(it,mode):'')+'</div></div>';
+  }).join('')+'</div>';
+  if(allItems.length>7)h+='<button type="button" class="rank-more" onclick="toggleRankMore()">'+(rankModalState.showAll?'收起榜单':'查看更多 '+(allItems.length-7)+' 个')+'</button>';
+  document.getElementById('rank_modal_body').innerHTML=h;
+}
+function setRankModalMode(mode){
+  rankModalState.mode=mode;
+  rankModalState.selected='';
+  rankModalState.showAll=false;
+  renderRankModal();
+}
+function selectRankProject(projectKey){
+  rankModalState.selected=rankModalState.selected===projectKey?'':projectKey;
+  renderRankModal();
+}
+function toggleRankMore(){
+  rankModalState.showAll=!rankModalState.showAll;
+  if(!rankModalState.showAll)rankModalState.selected='';
+  renderRankModal();
+}
+function openRankModal(key){
+  rankModalState.key=key;
+  rankModalState.mode=rankMode[key]||'amount';
+  rankModalState.selected='';
+  rankModalState.showAll=false;
+  renderRankModal();
+  document.getElementById('rank_modal').classList.add('open');
+}
+function closeRankModal(){document.getElementById('rank_modal').classList.remove('open')}
+
+function buildSearchIndex(){
+  searchIndex=[];
+  [['d',DL],['d',DU],['d',DE],['d',DP],['o',OL],['o',OU],['o',OP]].forEach(function(group){
+    group[1].forEach(function(it){
+      searchIndex.push({tab:group[0],key:keyOf(it),item:it,text:(cleanTitle(it)+' '+(it.n||'')+' '+(it.m||'')+' '+(it.m2||'')).toLowerCase()});
+    });
+  });
+}
+function onSearch(q){
+  var box=document.getElementById('search_results');
+  q=String(q||'').trim().toLowerCase();
+  if(!q){box.classList.remove('open');box.innerHTML='';return}
+  if(addProjectMode&&looksLikeUrl(q)){box.classList.remove('open');box.innerHTML='';return}
+  var rows=searchIndex.filter(function(r){return r.text.indexOf(q)>=0}).slice(0,8);
+  box.innerHTML=rows.map(function(r){
+    return '<button type="button" class="search-result" onclick="focusProject(\''+r.tab+'\',\''+escAttr(r.key)+'\')"><strong>'+escHtml(cleanTitle(r.item))+'</strong><span>'+escHtml(r.item.m||r.item.m2||'')+'</span></button>';
+  }).join('')||'<button type="button" class="search-result"><strong>没有找到匹配项目</strong><span>换个关键词试试</span></button>';
+  box.classList.add('open');
+}
+function searchKey(e){
+  if(e.key==='Escape'){document.getElementById('search_results').classList.remove('open');exitAddMode()}
+  if(e.key==='Enter'&&addProjectMode){e.preventDefault();submitSearchUrl()}
+}
+function focusProject(tab,key){
+  document.getElementById('search_results').classList.remove('open');
+  st(tab);
+  setTimeout(function(){
+    var el=document.querySelector('[data-project-key="'+CSS.escape(key)+'"]');
+    if(!el)return;
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.classList.add('highlight-card');
+    if(el.classList.contains('card'))el.classList.add('open');
+    setTimeout(function(){el.classList.remove('highlight-card')},1600);
+  },80);
+}
+
 // Initial render
+buildSearchIndex();
 st('n');
 setInterval(function(){st(currentTab)},600000);
 
+var addProjectMode=false;
+function enterAddMode(){
+  addProjectMode=true;
+  var wrap=document.getElementById('search_wrap'),input=document.getElementById('site_search'),btn=document.getElementById('add_game_btn');
+  wrap.classList.add('add-mode');
+  input.placeholder='粘贴众筹链接，按 Enter 或再点添加';
+  input.focus();
+  btn.textContent='添加';
+  toast('可以直接粘贴链接，按 Enter 提交');
+}
+function exitAddMode(){
+  addProjectMode=false;
+  var wrap=document.getElementById('search_wrap'),input=document.getElementById('site_search'),btn=document.getElementById('add_game_btn');
+  wrap.classList.remove('add-mode');
+  input.placeholder='搜索项目，或点右侧添加项目';
+  btn.textContent='+ 添加项目';
+}
+function handleAddProject(){
+  var input=document.getElementById('site_search');
+  if(!addProjectMode){enterAddMode();return}
+  if(looksLikeUrl(input.value)){submitSearchUrl();return}
+  input.focus();
+  toast('先粘贴众筹项目链接');
+}
+function openFeedbackModal(){document.getElementById('feedback_modal').classList.add('open');document.getElementById('feedback_text').focus()}
+function closeFeedbackModal(){document.getElementById('feedback_modal').classList.remove('open')}
+function storeLocal(key,item){
+  var rows=[];
+  try{rows=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}
+  rows.push(Object.assign({created_at:new Date().toISOString()},item));
+  localStorage.setItem(key,JSON.stringify(rows));
+}
+function postOrStore(url,key,payload,done){
+  fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){if(!r.ok)throw new Error('pending backend');return r.json().catch(function(){return {}})})
+    .then(function(){done(true)})
+    .catch(function(){storeLocal(key,payload);done(false)});
+}
+function looksLikeUrl(v){return /^https?:\/\/\S+$/i.test(String(v||'').trim())}
+function submitSearchUrl(){
+  var input=document.getElementById('site_search');
+  var url=input.value.trim();
+  if(!looksLikeUrl(url)){toast('把众筹项目链接粘贴到搜索框，再点 +');return}
+  var payload={url:url,source:'search_add'};
+  postOrStore('/api/project-submissions','pending_project_submissions',payload,function(sent){
+    input.value='';
+    exitAddMode();
+    document.getElementById('search_results').classList.remove('open');
+    toast(sent?'链接已提交，等待审核':'链接已暂存，后台接好后可同步审核');
+  });
+}
+function submitFeedback(){
+  var payload={
+    message:document.getElementById('feedback_text').value.trim(),
+    contact:document.getElementById('feedback_contact').value.trim()
+  };
+  if(!payload.message){toast('先写一点建议吧');return}
+  postOrStore('/api/feedback','pending_feedback',payload,function(sent){
+    closeFeedbackModal();
+    document.getElementById('feedback_text').value='';
+    document.getElementById('feedback_contact').value='';
+    toast(sent?'建议已提交':'建议已暂存，后台接好后可同步');
+  });
+}
+
 // ===== 分享 & 二维码 =====
-function doShare(){
-  var u=location.href, t='🎲 爱玩桌游club · 众筹资讯';
-  if(navigator.share){navigator.share({title:t,url:u}).catch(function(){})}
-  else{
-    var inp=document.createElement('input');
-    inp.value=u;document.body.appendChild(inp);inp.select();
-    document.execCommand('copy');document.body.removeChild(inp);
-    toast('✅ 链接已复制，快去分享给桌友吧！');
+function loadScriptOnce(src,globalName){
+  return new Promise(function(resolve,reject){
+    if(globalName&&window[globalName]){resolve();return}
+    var old=document.querySelector('script[src="'+src+'"]');
+    if(old){old.addEventListener('load',resolve);old.addEventListener('error',reject);return}
+    var s=document.createElement('script');
+    s.src=src;s.async=true;s.onload=resolve;s.onerror=reject;
+    document.head.appendChild(s);
+  });
+}
+function fallbackPoster(){
+  var c=document.createElement('canvas'),ctx=c.getContext('2d'),w=900,h=1200;
+  c.width=w;c.height=h;
+  ctx.fillStyle='#f5f5f7';ctx.fillRect(0,0,w,h);
+  ctx.fillStyle='#1d1d1f';ctx.font='700 54px sans-serif';ctx.fillText('爱玩桌游 众筹资讯',70,120);
+  ctx.fillStyle='#86868b';ctx.font='28px sans-serif';ctx.fillText('新物集 · 摩点 · Kickstarter · Gamefound',70,170);
+  ctx.fillStyle='#fff';roundRect(ctx,70,240,760,540,28);ctx.fill();
+  var names=[].concat(DL,OL).filter(function(it){return isFunding(it,new Date())}).slice(0,6);
+  ctx.fillStyle='#1d1d1f';ctx.font='700 34px sans-serif';ctx.fillText('当前热门项目',110,310);
+  ctx.font='28px sans-serif';
+  names.forEach(function(it,i){ctx.fillText((i+1)+'. '+cleanTitle(it).slice(0,22),110,370+i*58)});
+  ctx.fillStyle='#e94560';ctx.font='700 30px sans-serif';ctx.fillText('扫码访问 aiwanlands.com',110,890);
+  ctx.fillStyle='#1d1d1f';ctx.font='24px sans-serif';ctx.fillText('https://aiwanlands.com',110,940);
+  return c;
+}
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+}
+async function doShare(){
+  toast('正在截取当前画面...');
+  try{
+    await loadScriptOnce('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js','html2canvas');
+    var canvas=await html2canvas(document.body,{
+      backgroundColor:'#f5f5f7',
+      useCORS:true,
+      allowTaint:false,
+      scale:Math.min(2,window.devicePixelRatio||1.5),
+      x:window.scrollX,
+      y:window.scrollY,
+      width:window.innerWidth,
+      height:window.innerHeight,
+      windowWidth:window.innerWidth,
+      windowHeight:window.innerHeight,
+      scrollX:window.scrollX,
+      scrollY:window.scrollY
+    });
+    shareCanvas(canvas);
+    return;
+  }catch(e){
+    toast('当前页面截图失败，改用分享海报');
+  }
+  shareCanvas(fallbackPoster());
+}
+function shareCanvas(canvas){
+  canvas.toBlob(function(blob){if(blob)shareBlob(blob);else toast('截图生成失败')},'image/png',0.92);
+}
+async function shareBlob(blob){
+  var file=new File([blob],'爱玩桌游众筹资讯.png',{type:'image/png'});
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    try{await navigator.share({title:'爱玩桌游众筹资讯',files:[file]});toast('截图已唤起分享')}catch(e){}
+  }else{
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);a.download=file.name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href)},1000);
+    toast('截图已下载');
   }
 }
 function toast(msg){
@@ -534,9 +1129,22 @@ function genQR_fallback(){
     '<span>aiwanlands.com</span></a>';
 }
 // Load QR on hover
-var qrTimer;
-document.querySelector('.qr-btn').addEventListener('mouseenter',function(){clearTimeout(qrTimer);setTimeout(loadQR,200)});
-document.querySelector('.qr-wrap').addEventListener('click',function(e){if(!qrLoaded)loadQR()});
+loadQR();
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFeedbackModal();closeRankModal();exitAddMode()}});
+document.addEventListener('click',function(e){
+  var wrap=document.getElementById('search_wrap');
+  if(addProjectMode&&wrap&&!wrap.contains(e.target)){
+    exitAddMode();
+    document.getElementById('search_results').classList.remove('open');
+  }
+});
+function scrollTopPage(){window.scrollTo({top:0,behavior:'smooth'})}
+function syncBackTop(){
+  var btn=document.getElementById('back_top');
+  if(btn)btn.classList.toggle('show',window.scrollY>360);
+}
+window.addEventListener('scroll',syncBackTop,{passive:true});
+syncBackTop();
 
 </script>
 </body>

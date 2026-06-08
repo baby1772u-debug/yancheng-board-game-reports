@@ -62,7 +62,8 @@ header p{color:var(--muted);font-size:.85em}
 .card.upcoming-card .cr,.card.ended-card .cr{gap:12px}
 .cif{flex:1;min-width:0}
 .ct{font-size:.92em;font-weight:600;line-height:1.45}
-.ct .cn{font-size:.72em;color:var(--muted);font-weight:400;display:block}
+.ct .cn{font-size:.72em;color:var(--muted);font-weight:400;display:inline}
+.ct .title-tail{font-size:.86em;color:var(--muted);font-weight:500}
 .cm{font-size:.76em;color:var(--muted);margin-bottom:2px}
 .ctg{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.66em;margin-top:3px;margin-right:4px;font-weight:500}
 .ctg.h{background:#ffe8ec;color:#e94560}
@@ -173,6 +174,7 @@ footer a{color:var(--accent);text-decoration:none}
 .dciw-overlay{position:absolute;inset:0;background:linear-gradient(transparent 50%,rgba(0,0,0,.6))}
 .dciw-badge{position:absolute;bottom:4px;left:6px;font-size:.6em;font-weight:600;background:rgba(0,0,0,.55);padding:2px 7px;border-radius:4px;color:#fff;backdrop-filter:blur(2px)}
 .dct{padding:6px 8px 1px;font-size:.75em;font-weight:600;line-height:1.25;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dct .dcs-inline{font-size:.78em;color:rgba(255,255,255,.64);font-weight:500}
 .dcs{padding:0 8px 1px;font-size:.58em;line-height:1.2;color:rgba(255,255,255,.64);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dcm{padding:0 8px 1px;font-size:.62em;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dcv{padding:0 8px 8px;font-size:.6em;color:rgba(255,255,255,.86);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -204,15 +206,15 @@ footer a{color:var(--accent);text-decoration:none}
 .rank-thumb img{width:100%;height:100%;object-fit:cover}
 .rank-name{font-size:11px;font-weight:600;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rank-meta{font-size:10px;color:var(--muted);margin-top:1px}
-.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));min-height:100%;display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.daily-rank-card{padding:8px;background:linear-gradient(135deg,rgba(233,69,96,.18),rgba(212,168,67,.1));min-height:100%;display:flex;flex-direction:column;gap:5px;cursor:pointer}
 .daily-rank-title{font-size:10px;font-weight:700;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:space-between}
 .rank-toggle{display:inline-flex;gap:4px;margin-left:auto;background:rgba(255,255,255,.08);padding:2px;border-radius:999px}
 .rank-toggle button{border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.68);font-size:10px;padding:1px 6px;cursor:pointer}
 .rank-toggle button.active{background:#fff;color:#1d1d1f}
-.rank-bars{display:grid;gap:5px}
+.rank-bars{display:grid;gap:6px}
 .rank-bar-row{display:grid;gap:2px;align-items:center}
-.rank-bar-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;color:#fff;font-size:9px;font-weight:600;align-items:center}
-.rank-bar-head span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rank-bar-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;color:#fff;font-size:9px;font-weight:600;align-items:center;min-width:0}
+.rank-bar-head span{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;word-break:keep-all;overflow-wrap:normal}
 .rank-bar-head small{font-size:.92em;color:rgba(255,255,255,.62);font-weight:600;white-space:nowrap}
 .rank-bar-head{grid-column:1/-1}
 .rank-bar-track{height:4px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
@@ -224,9 +226,10 @@ footer a{color:var(--accent);text-decoration:none}
 .rank-modal-list{display:grid;gap:6px}
 .rank-modal-list .rank-item{cursor:pointer;width:100%;text-align:left}
 .rank-modal-list .rank-item.active{background:#fff4f6;border-color:rgba(233,69,96,.32)}
+.rank-row-copy .rank-meta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rank-row{background:#fafafa;border:1px solid rgba(0,0,0,.05);border-radius:12px;overflow:hidden}
 .rank-row .rank-item{background:transparent;border:0;border-radius:0}
-.rank-row-main{display:grid;grid-template-columns:auto 54px minmax(0,1fr);gap:8px;align-items:center;width:100%}
+.rank-row-main{display:grid;grid-template-columns:auto 54px minmax(0,1fr);gap:8px;align-items:center;width:100%;min-width:0}
 .rank-row-copy{min-width:0}
 .rank-row-progress{grid-column:2/4;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;margin-top:4px}
 .rank-row-progress .mini-track{height:6px}
@@ -445,11 +448,19 @@ function titleParts(it){
   var main=cleanDisplayName(en||rawMain);
   var sub=cn?cleanDisplayName(cn):'';
   if(!en&&it.n&&main.length>18)main=cleanDisplayName(it.n);
-  return {main:main||cleanDisplayName(it.n)||'项目',sub:sub};
+  return {main:main||cleanDisplayName(it.n)||'项目',sub:sub,foreign:!!en};
 }
 function titleHtml(it){
   var p=titleParts(it);
-  return escHtml(p.main)+(p.sub?'<span class="cn">'+escHtml(p.sub)+'</span>':'');
+  if(!p.sub)return escHtml(p.main);
+  if(p.foreign)return escHtml(p.main)+'<span class="cn"> / '+escHtml(p.sub)+'</span>';
+  return escHtml(p.main)+' <span class="title-tail">'+escHtml(p.sub)+'</span>';
+}
+function dailyTitleHtml(it){
+  var p=titleParts(it);
+  if(!p.sub)return escHtml(p.main);
+  if(p.foreign)return escHtml(p.main)+' <span class="dcs-inline">/ '+escHtml(p.sub)+'</span>';
+  return escHtml(p.main)+' '+escHtml(p.sub);
 }
 function imgTag(src,label){
   if(!src)return '';
@@ -538,6 +549,7 @@ function isEndedProject(it,n){
   return !!((ed&&ed<n)||/已结束|众筹成功/.test([it.m].concat(it.tl||[]).join(' ')));
 }
 function cleanTitle(it){return titleParts(it).main}
+function shortTitle(it){return cleanDisplayName(it.n||cleanTitle(it)||'项目')}
 function sortMetric(it,mode){
   if(mode==='amount')return amountOf(it);
   if(mode==='backers')return backersOf(it)||followersOf(it);
@@ -810,8 +822,7 @@ function buildDailyV2(funding,upcoming,ended,lb,td,n){
   var h='<div class="daily"><div class="dh">📰 每日资讯 <span class="sub">'+lb+' · '+td+'</span></div><div class="daily-cards">';
   sections.forEach(function(s){
     var it=s.item;
-    var p=titleParts(it);
-    h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.title+'</span></div><div class="dct">'+escHtml(p.main)+'</div>'+(p.sub?'<div class="dcs">'+escHtml(p.sub)+'</div>':'')+'<div class="dcm">'+escHtml(s.sub)+'</div><div class="dcv">'+escHtml(dailyMetricText(it,s.kind))+'</div>','daily-card');
+    h+=extLink(it.l,'<div class="dciw">'+s.img+'<div class="dciw-overlay"></div><span class="dciw-badge">'+s.title+'</span></div><div class="dct">'+dailyTitleHtml(it)+'</div><div class="dcm">'+escHtml(s.sub)+'</div><div class="dcv">'+escHtml(dailyMetricText(it,s.kind))+'</div>','daily-card');
   });
   h+=dailyRankCard(funding,upcoming,n,lb);
   h+='</div></div>';
@@ -848,7 +859,7 @@ function dailyRankCard(funding,upcoming,n,lb){
   var max=Math.max.apply(null,sorted.map(function(it){return rankValue(it,mode)}).concat([1]));
   function row(it,i){
     var value=rankValue(it,mode),pct=Math.max(8,Math.min(100,value/max*100));
-    return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(cleanTitle(it))+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div></div>';
+    return '<div class="rank-bar-row"><div class="rank-bar-head"><span>'+(i+1)+'. '+escHtml(shortTitle(it))+'</span><small>'+escHtml(rankValueText(it,mode))+'</small></div><div class="rank-bar-track"><div class="rank-bar-fill" style="width:'+pct+'%"></div></div></div>';
   }
   var rows=sorted.length?sorted.map(row).join(''):'<div class="rank-delta">暂无可展示项目</div>';
   return '<div class="daily-card daily-rank-card" onclick="openRankModal(\''+key+'\')" role="button" tabindex="0"><div class="daily-rank-title">榜单</div><div class="rank-toggle"><button type="button" class="'+(mode==='amount'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'amount\')">金额</button><button type="button" class="'+(mode==='people'?'active':'')+'" onclick="setRankMode(event,\''+key+'\',\'people\')">人数</button></div><div class="rank-bars">'+rows+'</div></div>';
@@ -924,7 +935,7 @@ function renderRankModal(){
   h+='<div class="rank-modal-list">'+items.map(function(it,i){
     var active=selected&&keyOf(it)===keyOf(selected);
     var pct=Math.max(6,Math.min(100,rankValue(it,mode)/max*100));
-    return '<div class="rank-row '+(active?'open':'')+'"><button type="button" class="rank-item '+(active?'active':'')+'" onclick="selectRankProject(\''+escAttr(keyOf(it))+'\')"><div class="rank-row-main"><div class="rank-no">'+(i+1)+'</div><div class="rank-thumb">'+imgTag(gi(it.n),it.n)+'</div><div class="rank-row-copy"><div class="rank-name">'+escHtml(cleanTitle(it))+'</div><div class="rank-meta">'+escHtml(rankValueText(it,mode))+' · 最近新增 '+escHtml(rankDeltaText(it,mode))+'</div></div><div class="rank-row-progress"><div class="mini-track"><div class="mini-fill" style="width:'+pct+'%"></div></div><span class="rank-meta">'+Math.round(pct)+'%</span></div></div></button><div class="rank-expand">'+(active?growthChartHtml(it,mode):'')+'</div></div>';
+    return '<div class="rank-row '+(active?'open':'')+'"><button type="button" class="rank-item '+(active?'active':'')+'" onclick="selectRankProject(\''+escAttr(keyOf(it))+'\')"><div class="rank-row-main"><div class="rank-no">'+(i+1)+'</div><div class="rank-thumb">'+imgTag(gi(it.n),it.n)+'</div><div class="rank-row-copy"><div class="rank-name">'+escHtml(shortTitle(it))+'</div><div class="rank-meta">'+escHtml(rankValueText(it,mode))+' · 最近新增 '+escHtml(rankDeltaText(it,mode))+'</div></div><div class="rank-row-progress"><div class="mini-track"><div class="mini-fill" style="width:'+pct+'%"></div></div><span class="rank-meta">'+Math.round(pct)+'%</span></div></div></button><div class="rank-expand">'+(active?growthChartHtml(it,mode):'')+'</div></div>';
   }).join('')+'</div>';
   if(allItems.length>7)h+='<button type="button" class="rank-more" onclick="toggleRankMore()">'+(rankModalState.showAll?'收起榜单':'查看更多 '+(allItems.length-7)+' 个')+'</button>';
   document.getElementById('rank_modal_body').innerHTML=h;

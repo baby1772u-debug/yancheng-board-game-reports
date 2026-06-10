@@ -81,6 +81,8 @@ header p{color:var(--muted);font-size:.85em}
 .p2.xwj{background:#ffe8ec;color:#e94560}
 .p2.md{background:#fff8e1;color:#b8860b}
 .today-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:99px;background:#e94560;color:#fff;font-size:.64em;font-weight:600;margin-left:4px}
+.tier-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.tier-pill{display:inline-flex;align-items:center;max-width:100%;padding:2px 8px;border-radius:999px;background:#fff8e1;color:#b8860b;font-size:.66em;font-weight:700;white-space:nowrap}
 .card-detail{display:none;padding:0 14px 14px;border-top:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,#fff,#fafafa)}
 .card.open .card-detail{display:block}
 .detail-copy{font-size:.82em;color:#3a3a3c;line-height:1.65;padding-top:10px}
@@ -113,6 +115,7 @@ header p{color:var(--muted);font-size:.85em}
 .mc .mi img{width:100%;height:100%;object-fit:cover;border-radius:8px}
 .mc .mn{font-size:.72em;font-weight:500;line-height:1.3;color:var(--text)}
 .mc .mm{font-size:.63em;color:var(--muted);margin-top:2px}
+.mc .preview-people{display:block;color:#86868b;font-weight:600;line-height:1.35;margin-top:3px}
 .mc a{color:inherit;text-decoration:none;display:block}
 .tl{position:relative;padding-left:22px}
 .tl::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:2px;background:linear-gradient(180deg,var(--accent),var(--gold))}
@@ -452,7 +455,7 @@ var im_阿克莱特="assets/covers/阿克莱特.jpg";
 var im_雾雨世界="assets/covers/雾雨世界.png";
 var im_马拉开波海盗="assets/covers/马拉开波海盗.jpg";
 
-var DL=[{"n": "赛博朋克红", "t": "🔴 赛博朋克红TRPG 简体中文版", "m": "摩点 · 剩15天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥2,746,757"], "m2": "支持者 2864人 · 完成率 27467%", "pr": "All-in合集 ¥1,088", "pg": 100, "l": "https://zhongchou.modian.com/item/155590.html", "sd": "2026-05-26T00:00", "ed": "2026-06-11"}, {"n": "幻色秘典", "t": "🎴 《幻色秘典》<span class=\"cn\">卡牌对战 · 向量文创</span>", "m": "新物集 · 剩27天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥108,391"], "m2": "已购 569人 · 完成率 1084%", "pr": "目标¥10,000", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3716", "ed": "2026-06-30"}, {"n": "遥远之地", "t": "🌌 《遥远之地2扩-星空之下》<span class=\"cn\">+环中物语补档 · 现货</span>", "m": "新物集 · 桌游星球 · 剩15天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["现货众筹", "🔥 已筹¥60,182"], "m2": "已购 811人 · 完成率 6018%", "pr": "目标¥1,000", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3928", "ed": "2026-06-18"}, {"n": "Crash第二季", "t": "💥 《Crash!》第二季 DBG对战续作", "m": "摩点 · 剩32天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥173,004"], "m2": "支持者 476人 · 完成率 1730%", "pr": "基础款 ¥148 / All-in ¥498", "pg": 100, "l": "https://zhongchou.modian.com/item/156469.html", "ed": "2026-06-29"}, {"n": "雾雨世界", "t": "🌫️ 《雾雨世界》长篇冒险PVE剧情桌游", "m": "摩点 · 剩31天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 149人 · 完成率 151%", "pr": "基础版 ¥258 / 豪华版 ¥628", "pg": 151, "l": "https://zhongchou.modian.com/item/156407.html", "ed": "2026-06-28"}, {"n": "三国走走棋", "t": "♟️ 《三国走走棋》扩展 第2弹", "m": "摩点 · 剩38天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥198,569"], "m2": "支持者 586人 · 完成率 1324%", "pr": "老将档 ¥186 / 少帅档 ¥339", "pg": 100, "l": "https://zhongchou.modian.com/item/156639.html", "sd": "2026-05-06T19:00", "ed": "2026-07-05"}, {"n": "阿克莱特", "t": "🏭 《阿克莱特》<span class=\"cn\">工业革命 · 重度经济策略 周年纪念版</span>", "m": "新物集 · 奇思工作室 · 剩13天截止", "p": "xwj", "pl": "🎯 新物集", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥331,932"], "m2": "已购 823人 · 完成率 3319%", "pr": "实业大亨 ¥398 / 资本巨擘 ¥408", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3922", "sd": "2026-06-03T12:00", "ed": "2026-06-16"}, {"n": "序章神话起源", "t": "⚔️ 《序章：神话起源》5E英雄进阶指南", "m": "摩点 · 罗丝妮 · 剩30天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥125,826"], "m2": "支持者 244人 · 完成率 1258%", "pr": "收藏ALLIN ¥678", "pg": 100, "l": "https://zhongchou.modian.com/item/155488.html", "ed": "2026-07-08"}, {"n": "魔戒圣战卡牌扩充", "t": "💍 魔戒圣战卡牌游戏三个扩充捆绑", "m": "摩点 · Planplay · 剩2天截止 ⚠️", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥98,162"], "m2": "支持者 245人 · 完成率 163%", "pr": "三个扩充 ¥398", "pg": 100, "l": "https://zhongchou.modian.com/item/157315.html", "ed": "2026-06-10"}, {"n": "神鬼警探赌城风云", "t": "🔫 《神鬼警探：赌城风云》SOLO美式卡牌冒险", "m": "摩点 · 三角猫 · 剩29天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 200人 · 完成率 263%", "pr": "标准版 ¥112", "pg": 100, "l": "https://zhongchou.modian.com/item/157244.html", "ed": "2026-07-07"}, {"n": "梅林的坩埚2", "t": "🧪 《梅林的坩埚2》炼金续作 独立/联动双玩法", "m": "摩点 · BigTouch · 剩46天截止", "p": "md", "pl": "💎 摩点", "ta": ["l"], "tl": ["众筹中"], "m2": "支持者 84人 · 完成率 131%", "pr": "基扩档 ¥178", "pg": 100, "l": "https://zhongchou.modian.com/item/156885.html", "ed": "2026-07-24"}, {"n": "十二军团黄金理想乡", "t": "♠️ 【十二军团 黄金的理想乡】热门对战卡牌", "m": "摩点 · 凯多老师 · 剩57天截止", "p": "md", "pl": "💎 摩点", "ta": ["l", "h"], "tl": ["众筹中", "🔥 已筹¥365,563"], "m2": "支持者 412人 · 完成率 3655%", "pr": "六阵营预组 ¥268", "pg": 100, "l": "https://zhongchou.modian.com/item/157664.html", "ed": "2026-08-04"}];
+var DL=[{"n":"赛博朋克红","t":"🔴 赛博朋克红TRPG 简体中文版","m":"摩点 · 剩15天截止","p":"md","pl":"💎 摩点","ta":["l","h"],"tl":["众筹中","🔥 已筹¥2,950,767"],"m2":"支持者 3069人 · 完成率 29508%","pr":"All-in合集 ¥1,088","pg":100,"l":"https://zhongchou.modian.com/item/155590.html","sd":"2026-05-26T00:00","ed":"2026-06-11"},{"n":"幻色秘典","t":"🎴 《幻色秘典》<span class=\"cn\">卡牌对战 · 向量文创</span>","m":"新物集 · 剩27天截止","p":"xwj","pl":"🎯 新物集","ta":["l","h"],"tl":["众筹中","🔥 已筹¥110,199"],"m2":"已购 576人 · 完成率 1102%","pr":"目标¥10,000","pg":100,"l":"https://shop.zhuoyou.com/share/project.html?project_id=3716","ed":"2026-06-30"},{"n":"遥远之地","t":"🌌 《遥远之地2扩-星空之下》<span class=\"cn\">+环中物语补档 · 现货</span>","m":"新物集 · 桌游星球 · 剩15天截止","p":"xwj","pl":"🎯 新物集","ta":["l","h"],"tl":["现货众筹","🔥 已筹¥60,909"],"m2":"已购 823人 · 完成率 6091%","pr":"目标¥1,000","pg":100,"l":"https://shop.zhuoyou.com/share/project.html?project_id=3928","ed":"2026-06-18"},{"n":"Crash第二季","t":"💥 《Crash!》第二季 DBG对战续作","m":"摩点 · 剩32天截止","p":"md","pl":"💎 摩点","ta":["l","h"],"tl":["众筹中","🔥 已筹¥176,264"],"m2":"支持者 486人 · 完成率 1763%","pr":"基础款 ¥148 / All-in ¥498","pg":100,"l":"https://zhongchou.modian.com/item/156469.html","ed":"2026-06-29"},{"n":"雾雨世界","t":"🌫️ 《雾雨世界》长篇冒险PVE剧情桌游","m":"摩点 · 剩31天截止","p":"md","pl":"💎 摩点","ta":["l"],"tl":["众筹中","🔥 已筹¥77,926"],"m2":"支持者 154人 · 完成率 156%","pr":"基础版 ¥258 / 豪华版 ¥628","pg":100,"l":"https://zhongchou.modian.com/item/156407.html","ed":"2026-06-28"},{"n":"三国走走棋","t":"♟️ 《三国走走棋》扩展 第2弹","m":"摩点 · 剩38天截止","p":"md","pl":"💎 摩点","ta":["l","h"],"tl":["众筹中","🔥 已筹¥201,954"],"m2":"支持者 596人 · 完成率 1346%","pr":"老将档 ¥186 / 少帅档 ¥339","pg":100,"l":"https://zhongchou.modian.com/item/156639.html","sd":"2026-05-06T19:00","ed":"2026-07-05"},{"n":"阿克莱特","t":"🏭 《阿克莱特》<span class=\"cn\">工业革命 · 重度经济策略 周年纪念版</span>","m":"新物集 · 奇思工作室 · 剩13天截止","p":"xwj","pl":"🎯 新物集","ta":["l","h"],"tl":["众筹中","🔥 已筹¥372,946"],"m2":"已购 923人 · 完成率 3729%","pr":"实业大亨 ¥398 / 资本巨擘 ¥408","pg":100,"l":"https://shop.zhuoyou.com/share/project.html?project_id=3922","sd":"2026-06-03T12:00","ed":"2026-06-16"},{"n":"序章神话起源","t":"⚔️ 《序章：神话起源》5E英雄进阶指南","m":"摩点 · 罗丝妮 · 剩30天截止","p":"md","pl":"💎 摩点","ta":["l","h"],"tl":["众筹中","🔥 已筹¥125,826"],"m2":"支持者 244人","pr":"收藏ALLIN ¥678","pg":100,"l":"https://zhongchou.modian.com/item/155488.html","ed":"2026-07-08"},{"n":"魔戒圣战卡牌扩充","t":"💍 魔戒圣战卡牌游戏三个扩充捆绑","m":"摩点 · Planplay · 剩2天截止 ⚠️","p":"md","pl":"💎 摩点","ta":["l","h"],"tl":["众筹中","🔥 已筹¥98,122"],"m2":"支持者 244人","pr":"三个扩充 ¥398","pg":100,"l":"https://zhongchou.modian.com/item/157315.html","ed":"2026-06-10"},{"n":"神鬼警探赌城风云","t":"🔫 《神鬼警探：赌城风云》SOLO美式卡牌冒险","m":"摩点 · 三角猫 · 剩29天截止","p":"md","pl":"💎 摩点","ta":["l"],"tl":["众筹中","🔥 已筹¥31,742"],"m2":"支持者 201人","pr":"标准版 ¥112","pg":100,"l":"https://zhongchou.modian.com/item/157244.html","ed":"2026-07-07"},{"n":"梅林的坩埚2","t":"🧪 《梅林的坩埚2》炼金续作 独立/联动双玩法","m":"摩点 · BigTouch · 剩46天截止","p":"md","pl":"💎 摩点","ta":["l"],"tl":["众筹中","🔥 已筹¥26,533"],"m2":"支持者 84人","pr":"基扩档 ¥178","pg":100,"l":"https://zhongchou.modian.com/item/156885.html","ed":"2026-07-24"},{"n":"十二军团黄金理想乡","t":"♠️ 【十二军团 黄金的理想乡】热门对战卡牌","m":"摩点 · 凯多老师 · 剩57天截止","p":"md","pl":"💎 摩点","ta":["l","h"],"tl":["众筹中","🔥 已筹¥377,293"],"m2":"支持者 421人","pr":"六阵营预组 ¥268","pg":100,"l":"https://zhongchou.modian.com/item/157664.html","ed":"2026-08-04"}];
 var im_翠屿秘境="assets/covers/翠屿秘境.jpg";
 var im_蓝色方案="assets/covers/蓝色方案.jpg";
 var im_神怪异闻录="assets/covers/神怪异闻录.jpg";
@@ -470,26 +473,103 @@ var DU=[{"n": "马拉开波海盗", "t": "🏆 《马拉开波海盗：百慕大
 var DP=[{"n": "常影之地", "m": "新物集 · 预热中", "l": "https://www.xinwuji.com/pc/#/detail/4001779782300260526", "ni": "常影之地", "hi": true}, {"n": "卡内基", "t": "🏭 卡内基KS豪华版重印简中版", "m": "新物集 · 帝企鹅桌游 · 1,427人感兴趣", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3937", "ni": "卡内基", "hi": true}, {"n": "TEND", "t": "🌿 TEND 我在外星种菠萝", "m": "新物集 · 满意桌游 · 2,186人感兴趣", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3880", "ni": "TEND", "hi": true}, {"n": "猎人纪元1492", "t": "🏹 《猎人纪元1492》第二版+新扩《边境之地》", "m": "新物集 · 白帝圣剑桌游 · 1,958人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3571", "ni": "猎人纪元1492", "hi": true}, {"n": "雅姿艺术", "t": "🎨 KS爆火的新艺术主题桌游《雅姿艺术》", "m": "新物集 · 林带秋 · 1,421人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3635", "ni": "雅姿艺术", "hi": true}, {"n": "卡里普索", "t": "🌊 《卡里普索——大洪水时代》", "m": "新物集 · 白帝圣剑桌游 · 1,252人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3647", "ni": "卡里普索", "hi": true}, {"n": "普利策奖", "t": "📰 《普利策奖》重返美国调查记者黄金年代", "m": "新物集 · 夜航船桌游 · 1,065人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3696", "ni": "普利策奖", "hi": true}, {"n": "月球方舟", "t": "🚀 《月球方舟》从月球出发，目标是星辰大海", "m": "新物集 · 桌游星球 · 870人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3327", "ni": "月球方舟", "hi": true}, {"n": "转运熊猫", "t": "🐼 《转运熊猫》创世发明设计师新作·跑得快玩法", "m": "新物集 · 米宝海豚 · 834人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3340", "ni": "转运熊猫", "hi": true}, {"n": "萨满莽林", "t": "🔮 《萨满：莽林》从荒野到灵魂世界的通灵之旅", "m": "新物集 · 侧舷游戏 · 625人预约 🔥", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3925", "ni": "萨满莽林", "hi": true}, {"n": "迷雾地牢", "t": "🏰 《迷雾地牢》", "m": "新物集 · 浩瀚星辰 · 264人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3888", "ni": "迷雾地牢", "hi": true}, {"n": "盘古黎明", "t": "🌄 《盘古黎明》唯美创世自然主题", "m": "新物集 · 向量文创 · 227人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3926", "ni": "盘古黎明", "hi": true}, {"n": "营地惊魂", "t": "🏕️ 露营有危险，天黑别抬头！——营地惊魂", "m": "新物集 · 摇摆客 · 19人预约", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3941", "ni": "营地惊魂", "hi": true}, {"n": "丰收第二版", "t": "🐭 丰收 第二版—精美简单有深度的动物主题工放桌游", "m": "新物集 · 夜航船桌游 · 186人感兴趣", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3972", "ni": "丰收第二版", "hi": true}, {"n": "蜂鸟", "t": "🐦 把握时机，赌上记忆——时间感知桌游《蜂鸟》震撼来袭", "m": "新物集 · 游戏巨人工作室 · 195人感兴趣", "l": "https://shop.zhuoyou.com/share/project.html?project_id=3970", "ni": "蜂鸟", "hi": true}, {"n": "神怪异闻录", "t": "👺 神怪异闻录丨超160张原创插画构筑的神怪狩猎冒险之战", "m": "摩点 · 栢龙玩具 · 6月9日开售", "l": "https://zhongchou.modian.com/item/157311.html", "ni": "神怪异闻录", "hi": true}, {"n": "蚀教追猎", "t": "🐙 克苏鲁合作战役桌游《蚀教追猎》", "m": "摩点 · 彼望黑 · 6月12日开售", "l": "https://zhongchou.modian.com/item/156979.html", "ni": "蚀教追猎", "hi": true}, {"n": "但丁神曲5E战役集", "t": "🔥 但丁神曲5E战役集带你亲历地狱", "m": "摩点 · 三局两胜工作室 · 6月15日开售", "l": "https://zhongchou.modian.com/item/157676.html", "ni": "但丁神曲5E战役集", "hi": true}, {"n": "雾行纪祈愿之歌", "t": "⚔️ 雾行纪：祈愿之歌—爽快对抗类MOBA游戏", "m": "摩点 · 妙趣创弈 · 6月24日开售", "l": "https://zhongchou.modian.com/item/157568.html", "ni": "雾行纪祈愿之歌", "hi": true}, {"n": "洪流Flood", "m": "树豆工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "洪流Flood", "hi": true}, {"n": "The Last of Blood", "m": "我是Joker · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "The Last of Blood", "hi": true}, {"n": "苏丝", "m": "Modxumer · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "苏丝", "hi": true}, {"n": "地缝探险", "m": "壹顺工作室 · 预热中", "l": "https://www.xinwuji.com/pc/#/allItem", "ni": "地缝探险", "hi": true}]
 var DTE=[{"d": "2026-05-12", "e": "🏯 明治维新：财阀 KS顶配版 众筹结束 ✅（¥567,211）"}, {"d": "2026-06-01", "e": "⚔️ 无双对决 传奇之战第三卷 众筹结束 ✅（¥221,443）"}, {"d": "2026-06-03", "e": "🎯 马拉开波海盗 + 阿克莱特 新物集开售 ✅"}, {"d": "2026-06-05", "e": "🌌 万境奇旅重印 众筹截止 ✅（¥541,470）"}, {"d": "2026-06-08", "e": "🌴 翠屿秘境传奇典藏版 新物集开售"}, {"d": "2026-06-09", "e": "👺 神怪异闻录 摩点开售"}, {"d": "2026-06-10", "e": "🎯 《蓝色方案》OCS兵棋 新物集开售 ⚠️ 魔戒圣战卡牌扩充 摩点截止"}, {"d": "2026-06-11", "e": "🔴 赛博朋克红TRPG 众筹截止"}, {"d": "2026-06-12", "e": "🚢 《基尔 运河新章》新物集开售"}, {"d": "2026-06-16", "e": "⚠️ 阿克莱特 众筹截止"}, {"d": "2026-06-18", "e": "🌌 遥远之地2扩 众筹截止"}, {"d": "2026-06-28", "e": "🌫️ 雾雨世界 众筹截止"}, {"d": "2026-06-29", "e": "💥 Crash!第二季 众筹截止"}, {"d": "2026-06-30", "e": "🎴 幻色秘典 众筹截止"}, {"d": "2026-07-05", "e": "♟️ 三国走走棋扩展 众筹截止"}];
 var DE=[{"n": "永世侵入奥德赛", "t": "🌊 《永世侵入奥德赛》终章 BGG9.6宿命之海", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥5,939,857"], "m2": "已购 2668人 · 完成率 59398%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3506"},{"n": "大图书馆", "t": "📚 《大图书馆》&《地下酒吧》重印预售", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥2,707,432"], "m2": "已购 2645人 · 完成率 27074%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3663"},{"n": "血色牌局", "t": "🃏 小丑牌+德州！《血色牌局》求生赌局", "m": "新物集 · 小狮子桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥2,528,972"], "m2": "已购 9168人 · 完成率 25289%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3566"},{"n": "潜行者", "t": "☢️ 《潜行者：桌面游戏》探索切尔诺贝利", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥1,539,906"], "m2": "已购 779人 · 完成率 15399%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3458"},{"n": "海底都市", "t": "🌊 《海底都市：中文大盒版》BGG#50策略游戏", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥1,494,903"], "m2": "已购 2485人 · 完成率 14949%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3777"},{"n": "Onward", "t": "⚔️ 《Onward》MOBA桌面游戏集大成之作", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥805,836"], "m2": "已购 919人 · 完成率 8058%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3740"},{"n": "仙境幽谷", "t": "🧚 《仙境幽谷：银霜国度》BGG8.2系列最佳", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥763,231"], "m2": "已购 1730人 · 完成率 7632%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3637"},{"n": "角斗士", "t": "⚔️ 《角斗士：胜者荣耀》利刃划破神障", "m": "新物集 · 山海桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥718,676"], "m2": "已购 455人 · 完成率 7186%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3547"},{"n": "遗落之境", "t": "🚂 《遗落之境-阿特拉斯铁路》易上手顶级策略博弈", "m": "新物集 · 桌游星球 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥718,436"], "m2": "已购 819人 · 完成率 7184%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3660"},{"n": "星战起义", "t": "⭐ 星球大战：起义军 2016金极客最佳双人", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥588,129"], "m2": "已购 948人 · 完成率 5881%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3735"},{"n": "万境奇旅", "t": "🌌 万境奇旅——超自由开放式沙盒桌游", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥534,818"], "m2": "已购 996人 · 完成率 5348%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3542"},{"n": "葡萄酒庄园", "t": "🍷 《葡萄酒庄园：精华版》波尔多新扩+重印", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥461,199"], "m2": "已购 1010人 · 完成率 4611%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3755"},{"n": "制琴师", "t": "🎻 《制琴师：豪华版》品鉴乐器制作之美", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥450,944"], "m2": "已购 883人 · 完成率 4509%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3563"},{"n": "无双对决猎魔人", "t": "⚔️ 《无双对决：The Witcher》系列", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥440,246"], "m2": "已购 734人 · 完成率 4402%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3664"},{"n": "请君入坑", "t": "🕳️ 《请君入坑》BGG8.6神创意对决游戏", "m": "新物集 · 原石桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥316,811"], "m2": "已购 642人 · 完成率 3168%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3780"},{"n": "无序之战", "t": "✏️ 《无序之战》纸笔重策天花板·涂写英伦内战", "m": "新物集 · 桌游星球 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥316,162"], "m2": "已购 742人 · 完成率 3161%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3718"},{"n": "1888华东", "t": "🚂 《1888华东》&《1862》《1888华北》重印", "m": "新物集 · 原石兵棋 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥310,625"], "m2": "已购 604人 · 完成率 3106%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3830"},{"n": "追忆寻踪", "t": "🔍 《追忆寻踪》黎明新生原班人马·埃森爆款新作", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥309,044"], "m2": "已购 780人 · 完成率 3090%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3522"},{"n": "双侠小队", "t": "🦸 《双侠小队》见招拆招的新颖自走棋", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥305,052"], "m2": "已购 2220人 · 完成率 3050%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3665"},{"n": "木材", "t": "🪵 《木材》博弈度和代入感拉满的长线规划重德", "m": "新物集 · 飞鱼桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥286,399"], "m2": "已购 905人 · 完成率 2863%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3627"},{"n": "泰拉瑞亚", "t": "⛏️ 《泰拉瑞亚：桌面游戏》合作·沙盒·建造", "m": "新物集 · 原石桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥279,826"], "m2": "已购 549人 · 完成率 2798%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3646"},{"n": "英雄止步", "t": "🔥 《英雄止步》全新扩展·红红火火过大年", "m": "新物集 · 树豆工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥266,535"], "m2": "已购 807人 · 完成率 2665%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3619"},{"n": "国家公园", "t": "🏞️ 《国家公园》第二版·全新美术赏析自然绝景", "m": "新物集 · 米宝海豚 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥263,616"], "m2": "已购 788人 · 完成率 2636%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3792"},{"n": "沙丘天下", "t": "🏜️ 《沙丘》补档&《天下》埃森爆款中国风德式", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥235,741"], "m2": "已购 377人 · 完成率 2357%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3745"},{"n": "运河时代", "t": "🚤 《运河时代》规划构建奥拉宁堡运河网络", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥222,429"], "m2": "已购 717人 · 完成率 2224%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3728"},{"n": "奋进号", "t": "⛵ 《奋进号》团队中策新作·拯救世界操作指南", "m": "新物集 · 夜航船桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥213,288"], "m2": "已购 518人 · 完成率 2132%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3579"},{"n": "永恒之城", "t": "🏛️ 《永恒之城》领导氏族重写七丘之城辉煌", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥208,843"], "m2": "已购 1158人 · 完成率 2088%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3538"},{"n": "斯大林格勒42", "t": "💥 《斯大林格勒'42》钢铁与废墟中的生死会战", "m": "新物集 · 原石兵棋 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥199,821"], "m2": "已购 522人 · 完成率 1998%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3609"},{"n": "果阿", "t": "🛳️ 《果阿》大师系列30号·经典游戏回归", "m": "新物集 · 帝企鹅桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥197,549"], "m2": "已购 246人 · 完成率 1975%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3412"},{"n": "三角机构", "t": "🔺 三角机构：打卡上班拯救世界·艾尼奖三满贯", "m": "新物集 · 三局两胜工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥194,740"], "m2": "已购 343人 · 完成率 1947%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3541"},{"n": "夜肥", "t": "💩 《夜肥》演绎都铎王朝下的别样\"搬屎\"区控", "m": "新物集 · 乘风游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥191,646"], "m2": "已购 817人 · 完成率 1916%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3601"},{"n": "星弧航记", "t": "🌌 《星弧航记：衰变星域》BGG9分重磅扩展", "m": "新物集 · 满意桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥164,994"], "m2": "已购 215人 · 完成率 1649%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3598"},{"n": "最后一百码", "t": "🎯 《最后一百码》东线战场·经典二战战术兵棋", "m": "新物集 · 原石兵棋 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥140,774"], "m2": "已购 430人 · 完成率 1407%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3727"},{"n": "骰子镇", "t": "🎲 《骰子镇》经典回归·美式西部骰子博弈撕逼神器", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥133,326"], "m2": "已购 290人 · 完成率 1333%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3607"},{"n": "淘金大镖客", "t": "🤠 《淘金大镖客》重返西部淘金热", "m": "新物集 · 浩瀚星辰 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥124,788"], "m2": "已购 391人 · 完成率 1247%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3525"},{"n": "天顶星宇", "t": "🌌 《天顶星宇》SDJ黑标/金极客提名BGG高分", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥122,952"], "m2": "已购 588人 · 完成率 1229%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3784"},{"n": "林业", "t": "🌲 《林业》把森林搬上桌，还原真实林业全链路", "m": "新物集 · 乘风游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥105,304"], "m2": "已购 313人 · 完成率 1053%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3732"},{"n": "幽魂与巨像", "t": "👻 《幽魂与巨像》跨越世代守护·不灭战士传奇", "m": "新物集 · 游人码头 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥92,574"], "m2": "已购 345人 · 完成率 925%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3710"},{"n": "骇客潜行", "t": "🕵️ 《骇客潜行》你已接入深网核心·与超级AI无声战争", "m": "新物集 · 游戏巨人工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥81,545"], "m2": "已购 385人 · 完成率 815%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3800"},{"n": "海盗茶会", "t": "🏴‍☠️ 《海盗茶会》KS热销高颜值暖场轻策", "m": "新物集 · 向量文创 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥64,620"], "m2": "已购 260人 · 完成率 646%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3655"},{"n": "口袋铁盒", "t": "📦 口袋铁盒系列·女英雄+怪兽+农场经营+仙人掌", "m": "新物集 · 摇摆客 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥61,504"], "m2": "已购 296人 · 完成率 615%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3638"},{"n": "内侍", "t": "🏛️ 《内侍：收藏版》考验策略与运气的对决", "m": "新物集 · 奇思工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥38,979"], "m2": "已购 418人 · 完成率 389%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3749"},{"n": "先锋画派", "t": "🎨 《先锋画派》入门级DBG·玩转毕加索美学", "m": "新物集 · 乘风游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥33,259"], "m2": "已购 330人 · 完成率 332%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3516"},{"n": "圣家族大教堂", "t": "⛪ 圣家族大教堂-2026全球新版·中文首发", "m": "新物集 · 一刻馆桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥18,412"], "m2": "已购 74人 · 完成率 184%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3629"},{"n": "塞德莱茨", "t": "💀 《塞德莱茨拾骨人》捷克白骨教堂灵感卡牌", "m": "新物集 · 树豆工作室 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥14,450"], "m2": "已购 145人 · 完成率 144%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3700"},{"n": "风云人物", "t": "👤 【补档】大师系列29号《风云人物》", "m": "新物集 · 帝企鹅桌游 · 已结束", "p": "xwj", "pl": "🎯 新物集", "ta": ["h"], "tl": ["✅ 众筹成功", "🔥 ¥5,204"], "m2": "已购 8人 · 完成率 52%", "pg": 100, "l": "https://shop.zhuoyou.com/share/project.html?project_id=3604"}]
-var OL=[{"n": "Beast_Ashfall", "t": "<span class=\"en\">Beast: Ashfall</span><span class=\"cn\">巨兽：灰烬陨落</span>", "m": "Studio Midhall · GF · ⚠️剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 €345,730"], "m2": "不对称对抗续作 · 3.1k关注", "pg": 100, "l": "https://gamefound.com/en/projects/studio-midhall/beast-ashfall", "sd": "2026-05-27", "ed": "2026-06-10"}, {"n": "Stonesaga", "t": "<span class=\"en\">Stonesaga Second Printing</span><span class=\"cn\">石之传奇：二印</span>", "m": "Open Owl Studios · GF · 剩16天", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $108,733"], "m2": "8.7k关注 · 剩16天", "pg": 100, "l": "https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing", "sd": "2026-06-01", "ed": "2026-06-24"}, {"n": "bloodstone", "t": "<span class=\"en\">Bloodstone</span><span class=\"cn\">血石竞技</span>", "m": "Druid City Games · GF · 剩11天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 $121,294"], "m2": "竞技场搏杀 · 621人支持", "pg": 100, "l": "https://gamefound.com/en/projects/druid-city-games/bloodstone", "sd": "2026-06-05", "ed": "2026-06-19"}, {"n": "archvillain-encounters", "t": "<span class=\"en\">Archvillain Encounters: Death & Beyond</span><span class=\"cn\">恶人遭遇：死亡彼岸</span>", "m": "Archvillain Games · GF · ⚠️剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 $630,204"], "m2": "D&D遭遇箱 · 1,854人支持", "pg": 100, "l": "https://gamefound.com/en/projects/archvillain-games/archvillain-encounters-death--beyond", "sd": "2026-05-23", "ed": "2026-06-10"}, {"n": "caverns-reforged", "t": "<span class=\"en\">Caverns Reforged</span><span class=\"cn\">洞穴重铸</span>", "m": "Dwarven Forge · GF · ⚠️剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 $683,842"], "m2": "手绘地形 · 620人支持", "pg": 100, "l": "https://gamefound.com/en/projects/dwarven-forge/caverns-reforged", "sd": "2026-05-22", "ed": "2026-06-10"}, {"n": "agricola-special", "t": "<span class=\"en\">Agricola Special Edition</span><span class=\"cn\">农场主：特别版</span>", "m": "Awaken Realms · GF · ⚠️PM关闭剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 €8,415,368"], "m2": "终极收藏版 · 27,944人支持", "pg": 100, "l": "https://gamefound.com/en/projects/awaken-realms/agricola-special-edition", "sd": "2026-04-28", "ed": "2026-06-10"}];
-var OU=[{"n": "aeons-end-overload", "t": "<span class=\"en\">Aeon's End: System Overload</span><span class=\"cn\">Aeon's End 系统超载</span>", "m": "Indie Boards and Cards · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["即将上线"], "l": "https://gamefound.com/en/projects/indie-boards-and-cards/aeons-end-system-overload"}, {"n": "narcos", "t": "<span class=\"en\">NARCOS</span><span class=\"cn\">毒枭</span>", "m": "Smartup Games · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["即将上线"], "l": "https://gamefound.com/en/projects/smartup/narcos"}, {"n": "entropy", "t": "<span class=\"en\">Entropy</span><span class=\"cn\">熵</span>", "m": "Board&Dice · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/board-and-dice/entropy"}, {"n": "kingdom-duels", "t": "<span class=\"en\">Kingdom Duels</span><span class=\"cn\">王国对决</span>", "m": "Edoardo F. · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/edoardo-f-kingdom-duels-developer/kingdom-duels"}, {"n": "lotr-ascension", "t": "<span class=\"en\">The Lord of the Rings: Ascension</span><span class=\"cn\">魔戒：升阶</span>", "m": "Stone Blade · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["预告"], "l": "https://gamefound.com/en/projects/stoneblade/the-lord-of-the-rings-ascension"}, {"n": "shivermetimbers", "t": "<span class=\"en\">SHIVER ME TIMBERS (Reprint+Exp)</span><span class=\"cn\">海盗船再版+扩</span>", "m": "Michal Vitkovsky · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/michal_vitkovsky/shivermetimbers"}, {"n": "stonefall", "t": "<span class=\"en\">Stonefall</span><span class=\"cn\">石落</span>", "m": "Gabe Barrett · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/gabe-barrett/stonefall-solo-game-of-the-month"}, {"n": "incarnation", "t": "<span class=\"en\">Incarnation</span><span class=\"cn\">化身</span>", "m": "Monolith Board Games · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/monolith-board-games-sarl/incarnation"}, {"n": "wroth-wreck", "t": "<span class=\"en\">Wreck (A Wroth Standalone Exp)</span><span class=\"cn\">Wreck Wroth自扩</span>", "m": "Chip Theory Games · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/chip-theory-games/wroth-reprint--wreck-expansion"}, {"n": "fondazione", "t": "<span class=\"en\">FOUNDATION - Isaac Asimov</span><span class=\"cn\">基地</span>", "m": "Creardo · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["预告"], "l": "https://gamefound.com/en/projects/creardo/fondazione"}, {"n": "black-rose-wars", "t": "<span class=\"en\">Black Rose Wars: Resonance</span><span class=\"cn\">黑玫瑰战争：共鸣</span>", "m": "Teburu · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/xplored/black-rose-wars-resonance"}, {"n": "Nemesis_Legacy", "t": "<span class=\"en\">Nemesis Legacy</span><span class=\"cn\">复仇女神号：传承</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 43,129 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/nemesis-legacy"}, {"n": "Dead_Harvest", "t": "<span class=\"en\">Agricola: Dead Harvest</span><span class=\"cn\">农场主：末日收割</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 33,639 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest"}, {"n": "Concordia_SE", "t": "<span class=\"en\">Concordia Special Edition</span><span class=\"cn\">和睦罗马：特别版</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h", "u"], "tl": ["🔥 33,416 关注", "约6月10日"], "l": "https://gamefound.com/en/projects/awaken-realms/concordia-special-edition", "sd": "2026-06-10"}, {"n": "Dune_KHE", "t": "<span class=\"en\">Dune: Kwisatz Haderach</span><span class=\"cn\">沙丘：魁萨兹版</span>", "m": "GF9 · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 27,300 关注"], "l": "https://gamefound.com/en/projects/gf9/dune"}, {"n": "Scoundrels", "t": "<span class=\"en\">Scoundrels</span><span class=\"cn\">恶棍密窟</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 16,944 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/scoundrels"}];
-var OP=[]
+var OL=[{"n": "Stonesaga", "t": "<span class=\"en\">Stonesaga Second Printing</span><span class=\"cn\">石之传奇：二印</span>", "m": "Open Owl Studios · GF · 剩16天", "p": "gf", "pl": "🎮 GF", "ta": ["l", "h"], "tl": ["众筹中", "🔥 $177,704"], "m2": "8.7k关注 · 起售€8", "pg": 100, "l": "https://gamefound.com/en/projects/oomm-games/stonesaga-second-printing", "sd": "2026-06-01", "ed": "2026-06-24"}, {"n": "bloodstone", "t": "<span class=\"en\">Bloodstone</span><span class=\"cn\">血石竞技</span>", "m": "Druid City Games · GF · 剩11天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 $121,294"], "m2": "竞技场搏杀 · 起售€30", "pg": 100, "l": "https://gamefound.com/en/projects/druid-city-games/bloodstone", "sd": "2026-06-05", "ed": "2026-06-19"}, {"n": "archvillain-encounters", "t": "<span class=\"en\">Archvillain Encounters: Death & Beyond</span><span class=\"cn\">恶人遭遇：死亡彼岸</span>", "m": "Archvillain Games · GF · ⚠️剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 $630,204"], "m2": "D&D遭遇箱 · 起售€110", "pg": 100, "l": "https://gamefound.com/en/projects/archvillain-games/archvillain-encounters-death--beyond", "sd": "2026-05-23", "ed": "2026-06-10"}, {"n": "caverns-reforged", "t": "<span class=\"en\">Caverns Reforged</span><span class=\"cn\">洞穴重铸</span>", "m": "Dwarven Forge · GF · ⚠️剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 $683,842"], "m2": "手绘地形 · 起售€285", "pg": 100, "l": "https://gamefound.com/en/projects/dwarven-forge/caverns-reforged", "sd": "2026-05-22", "ed": "2026-06-10"}, {"n": "agricola-special", "t": "<span class=\"en\">Agricola Special Edition</span><span class=\"cn\">农场主：特别版</span>", "m": "Awaken Realms · GF · ⚠️PM关闭剩2天", "p": "gf", "pl": "🎮 GF", "ta": ["l"], "tl": ["众筹中", "🔥 €8,415,368"], "m2": "终极收藏版 · 起售€25", "pg": 100, "l": "https://gamefound.com/en/projects/awaken-realms/agricola-special-edition", "sd": "2026-04-28", "ed": "2026-06-10"}];
+var OU=[{"n": "aeons-end-overload", "t": "<span class=\"en\">Aeon's End: System Overload</span><span class=\"cn\">Aeon's End 系统超载</span>", "m": "Indie Boards and Cards · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["即将上线"], "l": "https://gamefound.com/en/projects/indie-boards-and-cards/aeons-end-system-overload"}, {"n": "narcos", "t": "<span class=\"en\">NARCOS</span><span class=\"cn\">毒枭</span>", "m": "Smartup Games · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["即将上线"], "l": "https://gamefound.com/en/projects/smartup/narcos"}, {"n": "entropy", "t": "<span class=\"en\">Entropy</span><span class=\"cn\">熵</span>", "m": "Board&Dice · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/board-and-dice/entropy"}, {"n": "kingdom-duels", "t": "<span class=\"en\">Kingdom Duels</span><span class=\"cn\">王国对决</span>", "m": "Edoardo F. · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/edoardo-f-kingdom-duels-developer/kingdom-duels"}, {"n": "lotr-ascension", "t": "<span class=\"en\">The Lord of the Rings: Ascension</span><span class=\"cn\">魔戒：升阶</span>", "m": "Stone Blade · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["预告"], "l": "https://gamefound.com/en/projects/stoneblade/the-lord-of-the-rings-ascension"}, {"n": "shivermetimbers", "t": "<span class=\"en\">SHIVER ME TIMBERS (Reprint+Exp)</span><span class=\"cn\">海盗船再版+扩</span>", "m": "Michal Vitkovsky · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/michal_vitkovsky/shivermetimbers"}, {"n": "stonefall", "t": "<span class=\"en\">Stonefall</span><span class=\"cn\">石落</span>", "m": "Gabe Barrett · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/gabe-barrett/stonefall-solo-game-of-the-month"}, {"n": "incarnation", "t": "<span class=\"en\">Incarnation</span><span class=\"cn\">化身</span>", "m": "Monolith Board Games · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/monolith-board-games-sarl/incarnation"}, {"n": "wroth-wreck", "t": "<span class=\"en\">Wreck (A Wroth Standalone Exp)</span><span class=\"cn\">Wreck Wroth自扩</span>", "m": "Chip Theory Games · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/chip-theory-games/wroth-reprint--wreck-expansion"}, {"n": "fondazione", "t": "<span class=\"en\">FOUNDATION - Isaac Asimov</span><span class=\"cn\">基地</span>", "m": "Creardo · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["预告"], "l": "https://gamefound.com/en/projects/creardo/fondazione"}, {"n": "black-rose-wars", "t": "<span class=\"en\">Black Rose Wars: Resonance</span><span class=\"cn\">黑玫瑰战争：共鸣</span>", "m": "Teburu · GF", "p": "gf", "pl": "🎮 GF", "ta": [], "tl": ["预告"], "l": "https://gamefound.com/en/projects/xplored/black-rose-wars-resonance"}, {"n": "Nemesis_Legacy", "t": "<span class=\"en\">Nemesis Legacy</span><span class=\"cn\">复仇女神号：传承</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 43,129 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/nemesis-legacy"}, {"n": "Dead_Harvest", "t": "<span class=\"en\">Agricola: Dead Harvest</span><span class=\"cn\">农场主：末日收割</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 33,639 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/agricola-dead-harvest"}, {"n": "Concordia_SE", "t": "<span class=\"en\">Concordia Special Edition</span><span class=\"cn\">和睦罗马：特别版</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h", "u"], "tl": ["🔥 33,416 关注", "约6月10日"], "l": "https://gamefound.com/en/projects/awaken-realms/concordia-special-edition", "sd": "2026-06-10"}, {"n": "Dune_KHE", "t": "<span class=\"en\">Dune: Kwisatz Haderach</span><span class=\"cn\">沙丘：魁萨兹版</span>", "m": "GF9 · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 27,300 关注"], "l": "https://gamefound.com/en/projects/gf9/dune"}, {"n": "Scoundrels", "t": "<span class=\"en\">Scoundrels</span><span class=\"cn\">恶棍密窟</span>", "m": "Awaken Realms · GF", "p": "gf", "pl": "🎮 GF", "ta": ["h"], "tl": ["🔥 16,944 关注"], "l": "https://gamefound.com/en/projects/awaken-realms/scoundrels"}, {
+    "n": "drunagor-aftermath",
+    "t": "<span class=\"en\">Chronicles of Drunagor: Aftermath</span><span class=\"cn\">龙之纪：余波</span>",
+    "m": "WeAreCGS · GF",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": [],
+    "tl": ["预告"],
+    "l": "https://gamefound.com/en/projects/wearecgs/chronicles-of-drunagor-aftermath"
+  }];
+var OP=[
+  {
+    "n": "lands-of-evershade",
+    "t": "<span class=\"en\">Lands of Evershade</span><span class=\"cn\">永影之地</span>",
+    "m": "Awaken Realms · GF · 已结束",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": ["h"],
+    "tl": ["✅ 已结束"],
+    "l": "https://gamefound.com/en/projects/awaken-realms/lands-of-evershade"
+  },
+  {
+    "n": "brass-pittsburgh",
+    "t": "<span class=\"en\">Brass: Pittsburgh</span><span class=\"cn\">工业革命：匹兹堡</span>",
+    "m": "Roxley Games · GF · 已结束",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": ["h"],
+    "tl": ["✅ 已结束"],
+    "l": "https://gamefound.com/en/projects/roxley/brass-pittsburgh"
+  },
+  {
+    "n": "elder-scrolls-tamriel",
+    "t": "<span class=\"en\">The Elder Scrolls: Heroes of Tamriel</span><span class=\"cn\">上古卷轴：泰姆瑞尔英雄</span>",
+    "m": "Chip Theory Games · GF · 已结束",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": ["h"],
+    "tl": ["✅ 已结束"],
+    "l": "https://gamefound.com/en/projects/chip-theory-games/the-elder-scrolls-heroes-of-tamriel"
+  },
+  {
+    "n": "here-to-slay-dungeons",
+    "t": "<span class=\"en\">Here to Slay: Dungeons</span><span class=\"cn\">来互相伤害：地下城</span>",
+    "m": "Unstable Games · GF · 已结束",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": ["h"],
+    "tl": ["✅ 已结束"],
+    "l": "https://gamefound.com/en/projects/unstable-games/here-to-slay-dungeons"
+  },
+  {
+    "n": "ronins-revenge",
+    "t": "<span class=\"en\">Ronin's Revenge</span><span class=\"cn\">浪人的复仇</span>",
+    "m": "Dragori Games · GF · 已结束",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": ["h"],
+    "tl": ["✅ 已结束"],
+    "l": "https://gamefound.com/en/projects/dragori-games/ronins-revenge"
+  },
+  {
+    "n": "dead-men-tales",
+    "t": "<span class=\"en\">Dead Men Tales</span><span class=\"cn\">亡灵传说</span>",
+    "m": "Asmodee · GF · 已结束",
+    "p": "gf",
+    "pl": "🎮 GF",
+    "ta": ["h"],
+    "tl": ["✅ 已结束"],
+    "l": "https://gamefound.com/en/projects/asmodee/dead-men-tales"
+  }
+]
+
+var im_lands_of_evershade="assets/covers/lands-of-evershade.jpg";
+var im_brass_pittsburgh="assets/covers/brass-pittsburgh.jpg";
+var im_elder_scrolls_tamriel="assets/covers/elder-scrolls-tamriel.jpg";
+var im_here_to_slay_dungeons="assets/covers/here-to-slay-dungeons.jpg";
+var im_ronins_revenge="assets/covers/ronins-revenge.jpg";
+var im_dead_men_tales="assets/covers/dead-men-tales.jpg";
 var OTE=[{"d": "2026-06-10", "e": "🎯 Concordia SE 预计上线 (GF)"}, {"d": "2026-06-10", "e": "⚠️ Archvillain Encounters 截止 (GF)"}, {"d": "2026-06-10", "e": "⚠️ Caverns Reforged 截止 (GF)"}, {"d": "2026-06-10", "e": "⚠️ Beast Ashfall 截止 (GF)"}, {"d": "2026-06-10", "e": "⚠️ Agricola SE PM关闭 (GF)"}, {"d": "2026-06-19", "e": "⚠️ Bloodstone 截止 (GF)"}, {"d": "2026-06-24", "e": "⚠️ Stonesaga 二印 截止"}];
 var im_bloodstone="assets/covers/bloodstone.jpg";
-var im_archvillain-encounters="assets/covers/archvillain-encounters.png";
-var im_caverns-reforged="assets/covers/caverns-reforged.jpg";
-var im_agricola-special="assets/covers/agricola-special.jpg";
-var im_aeons-end-overload="assets/covers/aeons-end-overload.jpg";
+var im_archvillain_encounters="assets/covers/archvillain-encounters.png";
+var im_caverns_reforged="assets/covers/caverns-reforged.jpg";
+var im_agricola_special="assets/covers/agricola-special.jpg";
+var im_aeons_end_overload="assets/covers/aeons-end-overload.jpg";
 var im_narcos="assets/covers/narcos.jpg";
 var im_entropy="assets/covers/entropy.jpg";
-var im_kingdom-duels="assets/covers/kingdom-duels.png";
-var im_lotr-ascension="assets/covers/lotr-ascension.png";
+var im_kingdom_duels="assets/covers/kingdom-duels.png";
+var im_lotr_ascension="assets/covers/lotr-ascension.png";
 var im_stonefall="assets/covers/stonefall.png";
 var im_incarnation="assets/covers/incarnation.png";
-var im_wroth-wreck="assets/covers/wroth-wreck.png";
+var im_wroth_wreck="assets/covers/wroth-wreck.png";
 var im_fondazione="assets/covers/fondazione.jpg";
-var im_black-rose-wars="assets/covers/black-rose-wars.png";
-var im_nemesis-legacy="assets/covers/nemesis-legacy.jpg";
-var im_drunagor-aftermath="assets/covers/drunagor-aftermath.png";
+var im_black_rose_wars="assets/covers/black-rose-wars.png";
+var im_nemesis_legacy="assets/covers/nemesis-legacy.jpg";
+var im_drunagor_aftermath="assets/covers/drunagor-aftermath.png";
 var im_shivermetimbers="assets/covers/shivermetimbers.jpg";
 
 
@@ -538,7 +618,9 @@ function dailyTitleHtml(it){
 }
 function imgTag(src,label){
   if(!src)return '';
-  return '<img src="'+escAttr(src)+'" alt="'+escAttr(label||'项目封面')+'" loading="eager" decoding="async" onerror="this.style.display=\'none\'">';
+  var url=String(src);
+  if(/^assets\/covers\//.test(url)&&url.indexOf('?')<0)url+='?v=coverfix20260609';
+  return '<img src="'+escAttr(url)+'" alt="'+escAttr(label||'项目封面')+'" loading="eager" decoding="async" onerror="this.style.display=\'none\'">';
 }
 function extLink(url,content,cls){
   return '<a class="'+escAttr(cls||'cl')+'" href="'+escAttr(url)+'" target="_blank" rel="noopener noreferrer">'+content+'</a>';
@@ -558,13 +640,153 @@ function st(t){
   });
   if(t==='n')rn();
   if(t==='d')renderMarketTab('td',[].concat(DL).concat(DU),DP,DE,DTE,'🇨🇳 国内');
-  if(t==='o')renderMarketTab('to',[].concat(OL).concat(OU),OP,OL.filter(function(it){var ed=pd(it.ed);return ed&&ed<new Date()}),OTE,'🌍 海外');
+  if(t==='o'){loadOverseasTab();return;}
+}
+
+// GF API 海外数据（实时数据覆盖全局 OL/OU）
+var _gfOverseasFunding=[], _gfOverseasUpcoming=[];
+var _gfCache={data:null,ts:0};
+function loadOverseasTab(){
+  var el=document.getElementById('to');
+  el.innerHTML='<div class="sec"><span>🌍</span><h2>正在从GF API获取项目数据...</h2></div><div style="text-align:center;padding:40px;color:#999">请稍候</div>';
+
+  // 检查缓存（1 分钟内有效）
+  var now=Date.now();
+  if(_gfCache.data&&(now-_gfCache.ts)<60000){
+    renderOverseasFromApi(_gfCache.data);
+    return;
+  }
+
+  var xhr=new XMLHttpRequest();
+  xhr.open('GET','/api/gf-active-projects',true);
+  xhr.onload=function(){
+    if(xhr.status===200){
+      try{
+        var resp=JSON.parse(xhr.responseText);
+        if(resp.ok&&resp.projects){
+          _gfCache={data:resp.projects,ts:Date.now()};
+          renderOverseasFromApi(resp.projects);
+        }else{
+          el.innerHTML='<div class="sec"><span>⚠️</span><h2>API返回数据异常</h2></div><div style="text-align:center;padding:40px;color:#999">'+escHtml(JSON.stringify(resp))+'</div><div style="text-align:center"><button type="button" class="sort-btn active" onclick="loadOverseasTab()">重试</button></div>';
+        }
+      }catch(e){
+        el.innerHTML='<div class="sec"><span>⚠️</span><h2>数据解析出错</h2></div><div style="text-align:center;padding:40px;color:#999">'+escHtml(e.message)+'</div><div style="text-align:center"><button type="button" class="sort-btn active" onclick="loadOverseasTab()">重试</button></div>';
+      }
+    }else{
+      el.innerHTML='<div class="sec"><span>⚠️</span><h2>API请求失败</h2></div><div style="text-align:center;padding:40px;color:#999">HTTP '+xhr.status+'</div><div style="text-align:center"><button type="button" class="sort-btn active" onclick="loadOverseasTab()">重试</button></div>';
+    }
+  };
+  xhr.onerror=function(){
+    // API不可用时回退到硬编码数据
+    el.innerHTML='<div class="sec"><span>⚠️</span><h2>API不可用，使用本地数据</h2></div>';
+    renderMarketTab('to',[].concat(OL).concat(OU),OP,[],OTE,'🌍 海外');
+  };
+  xhr.send();
+}
+
+function gfApiCardToItem(card){
+  // 将GF API返回的卡片数据转换为前端rc()函数可识别的项目对象
+  var n=new Date();
+  var ed=card.ed?pd(card.ed):null;
+  
+  // 构建metaline
+  var metaParts=[card.creator||'','GF'];
+  if(ed&&ed>n){
+    var days=Math.round((ed-n)/86400000);
+    metaParts.push((days<=1?'⚠️ ':'')+'剩'+days+'天');
+  }else if(ed&&ed<=n){
+    metaParts.push('已结束');
+  }
+  
+  // 构建 tl — rc()按 ta 顺序取: tl[0]对应'l'(长标签), tl[1]对应'm'(短标签/金额)
+  // rc()对已结束的项目会跳过'l'标签(c==='l'时return)
+  var tl=[];
+  var ended=ed&&ed<=n;
+  if(!ended){
+    tl.push('众筹中');
+  }
+  // 金额作为第二个标签（'m'短标签），已结束也显示金额
+  var amtTl=(card.tl||[]).filter(function(x){return /[€$£¥]/.test(x)})[0];
+  if(amtTl){
+    tl.push(amtTl);
+  }else if(card.amount>0){
+    var sym={'USD':'$','EUR':'€','GBP':'£','PLN':'zł','CZK':'Kč','SEK':'kr','NOK':'kr','DKK':'kr'};
+    var s=sym[card.currency]||card.currency+' ';
+    tl.push('🔥 '+s+Number(card.amount).toLocaleString('zh-CN'));
+  }
+  if(ended){
+    tl.push('✅ 已结束');
+  }
+  
+  // 构建档位标记: l=长宽度(众筹中), m=短标签(金额), 注意rc()里已结束跳过l
+  var ta=['l','m'];
+  
+  // 封面图：API有图片链接，传给rc()函数用it.i显示
+  var image=card.image||'';
+  
+  return {
+    n: card.n,
+    t: '<span class="en">'+escHtml(card.name)+'</span>',
+    m: metaParts.join(' · '),
+    p: 'gf',
+    pl: '🎮 GF',
+    ta: ta,
+    tl: tl,
+    pg: 100,
+    l: card.url,
+    sd: card.sd,
+    ed: card.ed,
+    i: image,       // 封面URL，rc()会检查it.i
+    _api_source: 'gf-api',
+    _amount: card.amount,
+    _backers: card.backers,
+  };
+}
+
+function renderOverseasFromApi(projects){
+  // 转换API项目为前端卡片格式
+  var items=projects.map(gfApiCardToItem);
+  
+  // 跟本地预告项目合并（OP里的预告项目和已结束项目）
+  var n=new Date();
+  var opActive=OP.filter(function(it){return !isEndedProject(it,n);});
+  
+  // 构建关键时间节点（从项目中自动提取）
+  var events=[];
+  items.forEach(function(it){
+    if(it.sd)events.push({d:it.sd,e:escHtml(stripHtml(it.t))+' 上线'});
+    if(it.ed)events.push({d:it.ed,e:escHtml(stripHtml(it.t))+' 截止'});
+  });
+  // 去重排序
+  var seen={};
+  events=events.filter(function(e){
+    var k=e.d+e.e;
+    if(seen[k])return false;
+    seen[k]=true;
+    return true;
+  }).sort(function(a,b){return String(a.d).localeCompare(String(b.d))});
+  
+  // 同时更新全局海外数据变量（供每日资讯 rn() 使用）
+  _gfOverseasFunding=items;
+  _gfOverseasUpcoming=[];
+
+  renderMarketTab('to',items,opActive,[],events,'🌍 海外');
 }
 
 function gi(nm){
   if(!nm)return '';
-  var k='im_'+nm.replace(/ /g,'_').replace(/:/g,'').replace(/·/g,'').replace(/！/g,'').replace(/？/g,'');
-  return window[k]||'';
+  var raw=String(nm);
+  var names=[
+    raw,
+    raw.replace(/-/g,'_'),
+    raw.replace(/[^\w\u4e00-\u9fff]+/g,'_'),
+    raw.replace(/[^\w\u4e00-\u9fff]+/g,'_').replace(/^_+|_+$/g,'')
+  ];
+  for(var i=0;i<names.length;i++){
+    var k='im_'+names[i].replace(/ /g,'_').replace(/:/g,'').replace(/·/g,'').replace(/！/g,'').replace(/？/g,'');
+    if(window[k])return window[k];
+  }
+  return '';
 }
 function dt(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function pd(s){if(!s)return null;var d=new Date(s);return isNaN(d.getTime())?null:d}
@@ -671,6 +893,14 @@ var DESC={
   'Nemesis Legacy':'太空生存恐怖传承作品，保留半合作、危机管理和未知威胁的张力，适合喜欢剧情战役和强代入感的玩家。',
   'Concordia SE':'经典经济路线建设游戏的特别版，核心是手牌管理、地图扩张和资源节奏，适合偏爱优雅德式系统的玩家。'
 };
+/* 海外项目档位数据（详情页展开显示） */
+var TIERS={
+  "Stonesaga":[{"p":119,"n":"Stonesaga基础"},{"p":229,"n":"Stonesaga+全部扩展"},{"p":359,"n":"All-In全包"},{"p":55,"n":"Meals & Myths扩展"},{"p":55,"n":"Nature of Beast扩展"},{"p":25,"n":"豪华Token升级包"}],
+  "bloodstone":[{"p":75,"n":"零售基础版"},{"p":140,"n":"豪华基础版"},{"p":230,"n":"All-In豪华全包"},{"p":45,"n":"零售扩展"},{"p":30,"n":"Noctorix豪华扩展"},{"p":30,"n":"Reaper豪华扩展"}],
+  "archvillain-encounters":[{"p":110,"n":"2盒遭遇箱"},{"p":220,"n":"4盒遭遇箱"},{"p":330,"n":"6盒遭遇箱"},{"p":495,"n":"全9盒收藏版"},{"p":150,"n":"零售商档"}],
+  "caverns-reforged":[{"p":285,"n":"洞穴捆绑包"},{"p":876,"n":"萨满圣地遭遇"},{"p":880,"n":"巨魔隧道遭遇"},{"p":920,"n":"召唤师悬崖"},{"p":2670,"n":"三合一套装"}],
+  "agricola-special":[{"p":79,"n":"标准版（纸板）"},{"p":109,"n":"特别版（木质）"},{"p":169,"n":"家庭农场档"},{"p":229,"n":"大庄园主档"},{"p":293,"n":"全家福档"},{"p":498,"n":"大地主档"},{"p":25,"n":"动物大盒"}]
+};
 function descOf(it){
   if(DESC[it.n])return DESC[it.n];
   var title=cleanTitle(it),bits=[];
@@ -682,6 +912,7 @@ function descOf(it){
 }
 function progressInfo(it){
   var n=new Date(),sd=startDateOf(it),ed=endDateOf(it);
+  if(isEndedProject(it,n))return {bar:100,label:'已结束'};
   if(isFunding(it,n)){
     var pct=Math.max(0,Math.min(toFinite(it.pg)||0,9999));
     if(!pct&&it.m2){
@@ -701,13 +932,13 @@ function progressInfo(it){
 }
 function toFinite(v){var n=parseFloat(v);return isFinite(n)?n:0}
 var RECENT_DELTA={
-  '赛博朋克红':{amount:4352,people:2},
-  '阿克莱特':{amount:14726,people:38},
-  '幻色秘典':{amount:808,people:2},
-  'Stonesaga':{amount:219,people:1},
-  'Beast Ashfall':{amount:0,people:0},
-  'Concordia SE':{followers:4969},
-  'TEND':{followers:0}
+  '赛博朋克红':{amount:115242,people:0},
+  '幻色秘典':{amount:1020,people:0},
+  '遥远之地':{amount:743,people:0},
+  'Crash第二季':{amount:701,people:0},
+  '雾雨世界':{amount:618,people:0},
+  '三国走走棋':{amount:1328,people:0},
+  '阿克莱特':{amount:21512,people:0}
 };
 function deltaOf(it,mode){
   var d=RECENT_DELTA[it.n]||{};
@@ -723,6 +954,35 @@ function peopleLabel(n){
   n=Number(n)||0;
   if(!n)return '人数待同步';
   return '+'+n.toLocaleString('zh-CN')+'人';
+}
+function tiersBlock(it){
+  var tiers=TIERS[it.n];
+  if((!tiers||!tiers.length)&&it.pr)tiers=tiersFromText(it.pr);
+  if(!tiers||!tiers.length)return '';
+  tiers.sort(function(a,b){return a.p-b.p});
+  var h='<div class="tiers-wrap" style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.06)"><div style="font-size:.8em;font-weight:600;color:var(--text);margin-bottom:6px">档位一览</div><div style="display:flex;flex-wrap:wrap;gap:5px">';
+  tiers.forEach(function(t){
+    h+='<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 8px;background:#f2f2f2;border-radius:999px;font-size:.75em;white-space:nowrap"><span>'+escHtml(t.n)+'</span><span style="font-weight:600;color:var(--accent)">'+escHtml(t.currency||'€')+t.p+'</span></span>';
+  });
+  h+='</div></div>';
+  return h;
+}
+function tiersFromText(text){
+  return String(text||'').split(/\s*\/\s*/).map(function(part){
+    var m=part.match(/(.+?)\s*([¥$€£])\s*([\d,]+)/);
+    if(!m)return null;
+    var name=m[1].trim();
+    if(/目标|已筹|金额|支持者|已购|完成率|关注|预约|起售|当前/.test(name))return null;
+    if(!/档|版|款|包|合集|ALL|All|all|基础|豪华|收藏|扩展|预组|零售|商|全包/.test(name))return null;
+    return {n:name,currency:m[2],p:parseInt(m[3].replace(/,/g,''),10)};
+  }).filter(Boolean);
+}
+function tierPills(it){
+  var tiers=tiersFromText(it.pr);
+  if(!tiers.length)return it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'';
+  return '<div class="tier-pills">'+tiers.map(function(t){
+    return '<span class="tier-pill">'+escHtml(t.n)+' '+escHtml(t.currency)+Number(t.p).toLocaleString('zh-CN')+'</span>';
+  }).join('')+'</div>';
 }
 function rulesBlock(it){
   if(it.rules&&it.rules.length){
@@ -803,13 +1063,13 @@ function platformText(it){
 }
 function agencyText(it){
   var p=titleParts(it);
-  if(p.foreign)return '';
   var candidates=[];
-  if(p.sub)candidates=candidates.concat(p.sub.split('·').map(function(x){return x.trim()}));
+  if(p.sub&&!p.foreign)candidates=candidates.concat(p.sub.split('·').map(function(x){return x.trim()}));
   candidates=candidates.concat(stripHtml(it.m||'').split('·').map(function(x){return x.trim()}));
   candidates=candidates.filter(function(x){
-    return x&&x!==platformText(it)&&!/开售|预约|截止|剩|已结束|众筹|完成率|已购|支持者|目标|今天|小时|日前|天后/.test(x);
+    return x&&x!==platformText(it)&&!/^(GF|KS|Gamefound|Kickstarter)$/i.test(x)&&!/开售|预约|截止|剩|已结束|众筹|完成率|已购|支持者|目标|今天|小时|日前|天后|PM关闭|⚠️/.test(x);
   });
+  if(p.foreign)return candidates[0]||'';
   var hit=candidates.filter(function(x){
     return /工作室|桌游|兵棋|海豚|企鹅|圣剑|夜航船|游人|满意|向量|原石|树豆|摇摆客|乘风|山海|浩瀚|小狮子|一刻馆|帝企鹅/.test(x);
   })[0];
@@ -849,7 +1109,7 @@ function rc(it){
   if(it.p)bx+='<span class="p2 '+it.p+'">'+it.pl+'</span>';
   if(it.p2)bx+='<span class="p2 '+it.p2+'">'+it.pl2+'</span>';
   var cd='';
-  if(ed&&ed>n&&!isFunding(it,n)){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'</span>'}
+  if(ed&&ed>n){var d2=dd(n,ed);cd='<span style="color:'+(d2<=1?'var(--accent2)':'var(--muted)')+';font-size:.75em;font-weight:'+(d2<=1?'600':'400')+'">⏰ 剩'+cds(ed,n)+'截止</span>'}
   if(sd&&sd>n)cd='<span style="color:var(--gold);font-weight:600;font-size:.75em">🔥 '+cds(sd,n)+'后开售</span>';
   if(isTodayStart(it))bt+='<span class="today-badge">今日开始</span>';
   var pi=progressInfo(it);
@@ -860,16 +1120,36 @@ function rc(it){
   else if(isUpcoming(it,n))cls+=' upcoming-card';
   else if(isEndedProject(it,n))cls+=' ended-card';
   var m2=cleanCardLine(it.m2);
-  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="card-title-line"><div class="ct title-main">'+titleHtml(it)+'</div><span data-heat-slot="'+escAttr(key)+'">'+heatBadge(key)+'</span></div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+(it.pr?'<div class="pr" style="margin-top:2px">'+escHtml(it.pr)+'</div>':'')+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+rulesBlock(it)+'<div class="detail-actions"><a class="detail-link" href="'+escAttr(it.l)+'" target="_blank" rel="noopener noreferrer" onclick="recordProjectEvent(\''+escAttr(key)+'\',\'jump\')">查看众筹页面</a>'+engagementBlock(it)+'</div></div></article>';
+  var tb=tiersBlock(it);
+  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="card-title-line"><div class="ct title-main">'+titleHtml(it)+'</div><span data-heat-slot="'+escAttr(key)+'">'+heatBadge(key)+'</span></div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+tierPills(it)+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+tb+rulesBlock(it)+'<div class="detail-actions"><a class="detail-link" href="'+escAttr(it.l)+'" target="_blank" rel="noopener noreferrer" onclick="recordProjectEvent(\''+escAttr(key)+'\',\'jump\')">查看众筹页面</a>'+engagementBlock(it)+'</div></div></article>';
 }
 function rp(items){
   var h='<div class="g3">';
   items.forEach(function(p){
     var im='';
     if(p.hi&&gi(p.ni)){im=imgTag(gi(p.ni),p.n)}
-    h+='<div class="mc" data-project-key="'+escAttr(keyOf(p))+'">'+extLink(p.l,'<div class="mi">'+im+'</div><div class="mn">'+escHtml(p.n)+'</div><div class="mm">'+escHtml(p.m||'')+'</div>')+'</div>';
+    else if(gi(p.n)){im=imgTag(gi(p.n),p.n)}
+    var meta=previewMetaParts(p);
+    h+='<div class="mc" data-project-key="'+escAttr(keyOf(p))+'">'+extLink(p.l,'<div class="mi">'+im+'</div><div class="mn">'+previewNameHtml(p)+'</div><div class="mm">'+escHtml(meta.platform)+'</div>'+(meta.people?'<div class="mm preview-people">'+escHtml(meta.people)+'</div>':'') )+'</div>';
   });
   return h+'</div>';
+}
+function previewNameHtml(p){
+  if(p.t)return titleHtml(p);
+  return escHtml(cleanDisplayName(p.n||'项目'));
+}
+function previewMetaParts(p){
+  var raw=cleanDisplayName(p.m||''),parts=raw.split('·').map(function(x){return x.trim()}).filter(Boolean);
+  var people=[],platform=[];
+  parts.forEach(function(x){
+    if(/[\d,.]+\s*(万|k|K)?\s*人?(预约|关注|感兴趣)/.test(x)||/(预约|关注|感兴趣)/.test(x))people.push(x);
+    else if(!/预热中|预告|即将上线/.test(x))platform.push(x);
+  });
+  if(!people.length){
+    var f=followersOf(p);
+    if(f)people.push(Number(f).toLocaleString('zh-CN')+'人预约');
+  }
+  return {platform:platform.join(' · ')||raw||'预告项目',people:people.join(' · ')};
 }
 function rtl(events){
   var n=dt(),h='<div class="tl">';
@@ -902,23 +1182,42 @@ function renderPreviewSection(key,items){
   if(sorted.length>6)h+='<button type="button" class="more-btn" onclick="toggleMore(\''+key+'\')">'+(stt.open?'收起':'查看更多 '+(sorted.length-6)+' 个')+'</button>';
   return h;
 }
-function renderMarketTab(id,items,pp,ended,te,lb){
-  var n=new Date(),td=dt();
-  var todayEnd=[],nowFunding=[],comingSoon=[];
-  items.forEach(function(it){
-    var ed=pd(it.ed),sd=startDateOf(it);
+function uniqueItems(items){
+  var seen={},out=[];
+  (items||[]).forEach(function(it){
+    var k=keyOf(it);
+    if(seen[k])return;
+    seen[k]=1;
+    out.push(it);
+  });
+  return out;
+}
+function splitMarketItems(items,ended){
+  var n=new Date(),todayEnd=[],nowFunding=[],comingSoon=[],endedItems=[],previewItems=[];
+  uniqueItems([].concat(items||[],ended||[])).forEach(function(it){
+    var ed=pd(it.ed);
     if(ed&&tdy(ed)){todayEnd.push(it);return}
+    if(isEndedProject(it,n)){endedItems.push(it);return}
     if(isFunding(it,n)){nowFunding.push(it);return}
-    if(isUpcoming(it,n)){comingSoon.push(it)}
+    if(isUpcoming(it,n)){comingSoon.push(it);return}
+    if(/预告|即将上线|关注|预约/.test([it.m].concat(it.tl||[]).join(' '))||followersOf(it)>0){previewItems.push(it);return}
   });
   todayEnd.sort(function(a,b){return(pd(a.ed)||0)-(pd(b.ed)||0)});
-  
+  endedItems.sort(function(a,b){return(pd(b.ed)||0)-(pd(a.ed)||0)});
+  return {todayEnd:todayEnd,nowFunding:nowFunding,comingSoon:comingSoon,endedItems:endedItems,previewItems:previewItems};
+}
+function renderMarketTab(id,items,pp,ended,te,lb){
+  var n=new Date();
+  var previewItems=uniqueItems(pp||[]).filter(function(it){return !isEndedProject(it,n)});
+  var previewEnded=uniqueItems(pp||[]).filter(function(it){return isEndedProject(it,n)});
+  var groups=splitMarketItems(items,[].concat(ended||[],previewEnded));
+  previewItems=uniqueItems([].concat(previewItems,groups.previewItems||[]));
   var h='';
-  if(todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+todayEnd.map(rc).join('');
-  h+=renderListSection(id+'-active','🎯','正在众筹',nowFunding,5);
-  if(comingSoon.length>0)h+=renderListSection(id+'-upcoming','🔥','即将上线',comingSoon,3);
-  if(ended.length>0)h+=renderListSection(id+'-ended','✅','已结束',ended,3);
-  h+=renderPreviewSection(id+'-preview',pp);
+  if(groups.todayEnd.length>0)h+='<div class="sec"><span>⏰</span><h2>今天截止</h2><span class="bc">倒计时</span></div>'+groups.todayEnd.map(rc).join('');
+  h+=renderListSection(id+'-active','🎯','正在众筹',groups.nowFunding,5);
+  if(groups.comingSoon.length>0)h+=renderListSection(id+'-upcoming','🔥','即将上线',groups.comingSoon,3);
+  if(groups.endedItems.length>0)h+=renderListSection(id+'-ended','✅','已结束',groups.endedItems,3);
+  if(previewItems.length>0)h+=renderPreviewSection(id+'-preview',previewItems);
   h+='<div class="sec"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(te);
   document.getElementById(id).innerHTML=h;
 }
@@ -942,7 +1241,15 @@ function rn(){
   var td=dt(), n=new Date();
   var h='<div class="sec"><span>📰</span><h2>每日资讯 · 汇总</h2><span class="bc">'+td+'</span></div><div class="daily-stack">';
   h+=buildDailyV2(DL,DU,DE,'🇨🇳 国内',td,n);
-  h+=buildDailyV2(OL,OU,OL.filter(function(it){var ed=pd(it.ed);return ed&&ed<n;}),'🌍 海外',td,n);
+  // 海外优先使用GF API数据，有则用API数据，无则回退硬编码
+  var of=_gfOverseasFunding.length?_gfOverseasFunding:OL;
+  var ou=_gfOverseasUpcoming.length?_gfOverseasUpcoming:OU;
+  var ended=of.filter(function(it){var ed=pd(it.ed);return ed&&ed<n;});
+  // 如果API数据没有已结束的，补充硬编码的已结束项目
+  if(_gfOverseasFunding.length&&ended.length<3){
+    ended=ended.concat(OL.filter(function(it){var ed=pd(it.ed);return ed&&ed<n;}));
+  }
+  h+=buildDailyV2(of,ou,ended,'🌍 海外',td,n);
   h+='</div>';
   document.getElementById('tn_content').innerHTML=h;
 }
@@ -1049,9 +1356,11 @@ function dailyRankCard(funding,upcoming,n,lb){
 }
 
 function dailyRankSource(key){
-  return key==='domestic'
-    ? {funding:DL,upcoming:DU,label:'🇨🇳 国内'}
-    : {funding:OL,upcoming:OU,label:'🌍 海外'};
+  if(key==='domestic')return {funding:DL,upcoming:DU,label:'🇨🇳 国内'};
+  // 海外优先使用GF API数据，没有则回退硬编码
+  var funding=_gfOverseasFunding.length?_gfOverseasFunding:OL;
+  var upcoming=_gfOverseasUpcoming.length?_gfOverseasUpcoming:OU;
+  return {funding:funding,upcoming:upcoming,label:'🌍 海外'};
 }
 function setRankMode(event,key,mode){
   event.stopPropagation();
@@ -1071,10 +1380,12 @@ function rankData(key){
       expect:DU.concat(DP).filter(function(it){return isExpectation(it,n)})
     };
   }
+  var funding=_gfOverseasFunding.length?_gfOverseasFunding:OL;
+  var upcoming=_gfOverseasUpcoming.length?_gfOverseasUpcoming:OU;
   return {
     title:'海外详细榜单',
-    funding:OL.concat(OU).filter(function(it){return isFunding(it,n)}),
-    expect:OU.concat(OP).filter(function(it){return isExpectation(it,n)})
+    funding:funding.concat(upcoming).filter(function(it){return isFunding(it,n)}),
+    expect:upcoming.concat(OP).filter(function(it){return isExpectation(it,n)})
   };
 }
 function rankModalItems(data,mode){
@@ -1541,6 +1852,32 @@ function genQR_fallback(){
 }
 // Load QR on hover
 loadQR();
+// 页面加载时初始化每日资讯，同时预加载海外API数据
+(function initPage(){
+  st('n');
+  // 静默预加载海外数据，供每日资讯使用
+  setTimeout(function(){
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET','/api/gf-active-projects',true);
+    xhr.onload=function(){
+      if(xhr.status===200){
+        try{
+          var resp=JSON.parse(xhr.responseText);
+          if(resp.ok&&resp.projects){
+            _gfCache={data:resp.projects,ts:Date.now()};
+            // 预先转换数据供每日资讯使用
+            var items=resp.projects.map(gfApiCardToItem);
+            _gfOverseasFunding=items;
+            _gfOverseasUpcoming=[];
+            // 如果当前在每日资讯tab，刷新
+            if(currentTab==='n')rn();
+          }
+        }catch(e){}
+      }
+    };
+    xhr.send();
+  }, 100);
+})();
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeFeedbackModal();closeRankModal();exitAddMode()}});
 document.addEventListener('click',function(e){
   var wrap=document.getElementById('search_wrap');

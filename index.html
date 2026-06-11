@@ -293,6 +293,77 @@ footer a{color:var(--accent);text-decoration:none}
 .back-top{position:fixed;right:18px;bottom:22px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(233,69,96,.25);background:#fff;color:var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.14);cursor:pointer;font-weight:800;z-index:900;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s,background .2s}
 .back-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 .back-top:hover{background:var(--accent);color:#fff}
+
+/* ==================== GF详情弹窗 ==================== */
+#gf-detail-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:16px;box-sizing:border-box}
+#gf-detail-modal.open{display:flex}
+#gf-detail-modal .modal-body{background:#fff;border-radius:16px;max-width:880px;width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+#gf-detail-modal .modal-header{display:flex;justify-content:space-between;align-items:flex-start;padding:20px 24px 12px;border-bottom:1px solid #eee;flex-shrink:0}
+#gf-detail-modal .modal-header h2{margin:0;font-size:1.2em;color:#1a1a1a;line-height:1.3}
+#gf-detail-modal .modal-header .sub{font-size:.78em;color:#666;margin-top:3px}
+#gf-detail-modal .modal-close-btn{background:none;border:none;font-size:24px;color:#999;cursor:pointer;padding:0 0 0 16px;line-height:1}
+#gf-detail-modal .modal-close-btn:hover{color:#333}
+#gf-detail-modal .modal-content{display:flex;flex:1;overflow:hidden}
+#gf-detail-modal .modal-left{width:300px;min-width:300px;padding:16px 0 16px 24px;overflow-y:auto;flex-shrink:0}
+#gf-detail-modal .modal-left .cover{width:100%;border-radius:10px;margin-bottom:12px}
+#gf-detail-modal .modal-left .info-row{font-size:.8em;color:#555;margin-bottom:4px;line-height:1.5}
+#gf-detail-modal .modal-left .info-row strong{color:#333}
+#gf-detail-modal .modal-right{flex:1;padding:16px 24px 16px 16px;overflow-y:auto;min-width:0}
+#gf-detail-modal .section-title{font-size:.85em;font-weight:700;color:#1a1a1a;margin:14px 0 8px;display:flex;align-items:center;gap:6px}
+#gf-detail-modal .section-title:first-child{margin-top:0}
+/* 简介 */
+#gf-detail-modal .desc-text{font-size:.82em;line-height:1.7;color:#333;margin-bottom:4px}
+#gf-detail-modal .desc-toggle{font-size:.75em;color:var(--accent);cursor:pointer;background:none;border:none;padding:2px 0;text-decoration:underline;text-underline-offset:2px}
+/* 档位 */
+#gf-detail-modal .tier-scroll{display:flex;gap:8px;overflow-x:auto;padding:0 0 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+#gf-detail-modal .tier-scroll::-webkit-scrollbar{height:4px}
+#gf-detail-modal .tier-scroll::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+#gf-detail-modal .tier-card{flex:0 0 200px;scroll-snap-align:start;background:#f7f7f8;border-radius:10px;padding:12px;border:1px solid #eee}
+#gf-detail-modal .tier-card .tier-name{font-size:.78em;font-weight:600;color:#1a1a1a;line-height:1.3;margin-bottom:4px}
+#gf-detail-modal .tier-card .tier-price{font-size:.9em;font-weight:700;color:var(--accent)}
+#gf-detail-modal .tier-card .tier-backers{font-size:.7em;color:#888;margin-top:2px}
+#gf-detail-modal .tier-card .tier-desc{font-size:.72em;color:#666;margin-top:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* 更新动态 */
+#gf-detail-modal .update-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 0 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+#gf-detail-modal .update-scroll::-webkit-scrollbar{height:4px}
+#gf-detail-modal .update-scroll::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
+#gf-detail-modal .update-card{flex:0 0 260px;scroll-snap-align:start;background:#f7f7f8;border-radius:10px;padding:12px;border:1px solid #eee;cursor:pointer;transition:box-shadow .15s}
+#gf-detail-modal .update-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+#gf-detail-modal .update-card .update-title{font-size:.78em;font-weight:600;color:#1a1a1a;line-height:1.3;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#gf-detail-modal .update-card .update-meta{font-size:.68em;color:#888}
+#gf-detail-modal .update-card .update-likes{font-size:.68em;color:var(--accent);font-weight:600}
+#gf-detail-modal .update-card .update-preview{font-size:.72em;color:#555;margin-top:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+/* 评论 */
+#gf-detail-modal .comment-list{display:flex;flex-direction:column;gap:8px}
+#gf-detail-modal .comment-item{padding:10px 12px;background:#f7f7f8;border-radius:10px;border:1px solid #eee}
+#gf-detail-modal .comment-item .comment-author{font-size:.75em;font-weight:600;color:#1a1a1a;display:flex;align-items:center;gap:4px}
+#gf-detail-modal .comment-item .comment-author .creator-badge{font-size:.65em;background:var(--accent);color:#fff;padding:1px 6px;border-radius:4px;font-weight:500}
+#gf-detail-modal .comment-item .comment-likes{font-size:.68em;color:var(--accent);font-weight:600;margin-left:auto}
+#gf-detail-modal .comment-item .comment-body{font-size:.78em;color:#333;margin-top:4px;line-height:1.5;word-break:break-word}
+#gf-detail-modal .comment-item .comment-body .text-bold{font-weight:700}
+#gf-detail-modal .comment-item .comment-body .text-italic{font-style:italic}
+#gf-detail-modal .modal-loading{text-align:center;padding:60px 20px;color:#999;font-size:.9em}
+/* 更新详情弹窗 */
+#update-detail-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1100;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:16px;box-sizing:border-box}
+#update-detail-modal.open{display:flex}
+#update-detail-modal .modal-body{background:#fff;border-radius:16px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;position:relative;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+#update-detail-modal .modal-body .update-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+#update-detail-modal .modal-body .update-header h3{margin:0;font-size:1.1em;color:#1a1a1a;flex:1}
+#update-detail-modal .modal-body .update-body{font-size:.85em;line-height:1.7;color:#333}
+#update-detail-modal .modal-body .update-body img{max-width:100%;border-radius:8px;margin:8px 0}
+#update-detail-modal .close-btn{background:none;border:none;font-size:22px;color:#999;cursor:pointer;padding:0 0 0 12px;line-height:1}
+#update-detail-modal .close-btn:hover{color:#333}
+
+@media(max-width:640px){
+  #gf-detail-modal .modal-content{flex-direction:column}
+  #gf-detail-modal .modal-left{width:100%;min-width:auto;padding:12px 16px;display:flex;gap:12px;overflow:visible}
+  #gf-detail-modal .modal-left .cover{width:100px;height:100px;object-fit:cover;flex-shrink:0;margin-bottom:0;border-radius:8px}
+  #gf-detail-modal .modal-left .info-wrap{flex:1}
+  #gf-detail-modal .modal-right{padding:0 16px 12px}
+  #gf-detail-modal .tier-card{flex:0 0 160px}
+  #gf-detail-modal .update-card{flex:0 0 220px}
+}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
 }
@@ -663,7 +734,7 @@ function loadOverseasTab(){
     if(xhr.status===200){
       try{
         var resp=JSON.parse(xhr.responseText);
-        if(resp.ok&&resp.projects){
+        if(resp.code===0&&resp.projects){
           _gfCache={data:resp.projects,ts:Date.now()};
           renderOverseasFromApi(resp.projects);
         }else{
@@ -686,60 +757,39 @@ function loadOverseasTab(){
 
 function gfApiCardToItem(card){
   // 将GF API返回的卡片数据转换为前端rc()函数可识别的项目对象
-  var n=new Date();
-  var ed=card.ed?pd(card.ed):null;
-  
-  // 构建metaline
-  var metaParts=[card.creator||'','GF'];
-  if(ed&&ed>n){
-    var days=Math.round((ed-n)/86400000);
-    metaParts.push((days<=1?'⚠️ ':'')+'剩'+days+'天');
-  }else if(ed&&ed<=n){
-    metaParts.push('已结束');
-  }
-  
-  // 构建 tl — rc()按 ta 顺序取: tl[0]对应'l'(长标签), tl[1]对应'm'(短标签/金额)
-  // rc()对已结束的项目会跳过'l'标签(c==='l'时return)
-  var tl=[];
-  var ended=ed&&ed<=n;
-  if(!ended){
-    tl.push('众筹中');
-  }
-  // 金额作为第二个标签（'m'短标签），已结束也显示金额
-  var amtTl=(card.tl||[]).filter(function(x){return /[€$£¥]/.test(x)})[0];
-  if(amtTl){
-    tl.push(amtTl);
-  }else if(card.amount>0){
+  // 注意：列表API只返回基础字段（没有sd/ed/amount/backers/url）
+  // 详情数据通过弹窗API按需加载
+  var tl=['众筹中'];
+  // 用最低价作为金额标记
+  if(card.min_price>0){
     var sym={'USD':'$','EUR':'€','GBP':'£','PLN':'zł','CZK':'Kč','SEK':'kr','NOK':'kr','DKK':'kr'};
     var s=sym[card.currency]||card.currency+' ';
-    tl.push('🔥 '+s+Number(card.amount).toLocaleString('zh-CN'));
-  }
-  if(ended){
-    tl.push('✅ 已结束');
+    tl.push('起 '+s+card.min_price);
   }
   
-  // 构建档位标记: l=长宽度(众筹中), m=短标签(金额), 注意rc()里已结束跳过l
-  var ta=['l','m'];
-  
-  // 封面图：API有图片链接，传给rc()函数用it.i显示
+  // 封面图
   var image=card.image||'';
+  
+  // 构建GF链接
+  var gfUrl='https://gamefound.com/projects/'+(card.n||'');
   
   return {
     n: card.n,
-    t: '<span class="en">'+escHtml(card.name)+'</span>',
-    m: metaParts.join(' · '),
+    t: '<span class="en">'+escHtml(card.project_name||card.n)+'</span>',
+    m: (card.creator||'')+' · GF',
     p: 'gf',
     pl: '🎮 GF',
-    ta: ta,
+    ta: ['l','m'],
     tl: tl,
     pg: 100,
-    l: card.url,
-    sd: card.sd,
-    ed: card.ed,
-    i: image,       // 封面URL，rc()会检查it.i
+    l: gfUrl,
+    l2: '',         // 无国内链接
+    sd: null,
+    ed: null,
+    i: image,
     _api_source: 'gf-api',
-    _amount: card.amount,
-    _backers: card.backers,
+    _tier_count: card.tier_count||0,
+    _update_count: card.update_count||0,
   };
 }
 
@@ -1096,6 +1146,9 @@ function cardMeta(it,n){
 function cleanCardLine(v){
   return stripHtml(v||'').replace(/[·\s]*剩\d+天(?:\d+小时)?(?:截止)?/g,'').trim();
 }
+// 弹窗函数提前声明（在 rc() 之前），正文在底部实现
+function showGFDetailModal(urlName){}
+function showUpdateDetail(update){}
 function rc(it){
   var im='',uv=gi(it.n);
   if(uv){im=imgTag(uv,it.n)}
@@ -1121,7 +1174,8 @@ function rc(it){
   else if(isEndedProject(it,n))cls+=' ended-card';
   var m2=cleanCardLine(it.m2);
   var tb=tiersBlock(it);
-  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="toggleCard(this)"><div class="ciw">'+im+'</div><div class="cif"><div class="card-title-line"><div class="ct title-main">'+titleHtml(it)+'</div><span data-heat-slot="'+escAttr(key)+'">'+heatBadge(key)+'</span></div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+tierPills(it)+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+tb+rulesBlock(it)+'<div class="detail-actions"><a class="detail-link" href="'+escAttr(it.l)+'" target="_blank" rel="noopener noreferrer" onclick="recordProjectEvent(\''+escAttr(key)+'\',\'jump\')">查看众筹页面</a>'+engagementBlock(it)+'</div></div></article>';
+  var cardClick=it.p==='gf'?'showGFDetailModal(\''+escAttr(key)+'\')':'toggleCard(this)';
+  return '<article class="'+cls+'" data-project-key="'+escAttr(key)+'"><button type="button" class="cr" onclick="'+cardClick+'"><div class="ciw">'+im+'</div><div class="cif"><div class="card-title-line"><div class="ct title-main">'+titleHtml(it)+'</div><span data-heat-slot="'+escAttr(key)+'">'+heatBadge(key)+'</span></div><div class="cm">'+escHtml(cardMeta(it,n))+'</div><div>'+bx+' '+bt+'</div>'+(m2?'<div class="cm" style="margin-top:2px">'+escHtml(m2)+'</div>':'')+tierPills(it)+cd+pb+'</div></button><div class="card-detail"><div class="detail-copy">'+escHtml(descOf(it))+'</div>'+tb+rulesBlock(it)+'<div class="detail-actions"><a class="detail-link" href="'+escAttr(it.l)+'" target="_blank" rel="noopener noreferrer" onclick="recordProjectEvent(\''+escAttr(key)+'\',\'jump\')">查看众筹页面</a>'+engagementBlock(it)+'</div></div></article>';
 }
 function rp(items){
   var h='<div class="g3">';
@@ -1863,7 +1917,7 @@ loadQR();
       if(xhr.status===200){
         try{
           var resp=JSON.parse(xhr.responseText);
-          if(resp.ok&&resp.projects){
+          if(resp.code===0&&resp.projects){
             _gfCache={data:resp.projects,ts:Date.now()};
             // 预先转换数据供每日资讯使用
             var items=resp.projects.map(gfApiCardToItem);
@@ -1897,6 +1951,271 @@ window.addEventListener('beforeunload',function(){
 });
 syncBackTop();
 
+// ==================== GF详情弹窗 ====================
+function showGFDetailModal(urlName){
+  var modal=document.getElementById('gf-detail-modal');
+  if(!modal)return;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+  
+  var leftEl=document.getElementById('gf-detail-left');
+  var rightEl=document.getElementById('gf-detail-right');
+  if(!leftEl||!rightEl)return;
+  
+  leftEl.innerHTML='<div class="modal-loading">加载中...</div>';
+  rightEl.innerHTML='';
+  
+  var xhr=new XMLHttpRequest();
+  xhr.open('GET','/api/gf-project-detail-full?name='+encodeURIComponent(urlName),true);
+  xhr.onload=function(){
+    if(xhr.status!==200){
+      leftEl.innerHTML='<div class="modal-loading">请求失败 (HTTP '+xhr.status+')</div>';
+      return;
+    }
+    try{
+      var resp=JSON.parse(xhr.responseText);
+      if(resp.code!==0||!resp.data){
+        leftEl.innerHTML='<div class="modal-loading">数据异常</div>';
+        return;
+      }
+      renderGFDetail(resp.data);
+    }catch(e){
+      leftEl.innerHTML='<div class="modal-loading">解析失败: '+escHtml(e.message)+'</div>';
+    }
+  };
+  xhr.onerror=function(){
+    leftEl.innerHTML='<div class="modal-loading">网络错误</div>';
+  };
+  xhr.send();
+}
+
+function closeGFDetailModal(){
+  var modal=document.getElementById('gf-detail-modal');
+  if(modal)modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderGFDetail(d){
+  var leftEl=document.getElementById('gf-detail-left');
+  var rightEl=document.getElementById('gf-detail-right');
+  if(!leftEl||!rightEl)return;
+  
+  // 头部
+  var headerEl=document.getElementById('gf-detail-header');
+  if(headerEl){
+    headerEl.innerHTML='<h2>'+escHtml(d.project_name||d.url_name||'')+'</h2>'+
+      '<div class="sub">'+(d.creator_name?escHtml(d.creator_name):'')+'</div>';
+  }
+  
+  // 左栏：封面+信息
+  var leftHtml='';
+  if(d.image_url)leftHtml+='<img class="cover" src="'+escAttr(d.image_url)+'" alt="'+escAttr(d.project_name)+'" loading="lazy">';
+  leftHtml+='<div class="info-wrap">';
+  if(d.players)leftHtml+='<div class="info-row"><strong>玩家人数:</strong> '+escHtml(d.players)+'</div>';
+  if(d.play_time)leftHtml+='<div class="info-row"><strong>游戏时长:</strong> '+escHtml(d.play_time)+'</div>';
+  if(d.age)leftHtml+='<div class="info-row"><strong>适龄:</strong> '+escHtml(d.age)+'</div>';
+  if(d.category)leftHtml+='<div class="info-row"><strong>类别:</strong> '+escHtml(d.category)+'</div>';
+  if(d.short_description)leftHtml+='<div class="info-row"><strong>简介:</strong> '+escHtml(d.short_description)+'</div>';
+  leftHtml+='</div>';
+  leftEl.innerHTML=leftHtml;
+  
+  // 右栏：介绍+档位+更新+评论
+  var rightHtml='';
+  
+  // 介绍
+  var desc=d.intro_summary||d.description||d.short_description||'暂无介绍';
+  var descShort=desc.length>200?desc.slice(0,200)+'...':desc;
+  rightHtml+='<div class="section-title">📖 游戏介绍</div>'+
+    '<div class="desc-text" id="gf-desc-text">'+escHtml(descShort)+'</div>';
+  if(desc.length>200){
+    rightHtml+='<button type="button" class="desc-toggle" onclick="toggleGFDesc(\''+escAttr(d.url_name)+'\')">展开全文</button>';
+  }
+  
+  // 档位
+  if(d.tiers&&d.tiers.length){
+    rightHtml+='<div class="section-title">🎯 档位一览 <span style="font-weight:400;color:#888;font-size:.82em">('+d.tiers.length+'个)</span></div>';
+    rightHtml+='<div class="tier-scroll">';
+    d.tiers.forEach(function(t){
+      var priceStr=(t.currency||'€')+Number(t.price||0).toLocaleString('zh-CN');
+      var backersStr=t.backers?t.backers+'人已选':'';
+      var descStr=t.description||'';
+      rightHtml+='<div class="tier-card">'+
+        '<div class="tier-name">'+escHtml(t.reward_name||'')+'</div>'+
+        '<div class="tier-price">'+priceStr+'</div>'+
+        (backersStr?'<div class="tier-backers">'+backersStr+'</div>':'')+
+        (descStr?'<div class="tier-desc">'+escHtml(descStr)+'</div>':'')+
+        '</div>';
+    });
+    rightHtml+='</div>';
+  }
+  
+  // 更新
+  if(d.updates&&d.updates.length){
+    rightHtml+='<div class="section-title">📢 作者动态 <span style="font-weight:400;color:#888;font-size:.82em">('+d.updates.length+'条)</span></div>';
+    rightHtml+='<div class="update-scroll">';
+    d.updates.forEach(function(u){
+      var preview=stripHtmlSimple(u.body_html||'')||'';
+      var previewShort=preview.length>100?preview.slice(0,100)+'...':preview;
+      rightHtml+='<div class="update-card" onclick="showUpdateDetail('+JSON.stringify(u).replace(/"/g,'&quot;')+')">'+
+        '<div class="update-title">'+escHtml(u.title||'')+'</div>'+
+        '<div class="update-meta">'+(u.posted_at?escHtml(u.posted_at.slice(0,10)):'')+'</div>'+
+        (u.likes_count?'<div class="update-likes">❤ '+u.likes_count+'</div>':'')+
+        (previewShort?'<div class="update-preview">'+escHtml(previewShort)+'</div>':'')+
+        '</div>';
+    });
+    rightHtml+='</div>';
+  }
+  
+  // 评论
+  if(d.comments&&d.comments.length){
+    rightHtml+='<div class="section-title">💬 高赞评论 <span style="font-weight:400;color:#888;font-size:.82em">(Top '+Math.min(d.comments.length,3)+')</span></div>';
+    rightHtml+='<div class="comment-list">';
+    d.comments.slice(0,3).forEach(function(c){
+      var bodyHtml=renderCommentBody(c.body||'');
+      var isCreator=c.author&&d.creator_name&&c.author.toLowerCase()===d.creator_name.toLowerCase();
+      rightHtml+='<div class="comment-item">'+
+        '<div style="display:flex;align-items:center">'+
+        '<div class="comment-author">'+escHtml(c.author||'匿名')+
+        (isCreator?'<span class="creator-badge">作者</span>':'')+'</div>'+
+        (c.likes?'<div class="comment-likes">❤ '+c.likes+'</div>':'')+
+        '</div>'+
+        '<div class="comment-body">'+bodyHtml+'</div>'+
+        '</div>';
+    });
+    rightHtml+='</div>';
+  }
+  
+  rightEl.innerHTML=rightHtml;
+}
+
+function toggleGFDesc(urlName){
+  var textEl=document.getElementById('gf-desc-text');
+  var btn=event&&event.target;
+  if(!textEl)return;
+  if(textEl.dataset.expanded==='true'){
+    // 重新获取数据
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET','/api/gf-project-detail-full?name='+encodeURIComponent(urlName),true);
+    xhr.onload=function(){
+      try{
+        var resp=JSON.parse(xhr.responseText);
+        var desc=resp.data&&(resp.data.intro_summary||resp.data.description||'');
+        if(desc){
+          var short=desc.length>200?desc.slice(0,200)+'...':desc;
+          textEl.textContent=short;
+          if(btn)btn.textContent='展开全文';
+          textEl.dataset.expanded='false';
+        }
+      }catch(e){}
+    };
+    xhr.send();
+  }else{
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET','/api/gf-project-detail-full?name='+encodeURIComponent(urlName),true);
+    xhr.onload=function(){
+      try{
+        var resp=JSON.parse(xhr.responseText);
+        var desc=resp.data&&(resp.data.intro_summary||resp.data.description||'');
+        if(desc){
+          textEl.textContent=desc;
+          if(btn)btn.textContent='收起';
+          textEl.dataset.expanded='true';
+        }
+      }catch(e){}
+    };
+    xhr.send();
+  }
+}
+
+function showUpdateDetail(update){
+  var modal=document.getElementById('update-detail-modal');
+  if(!modal)return;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+  
+  var headerEl=document.getElementById('ud-header');
+  var bodyEl=document.getElementById('ud-body');
+  if(headerEl)headerEl.innerHTML='<h3>'+escHtml(update.title||'')+'</h3>';
+  if(bodyEl){
+    var bodyHtml=update.body_html||'';
+    // 处理基本样式
+    bodyHtml=bodyHtml.replace(/<\/?[^>]+(>|$)/g,function(m){
+      if(/^<(p|br|b|strong|i|em|u|a|ul|ol|li|h[1-6]|div|span|img|blockquote|pre|code)/i.test(m))return m;
+      if(/^<\/(p|br|b|strong|i|em|u|a|ul|ol|li|h[1-6]|div|span|img|blockquote|pre|code)/i.test(m))return m;
+      return '';
+    }).replace(/<img /g,'<img style="max-width:100%;border-radius:8px;margin:8px 0" ');
+    bodyEl.innerHTML=bodyHtml||escHtml(update.title||'');
+  }
+}
+
+function closeUpdateModal(){
+  var modal=document.getElementById('update-detail-modal');
+  if(modal)modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderCommentBody(text){
+  if(!text)return '';
+  // 处理粗体/斜体标记
+  var h=escHtml(text);
+  h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  h=h.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  h=h.replace(/\n/g,'<br>');
+  return h;
+}
+
+function stripHtmlSimple(html){
+  if(!html)return '';
+  return html.replace(/<[^>]+>/g,'').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").trim();
+}
+
+// 点击弹窗外部关闭
+document.addEventListener('click',function(e){
+  var modal=document.getElementById('gf-detail-modal');
+  if(modal&&modal.classList.contains('open')&&e.target===modal)closeGFDetailModal();
+  var umodal=document.getElementById('update-detail-modal');
+  if(umodal&&umodal.classList.contains('open')&&e.target===umodal)closeUpdateModal();
+});
+
+// ESC键关闭
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    closeGFDetailModal();
+    closeUpdateModal();
+  }
+});
+
 </script>
+
+<!-- ==================== GF详情弹窗 ==================== -->
+<div id="gf-detail-modal" role="dialog" aria-modal="true" aria-labelledby="gf-detail-title">
+  <div class="modal-body">
+    <div class="modal-header">
+      <div id="gf-detail-header">
+        <h2 id="gf-detail-title">加载中...</h2>
+        <div class="sub"></div>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="closeGFDetailModal()" aria-label="关闭">×</button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-left" id="gf-detail-left">
+        <div class="modal-loading">加载中...</div>
+      </div>
+      <div class="modal-right" id="gf-detail-right"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 更新详情弹窗 -->
+<div id="update-detail-modal" role="dialog" aria-modal="true" aria-labelledby="ud-title">
+  <div class="modal-body">
+    <div class="update-header" id="ud-header">
+      <h3 id="ud-title">更新详情</h3>
+      <button type="button" class="close-btn" onclick="closeUpdateModal()" aria-label="关闭">×</button>
+    </div>
+    <div class="update-body" id="ud-body"></div>
+  </div>
+</div>
+
 </body>
 </html>

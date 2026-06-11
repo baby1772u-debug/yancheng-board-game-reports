@@ -734,7 +734,7 @@ function loadOverseasTab(){
     if(xhr.status===200){
       try{
         var resp=JSON.parse(xhr.responseText);
-        if(resp.code===0&&resp.projects){
+        if(resp.ok&&resp.projects){
           _gfCache={data:resp.projects,ts:Date.now()};
           renderOverseasFromApi(resp.projects);
         }else{
@@ -757,57 +757,88 @@ function loadOverseasTab(){
 
 function gfApiCardToItem(card){
   // 将GF API返回的卡片数据转换为前端rc()函数可识别的项目对象
-  // 注意：列表API只返回基础字段（没有sd/ed/amount/backers/url）
-  // 详情数据通过弹窗API按需加载
-  var tl=['众筹中'];
-  // 用最低价作为金额标记
-  if(card.min_price>0){
-    var sym={'USD':'$','EUR':'€','GBP':'£','PLN':'zł','CZK':'Kč','SEK':'kr','NOK':'kr','DKK':'kr'};
-    var s=sym[card.currency]||card.currency+' ';
-    tl.push('起 '+s+card.min_price);
-  }
+  // 新API（2026-06-11改版）返回完整字段：name/amount/backers/sd/ed/url/tl/ta
+  var tl=card.tl||['众筹中'];
+  var ta=card.ta||['l','m'];
   
   // 封面图
   var image=card.image||'';
   
-  // 构建GF链接
-  var gfUrl='https://gamefound.com/projects/'+(card.n||'');
-  
   return {
     n: card.n,
-    t: '<span class="en">'+escHtml(card.project_name||card.n)+'</span>',
+    t: '<span class="en">'+escHtml(card.name||card.n)+'</span>',
     m: (card.creator||'')+' · GF',
     p: 'gf',
     pl: '🎮 GF',
-    ta: ['l','m'],
+    ta: ta,
     tl: tl,
     pg: 100,
-    l: gfUrl,
-    l2: '',         // 无国内链接
-    sd: null,
-    ed: null,
+    l: card.url||'https://gamefound.com/projects/'+(card.n||''),
+    l2: '',
+    sd: card.sd||null,
+    ed: card.ed||null,
     i: image,
     _api_source: 'gf-api',
-    _tier_count: card.tier_count||0,
-    _update_count: card.update_count||0,
+    _tier_count: 0,
+    _update_count: 0,
+    _amount: card.amount||0,
+    _backers: card.backers||0,
+    _followers: card.followers||0,
+    _status: card.status||'funding',
   };
 }
 
 function renderOverseasFromApi(projects){
   // 转换API项目为前端卡片格式
   var items=projects.map(gfApiCardToItem);
-  
-  // 跟本地预告项目合并（OP里的预告项目和已结束项目）
   var n=new Date();
-  var opActive=OP.filter(function(it){return !isEndedProject(it,n);});
   
-  // 构建关键时间节点（从项目中自动提取）
-  var events=[];
+  // 分类：正在众筹 / 即将上线 / 已结束 / 预告
+  var funding=[], upcoming=[], endedItems=[], previewItems=[];
   items.forEach(function(it){
+    var ed=pd(it.ed);
+    var sd=pd(it.sd);
+    if(ed&&ed<=n){
+      endedItems.push(it);
+    }else if(sd&&sd<=n){
+      funding.push(it);
+    }else if(sd&&sd>n){
+      upcoming.push(it);
+    }else{
+      previewItems.push(it);
+    }
+  });
+  
+  // 合并本地OP中的预告项目（排除已结束的）
+  var opPreview=OP.filter(function(it){
+    return !isEndedProject(it,n) && !it.sd;
+  });
+  previewItems=[].concat(previewItems,opPreview);
+  
+  // 合并本地已结束项目
+  var opEnded=OP.filter(function(it){return isEndedProject(it,n);});
+  endedItems=[].concat(endedItems,opEnded);
+  
+  // 处理硬编码OL中混入的已结束项目（如已过期的Archvillain/Caverns等）
+  // 如果API数据已经覆盖了这些项目，就忽略硬编码的
+  var apiNames={};
+  items.forEach(function(it){apiNames[it.n]=true;});
+  OL.forEach(function(it){
+    var ed=pd(it.ed);
+    if(ed&&ed<=n && !apiNames[it.n]){
+      endedItems.push(it);
+    }
+  });
+  
+  // 按金额排序
+  funding.sort(function(a,b){return (b._amount||0)-(a._amount||0)});
+  
+  // 构建关键时间节点
+  var events=[];
+  items.concat(OP).forEach(function(it){
     if(it.sd)events.push({d:it.sd,e:escHtml(stripHtml(it.t))+' 上线'});
     if(it.ed)events.push({d:it.ed,e:escHtml(stripHtml(it.t))+' 截止'});
   });
-  // 去重排序
   var seen={};
   events=events.filter(function(e){
     var k=e.d+e.e;
@@ -816,11 +847,20 @@ function renderOverseasFromApi(projects){
     return true;
   }).sort(function(a,b){return String(a.d).localeCompare(String(b.d))});
   
-  // 同时更新全局海外数据变量（供每日资讯 rn() 使用）
-  _gfOverseasFunding=items;
-  _gfOverseasUpcoming=[];
+  // 更新全局变量（供每日资讯）
+  _gfOverseasFunding=funding;
+  _gfOverseasUpcoming=upcoming;
+  _gfOverseasEnded=endedItems;
+  _gfOverseasPreview=previewItems;
 
-  renderMarketTab('to',items,opActive,[],events,'🌍 海外');
+  // 用renderMarketTab但传递分类后的数据
+  var h='';
+  if(funding.length>0)h+=renderListSection('to-active','🎯','正在众筹 · GF',funding,5);
+  if(upcoming.length>0)h+=renderListSection('to-upcoming','🔥','即将上线',upcoming,3);
+  if(endedItems.length>0)h+=renderListSection('to-ended','✅','已结束',endedItems,3);
+  if(previewItems.length>0)h+=renderPreviewSection('to-preview',previewItems);
+  h+='<div class="sec"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(events);
+  document.getElementById('to').innerHTML=h;
 }
 
 function gi(nm){
@@ -1917,7 +1957,7 @@ loadQR();
       if(xhr.status===200){
         try{
           var resp=JSON.parse(xhr.responseText);
-          if(resp.code===0&&resp.projects){
+          if(resp.ok&&resp.projects){
             _gfCache={data:resp.projects,ts:Date.now()};
             // 预先转换数据供每日资讯使用
             var items=resp.projects.map(gfApiCardToItem);

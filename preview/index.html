@@ -315,24 +315,34 @@ footer a{color:var(--accent);text-decoration:none}
 #gf-detail-modal .desc-text{font-size:.82em;line-height:1.7;color:#333;margin-bottom:4px}
 #gf-detail-modal .desc-toggle{font-size:.75em;color:var(--accent);cursor:pointer;background:none;border:none;padding:2px 0;text-decoration:underline;text-underline-offset:2px}
 /* 档位 */
-#gf-detail-modal .tier-scroll{display:flex;gap:8px;overflow-x:auto;padding:0 0 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-#gf-detail-modal .tier-scroll::-webkit-scrollbar{height:4px}
-#gf-detail-modal .tier-scroll::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
-#gf-detail-modal .tier-card{flex:0 0 200px;scroll-snap-align:start;background:#f7f7f8;border-radius:10px;padding:12px;border:1px solid #eee}
-#gf-detail-modal .tier-card .tier-name{font-size:.78em;font-weight:600;color:#1a1a1a;line-height:1.3;margin-bottom:4px}
-#gf-detail-modal .tier-card .tier-price{font-size:.9em;font-weight:700;color:var(--accent)}
-#gf-detail-modal .tier-card .tier-backers{font-size:.7em;color:#888;margin-top:2px}
-#gf-detail-modal .tier-card .tier-desc{font-size:.72em;color:#666;margin-top:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#gf-detail-modal .tier-pills{display:flex;flex-wrap:wrap;gap:6px;padding:0 0 6px}
+#gf-detail-modal .tier-pill{display:inline-flex;align-items:center;flex-wrap:wrap;gap:4px 8px;background:#f0f2f5;border-radius:20px;padding:5px 12px;font-size:.78em;line-height:1.4;border:1px solid #e8e8e8;width:100%;box-sizing:border-box}
+#gf-detail-modal .tier-pill .tp-name{font-weight:600;color:#1a1a1a;font-size:.95em}
+#gf-detail-modal .tier-pill .tp-price{font-weight:700;color:var(--accent);background:rgba(255,107,53,.1);border-radius:10px;padding:1px 8px;font-size:.9em}
+#gf-detail-modal .tier-pill .tp-backers{font-size:.82em;color:#888}
+#gf-detail-modal .tier-pill .tp-desc{font-size:.82em;color:#666;flex:1 1 100%;padding:2px 0 0}
+/* 翻译按钮 */
+#gf-detail-modal .header-title-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#gf-detail-modal .header-title-row h2{flex:1;font-size:1.15em;margin:0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.translate-btn{background:var(--accent);color:#fff;border:none;border-radius:16px;padding:4px 14px;font-size:.78em;cursor:pointer;white-space:nowrap;transition:opacity .15s;flex-shrink:0}
+.translate-btn:hover{opacity:.85}
+.translate-btn.translating{opacity:.6;pointer-events:none}
+.translate-btn.translated{background:#52c41a}
+/* 翻译缓存标记 */
+.translated-text{display:none}
+.translated-text.show{display:block}
+.desc-text.translated,.info-row.translated{display:none}
+
 /* 更新动态 */
-#gf-detail-modal .update-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 0 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-#gf-detail-modal .update-scroll::-webkit-scrollbar{height:4px}
-#gf-detail-modal .update-scroll::-webkit-scrollbar-thumb{background:#ddd;border-radius:4px}
-#gf-detail-modal .update-card{flex:0 0 260px;scroll-snap-align:start;background:#f7f7f8;border-radius:10px;padding:12px;border:1px solid #eee;cursor:pointer;transition:box-shadow .15s}
-#gf-detail-modal .update-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
-#gf-detail-modal .update-card .update-title{font-size:.78em;font-weight:600;color:#1a1a1a;line-height:1.3;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-#gf-detail-modal .update-card .update-meta{font-size:.68em;color:#888}
-#gf-detail-modal .update-card .update-likes{font-size:.68em;color:var(--accent);font-weight:600}
-#gf-detail-modal .update-card .update-preview{font-size:.72em;color:#555;margin-top:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#gf-detail-modal .update-list{display:flex;flex-direction:column;gap:8px;padding:0 0 6px}
+#gf-detail-modal .update-card{border-radius:10px;padding:10px 14px;border:1px solid #eee;cursor:pointer;transition:box-shadow .15s;background:#fafbfc}
+#gf-detail-modal .update-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.06)}
+#gf-detail-modal .update-card .update-header-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#gf-detail-modal .update-card .update-title{font-size:.82em;font-weight:600;color:#1a1a1a;line-height:1.3}
+#gf-detail-modal .update-card .update-meta{font-size:.72em;color:#999;white-space:nowrap}
+#gf-detail-modal .update-card .update-likes{font-size:.72em;color:var(--accent);font-weight:600;margin:3px 0}
+#gf-detail-modal .update-card .update-body-content{font-size:.82em;line-height:1.7;color:#333;margin-top:6px;padding-top:8px;border-top:1px solid #eee}
+#gf-detail-modal .update-card .update-body-content img{max-width:100%;border-radius:8px;margin:6px 0}
 /* 评论 */
 #gf-detail-modal .comment-list{display:flex;flex-direction:column;gap:8px}
 #gf-detail-modal .comment-item{padding:10px 12px;background:#f7f7f8;border-radius:10px;border:1px solid #eee}
@@ -757,8 +767,10 @@ function loadOverseasTab(){
 
 function gfApiCardToItem(card){
   // 将GF API返回的卡片数据转换为前端rc()函数可识别的项目对象
+  // 后端已处理状态分类，直接使用card中的 ta/tl/sd/ed
   var n=new Date();
   var ed=card.ed?pd(card.ed):null;
+  var sd=card.sd?pd(card.sd):null;
   
   // 构建metaline
   var metaParts=[card.creator||'','GF'];
@@ -767,33 +779,46 @@ function gfApiCardToItem(card){
     metaParts.push((days<=1?'⚠️ ':'')+'剩'+days+'天');
   }else if(ed&&ed<=n){
     metaParts.push('已结束');
+  }else if(!sd||sd>n){
+    metaParts.push('预告');
   }
   
-  // 构建 tl — rc()按 ta 顺序取: tl[0]对应'l'(长标签), tl[1]对应'm'(短标签/金额)
-  // rc()对已结束的项目会跳过'l'标签(c==='l'时return)
-  var tl=[];
-  var ended=ed&&ed<=n;
-  if(!ended){
-    tl.push('众筹中');
-  }
-  // 金额作为第二个标签（'m'短标签），已结束也显示金额
-  var amtTl=(card.tl||[]).filter(function(x){return /[€$£¥]/.test(x)})[0];
-  if(amtTl){
-    tl.push(amtTl);
-  }else if(card.amount>0){
-    var sym={'USD':'$','EUR':'€','GBP':'£','PLN':'zł','CZK':'Kč','SEK':'kr','NOK':'kr','DKK':'kr'};
-    var s=sym[card.currency]||card.currency+' ';
-    tl.push('🔥 '+s+Number(card.amount).toLocaleString('zh-CN'));
-  }
-  if(ended){
-    tl.push('✅ 已结束');
-  }
+  // 使用后端返回的 tl 和 ta，或者自己构建
+  var tl=[].concat(card.tl||[]);
+  var ta=[].concat(card.ta||[]);
   
-  // 构建档位标记: l=长宽度(众筹中), m=短标签(金额), 注意rc()里已结束跳过l
-  var ta=['l','m'];
+  // 如果没有标签，根据状态生成
+  if(!tl.length){
+    if(ed&&ed<=n){
+      tl.push('✅ 已结束');
+    }else if(!sd||sd>n){
+      tl.push('即将上线');
+    }else{
+      tl.push('众筹中');
+      if(card.amount>0){
+        var sym={'USD':'$','EUR':'€','GBP':'£','PLN':'zł','CZK':'Kč','SEK':'kr','NOK':'kr','DKK':'kr'};
+        var s=sym[card.currency]||card.currency+' ';
+        tl.push('🔥 '+s+Number(card.amount).toLocaleString('zh-CN'));
+      }
+    }
+  }
+  if(!ta.length){
+    if(ed&&ed<=n){
+      // 已结束
+    }else if(!sd||sd>n){
+      ta.push('u');
+    }else{
+      ta.push('l');
+      ta.push('m');
+    }
+  }
   
   // 封面图：API有图片链接，传给rc()函数用it.i显示
   var image=card.image||'';
+  
+  // m2: 描述/子标题，后端返回或自己构造
+  var m2=card.m2||'';
+  if(!m2&&card.followers) m2=card.followers+'人关注';
   
   return {
     n: card.n,
@@ -803,6 +828,7 @@ function gfApiCardToItem(card){
     pl: '🎮 GF',
     ta: ta,
     tl: tl,
+    m2: m2,
     pg: 100,
     l: card.url,
     sd: card.sd,
@@ -817,18 +843,54 @@ function gfApiCardToItem(card){
 function renderOverseasFromApi(projects){
   // 转换API项目为前端卡片格式
   var items=projects.map(gfApiCardToItem);
-  
-  // 跟本地预告项目合并（OP里的预告项目和已结束项目）
   var n=new Date();
-  var opActive=OP.filter(function(it){return !isEndedProject(it,n);});
   
-  // 构建关键时间节点（从项目中自动提取）
-  var events=[];
+  // 分类：正在众筹 / 即将上线 / 已结束 / 预告
+  var funding=[], upcoming=[], endedItems=[], previewItems=[];
   items.forEach(function(it){
+    var ed=pd(it.ed);
+    var sd=pd(it.sd);
+    if(ed&&ed<=n){
+      endedItems.push(it);
+    }else if(sd&&sd<=n){
+      funding.push(it);
+    }else if(sd&&sd>n){
+      upcoming.push(it);
+    }else{
+      previewItems.push(it);
+    }
+  });
+  
+  // 合并本地OP中的预告项目（排除已结束的）
+  var opPreview=OP.filter(function(it){
+    return !isEndedProject(it,n) && !it.sd;
+  });
+  previewItems=[].concat(previewItems,opPreview);
+  
+  // 合并本地已结束项目
+  var opEnded=OP.filter(function(it){return isEndedProject(it,n);});
+  endedItems=[].concat(endedItems,opEnded);
+  
+  // 处理硬编码OL中混入的已结束项目（如已过期的Archvillain/Caverns等）
+  // 如果API数据已经覆盖了这些项目，就忽略硬编码的
+  var apiNames={};
+  items.forEach(function(it){apiNames[it.n]=true;});
+  OL.forEach(function(it){
+    var ed=pd(it.ed);
+    if(ed&&ed<=n && !apiNames[it.n]){
+      endedItems.push(it);
+    }
+  });
+  
+  // 按金额排序
+  funding.sort(function(a,b){return (b._amount||0)-(a._amount||0)});
+  
+  // 构建关键时间节点
+  var events=[];
+  items.concat(OP).forEach(function(it){
     if(it.sd)events.push({d:it.sd,e:escHtml(stripHtml(it.t))+' 上线'});
     if(it.ed)events.push({d:it.ed,e:escHtml(stripHtml(it.t))+' 截止'});
   });
-  // 去重排序
   var seen={};
   events=events.filter(function(e){
     var k=e.d+e.e;
@@ -837,11 +899,20 @@ function renderOverseasFromApi(projects){
     return true;
   }).sort(function(a,b){return String(a.d).localeCompare(String(b.d))});
   
-  // 同时更新全局海外数据变量（供每日资讯 rn() 使用）
-  _gfOverseasFunding=items;
-  _gfOverseasUpcoming=[];
+  // 更新全局变量（供每日资讯）
+  _gfOverseasFunding=funding;
+  _gfOverseasUpcoming=upcoming;
+  _gfOverseasEnded=endedItems;
+  _gfOverseasPreview=previewItems;
 
-  renderMarketTab('to',items,opActive,[],events,'🌍 海外');
+  // 用renderMarketTab但传递分类后的数据
+  var h='';
+  if(funding.length>0)h+=renderListSection('to-active','🎯','正在众筹 · GF',funding,5);
+  if(upcoming.length>0)h+=renderListSection('to-upcoming','🔥','即将上线',upcoming,3);
+  if(endedItems.length>0)h+=renderListSection('to-ended','✅','已结束',endedItems,3);
+  if(previewItems.length>0)h+=renderPreviewSection('to-preview',previewItems);
+  h+='<div class=\"sec\"><span>⏳</span><h2>关键时间节点</h2></div>'+rtl(events);
+  document.getElementById('to').innerHTML=h;
 }
 
 function gi(nm){
@@ -2011,17 +2082,205 @@ function closeGFDetailModal(){
   var modal=document.getElementById('gf-detail-modal');
   if(modal)modal.classList.remove('open');
   document.body.style.overflow='';
+  // 关闭时重置翻译状态
+  _gfTranslated=false;
 }
+
+// ===== GF 翻译功能 =====
+var _gfTranslateCache={};
+var _gfTranslated=false;
+
+function translateGFDetail(){
+  var btn=document.querySelector('.translate-btn');
+  if(!btn)return;
+  if(_gfTranslated){
+    // 切换回原文
+    document.querySelectorAll('.translated-text').forEach(function(el){el.classList.remove('show')});
+    document.querySelectorAll('.desc-text, .info-row').forEach(function(el){el.classList.remove('translated')});
+    btn.textContent='🌐 翻译';
+    btn.classList.remove('translated');
+    _gfTranslated=false;
+    return;
+  }
+  
+  btn.textContent='⏳ 翻译中...';
+  btn.classList.add('translating');
+  
+  // 收集需要翻译的文本
+  var texts=[];
+  var descEl=document.getElementById('gf-desc-text');
+  if(descEl&&descEl.textContent.trim()){
+    texts.push({key:'desc',text:descEl.textContent.trim()});
+  }
+  var infoRows=document.querySelectorAll('#gf-detail-left .info-row');
+  infoRows.forEach(function(row,idx){
+    var txt=row.textContent.trim();
+    if(txt&&/players|play_time|时长|人数|age|年龄|age|类别|简介/i.test(txt)){
+      texts.push({key:'info_'+idx,text:txt});
+    }
+  });
+  var tierDescEls=document.querySelectorAll('.tp-desc');
+  tierDescEls.forEach(function(el,idx){
+    var txt=el.textContent.trim();
+    if(txt)texts.push({key:'tier_'+idx,text:txt});
+  });
+  
+  if(!texts.length){
+    btn.textContent='🌐 翻译';
+    btn.classList.remove('translating');
+    return;
+  }
+  
+  // 批量翻译
+  var toTranslate=texts.map(function(t){return t.text}).join('\n---\n');
+  var cacheKey=toTranslate.slice(0,100);
+  if(_gfTranslateCache[cacheKey]){
+    applyTranslation(_gfTranslateCache[cacheKey],texts,btn);
+    return;
+  }
+  
+  translateText(toTranslate,function(translated){
+    if(translated){
+      _gfTranslateCache[cacheKey]=translated;
+      applyTranslation(translated,texts,btn);
+    }else{
+      btn.textContent='🌐 翻译';
+      btn.classList.remove('translated','translating');
+    }
+  });
+}
+
+function applyTranslation(translated,originalTexts,btn){
+  var parts=translated.split('\n---\n');
+  var n=document.createDocumentFragment();
+  
+  // 先保存原文，显示译文
+  var descEl=document.getElementById('gf-desc-text');
+  if(descEl&&parts[0]){
+    // 保存原文到HTML的某个隐藏属性
+    if(!descEl.dataset.original)descEl.dataset.original=descEl.innerHTML;
+    var transId='gf-desc-trans';
+    var transEl=document.getElementById(transId);
+    if(!transEl){
+      transEl=document.createElement('div');
+      transEl.id=transId;
+      transEl.className='translated-text';
+      descEl.parentNode.insertBefore(transEl,descEl.nextSibling);
+    }
+    transEl.textContent=parts[0];
+    transEl.classList.add('show');
+    descEl.classList.add('translated');
+  }
+  
+  // info rows
+  var infoRowIdx=1;
+  for(var i=1;i<parts.length&&infoRowIdx<originalTexts.length;i++){
+    var ot=originalTexts[infoRowIdx];
+    var translatedPart=parts[i];
+    if(translatedPart&&ot.key.startsWith('info_')){
+      var rows=document.querySelectorAll('#gf-detail-left .info-row');
+      rows.forEach(function(row,ri){
+        if(!row.dataset.original)row.dataset.original=row.innerHTML;
+        var transId='gf-info-trans-'+ri;
+        var transEl=document.getElementById(transId);
+        if(!transEl){
+          transEl=document.createElement('div');
+          transEl.id=transId;
+          transEl.className='translated-text info-trans';
+          row.parentNode.insertBefore(transEl,row.nextSibling);
+        }
+        transEl.textContent=translatedPart;
+        transEl.classList.add('show');
+        row.classList.add('translated');
+      });
+      infoRowIdx++;
+    }
+  }
+  
+  // tier descs
+  var tierIdx=0;
+  var tierEls=document.querySelectorAll('.tp-desc');
+  tierEls.forEach(function(el,tri){
+    if(!el.dataset.original)el.dataset.original=el.textContent;
+  });
+  for(var i=1;i<parts.length;i++){
+    var ot=originalTexts[i];
+    if(ot&&ot.key.startsWith('tier_')&&tierEls[tierIdx]){
+      tierEls[tierIdx].textContent=parts[i];
+      tierEls[tierIdx].classList.add('translated');
+      tierIdx++;
+    }
+  }
+  
+  btn.textContent='🌐 原文';
+  btn.classList.remove('translating');
+  btn.classList.add('translated');
+  _gfTranslated=true;
+}
+
+function translateText(text,callback){
+  // 使用硅基流动API翻译
+  var xhr=new XMLHttpRequest();
+  var body=JSON.stringify({text:text,source:'en',target:'zh'});
+  xhr.open('POST','/api/translate',true);
+  xhr.setRequestHeader('Content-Type','application/json');
+  xhr.onload=function(){
+    if(xhr.status===200){
+      try{
+        var resp=JSON.parse(xhr.responseText);
+        if(resp.ok&&resp.translated){
+          callback(resp.translated);
+          return;
+        }
+      }catch(e){}
+    }
+    // 失败时用简单词典翻译
+    fallbackTranslate(text,callback);
+  };
+  xhr.onerror=function(){fallbackTranslate(text,callback)};
+  xhr.send(body);
+}
+
+function fallbackTranslate(text,callback){
+  // 简单的词典翻译，作为备选
+  var dict={
+    'players':'玩家人数','play time':'游戏时长','playing time':'游戏时长','age':'适合年龄',
+    'category':'游戏类别','description':'游戏介绍','about':'关于','intro':'介绍',
+    'pledge':'档位','tier':'档位','reward':'回报','shipping':'运费','delivery':'发货',
+    'estimated delivery':'预计发货','funded':'已达标','backers':'支持者','funding':'众筹',
+    'campaign':'众筹项目','Project':'项目','pledge starts':'档位起价','sold out':'已售罄',
+    'limited':'限量','exclusive':'独占','add-on':'加购','all in':'全套',
+    'reprint':'再版','expansion':'扩展','standalone':'独立扩展','big box':'大盒版',
+    'deluxe':'豪华版','premium':'高级版','collector':'收藏版','retail':'零售版',
+    'card':'卡牌','board game':'桌游','miniature':'模型','dice':'骰子',
+    'fantasy':'奇幻','sci-fi':'科幻','horror':'恐怖','adventure':'冒险',
+    'strategy':'策略','war':'战争','european':'德式','american':'美式',
+    'cooperative':'合作','competitive':'竞争','solo':'单人','multiplayer':'多人',
+    '30 min':'30分钟','60 min':'60分钟','90 min':'90分钟','120 min':'120分钟',
+    '14+':'14岁以上','12+':'12岁以上','10+':'10岁以上','8+':'8岁以上',
+    'age 14':'14岁以上','age 13':'13岁以上',
+  };
+  var result=text;
+  var keys=Object.keys(dict).sort(function(a,b){return b.length-a.length});
+  keys.forEach(function(k){
+    var re=new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
+    result=result.replace(re,dict[k]);
+  });
+  callback(result);
+}
+
+
 
 function renderGFDetail(d){
   var leftEl=document.getElementById('gf-detail-left');
   var rightEl=document.getElementById('gf-detail-right');
   if(!leftEl||!rightEl)return;
   
-  // 头部
+  // 头部 + 翻译按钮
   var headerEl=document.getElementById('gf-detail-header');
   if(headerEl){
-    headerEl.innerHTML='<h2>'+escHtml(d.project_name||d.url_name||'')+'</h2>'+
+    headerEl.innerHTML='<div class="header-title-row"><h2>'+escHtml(d.project_name||d.url_name||'')+'</h2>'+
+      '<button type="button" class="translate-btn" onclick="translateGFDetail()" title="翻译为中文">🌐 翻译</button></div>'+
       '<div class="sub">'+(d.creator_name?escHtml(d.creator_name):'')+'</div>';
   }
   
@@ -2049,36 +2308,39 @@ function renderGFDetail(d){
     rightHtml+='<button type="button" class="desc-toggle" onclick="toggleGFDesc(\''+escAttr(d.url_name)+'\')">展开全文</button>';
   }
   
-  // 档位
+  // 档位 — 胶囊样式
   if(d.tiers&&d.tiers.length){
     rightHtml+='<div class="section-title">🎯 档位一览 <span style="font-weight:400;color:#888;font-size:.82em">('+d.tiers.length+'个)</span></div>';
-    rightHtml+='<div class="tier-scroll">';
+    rightHtml+='<div class="tier-pills">';
     d.tiers.forEach(function(t){
       var priceStr=(t.currency||'€')+Number(t.price||0).toLocaleString('zh-CN');
       var backersStr=t.backers?t.backers+'人已选':'';
       var descStr=t.description||'';
-      rightHtml+='<div class="tier-card">'+
-        '<div class="tier-name">'+escHtml(t.reward_name||'')+'</div>'+
-        '<div class="tier-price">'+priceStr+'</div>'+
-        (backersStr?'<div class="tier-backers">'+backersStr+'</div>':'')+
-        (descStr?'<div class="tier-desc">'+escHtml(descStr)+'</div>':'')+
+      rightHtml+='<div class="tier-pill">'+
+        '<span class="tp-name">'+escHtml(t.reward_name||'')+'</span>'+
+        '<span class="tp-price">'+priceStr+'</span>'+
+        (backersStr?'<span class="tp-backers">'+backersStr+'</span>':'')+
+        (descStr?'<span class="tp-desc">'+escHtml(descStr.slice(0,80))+'</span>':'')+
         '</div>';
     });
     rightHtml+='</div>';
   }
   
-  // 更新
+  // 更新 — 在当前页展开，不弹窗
   if(d.updates&&d.updates.length){
     rightHtml+='<div class="section-title">📢 作者动态 <span style="font-weight:400;color:#888;font-size:.82em">('+d.updates.length+'条)</span></div>';
-    rightHtml+='<div class="update-scroll">';
-    d.updates.forEach(function(u){
-      var preview=stripHtmlSimple(u.body_html||'')||'';
-      var previewShort=preview.length>100?preview.slice(0,100)+'...':preview;
-      rightHtml+='<div class="update-card" onclick="showUpdateDetail('+JSON.stringify(u).replace(/"/g,'&quot;')+')">'+
+    rightHtml+='<div class="update-list">';
+    d.updates.forEach(function(u,ui){
+      var uid='gf-update-'+d.url_name+'-'+ui;
+      rightHtml+='<div class="update-card" onclick="toggleUpdateBody(\''+uid+'\',this)">'+
+        '<div class="update-header-row">'+
         '<div class="update-title">'+escHtml(u.title||'')+'</div>'+
         '<div class="update-meta">'+(u.posted_at?escHtml(u.posted_at.slice(0,10)):'')+'</div>'+
+        '</div>'+
         (u.likes_count?'<div class="update-likes">❤ '+u.likes_count+'</div>':'')+
-        (previewShort?'<div class="update-preview">'+escHtml(previewShort)+'</div>':'')+
+        '<div class="update-body-content" id="'+uid+'" style="display:none">'+
+        renderUpdateBodyHtml(u.body_html||'')+
+        '</div>'+
         '</div>';
     });
     rightHtml+='</div>';
@@ -2145,6 +2407,28 @@ function toggleGFDesc(urlName){
   }
 }
 
+function toggleUpdateBody(uid,el){
+  var bodyEl=document.getElementById(uid);
+  if(!bodyEl)return;
+  if(bodyEl.style.display==='none'){
+    bodyEl.style.display='block';
+    el.classList.add('expanded');
+  }else{
+    bodyEl.style.display='none';
+    el.classList.remove('expanded');
+  }
+}
+
+function renderUpdateBodyHtml(html){
+  if(!html)return escHtml('暂无内容');
+  var safe=html.replace(/<\/?[^>]+(>|$)/g,function(m){
+    if(/^<(p|br|b|strong|i|em|u|a|ul|ol|li|h[1-6]|div|span|img|blockquote|pre|code|table|tr|td|th|tbody|thead)/i.test(m))return m;
+    if(/^<\/(p|br|b|strong|i|em|u|a|ul|ol|li|h[1-6]|div|span|img|blockquote|pre|code|table|tr|td|th|tbody|thead)/i.test(m))return m;
+    return '';
+  }).replace(/<img /g,'<img style="max-width:100%;border-radius:8px;margin:8px 0" ');
+  return safe;
+}
+
 function showUpdateDetail(update){
   var modal=document.getElementById('update-detail-modal');
   if(!modal)return;
@@ -2155,14 +2439,7 @@ function showUpdateDetail(update){
   var bodyEl=document.getElementById('ud-body');
   if(headerEl)headerEl.innerHTML='<h3>'+escHtml(update.title||'')+'</h3>';
   if(bodyEl){
-    var bodyHtml=update.body_html||'';
-    // 处理基本样式
-    bodyHtml=bodyHtml.replace(/<\/?[^>]+(>|$)/g,function(m){
-      if(/^<(p|br|b|strong|i|em|u|a|ul|ol|li|h[1-6]|div|span|img|blockquote|pre|code)/i.test(m))return m;
-      if(/^<\/(p|br|b|strong|i|em|u|a|ul|ol|li|h[1-6]|div|span|img|blockquote|pre|code)/i.test(m))return m;
-      return '';
-    }).replace(/<img /g,'<img style="max-width:100%;border-radius:8px;margin:8px 0" ');
-    bodyEl.innerHTML=bodyHtml||escHtml(update.title||'');
+    bodyEl.innerHTML=renderUpdateBodyHtml(update.body_html||'');
   }
 }
 
